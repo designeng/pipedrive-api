@@ -88,7 +88,6 @@ module.exports = (grunt) ->
     grunt.loadNpmTasks "grunt-contrib-concat"
     grunt.loadNpmTasks "grunt-contrib-requirejs"
     grunt.loadNpmTasks "grunt-newer"
-    grunt.loadNpmTasks "grunt-nodemon"
 
     # ["dataMainAttr"] tasks
     grunt.loadTasks "tasks"

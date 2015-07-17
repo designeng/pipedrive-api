@@ -1,0 +1,22 @@
+<a class="accordion-section-title" href="#/forks/{{ id }}">
+    <span class="forked-by">{{ forkedBy }}</span>/<span class="original-fork-name">{{ originalForkName }}</span>
+</a>
+<div id="{{ id }}" class="accordion-section-content">
+    <div class="fork-info">
+        <div>Owner login: <a href="{{ owner.html_url }}" target="blank">{{ owner.login }}</a></div>
+        <div>Owner avatar: <a href="{{ owner.avatar_url }}" target="blank"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABRklEQVQ4T62S0U3DMBCGfxMPABNQNigTECZoNsAjlAdXAjWKo1og1Q90BLNB2SAbwAZ0AxjA5pAdpUrSpAKBXyz5v/vu/N8xDByhHifwSQEwUctkkfjSqrtdP5z1H+pk/gqgROK2Ufc8A5EC99M+5BCQryuAbe1KbtpwkZs5CDOr5XX7vQMQ9+spTtjWajkZ/NrS7PBFmX1YvDV6FxCqAKldyWwQkJvwpardXRewNCokWi3jfeDPgP7PHfzVg9CyODYFUGZXi3R0ChEQ9sAlweUC3L/EYJfM4l4c2wNRG3QF4ALcpXBcgeGmXkQ8gzsFxysA73ESWpZBiiaK3ISKOxA2VssQNHrE0qRgmIPo3OrFJYuVGaZjsx8jRa+IVSxW9yTa23Wsg0arOyEVAISEn1l1+/mTxD1APZ3Cu4/mC8VvkvexhPIbbVSfbeLjDCoAAAAASUVORK5CYII="/></a></div>
+        <div>Description: {{ description }}</div>
+        <div>Privacy flag: {{ private }}</div>
+        <div>Language: {{ language }}</div>
+        <div>Created at: {{ createdAt }}</div>
+        <div>Updated at: {{ updatedAt }}</div>
+    </div>
+    <div class="fork-like-block">
+        <button class="like preference">+</button>
+        <button class="dislike preference">-</button>
+    </div>
+    <div class="fork-rate-block">
+        <div class="likes-rate"></div>
+        <div class="dislikes-rate"></div>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+<a class="accordion-section-title" href="#/contributors/{{ author.login }}">
+    <img src="{{ avatar50x50 }}" class="accordion-section-title-avatar" /><span class="accordion-section-title-login">{{ author.login }}</span>
+</a>
+<div id="{{ author.login }}" class="accordion-section-content">
+    <div class="contributor-avatar-wrapper">
+        <img src="{{ avatar150x150 }}" class="contributor-avatar" />
+    </div>
+    <div class="contributor-info">
+        <div>Github account: <a href="{{ author.html_url }}" target="blank">{{ author.login }}</a></div>
+        <div>Total commits count: {{ total }}</div>
+        <div>Additions: <span class="contributor-additions">{{ additions }} ++</span></div>
+        <div>Deletions: <span class="contributor-deletions">{{ deletions }} --</span></div>
+    </div>
+    <div class="contributor-like-block">
+        <button class="like preference">+</button>
+        <button class="dislike preference">-</button>
+    </div>
+    <div class="contributor-rate-block">
+        <div class="likes-rate"></div>
+        <div class="dislikes-rate"></div>
+    </div>
+</div>

@@ -10,11 +10,11 @@ define({
     create: "blocks/mainArea/index"
   },
   router: {
-    create: "application/router"
+    create: "application/profiles/router"
   },
-  profilesApplicationInstance: {
+  profilesInstance: {
     create: {
-      module: "application/instance"
+      module: "application/profiles/instance"
     },
     properties: {
       router: {
@@ -23,6 +23,6 @@ define({
     }
   },
   start: function() {
-    return this.profilesApplicationInstance.start();
+    return this.profilesInstance.start();
   }
 });

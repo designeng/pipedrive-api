@@ -13,15 +13,15 @@ define
         create: "blocks/mainArea/index"
 
     router:
-        create: "application/router"
+        create: "application/profiles/router"
 
     # in Marionette we are not restricted with creating Marionette.Application instances,
     # they can be treated as different modules. Here in our test app we need only one app instance.
-    profilesApplicationInstance:
+    profilesInstance:
         create: 
-            module: "application/instance"
+            module: "application/profiles/instance"
         properties:
             router: {$ref: 'router'}
 
     start: ->
-        @profilesApplicationInstance.start()
+        @profilesInstance.start()

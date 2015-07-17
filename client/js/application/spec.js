@@ -12,7 +12,7 @@ define({
   router: {
     create: "application/router"
   },
-  applicationInstance: {
+  profilesApplicationInstance: {
     create: {
       module: "application/instance"
     },
@@ -23,6 +23,6 @@ define({
     }
   },
   start: function() {
-    return this.applicationInstance.start();
+    return this.profilesApplicationInstance.start();
   }
 });

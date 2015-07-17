@@ -15,11 +15,13 @@ define
     router:
         create: "application/router"
 
-    applicationInstance:
+    # in Marionette we are not restricted with creating Marionette.Application instances,
+    # they can be treated as different modules. Here in our test app we need only one app instance.
+    profilesApplicationInstance:
         create: 
             module: "application/instance"
         properties:
             router: {$ref: 'router'}
 
     start: ->
-        @applicationInstance.start()
+        @profilesApplicationInstance.start()

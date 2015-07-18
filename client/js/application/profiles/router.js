@@ -1,5 +1,6 @@
-define(["backbone", "marionette"], function(Backbone, Marionette) {
-  var AppRouterController;
+define(["backbone", "marionette", "backbone.radio"], function(Backbone, Marionette, Radio) {
+  var AppRouterController, globalChannel;
+  globalChannel = Radio.channel('global');
   AppRouterController = Marionette.Object.extend({
     initialize: function() {},
     showProfilesList: function() {

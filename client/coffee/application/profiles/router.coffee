@@ -1,7 +1,10 @@
 define [
     "backbone"
     "marionette"
-], (Backbone, Marionette) ->
+    "backbone.radio"
+], (Backbone, Marionette, Radio) ->
+
+    globalChannel = Radio.channel('global')
 
     AppRouterController = Marionette.Object.extend
         initialize: ->

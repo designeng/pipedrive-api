@@ -13,6 +13,11 @@ require.config
             location: "vendors/backbone"
         }
         {
+            name: "backbone.radio"
+            main: "backbone.radio"
+            location: "vendors/backbone.radio/build"
+        }
+        {
             name: "marionette"
             main: "backbone.marionette"
             location: "vendors/marionette/lib"

@@ -5,6 +5,10 @@ define(function() {
       console.log("Sidebar");
     }
 
+    Sidebar.prototype.showView = function(view) {
+      return console.debug("------SIDEBAR", view);
+    };
+
     return Sidebar;
 
   })();

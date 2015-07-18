@@ -5,6 +5,10 @@ define(function() {
       console.log("MainArea");
     }
 
+    MainArea.prototype.showView = function(view) {
+      return console.debug("------MainArea", view);
+    };
+
     return MainArea;
 
   })();

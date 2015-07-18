@@ -1,4 +1,4 @@
 require [
-    "wire!bootstrap/spec,application/spec"
+    "wire!bootstrap/spec,bootstrap/layouts/spec,application/spec"
 ], (applicationContext) ->
     applicationContext.start()

@@ -1,27 +1,28 @@
 define
     $plugins: [
         'wire/debug'
+        'plugins/router'
     ]
 
-    navigation:
-        create: "blocks/navigation/index"
+    profilesRouterController:
+        create: 'application/profiles/router/controller'
+        properties:
+            sidebar     : {$ref: 'sidebar'}
+            mainArea    : {$ref: 'mainArea'}
 
-    sidebar:
-        create: "blocks/sidebar/index"
-
-    mainArea:
-        create: "blocks/mainArea/index"
-
-    router:
-        create: "application/profiles/router"
+    profilesRouter:
+        createRouter:
+            controller: {$ref: 'profilesRouterController'}
+            routes:
+                'profiles'  : 'showProfilesList'
 
     # in Marionette we are not restricted with creating Marionette.Application instances,
     # they can be treated as different modules. Here in our test app we need only one app instance.
     profilesInstance:
         create: 
-            module: "application/profiles/instance"
+            module: 'application/profiles/instance'
         properties:
-            router: {$ref: 'router'}
+            router: {$ref: 'profilesRouter'}
 
     start: ->
         @profilesInstance.start()

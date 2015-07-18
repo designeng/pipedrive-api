@@ -1,24 +1,33 @@
 define({
-  $plugins: ['wire/debug'],
-  navigation: {
-    create: "blocks/navigation/index"
+  $plugins: ['wire/debug', 'plugins/router'],
+  profilesRouterController: {
+    create: 'application/profiles/router/controller',
+    properties: {
+      sidebar: {
+        $ref: 'sidebar'
+      },
+      mainArea: {
+        $ref: 'mainArea'
+      }
+    }
   },
-  sidebar: {
-    create: "blocks/sidebar/index"
-  },
-  mainArea: {
-    create: "blocks/mainArea/index"
-  },
-  router: {
-    create: "application/profiles/router"
+  profilesRouter: {
+    createRouter: {
+      controller: {
+        $ref: 'profilesRouterController'
+      },
+      routes: {
+        'profiles': 'showProfilesList'
+      }
+    }
   },
   profilesInstance: {
     create: {
-      module: "application/profiles/instance"
+      module: 'application/profiles/instance'
     },
     properties: {
       router: {
-        $ref: 'router'
+        $ref: 'profilesRouter'
       }
     }
   },

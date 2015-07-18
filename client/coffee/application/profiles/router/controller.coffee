@@ -7,4 +7,4 @@ define [
         initialize: ->
 
         showProfilesList: ->
-            @sidebar.showView("fake view")
+            @sidebar.showList @profilesList

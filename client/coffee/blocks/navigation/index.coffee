@@ -1,5 +1,7 @@
-define ->
+define [
+    'marionette'
+], (Marionette) ->
     
-    class Navigation
-        constructor: ->
-            console.log "Navigation"
+    class Navigation extends Marionette.LayoutView
+
+        showNavigation: (view) ->

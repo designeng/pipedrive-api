@@ -1,6 +1,5 @@
 define(["underscore", "backbone", "backbone.radio", "marionette", "handlebars", "behaviors/index"], function(_, Backbone, Radio, Marionette, Handlebars, Behaviors) {
   Marionette.TemplateCache.prototype.compileTemplate = function(rawTemplate) {
-    console.debug("......Marionette.TemplateCache::compileTemplate");
     return Handlebars.compile(rawTemplate);
   };
   Marionette.Behaviors.behaviorsLookup = function() {

@@ -9,7 +9,6 @@ define [
 
     # all nessesary marionette hooks can be listed here
     Marionette.TemplateCache::compileTemplate = (rawTemplate) ->
-        console.debug "......Marionette.TemplateCache::compileTemplate"
         Handlebars.compile(rawTemplate)
 
     Marionette.Behaviors.behaviorsLookup = ->

@@ -30,14 +30,15 @@ define(['marionette', 'moment', 'hbs!application/profiles/templates/profileDetai
         ph = _.find(this.phone, {
           primary: true
         });
-        if (ph.length) {
+        if (ph && ph.length) {
           return ph;
         } else {
           return "no phone";
         }
       },
       mail: function() {
-        return this.email.shift().value;
+        var _ref1;
+        return (_ref1 = this.email.shift()) != null ? _ref1.value : void 0;
       },
       added: function() {
         return moment(this.add_time).format("DD MM YYYY");

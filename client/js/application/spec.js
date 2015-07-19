@@ -14,6 +14,9 @@ define({
   personProfile: {
     module: 'blocks/views/profile/index'
   },
+  blankProfile: {
+    create: 'blocks/views/profile/blank'
+  },
   profilesChannel: {
     createChannel: {
       name: 'profiles'
@@ -60,6 +63,9 @@ define({
       },
       profilesCollection: {
         $ref: 'profilesCollection'
+      },
+      blankProfile: {
+        $ref: 'blankProfile'
       }
     }
   },

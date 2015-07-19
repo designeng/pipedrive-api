@@ -32,10 +32,13 @@ define(["backbone", "marionette", "api"], function(Backbone, Marionette, api) {
         model = collection.find(function(model) {
           return model.get('id') === parseInt(id);
         });
-        console.debug("model", model);
-        return _this.regions.mainAreaRegion.show(new _this.personProfile({
-          model: model
-        }));
+        if (model) {
+          return _this.regions.mainAreaRegion.show(new _this.personProfile({
+            model: model
+          }));
+        } else {
+          return _this.regions.mainAreaRegion.show(_this.blankProfile);
+        }
       });
       return this.profilesDefault();
     };

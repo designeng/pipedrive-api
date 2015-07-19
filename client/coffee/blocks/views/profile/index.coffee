@@ -25,12 +25,12 @@ define [
         templateHelpers:
             pphone: ->
                 ph = _.find @phone, {primary: true}
-                if ph.length
+                if ph and ph.length
                     ph 
                 else
                     "no phone"
             mail: ->
-                @email.shift().value
+                @email.shift()?.value
             added: ->
                 moment(@add_time).format("DD MM YYYY")
             openDealsCount: ->

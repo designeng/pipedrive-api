@@ -21,8 +21,10 @@ define [
             @profilesCollection.on 'sync', (collection, resp, options) =>
                 model = collection.find (model) ->
                     return model.get('id') == parseInt(id)
-                console.debug "model", model
-                @regions.mainAreaRegion.show new @personProfile({
-                    model
-                })
+                if model
+                    @regions.mainAreaRegion.show new @personProfile({
+                        model
+                    })
+                else
+                    @regions.mainAreaRegion.show @blankProfile
             @profilesDefault()

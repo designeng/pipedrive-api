@@ -16,6 +16,7 @@ define(['underscore', 'marionette'], function(_, Marionette) {
     addControllerFacet = function(resolver, facet, wire) {
       return wire(facet.options).then(function(controller) {
         controller.regions = facet.target.getRegions();
+        controller.regionManager = facet.target._regionManager;
         facet.target.controller = controller;
         return resolver.resolve(facet.target);
       });

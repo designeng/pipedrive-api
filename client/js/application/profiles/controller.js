@@ -33,11 +33,11 @@ define(["backbone", "marionette", "api"], function(Backbone, Marionette, api) {
           return model.get('id') === parseInt(id);
         });
         if (model) {
-          return _this.regions.mainAreaRegion.show(new _this.personProfile({
+          return _this.regions.mainAreaRegion.show(new _this.PersonProfile({
             model: model
           }));
         } else {
-          return _this.regions.mainAreaRegion.show(_this.blankProfile);
+          return _this.regions.mainAreaRegion.show(new _this.BlankProfile);
         }
       });
       return this.profilesDefault();

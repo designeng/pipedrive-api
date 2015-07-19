@@ -22,9 +22,9 @@ define [
                 model = collection.find (model) ->
                     return model.get('id') == parseInt(id)
                 if model
-                    @regions.mainAreaRegion.show new @personProfile({
+                    @regions.mainAreaRegion.show new @PersonProfile({
                         model
                     })
                 else
-                    @regions.mainAreaRegion.show @blankProfile
+                    @regions.mainAreaRegion.show new @BlankProfile
             @profilesDefault()

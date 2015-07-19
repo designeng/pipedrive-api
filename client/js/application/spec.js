@@ -15,7 +15,7 @@ define({
     module: 'blocks/views/profile/index'
   },
   blankProfile: {
-    create: 'blocks/views/profile/blank'
+    module: 'blocks/views/profile/blank'
   },
   profilesChannel: {
     createChannel: {
@@ -58,13 +58,13 @@ define({
       profilesListItemTemplate: {
         $ref: 'hbs!application/profiles/templates/profilesListItem'
       },
-      personProfile: {
+      PersonProfile: {
         $ref: 'personProfile'
       },
       profilesCollection: {
         $ref: 'profilesCollection'
       },
-      blankProfile: {
+      BlankProfile: {
         $ref: 'blankProfile'
       }
     }

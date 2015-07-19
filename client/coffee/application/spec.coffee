@@ -54,5 +54,4 @@ define
         addController: {$ref: 'profilesApplicationController'}
 
     start: ->
-        console.debug "start"
         @profilesApplication.start()

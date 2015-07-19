@@ -69,7 +69,6 @@ define({
     }
   },
   start: function() {
-    console.debug("start");
     return this.profilesApplication.start();
   }
 });

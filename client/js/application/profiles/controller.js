@@ -28,10 +28,13 @@ define(["backbone", "marionette", "api"], function(Backbone, Marionette, api) {
     ApplicationController.prototype.showProfileDetailes = function(id) {
       var _this = this;
       this.profilesCollection.on('sync', function(collection, resp, options) {
+        var model;
+        model = collection.find(function(model) {
+          return model.get('id') === parseInt(id);
+        });
+        console.debug("model", model);
         return _this.regions.mainAreaRegion.show(new _this.personProfile({
-          model: collection.find(function(model) {
-            return model.get('id') === parseInt(id);
-          })
+          model: model
         }));
       });
       return this.profilesDefault();

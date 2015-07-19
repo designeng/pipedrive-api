@@ -29,10 +29,6 @@ define(['backbone', 'api', './item'], function(Backbone, api, ItemView) {
       };
     };
 
-    ListView.prototype.onBeforeRender = function() {
-      return this.collection.fetch();
-    };
-
     return ListView;
 
   })(Marionette.CollectionView);

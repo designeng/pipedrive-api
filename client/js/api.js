@@ -7,6 +7,9 @@ define(function() {
   prefix = "" + protocol + "://" + domain + "/" + version + "/";
   suffix = "?api_token=" + apiToken;
   return api = {
+    getSuffix: function() {
+      return suffix;
+    },
     getProfilesCollectionUrl: function() {
       return "" + prefix + "persons" + suffix;
     }

@@ -42,6 +42,8 @@ define
         properties:
             profilesList: {$ref: 'profilesList'}
             profilesListItemTemplate: {$ref: 'hbs!application/profiles/templates/profilesListItem' }
+            personProfile: {$ref: 'personProfile'}
+            profilesCollection: {$ref: 'profilesCollection'}
 
     # in Marionette we are not restricted with creating Marionette.Application instances,
     # they can be treated as different modules. Here in our test app we need only one app instance.

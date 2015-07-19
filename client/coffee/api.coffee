@@ -11,5 +11,11 @@ define ->
     suffix      = "?api_token=#{apiToken}"
 
     api = 
+        getSuffix: ->
+            return suffix
+
         getProfilesCollectionUrl: ->
             return "#{prefix}persons#{suffix}"
+
+        # getProfileUrl: (id) ->
+        #     return "#{prefix}persons/#{id}#{suffix}"

@@ -18,6 +18,3 @@ define [
 
         childViewOptions: (model, index) ->
             template: @childTemplate
-
-        onBeforeRender: ->
-            @collection.fetch()

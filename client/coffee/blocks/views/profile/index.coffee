@@ -1,8 +1,9 @@
 define [
     'marionette'
-], (Marionette) ->
+    'hbs!application/profiles/templates/profileDetails'
+], (Marionette, profileDetailsTemplate) ->
 
     class ProfileView extends Marionette.ItemView
         tagName: "div"
 
-        template: "<div>PROFILE</div>"
+        template: profileDetailsTemplate

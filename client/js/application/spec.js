@@ -54,6 +54,12 @@ define({
       },
       profilesListItemTemplate: {
         $ref: 'hbs!application/profiles/templates/profilesListItem'
+      },
+      personProfile: {
+        $ref: 'personProfile'
+      },
+      profilesCollection: {
+        $ref: 'profilesCollection'
       }
     }
   },

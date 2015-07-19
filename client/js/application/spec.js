@@ -1,5 +1,5 @@
 define({
-  $plugins: ['wire/debug', 'plugins/router', 'plugins/hbs'],
+  $plugins: ['wire/debug', 'plugins/router', 'plugins/hbs', 'plugins/channel', 'plugins/application'],
   profilesCollection: {
     create: 'application/profiles/collections/profiles'
   },
@@ -11,20 +11,27 @@ define({
       }
     }
   },
+  personProfile: {
+    module: 'blocks/views/profile/index'
+  },
+  profilesChannel: {
+    createChannel: {
+      name: 'profiles'
+    },
+    channelEvents: {
+      'profiles:list:show': {
+        $ref: 'profilesApplicationController.showList'
+      },
+      'profiles:person:show': {
+        $ref: 'profilesApplicationController.showPersonProfile'
+      }
+    }
+  },
   profilesRouterController: {
     create: 'application/profiles/router/controller',
     properties: {
-      sidebar: {
-        $ref: 'sidebar'
-      },
-      mainArea: {
-        $ref: 'mainArea'
-      },
-      profilesList: {
-        $ref: 'profilesList'
-      },
-      profilesListItemTemplate: {
-        $ref: 'hbs!application/profiles/templates/profilesListItem'
+      profilesChannel: {
+        $ref: 'profilesChannel'
       }
     }
   },
@@ -39,20 +46,30 @@ define({
       }
     }
   },
-  profilesInstance: {
-    create: {
-      module: 'application/profiles/instance'
-    },
+  profilesApplicationController: {
+    create: 'application/profiles/controller',
     properties: {
-      router: {
-        $ref: 'profilesRouter'
+      profilesList: {
+        $ref: 'profilesList'
       },
-      sidebar: {
-        $ref: 'sidebar'
+      profilesListItemTemplate: {
+        $ref: 'hbs!application/profiles/templates/profilesListItem'
       }
     }
   },
+  profilesApplication: {
+    createApplication: {},
+    withRegions: {
+      navigationRegion: ".navigation",
+      sidebarRegion: ".sidebar",
+      mainAreaRegion: ".main-area"
+    },
+    addController: {
+      $ref: 'profilesApplicationController'
+    }
+  },
   start: function() {
-    return this.profilesInstance.start();
+    console.debug("start");
+    return this.profilesApplication.start();
   }
 });

@@ -13,6 +13,8 @@ define(['marionette'], function(Marionette) {
 
     ProfileView.prototype.tagName = "div";
 
+    ProfileView.prototype.template = "<div>PROFILE</div>";
+
     return ProfileView;
 
   })(Marionette.ItemView);

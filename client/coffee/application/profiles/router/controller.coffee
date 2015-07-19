@@ -1,21 +1,10 @@
-define [
-    "backbone"
-    "marionette"
-], (Backbone, Marionette) ->
+define ->
 
-    AppRouterController = Marionette.Object.extend
-        initialize: ->
+    # separated in module to provide space for additional route actions:
+    class AppRouterController
 
         showProfilesList: ->
-            # here we are customising our profilesList, created as common list component
-            # passing childView template
-            @profilesList.setChildTemplate @profilesListItemTemplate
+            @profilesChannel.trigger "profiles:list:show"
 
-            @sidebar.appendToDisplay 
-                regionName  : 'list'
-                view        : @profilesList
-
-        showProfile: ->
-            @mainArea.appendToDisplay
-                regionName  : 'person-profile'
-                view        : @personProfile
+        showProfile: (id) ->
+            @profilesChannel.trigger "profiles:person:show", id

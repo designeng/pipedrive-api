@@ -3,6 +3,8 @@ define
         'wire/debug'
         'plugins/router'
         'plugins/hbs'
+        'plugins/channel'
+        'plugins/application'
     ]
 
     profilesCollection:
@@ -13,13 +15,20 @@ define
         properties:
             collection  : {$ref: 'profilesCollection'}
 
+    personProfile:
+        module: 'blocks/views/profile/index'
+
+    profilesChannel:
+        createChannel:
+            name: 'profiles'
+        channelEvents:
+            'profiles:list:show'    : {$ref: 'profilesApplicationController.showList'}
+            'profiles:person:show'  : {$ref: 'profilesApplicationController.showPersonProfile'}
+
     profilesRouterController:
         create: 'application/profiles/router/controller'
         properties:
-            sidebar                 : {$ref: 'sidebar'}
-            mainArea                : {$ref: 'mainArea'}
-            profilesList            : {$ref: 'profilesList'}
-            profilesListItemTemplate: {$ref: 'hbs!application/profiles/templates/profilesListItem' }
+            profilesChannel         : {$ref: 'profilesChannel'}
 
     profilesRouter:
         createRouter:
@@ -28,14 +37,22 @@ define
                 'profiles'      : 'showProfilesList'
                 'profiles/:id'  : 'showProfile'
 
+    profilesApplicationController:
+        create: 'application/profiles/controller'
+        properties:
+            profilesList: {$ref: 'profilesList'}
+            profilesListItemTemplate: {$ref: 'hbs!application/profiles/templates/profilesListItem' }
+
     # in Marionette we are not restricted with creating Marionette.Application instances,
     # they can be treated as different modules. Here in our test app we need only one app instance.
-    profilesInstance:
-        create: 
-            module: 'application/profiles/instance'
-        properties:
-            router      : {$ref: 'profilesRouter'}
-            sidebar     : {$ref: 'sidebar'}
+    profilesApplication:
+        createApplication: {}
+        withRegions:
+            navigationRegion    : ".navigation"
+            sidebarRegion       : ".sidebar"
+            mainAreaRegion      : ".main-area"
+        addController: {$ref: 'profilesApplicationController'}
 
     start: ->
-        @profilesInstance.start()
+        console.debug "start"
+        @profilesApplication.start()

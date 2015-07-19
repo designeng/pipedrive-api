@@ -1,19 +1,17 @@
-define(["backbone", "marionette"], function(Backbone, Marionette) {
+define(function() {
   var AppRouterController;
-  return AppRouterController = Marionette.Object.extend({
-    initialize: function() {},
-    showProfilesList: function() {
-      this.profilesList.setChildTemplate(this.profilesListItemTemplate);
-      return this.sidebar.appendToDisplay({
-        regionName: 'list',
-        view: this.profilesList
-      });
-    },
-    showProfile: function() {
-      return this.mainArea.appendToDisplay({
-        regionName: 'person-profile',
-        view: this.personProfile
-      });
-    }
-  });
+  return AppRouterController = (function() {
+    function AppRouterController() {}
+
+    AppRouterController.prototype.showProfilesList = function() {
+      return this.profilesChannel.trigger("profiles:list:show");
+    };
+
+    AppRouterController.prototype.showProfile = function(id) {
+      return this.profilesChannel.trigger("profiles:person:show", id);
+    };
+
+    return AppRouterController;
+
+  })();
 });

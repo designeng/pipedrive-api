@@ -22,8 +22,8 @@ define
         createChannel:
             name: 'profiles'
         channelEvents:
-            'profiles:list:show'    : {$ref: 'profilesApplicationController.showList'}
-            'profiles:person:show'  : {$ref: 'profilesApplicationController.showPersonProfile'}
+            'profiles:list:show'    : {$ref: 'profilesApplicationController.showProfilesList'}
+            'profiles:person:show'  : {$ref: 'profilesApplicationController.showProfileDetailes'}
 
     profilesRouterController:
         create: 'application/profiles/router/controller'
@@ -35,7 +35,7 @@ define
             controller: {$ref: 'profilesRouterController'}
             routes:
                 'profiles'      : 'showProfilesList'
-                'profiles/:id'  : 'showProfile'
+                'profiles/:id'  : 'showProfileDetailes'
 
     profilesApplicationController:
         create: 'application/profiles/controller'

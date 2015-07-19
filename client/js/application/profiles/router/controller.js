@@ -7,7 +7,7 @@ define(function() {
       return this.profilesChannel.trigger("profiles:list:show");
     };
 
-    AppRouterController.prototype.showProfile = function(id) {
+    AppRouterController.prototype.showProfileDetailes = function(id) {
       return this.profilesChannel.trigger("profiles:person:show", id);
     };
 

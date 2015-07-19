@@ -20,10 +20,10 @@ define({
     },
     channelEvents: {
       'profiles:list:show': {
-        $ref: 'profilesApplicationController.showList'
+        $ref: 'profilesApplicationController.showProfilesList'
       },
       'profiles:person:show': {
-        $ref: 'profilesApplicationController.showPersonProfile'
+        $ref: 'profilesApplicationController.showProfileDetailes'
       }
     }
   },
@@ -42,7 +42,7 @@ define({
       },
       routes: {
         'profiles': 'showProfilesList',
-        'profiles/:id': 'showProfile'
+        'profiles/:id': 'showProfileDetailes'
       }
     }
   },

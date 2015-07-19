@@ -6,14 +6,14 @@ define [
     class ApplicationController extends Marionette.Object
 
         initialize: ->
-            _.bindAll @, 'showList', 'showPersonProfile'
+            _.bindAll @, 'showProfilesList', 'showProfileDetailes'
 
         profilesDefault: ->
             @profilesList.setChildTemplate @profilesListItemTemplate
             @regions.sidebarRegion.show @profilesList
 
-        showList: () ->
+        showProfilesList: () ->
             @profilesDefault()
 
-        showPersonProfile: (id) ->
+        showProfileDetailes: (id) ->
             @profilesDefault()

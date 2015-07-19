@@ -6,5 +6,5 @@ define ->
         showProfilesList: ->
             @profilesChannel.trigger "profiles:list:show"
 
-        showProfile: (id) ->
+        showProfileDetailes: (id) ->
             @profilesChannel.trigger "profiles:person:show", id

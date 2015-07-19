@@ -12,7 +12,7 @@ define(["backbone", "marionette"], function(Backbone, Marionette) {
     }
 
     ApplicationController.prototype.initialize = function() {
-      return _.bindAll(this, 'showList', 'showPersonProfile');
+      return _.bindAll(this, 'showProfilesList', 'showProfileDetailes');
     };
 
     ApplicationController.prototype.profilesDefault = function() {
@@ -20,11 +20,11 @@ define(["backbone", "marionette"], function(Backbone, Marionette) {
       return this.regions.sidebarRegion.show(this.profilesList);
     };
 
-    ApplicationController.prototype.showList = function() {
+    ApplicationController.prototype.showProfilesList = function() {
       return this.profilesDefault();
     };
 
-    ApplicationController.prototype.showPersonProfile = function(id) {
+    ApplicationController.prototype.showProfileDetailes = function(id) {
       return this.profilesDefault();
     };
 

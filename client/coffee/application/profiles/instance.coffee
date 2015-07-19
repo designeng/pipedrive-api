@@ -3,13 +3,6 @@ define [
     "marionette"
 ], (Backbone, Marionette) ->
 
-    Marionette.TemplateCache::compileTemplate = (rawTemplate) ->
-        Handlebars.compile(rawTemplate)
-
-    Marionette.Behaviors.behaviorsLookup = ->
-        console.debug "Marionette.Behaviors.behaviorsLookup"
-        return Behaviors
-
     class Application
 
         constructor: ->

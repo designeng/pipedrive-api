@@ -1,7 +1,8 @@
 define [
+    "underscore"
     'marionette'
     'hbs!blocks/sidebar/template'
-], (Marionette, sidebarTemplate) ->
+], (_, Marionette, sidebarTemplate) ->
 
     class Sidebar extends Marionette.LayoutView
 
@@ -10,11 +11,11 @@ define [
         regions:
             list: '.list'
 
+        displayQueue: []
+
         onRender: ->
-            console.debug "Sidebar RENDERED"
+            _.each @displayQueue, (obj) =>
+                @getRegion(obj.regionName).show obj.view
 
-        showList: (view) ->
-            console.debug "@getRegion('list')", @getRegion('list')
-
-            # TODO: $el must be in the DOM:
-            # @getRegion('list').show view
+        appendToDisplay: (displayObject) ->
+            @displayQueue.push displayObject

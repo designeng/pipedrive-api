@@ -1,7 +1,7 @@
 var __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-define(["backbone", "api"], function(Backbone, api) {
+define(['backbone', 'api', './item'], function(Backbone, api, ItemView) {
   var ListView, _ref;
   return ListView = (function(_super) {
     __extends(ListView, _super);
@@ -11,14 +11,22 @@ define(["backbone", "api"], function(Backbone, api) {
       return _ref;
     }
 
-    ListView.prototype.tagName = "ul";
+    ListView.prototype.tagName = 'ul';
 
-    ListView.prototype.className = "listView";
+    ListView.prototype.className = 'listView';
+
+    ListView.prototype.childView = ItemView;
 
     ListView.prototype.initialize = function() {};
 
-    ListView.prototype.getChildView = function(item) {
-      return this.itemView;
+    ListView.prototype.setChildTemplate = function(tpl) {
+      return this.childTemplate = tpl;
+    };
+
+    ListView.prototype.childViewOptions = function(model, index) {
+      return {
+        template: this.childTemplate
+      };
     };
 
     ListView.prototype.onBeforeRender = function() {
@@ -26,7 +34,7 @@ define(["backbone", "api"], function(Backbone, api) {
     };
 
     ListView.prototype.onRender = function() {
-      return console.debug("RENDERED ListView");
+      return console.debug('RENDERED ListView');
     };
 
     return ListView;

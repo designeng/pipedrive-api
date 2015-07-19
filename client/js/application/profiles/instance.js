@@ -1,12 +1,5 @@
 define(["backbone", "marionette"], function(Backbone, Marionette) {
   var Application;
-  Marionette.TemplateCache.prototype.compileTemplate = function(rawTemplate) {
-    return Handlebars.compile(rawTemplate);
-  };
-  Marionette.Behaviors.behaviorsLookup = function() {
-    console.debug("Marionette.Behaviors.behaviorsLookup");
-    return Behaviors;
-  };
   return Application = (function() {
     function Application() {
       var app;

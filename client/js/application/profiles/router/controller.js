@@ -3,7 +3,11 @@ define(["backbone", "marionette"], function(Backbone, Marionette) {
   return AppRouterController = Marionette.Object.extend({
     initialize: function() {},
     showProfilesList: function() {
-      return this.sidebar.showList(this.profilesList);
+      this.profilesList.setChildTemplate(this.profilesListItemTemplate);
+      return this.sidebar.appendToDisplay({
+        regionName: 'list',
+        view: this.profilesList
+      });
     }
   });
 });

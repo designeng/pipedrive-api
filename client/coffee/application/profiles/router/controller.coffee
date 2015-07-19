@@ -7,4 +7,10 @@ define [
         initialize: ->
 
         showProfilesList: ->
-            @sidebar.showList @profilesList
+            # here we are customising our profilesList, created as common list component
+            # passing childView template
+            @profilesList.setChildTemplate @profilesListItemTemplate
+
+            @sidebar.appendToDisplay 
+                regionName  : 'list'
+                view        : @profilesList

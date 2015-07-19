@@ -12,7 +12,6 @@ define [
         Handlebars.compile(rawTemplate)
 
     Marionette.Behaviors.behaviorsLookup = ->
-        console.debug "Marionette.Behaviors.behaviorsLookup"
         return Behaviors
 
     Marionette.Application::_initChannel = ->

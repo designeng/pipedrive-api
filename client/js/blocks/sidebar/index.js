@@ -1,7 +1,7 @@
 var __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-define(['marionette', 'hbs!blocks/sidebar/template'], function(Marionette, sidebarTemplate) {
+define(["underscore", 'marionette', 'hbs!blocks/sidebar/template'], function(_, Marionette, sidebarTemplate) {
   var Sidebar, _ref;
   return Sidebar = (function(_super) {
     __extends(Sidebar, _super);
@@ -17,12 +17,17 @@ define(['marionette', 'hbs!blocks/sidebar/template'], function(Marionette, sideb
       list: '.list'
     };
 
+    Sidebar.prototype.displayQueue = [];
+
     Sidebar.prototype.onRender = function() {
-      return console.debug("Sidebar RENDERED");
+      var _this = this;
+      return _.each(this.displayQueue, function(obj) {
+        return _this.getRegion(obj.regionName).show(obj.view);
+      });
     };
 
-    Sidebar.prototype.showList = function(view) {
-      return console.debug("@getRegion('list')", this.getRegion('list'));
+    Sidebar.prototype.appendToDisplay = function(displayObject) {
+      return this.displayQueue.push(displayObject);
     };
 
     return Sidebar;

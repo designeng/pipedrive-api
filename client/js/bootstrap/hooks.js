@@ -3,7 +3,6 @@ define(["underscore", "backbone", "backbone.radio", "marionette", "handlebars", 
     return Handlebars.compile(rawTemplate);
   };
   Marionette.Behaviors.behaviorsLookup = function() {
-    console.debug("Marionette.Behaviors.behaviorsLookup");
     return Behaviors;
   };
   Marionette.Application.prototype._initChannel = function() {

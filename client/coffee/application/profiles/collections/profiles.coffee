@@ -3,8 +3,11 @@ define [
     "api"
 ], (Backbone, api) ->
 
-    ProfileModel = Backbone.Model.extend({})
+    class ProfileModel extends Backbone.Model
 
-    ProfilesCollection = Backbone.Collection.extend
+    class ProfilesCollection extends Backbone.Collection
         url: api.getProfilesCollectionUrl()
         model: ProfileModel
+
+        parse: (resp, options) ->
+            return resp.data

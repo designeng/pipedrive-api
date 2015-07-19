@@ -1,22 +1,13 @@
 define({
-  $plugins: ['wire/debug', 'plugins/router'],
+  $plugins: ['wire/debug', 'plugins/router', 'plugins/hbs'],
   profilesCollection: {
     create: 'application/profiles/collections/profiles'
-  },
-  profilesListItem: {
-    create: 'blocks/list/item',
-    properties: {
-      template: "hbs!application/profiles/templates/profilesListItem"
-    }
   },
   profilesList: {
     create: 'blocks/list/index',
     properties: {
       collection: {
         $ref: 'profilesCollection'
-      },
-      itemView: {
-        $ref: 'profilesListItem'
       }
     }
   },
@@ -31,6 +22,9 @@ define({
       },
       profilesList: {
         $ref: 'profilesList'
+      },
+      profilesListItemTemplate: {
+        $ref: 'hbs!application/profiles/templates/profilesListItem'
       }
     }
   },

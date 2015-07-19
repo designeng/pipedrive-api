@@ -2,28 +2,24 @@ define
     $plugins: [
         'wire/debug'
         'plugins/router'
+        'plugins/hbs'
     ]
 
     profilesCollection:
         create: 'application/profiles/collections/profiles'
 
-    profilesListItem:
-        create: 'blocks/list/item'
-        properties:
-            template: "hbs!application/profiles/templates/profilesListItem"
-
     profilesList:
         create: 'blocks/list/index'
         properties:
             collection  : {$ref: 'profilesCollection'}
-            itemView    : {$ref: 'profilesListItem'}
 
     profilesRouterController:
         create: 'application/profiles/router/controller'
         properties:
-            sidebar         : {$ref: 'sidebar'}
-            mainArea        : {$ref: 'mainArea'}
-            profilesList    : {$ref: 'profilesList'}
+            sidebar                 : {$ref: 'sidebar'}
+            mainArea                : {$ref: 'mainArea'}
+            profilesList            : {$ref: 'profilesList'}
+            profilesListItemTemplate: {$ref: 'hbs!application/profiles/templates/profilesListItem' }
 
     profilesRouter:
         createRouter:

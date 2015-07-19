@@ -1,20 +1,26 @@
 define [
-    "backbone"
-    "api"
-], (Backbone, api) ->
+    'backbone'
+    'api'
+    './item'
+], (Backbone, api, ItemView) ->
 
     class ListView extends Marionette.CollectionView
 
-        tagName: "ul"
-        className: "listView"
+        tagName: 'ul'
+        className: 'listView'
+
+        childView: ItemView
 
         initialize: ->
 
-        getChildView: (item) ->
-            @itemView
+        setChildTemplate: (tpl) ->
+            @childTemplate = tpl
+
+        childViewOptions: (model, index) ->
+            template: @childTemplate
 
         onBeforeRender: ->
             @collection.fetch()
 
         onRender: ->
-            console.debug "RENDERED ListView"
+            console.debug 'RENDERED ListView'

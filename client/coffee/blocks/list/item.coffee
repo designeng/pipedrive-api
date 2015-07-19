@@ -1,6 +1,8 @@
 define [
-    "backbone"
-], (Backbone) ->
+    'marionette'
+    'hbs!application/profiles/templates/profilesListItem'
+], (Marionette, listItemTemplate) ->
 
-    class ListItemView extends Marionette.ItemView
+    class ListItemTemplateView extends Marionette.ItemView
         tagName: "li"
+        # template: listItemTemplate

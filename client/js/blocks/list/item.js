@@ -1,19 +1,19 @@
 var __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-define(["backbone"], function(Backbone) {
-  var ListItemView, _ref;
-  return ListItemView = (function(_super) {
-    __extends(ListItemView, _super);
+define(['marionette', 'hbs!application/profiles/templates/profilesListItem'], function(Marionette, listItemTemplate) {
+  var ListItemTemplateView, _ref;
+  return ListItemTemplateView = (function(_super) {
+    __extends(ListItemTemplateView, _super);
 
-    function ListItemView() {
-      _ref = ListItemView.__super__.constructor.apply(this, arguments);
+    function ListItemTemplateView() {
+      _ref = ListItemTemplateView.__super__.constructor.apply(this, arguments);
       return _ref;
     }
 
-    ListItemView.prototype.tagName = "li";
+    ListItemTemplateView.prototype.tagName = "li";
 
-    return ListItemView;
+    return ListItemTemplateView;
 
   })(Marionette.ItemView);
 });

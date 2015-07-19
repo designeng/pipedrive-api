@@ -1,6 +1,5 @@
-define [
-    'underscore'
-], (_) ->
+# this plugin is wire.js wrapper for requirejs hbs! plugin
+define ->
 
     return (options) ->
 

@@ -1,4 +1,4 @@
-define(['underscore'], function(_) {
+define(function() {
   return function(options) {
     var hbsResolver, pluginInstance;
     hbsResolver = function(resolver, name, refObj, wire) {

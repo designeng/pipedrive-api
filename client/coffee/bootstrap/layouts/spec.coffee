@@ -4,10 +4,10 @@ define
     ]
 
     navigation:
-        create: 'blocks/navigation/index'
+        create: 'blocks/views/navigation/index'
 
     sidebar:
-        create: 'blocks/sidebar/index'
+        create: 'blocks/layouts/sidebar/index'
 
     mainArea:
-        create: 'blocks/mainArea/index'
+        create: 'blocks/layouts/mainArea/index'

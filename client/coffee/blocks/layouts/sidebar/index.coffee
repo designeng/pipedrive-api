@@ -1,6 +1,6 @@
 define [
-    'blocks/base/layout'
-    'hbs!blocks/sidebar/template'
+    'blocks/layouts/base/layout'
+    'hbs!blocks/layouts/sidebar/template'
 ], (BaseLayout, sidebarTemplate) ->
 
     class Sidebar extends BaseLayout

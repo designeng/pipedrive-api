@@ -4,7 +4,7 @@ define({
     create: 'application/profiles/collections/profiles'
   },
   profilesList: {
-    create: 'blocks/list/index',
+    create: 'blocks/views/list/index',
     properties: {
       collection: {
         $ref: 'profilesCollection'

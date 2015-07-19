@@ -1,6 +1,6 @@
 define [
-    'blocks/base/layout'
-    'hbs!blocks/mainArea/template'
+    'blocks/layouts/base/layout'
+    'hbs!blocks/layouts/mainArea/template'
 ], (BaseLayout, mainAreaTemplate) ->
 
     class MainArea extends BaseLayout

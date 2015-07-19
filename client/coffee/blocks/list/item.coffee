@@ -1,8 +1,6 @@
 define [
     'marionette'
-    'hbs!application/profiles/templates/profilesListItem'
-], (Marionette, listItemTemplate) ->
+], (Marionette) ->
 
     class ListItemTemplateView extends Marionette.ItemView
         tagName: "li"
-        # template: listItemTemplate

@@ -1,6 +1,4 @@
-define(["./accordion"], function(AccordionBehavior) {
+define([], function() {
   var Behavior;
-  return Behavior = {
-    accordion: AccordionBehavior
-  };
+  return Behavior = {};
 });

@@ -21,6 +21,3 @@ define [
 
         onBeforeRender: ->
             @collection.fetch()
-
-        onRender: ->
-            console.debug 'RENDERED ListView'

@@ -33,10 +33,6 @@ define(['backbone', 'api', './item'], function(Backbone, api, ItemView) {
       return this.collection.fetch();
     };
 
-    ListView.prototype.onRender = function() {
-      return console.debug('RENDERED ListView');
-    };
-
     return ListView;
 
   })(Marionette.CollectionView);

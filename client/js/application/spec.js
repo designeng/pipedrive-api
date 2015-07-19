@@ -34,7 +34,8 @@ define({
         $ref: 'profilesRouterController'
       },
       routes: {
-        'profiles': 'showProfilesList'
+        'profiles': 'showProfilesList',
+        'profiles/:id': 'showProfile'
       }
     }
   },

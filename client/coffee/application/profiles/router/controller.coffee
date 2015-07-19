@@ -14,3 +14,8 @@ define [
             @sidebar.appendToDisplay 
                 regionName  : 'list'
                 view        : @profilesList
+
+        showProfile: ->
+            @mainArea.appendToDisplay
+                regionName  : 'person-profile'
+                view        : @personProfile

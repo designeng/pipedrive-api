@@ -1,21 +1,11 @@
 define [
-    "underscore"
-    'marionette'
+    'blocks/base/layout'
     'hbs!blocks/sidebar/template'
-], (_, Marionette, sidebarTemplate) ->
+], (BaseLayout, sidebarTemplate) ->
 
-    class Sidebar extends Marionette.LayoutView
+    class Sidebar extends BaseLayout
 
         template: sidebarTemplate
 
         regions:
             list: '.list'
-
-        displayQueue: []
-
-        onRender: ->
-            _.each @displayQueue, (obj) =>
-                @getRegion(obj.regionName).show obj.view
-
-        appendToDisplay: (displayObject) ->
-            @displayQueue.push displayObject

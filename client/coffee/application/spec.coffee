@@ -25,7 +25,8 @@ define
         createRouter:
             controller: {$ref: 'profilesRouterController'}
             routes:
-                'profiles'  : 'showProfilesList'
+                'profiles'      : 'showProfilesList'
+                'profiles/:id'  : 'showProfile'
 
     # in Marionette we are not restricted with creating Marionette.Application instances,
     # they can be treated as different modules. Here in our test app we need only one app instance.

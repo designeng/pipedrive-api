@@ -8,6 +8,12 @@ define(["backbone", "marionette"], function(Backbone, Marionette) {
         regionName: 'list',
         view: this.profilesList
       });
+    },
+    showProfile: function() {
+      return this.mainArea.appendToDisplay({
+        regionName: 'person-profile',
+        view: this.personProfile
+      });
     }
   });
 });

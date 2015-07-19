@@ -1,11 +1,11 @@
 define [
-    'marionette'
+    'blocks/base/layout'
     'hbs!blocks/mainArea/template'
-], (Marionette, mainAreaTemplate) ->
+], (BaseLayout, mainAreaTemplate) ->
 
-    class MainArea extends Marionette.LayoutView
+    class MainArea extends BaseLayout
 
         template: mainAreaTemplate
 
-        showView: (view) ->
-            console.debug "------MainArea", view
+        regions:
+            personProfile: '.person-profile'

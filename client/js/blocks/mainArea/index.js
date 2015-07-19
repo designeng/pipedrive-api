@@ -1,7 +1,7 @@
 var __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-define(['marionette', 'hbs!blocks/mainArea/template'], function(Marionette, mainAreaTemplate) {
+define(['blocks/base/layout', 'hbs!blocks/mainArea/template'], function(BaseLayout, mainAreaTemplate) {
   var MainArea, _ref;
   return MainArea = (function(_super) {
     __extends(MainArea, _super);
@@ -13,11 +13,11 @@ define(['marionette', 'hbs!blocks/mainArea/template'], function(Marionette, main
 
     MainArea.prototype.template = mainAreaTemplate;
 
-    MainArea.prototype.showView = function(view) {
-      return console.debug("------MainArea", view);
+    MainArea.prototype.regions = {
+      personProfile: '.person-profile'
     };
 
     return MainArea;
 
-  })(Marionette.LayoutView);
+  })(BaseLayout);
 });

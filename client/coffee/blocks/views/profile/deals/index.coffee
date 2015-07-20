@@ -11,7 +11,6 @@ define [
             @url = api.getPersonDealsUrl(options?.personId)
 
         parse: (resp) ->
-            console.debug "RESP PersonDealsCollection:", resp
             return resp.data
 
     class PersonDealView extends Marionette.ItemView
@@ -27,6 +26,5 @@ define [
         childView: PersonDealView
 
         initialize: (options) ->
-            console.debug "INIT"
             @collection = new PersonDealsCollection({personId: options.personId})
             @collection.fetch()

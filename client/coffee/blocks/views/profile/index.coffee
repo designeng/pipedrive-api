@@ -18,7 +18,8 @@ define [
         template: profileDetailsTemplate
 
         initialize: (options) ->
-            console.debug "INIT PROFILE"
+            @PersonProfileDeals = options.PersonProfileDeals
+            @personId = options.personId
 
         regions:
             dealsRegion: ".person-deals-wrapper"
@@ -47,5 +48,6 @@ define [
             lastActivity: ->
                 formatActivity(@last_activity_date)
 
-        onClose: ->
-            console.debug "onClose"
+        onRender: ->
+            @personProfileDeals = new @PersonProfileDeals({personId: @personId})
+            @dealsRegion.show @personProfileDeals

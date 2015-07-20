@@ -27,7 +27,8 @@ define(['marionette', 'moment', 'hbs!application/profiles/templates/profileDetai
     ProfileView.prototype.template = profileDetailsTemplate;
 
     ProfileView.prototype.initialize = function(options) {
-      return console.debug("INIT PROFILE");
+      this.PersonProfileDeals = options.PersonProfileDeals;
+      return this.personId = options.personId;
     };
 
     ProfileView.prototype.regions = {
@@ -64,8 +65,11 @@ define(['marionette', 'moment', 'hbs!application/profiles/templates/profileDetai
       }
     };
 
-    ProfileView.prototype.onClose = function() {
-      return console.debug("onClose");
+    ProfileView.prototype.onRender = function() {
+      this.personProfileDeals = new this.PersonProfileDeals({
+        personId: this.personId
+      });
+      return this.dealsRegion.show(this.personProfileDeals);
     };
 
     return ProfileView;

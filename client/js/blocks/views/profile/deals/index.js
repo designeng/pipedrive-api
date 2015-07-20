@@ -16,7 +16,6 @@ define(['backbone', 'marionette', 'api', 'hbs!application/profiles/templates/dea
     };
 
     PersonDealsCollection.prototype.parse = function(resp) {
-      console.debug("RESP PersonDealsCollection:", resp);
       return resp.data;
     };
 
@@ -55,7 +54,6 @@ define(['backbone', 'marionette', 'api', 'hbs!application/profiles/templates/dea
     PersonDealsView.prototype.childView = PersonDealView;
 
     PersonDealsView.prototype.initialize = function(options) {
-      console.debug("INIT");
       this.collection = new PersonDealsCollection({
         personId: options.personId
       });

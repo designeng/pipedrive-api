@@ -1,6 +1,6 @@
 define(['underscore', 'marionette'], function(_, Marionette) {
   return function(options) {
-    var createRouterFactory, pluginInstance;
+    var createRouterFactory, onRouteFacet, pluginInstance;
     createRouterFactory = function(resolver, compDef, wire) {
       var essentialProperties, opt, _i, _len;
       essentialProperties = ['controller', 'routes'];
@@ -19,9 +19,24 @@ define(['underscore', 'marionette'], function(_, Marionette) {
         return resolver.resolve(router);
       });
     };
+    onRouteFacet = function(resolver, facet, wire) {
+      console.debug("onRouteFacet");
+      return wire(facet.options).then(function(method) {
+        console.debug("method:", method);
+        facet.target.onRoute = function(name, path, opts) {
+          return method(name, path, opts);
+        };
+        return resolver.resolve(facet.target);
+      });
+    };
     pluginInstance = {
       factories: {
         createRouter: createRouterFactory
+      },
+      facets: {
+        onRoute: {
+          "ready": onRouteFacet
+        }
       }
     };
     return pluginInstance;

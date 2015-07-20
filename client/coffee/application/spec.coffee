@@ -45,6 +45,7 @@ define
             routes:
                 'profiles'      : 'showProfilesList'
                 'profiles/:id'  : 'showProfileDetailes'
+        onRoute: {$ref: 'profilesApplicationController.onRoute'}
 
     profilesApplicationController:
         create: 'application/profiles/controller'

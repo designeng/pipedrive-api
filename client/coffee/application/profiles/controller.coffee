@@ -7,7 +7,9 @@ define [
     class ApplicationController extends Marionette.Object
 
         initialize: ->
-            _.bindAll @, 'showProfilesList', 'showProfileDetailes'
+            _.bindAll @, 'onRoute', 'showProfilesList', 'showProfileDetailes'
+
+        onRoute: (name, path, opts) ->
 
         profilesDefault: ->
             @profilesCollection.fetch()

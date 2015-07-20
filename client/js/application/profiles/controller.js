@@ -12,8 +12,10 @@ define(["backbone", "marionette", "api"], function(Backbone, Marionette, api) {
     }
 
     ApplicationController.prototype.initialize = function() {
-      return _.bindAll(this, 'showProfilesList', 'showProfileDetailes');
+      return _.bindAll(this, 'onRoute', 'showProfilesList', 'showProfileDetailes');
     };
+
+    ApplicationController.prototype.onRoute = function(name, path, opts) {};
 
     ApplicationController.prototype.profilesDefault = function() {
       this.profilesCollection.fetch();

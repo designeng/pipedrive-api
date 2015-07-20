@@ -53,6 +53,9 @@ define({
         'profiles': 'showProfilesList',
         'profiles/:id': 'showProfileDetailes'
       }
+    },
+    onRoute: {
+      $ref: 'profilesApplicationController.onRoute'
     }
   },
   profilesApplicationController: {

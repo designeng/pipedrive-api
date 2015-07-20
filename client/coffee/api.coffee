@@ -20,3 +20,6 @@ define ->
 
         getUserCornerUrl: ->
             return "#{prefix}users/733958#{suffix}"
+
+        getOrganizationUrl: ->
+            return "#{prefix}organizations/1#{suffix}"

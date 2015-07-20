@@ -16,6 +16,9 @@ define(function() {
     },
     getUserCornerUrl: function() {
       return "" + prefix + "users/733958" + suffix;
+    },
+    getOrganizationUrl: function() {
+      return "" + prefix + "organizations/1" + suffix;
     }
   };
 });

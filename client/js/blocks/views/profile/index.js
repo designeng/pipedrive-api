@@ -22,6 +22,8 @@ define(['marionette', 'moment', 'hbs!application/profiles/templates/profileDetai
 
     ProfileView.prototype.tagName = "div";
 
+    ProfileView.prototype.className = "profile-details";
+
     ProfileView.prototype.template = profileDetailsTemplate;
 
     ProfileView.prototype.templateHelpers = {

@@ -26,11 +26,15 @@ define(['backbone', 'api', './item'], function(Backbone, api, ItemView) {
     };
 
     ListView.prototype.activateCurrent = function(event) {
+      var currentId, li;
+      li = $(event.target).closest("li");
+      currentId = li.find(".person-name").attr("data-id");
       this.items = this.$el.find("li");
       _.each(this.items, function(item) {
         return $(item).removeClass("active");
       });
-      return $(event.target).closest("li").addClass("active");
+      li.addClass("active");
+      return window.location.href = "#/profiles/" + currentId;
     };
 
     ListView.prototype.setChildTemplate = function(tpl) {

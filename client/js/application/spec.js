@@ -3,6 +3,9 @@ define({
   navigation: {
     create: 'blocks/views/navigation/index'
   },
+  userCorner: {
+    create: 'blocks/views/user/corner/index'
+  },
   profilesCollection: {
     create: 'application/profiles/collections/profiles'
   },
@@ -76,12 +79,16 @@ define({
     createApplication: {},
     withRegions: {
       navigationRegion: ".navigation",
+      userCornerRegion: ".user-corner",
       sidebarRegion: ".sidebar",
       mainAreaRegion: ".main-area"
     },
     showInRegion: {
       'navigationRegion': {
         $ref: 'navigation'
+      },
+      'userCornerRegion': {
+        $ref: 'userCorner'
       }
     },
     addController: {

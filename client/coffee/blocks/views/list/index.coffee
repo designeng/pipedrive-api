@@ -17,12 +17,18 @@ define [
             "click li": "activateCurrent"
 
         activateCurrent: (event) ->
+            li = $(event.target).closest("li")
+            currentId = li.find(".person-name").attr("data-id")
+
             @items = @$el.find("li")
 
             _.each @items, (item) ->
                 $(item).removeClass "active"
 
-            $(event.target).closest("li").addClass "active"
+            li.addClass "active"
+
+            # navigate to profile details route
+            window.location.href = "#/profiles/#{currentId}"
 
         setChildTemplate: (tpl) ->
             @childTemplate = tpl

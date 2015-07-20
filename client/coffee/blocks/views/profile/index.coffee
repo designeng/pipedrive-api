@@ -13,6 +13,7 @@ define [
 
     class ProfileView extends Marionette.ItemView
         tagName: "div"
+        className: "profile-details"
 
         template: profileDetailsTemplate
 

@@ -6,6 +6,7 @@ define ->
     domain      = "api.pipedrive.com"
     version     = "v1"
     apiToken    = "7dacd3f1efaed95b707174872d2b8497e576fd73"
+    userId      = 733958
 
     prefix      = "#{protocol}://#{domain}/#{version}/"
     suffix      = "?api_token=#{apiToken}"
@@ -17,5 +18,5 @@ define ->
         getProfilesCollectionUrl: ->
             return "#{prefix}persons#{suffix}"
 
-        # getProfileUrl: (id) ->
-        #     return "#{prefix}persons/#{id}#{suffix}"
+        getUserName: ->
+            return "#{prefix}users/733958#{suffix}"

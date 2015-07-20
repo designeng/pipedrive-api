@@ -14,7 +14,7 @@ define(function() {
     getProfilesCollectionUrl: function() {
       return "" + prefix + "persons" + suffix;
     },
-    getUserName: function() {
+    getUserCornerUrl: function() {
       return "" + prefix + "users/733958" + suffix;
     }
   };

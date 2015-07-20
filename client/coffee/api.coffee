@@ -18,5 +18,5 @@ define ->
         getProfilesCollectionUrl: ->
             return "#{prefix}persons#{suffix}"
 
-        getUserName: ->
+        getUserCornerUrl: ->
             return "#{prefix}users/733958#{suffix}"

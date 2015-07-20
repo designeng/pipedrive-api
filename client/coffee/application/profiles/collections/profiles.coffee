@@ -9,7 +9,7 @@ define [
         url: api.getProfilesCollectionUrl()
         model: ProfileModel
 
-        parse: (resp, options) ->
+        parse: (resp) ->
             resp.data = _.map resp.data, (item) ->
                 organization = _.find resp.related_objects.organization, {id: item.id}
                 item.organization = organization if organization

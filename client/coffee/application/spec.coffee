@@ -1,6 +1,6 @@
 define
     $plugins: [
-        'wire/debug'
+        # 'wire/debug'
         'plugins/router'
         'plugins/hbs'
         'plugins/channel'
@@ -67,7 +67,7 @@ define
             profilesChannel             : {$ref: 'profilesChannel'}
 
     # in Marionette we are not restricted with creating Marionette.Application instances,
-    # they can be treated as different modules. Here in our test app we need only one app instance.
+    # they can be treated as different modules. Nevertheless in our test app we need only one app instance.
     profilesApplication:
         createApplication:
             withRegions:

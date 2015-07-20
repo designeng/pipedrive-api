@@ -1,17 +1,16 @@
 define(['underscore', 'marionette'], function(_, Marionette) {
   return function(options) {
-    var addControllerFacet, createApplicationFactory, pluginInstance, showInRegionFacet, withRegionsFacet;
+    var addControllerFacet, createApplicationFactory, pluginInstance, showInRegionFacet;
     createApplicationFactory = function(resolver, compDef, wire) {
       var app;
       app = new Marionette.Application();
       app.on("start", function() {
         return Backbone.history.start();
       });
-      return resolver.resolve(app);
-    };
-    withRegionsFacet = function(resolver, facet, wire) {
-      facet.target.addRegions(facet.options);
-      return resolver.resolve(facet.target);
+      return wire(compDef.options).then(function(options) {
+        app.addRegions(options.withRegions);
+        return resolver.resolve(app);
+      });
     };
     showInRegionFacet = function(resolver, facet, wire) {
       return wire(facet.options).then(function(options) {
@@ -23,7 +22,7 @@ define(['underscore', 'marionette'], function(_, Marionette) {
     };
     addControllerFacet = function(resolver, facet, wire) {
       return wire(facet.options).then(function(controller) {
-        controller.regions = facet.target.getRegions();
+        controller.regions = facet.target._regionManager._regions;
         controller.regionManager = facet.target._regionManager;
         facet.target.controller = controller;
         return resolver.resolve(facet.target);
@@ -34,9 +33,6 @@ define(['underscore', 'marionette'], function(_, Marionette) {
         createApplication: createApplicationFactory
       },
       facets: {
-        withRegions: {
-          "ready": withRegionsFacet
-        },
         showInRegion: {
           "ready": showInRegionFacet
         },

@@ -10,14 +10,9 @@ define [
             app.on "start", () ->
                 Backbone.history.start()
 
-            # TODO: router.navigation facet?
-            # @router.navigate "#/profiles" if Backbone.history.getFragment() != "profiles"
-
-            resolver.resolve app
-
-        withRegionsFacet = (resolver, facet, wire) ->
-            facet.target.addRegions facet.options
-            resolver.resolve facet.target
+            wire(compDef.options).then (options) ->
+                app.addRegions options.withRegions
+                resolver.resolve app
 
         showInRegionFacet = (resolver, facet, wire) ->
             wire(facet.options).then (options) ->
@@ -27,7 +22,8 @@ define [
 
         addControllerFacet = (resolver, facet, wire) ->
             wire(facet.options).then (controller) ->
-                controller.regions = facet.target.getRegions()
+                # controller.regions = facet.target.getRegions() #TODO: cloned regions do'nt work with original regions?
+                controller.regions = facet.target._regionManager._regions
                 controller.regionManager = facet.target._regionManager
                 facet.target.controller = controller
                 resolver.resolve facet.target
@@ -36,8 +32,6 @@ define [
             factories: 
                 createApplication: createApplicationFactory
             facets:
-                withRegions:
-                    "ready"     : withRegionsFacet
                 showInRegion:
                     "ready"     : showInRegionFacet
                 addController:

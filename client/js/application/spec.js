@@ -94,12 +94,13 @@ define({
     }
   },
   profilesApplication: {
-    createApplication: {},
-    withRegions: {
-      navigationRegion: ".navigation",
-      userCornerRegion: ".user-corner",
-      sidebarRegion: ".sidebar",
-      mainAreaRegion: ".main-area"
+    createApplication: {
+      withRegions: {
+        navigationRegion: ".navigation",
+        userCornerRegion: ".user-corner",
+        sidebarRegion: ".sidebar",
+        mainAreaRegion: ".main-area"
+      }
     },
     showInRegion: {
       'navigationRegion': {

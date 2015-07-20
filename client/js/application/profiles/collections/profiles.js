@@ -27,6 +27,16 @@ define(["backbone", "api"], function(Backbone, api) {
     ProfilesCollection.prototype.model = ProfileModel;
 
     ProfilesCollection.prototype.parse = function(resp, options) {
+      resp.data = _.map(resp.data, function(item) {
+        var organization;
+        organization = _.find(resp.related_objects.organization, {
+          id: item.id
+        });
+        if (organization) {
+          item.organization = organization;
+        }
+        return item;
+      });
       return resp.data;
     };
 

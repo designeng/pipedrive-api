@@ -31,6 +31,10 @@ body {
     background-color: #f3f5f6;
 }
 
+a{
+  text-decoration: none;
+}
+
 .nav_wrapper{
   position: fixed;
 
@@ -41,16 +45,16 @@ body {
 
 .navigation {
     background-color: #343434;
-    width: 70%;
+    width: 80%;
     height: 47px;
     float: left;
 }
 
 .user-corner{
     background-color: #343434;
-    width: 30%;
+    width: 20%;
     height: 47px;
-    float: right;
+    float: left;
     font-color: #fff;
 }
 
@@ -73,9 +77,45 @@ nav .logo_container h1.logo a {
   float: right;
 }
 
+.user-profile-corner a {
+  float: right;
+  display: block;
+  padding: 7px 34px 8px 12px;
+  color: #ffffff;
+  line-height: 16px;
+  text-decoration: none;
+}
+
 img.user-pic{
   width: 32px;
   height: 32px;
+  display: inline;
+}
+
+.user-profile-corner span.name {
+  display: block;
+  margin-left: 42px;
+  white-space: nowrap;
+}
+
+.user-profile-corner span.company {
+  display: block;
+  margin-left: 42px;
+  font-size: 11px;
+  color: #c2c8cd;
+}
+
+.user-info{
+/*  float: left;*/
+  display: inline;
+}
+
+.user-name{
+  
+}
+
+.user-organization-name{
+
 }
 
 .sidebar{

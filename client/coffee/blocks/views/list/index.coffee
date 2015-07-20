@@ -11,8 +11,6 @@ define [
 
         childView: ItemView
 
-        initialize: ->
-
         events: ->
             "click li": "activateCurrent"
 
@@ -29,6 +27,20 @@ define [
 
             # navigate to profile details route
             window.location.href = "#/profiles/#{currentId}"
+
+        activateById: (id) ->
+            @items = @$el.find("li")
+            _.each @items, (item) ->
+                $item = $(item)
+                $item.removeClass "active"
+                if parseInt($item.find(".person-name").attr("data-id")) == parseInt(id)
+                    $item.addClass "active"
+
+        onRender: ->
+            @profilesChannel.on "profiles:list:activate", (id) =>
+                setTimeout () =>
+                    @activateById(id) 
+                , 500
 
         setChildTemplate: (tpl) ->
             @childTemplate = tpl

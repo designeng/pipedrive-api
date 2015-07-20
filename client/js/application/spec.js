@@ -14,6 +14,9 @@ define({
     properties: {
       collection: {
         $ref: 'profilesCollection'
+      },
+      profilesChannel: {
+        $ref: 'profilesChannel'
       }
     }
   },
@@ -75,6 +78,9 @@ define({
       },
       BlankProfile: {
         $ref: 'blankProfile'
+      },
+      profilesChannel: {
+        $ref: 'profilesChannel'
       }
     }
   },

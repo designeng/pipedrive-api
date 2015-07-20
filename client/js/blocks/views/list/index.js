@@ -17,8 +17,6 @@ define(['backbone', 'api', './item'], function(Backbone, api, ItemView) {
 
     ListView.prototype.childView = ItemView;
 
-    ListView.prototype.initialize = function() {};
-
     ListView.prototype.events = function() {
       return {
         "click li": "activateCurrent"
@@ -35,6 +33,27 @@ define(['backbone', 'api', './item'], function(Backbone, api, ItemView) {
       });
       li.addClass("active");
       return window.location.href = "#/profiles/" + currentId;
+    };
+
+    ListView.prototype.activateById = function(id) {
+      this.items = this.$el.find("li");
+      return _.each(this.items, function(item) {
+        var $item;
+        $item = $(item);
+        $item.removeClass("active");
+        if (parseInt($item.find(".person-name").attr("data-id")) === parseInt(id)) {
+          return $item.addClass("active");
+        }
+      });
+    };
+
+    ListView.prototype.onRender = function() {
+      var _this = this;
+      return this.profilesChannel.on("profiles:list:activate", function(id) {
+        return setTimeout(function() {
+          return _this.activateById(id);
+        }, 500);
+      });
     };
 
     ListView.prototype.setChildTemplate = function(tpl) {

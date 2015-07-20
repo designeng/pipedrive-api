@@ -1,7 +1,7 @@
 var __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-define(["backbone", "marionette", "api"], function(Backbone, Marionette, api) {
+define(["backbone", "backbone.radio", "marionette", "api"], function(Backbone, Radio, Marionette, api) {
   var ApplicationController, _ref;
   return ApplicationController = (function(_super) {
     __extends(ApplicationController, _super);
@@ -15,7 +15,9 @@ define(["backbone", "marionette", "api"], function(Backbone, Marionette, api) {
       return _.bindAll(this, 'onRoute', 'showProfilesList', 'showProfileDetailes');
     };
 
-    ApplicationController.prototype.onRoute = function(name, path, opts) {};
+    ApplicationController.prototype.onRoute = function(name, path, opts) {
+      return this.profilesChannel.trigger("profiles:list:activate", opts[0]);
+    };
 
     ApplicationController.prototype.profilesDefault = function() {
       this.profilesCollection.fetch();

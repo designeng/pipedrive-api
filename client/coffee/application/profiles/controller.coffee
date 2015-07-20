@@ -1,8 +1,9 @@
 define [
     "backbone"
+    "backbone.radio"
     "marionette"
     "api"
-], (Backbone, Marionette, api) ->
+], (Backbone, Radio, Marionette, api) ->
 
     class ApplicationController extends Marionette.Object
 
@@ -10,6 +11,7 @@ define [
             _.bindAll @, 'onRoute', 'showProfilesList', 'showProfileDetailes'
 
         onRoute: (name, path, opts) ->
+            @profilesChannel.trigger "profiles:list:activate", opts[0]
 
         profilesDefault: ->
             @profilesCollection.fetch()

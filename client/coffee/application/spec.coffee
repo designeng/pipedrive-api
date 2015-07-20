@@ -19,7 +19,8 @@ define
     profilesList:
         create: 'blocks/views/list/index'
         properties:
-            collection  : {$ref: 'profilesCollection'}
+            collection          : {$ref: 'profilesCollection'}
+            profilesChannel     : {$ref: 'profilesChannel'}
 
     personProfile:
         module: 'blocks/views/profile/index'
@@ -55,6 +56,7 @@ define
             PersonProfile               : {$ref: 'personProfile'}
             profilesCollection          : {$ref: 'profilesCollection'}
             BlankProfile                : {$ref: 'blankProfile'}
+            profilesChannel             : {$ref: 'profilesChannel'}
 
     # in Marionette we are not restricted with creating Marionette.Application instances,
     # they can be treated as different modules. Here in our test app we need only one app instance.

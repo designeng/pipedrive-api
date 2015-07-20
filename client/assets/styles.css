@@ -4,7 +4,17 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
   border: 0;
   font-size: 100%;
   font: inherit;
-  vertical-align: baseline; }
+  vertical-align: baseline; 
+}
+
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+
+ol, ul {
+    list-style: none;
+}
 
 html, body {
   overflow: hidden;
@@ -40,4 +50,24 @@ nav .logo_container h1.logo a {
   color: #ffffff;
   background: transparent url("https://assets.pipedrive.com/images/logo_header.png") 12px 13px no-repeat;
   background-size: 100px 22px;
+}
+
+.sidebar{
+    width: 281px;
+}
+
+ul.listView li{
+    height: 32px;
+}
+
+/*ul.li{
+    text-align: left;
+}*/
+
+.active{
+    background-color: #3381c5;
+}
+
+.person-name{
+    font-weight: bold;
 }

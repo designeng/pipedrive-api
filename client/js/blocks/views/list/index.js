@@ -19,6 +19,20 @@ define(['backbone', 'api', './item'], function(Backbone, api, ItemView) {
 
     ListView.prototype.initialize = function() {};
 
+    ListView.prototype.events = function() {
+      return {
+        "click li": "activateCurrent"
+      };
+    };
+
+    ListView.prototype.activateCurrent = function(event) {
+      this.items = this.$el.find("li");
+      _.each(this.items, function(item) {
+        return $(item).removeClass("active");
+      });
+      return $(event.target).closest("li").addClass("active");
+    };
+
     ListView.prototype.setChildTemplate = function(tpl) {
       return this.childTemplate = tpl;
     };

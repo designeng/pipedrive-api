@@ -13,6 +13,8 @@ define(['marionette'], function(Marionette) {
 
     ListItemTemplateView.prototype.tagName = "li";
 
+    ListItemTemplateView.prototype.className = "person-item";
+
     ListItemTemplateView.prototype.templateHelpers = {
       organizationName: function() {
         var _ref1;

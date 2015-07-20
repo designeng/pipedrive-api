@@ -13,6 +13,17 @@ define [
 
         initialize: ->
 
+        events: ->
+            "click li": "activateCurrent"
+
+        activateCurrent: (event) ->
+            @items = @$el.find("li")
+
+            _.each @items, (item) ->
+                $(item).removeClass "active"
+
+            $(event.target).closest("li").addClass "active"
+
         setChildTemplate: (tpl) ->
             @childTemplate = tpl
 

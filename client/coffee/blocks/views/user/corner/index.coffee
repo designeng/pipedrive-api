@@ -1,10 +1,11 @@
 define [
+    'underscore'
     'backbone'
     'marionette'
     'api'
     'utils/request/index'
     'hbs!application/profiles/templates/userCorner'
-], (Backbone, Marionette, api, AjaxRequest, userCornerTemplate) ->
+], (_, Backbone, Marionette, api, AjaxRequest, userCornerTemplate) ->
 
     class UserCornerModel extends Backbone.Model
         url: api.getUserCornerUrl()
@@ -28,7 +29,8 @@ define [
             @model.fetch()
 
             @model.on "sync", (model) =>
-                new AjaxRequest(api.getOrganizationUrl(), {}, "GET").done (res) =>
-                    model.set "organizationName", res.data.name
+                new AjaxRequest(api.getOrganizationsUrl(), {}, "GET").done (organizations) =>
+                    organizationObject = _.find organizations.data, {company_id: model.get('companyId')}
+                    model.set "organizationName", organizationObject.name if organizationObject
                     @render()
                     @$el.show()

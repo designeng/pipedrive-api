@@ -1,7 +1,7 @@
 var __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-define(['backbone', 'marionette', 'api', 'utils/request/index', 'hbs!application/profiles/templates/userCorner'], function(Backbone, Marionette, api, AjaxRequest, userCornerTemplate) {
+define(['underscore', 'backbone', 'marionette', 'api', 'utils/request/index', 'hbs!application/profiles/templates/userCorner'], function(_, Backbone, Marionette, api, AjaxRequest, userCornerTemplate) {
   var UserCornerModel, UserCornerView, _ref, _ref1;
   UserCornerModel = (function(_super) {
     __extends(UserCornerModel, _super);
@@ -46,8 +46,14 @@ define(['backbone', 'marionette', 'api', 'utils/request/index', 'hbs!application
       this.model = new UserCornerModel();
       this.model.fetch();
       return this.model.on("sync", function(model) {
-        return new AjaxRequest(api.getOrganizationUrl(), {}, "GET").done(function(res) {
-          model.set("organizationName", res.data.name);
+        return new AjaxRequest(api.getOrganizationsUrl(), {}, "GET").done(function(organizations) {
+          var organizationObject;
+          organizationObject = _.find(organizations.data, {
+            company_id: model.get('companyId')
+          });
+          if (organizationObject) {
+            model.set("organizationName", organizationObject.name);
+          }
           _this.render();
           return _this.$el.show();
         });

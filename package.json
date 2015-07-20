@@ -4,6 +4,7 @@
     "Denis Savenok <denissavenok@gmail.com>"
   ],
   "dependencies": {
+    "express": "^4.13.1",
     "lodash": "^3.9.1",
     "when": "^3.7.3"
   },

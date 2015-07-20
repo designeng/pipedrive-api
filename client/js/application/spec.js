@@ -1,5 +1,8 @@
 define({
   $plugins: ['wire/debug', 'plugins/router', 'plugins/hbs', 'plugins/channel', 'plugins/application'],
+  navigation: {
+    create: 'blocks/views/navigation/index'
+  },
   profilesCollection: {
     create: 'application/profiles/collections/profiles'
   },
@@ -75,6 +78,11 @@ define({
       navigationRegion: ".navigation",
       sidebarRegion: ".sidebar",
       mainAreaRegion: ".main-area"
+    },
+    showInRegion: {
+      'navigationRegion': {
+        $ref: 'navigation'
+      }
     },
     addController: {
       $ref: 'profilesApplicationController'

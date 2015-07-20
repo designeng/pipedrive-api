@@ -19,6 +19,12 @@ define [
             facet.target.addRegions facet.options
             resolver.resolve facet.target
 
+        showInRegionFacet = (resolver, facet, wire) ->
+            wire(facet.options).then (options) ->
+                _.each options, (view, region) ->
+                    facet.target[region].show view
+                resolver.resolve facet.target
+
         addControllerFacet = (resolver, facet, wire) ->
             wire(facet.options).then (controller) ->
                 controller.regions = facet.target.getRegions()
@@ -32,6 +38,8 @@ define [
             facets:
                 withRegions:
                     "ready"     : withRegionsFacet
+                showInRegion:
+                    "ready"     : showInRegionFacet
                 addController:
                     "ready"     : addControllerFacet
 

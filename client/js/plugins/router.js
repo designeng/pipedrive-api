@@ -20,9 +20,7 @@ define(['underscore', 'marionette'], function(_, Marionette) {
       });
     };
     onRouteFacet = function(resolver, facet, wire) {
-      console.debug("onRouteFacet");
       return wire(facet.options).then(function(method) {
-        console.debug("method:", method);
         facet.target.onRoute = function(name, path, opts) {
           return method(name, path, opts);
         };

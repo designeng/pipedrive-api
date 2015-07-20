@@ -71,6 +71,8 @@ module.exports = (grunt) ->
                     mainConfigFile: "client/js/requireConfig.js"
                     name: "main"
                     out: "client/build/main.js"
+                    pathes:
+                        "vendors/wire/builder/rjs": "lib/builder"
 
         dataMainAttr:
             dev:

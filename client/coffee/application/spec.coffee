@@ -1,6 +1,6 @@
 define
     $plugins: [
-        # 'wire/debug'
+        'wire/debug'
         'plugins/router'
         'plugins/hbs'
         'plugins/channel'

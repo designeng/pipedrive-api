@@ -1,5 +1,5 @@
 define({
-  $plugins: ['plugins/router', 'plugins/hbs', 'plugins/channel', 'plugins/application', 'plugins/synchronization'],
+  $plugins: ['wire/debug', 'plugins/router', 'plugins/hbs', 'plugins/channel', 'plugins/application', 'plugins/synchronization'],
   navigation: {
     create: 'blocks/views/navigation/index'
   },

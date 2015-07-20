@@ -22,7 +22,6 @@ define [
             wire(facet.options).then (method) ->
                 facet.target.onRoute = (name, path, opts) ->
                     method(name, path, opts)
-
                 resolver.resolve facet.target
 
         pluginInstance = 

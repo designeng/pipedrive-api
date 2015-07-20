@@ -15,6 +15,8 @@ define
 
     profilesCollection:
         create: 'application/profiles/collections/profiles'
+        ready:
+            fetch: {}
 
     profilesList:
         create: 'blocks/views/list/index'

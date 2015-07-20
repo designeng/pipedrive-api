@@ -7,7 +7,10 @@ define({
     create: 'blocks/views/user/corner/index'
   },
   profilesCollection: {
-    create: 'application/profiles/collections/profiles'
+    create: 'application/profiles/collections/profiles',
+    ready: {
+      fetch: {}
+    }
   },
   profilesList: {
     create: 'blocks/views/list/index',

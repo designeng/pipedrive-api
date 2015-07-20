@@ -38,9 +38,7 @@ define [
 
         onRender: ->
             @profilesChannel.on "profiles:list:activate", (id) =>
-                setTimeout () =>
-                    @activateById(id) 
-                , 500
+                @activateById(id)
 
         setChildTemplate: (tpl) ->
             @childTemplate = tpl

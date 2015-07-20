@@ -27,6 +27,9 @@ define
     personProfile:
         module: 'blocks/views/profile/index'
 
+    personProfileDeals:
+        module: 'blocks/views/profile/deals/index'
+
     blankProfile:
         module: 'blocks/views/profile/blank'
 
@@ -56,6 +59,7 @@ define
             profilesList                : {$ref: 'profilesList'}
             profilesListItemTemplate    : {$ref: 'hbs!application/profiles/templates/profilesListItem' }
             PersonProfile               : {$ref: 'personProfile'}
+            PersonProfileDeals          : {$ref: 'personProfileDeals'}
             profilesCollection          : {$ref: 'profilesCollection'}
             BlankProfile                : {$ref: 'blankProfile'}
             profilesChannel             : {$ref: 'profilesChannel'}

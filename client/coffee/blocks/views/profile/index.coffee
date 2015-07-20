@@ -11,11 +11,17 @@ define [
         else
             "no activity"
 
-    class ProfileView extends Marionette.ItemView
+    class ProfileView extends Marionette.LayoutView
         tagName: "div"
         className: "profile-details"
 
         template: profileDetailsTemplate
+
+        initialize: (options) ->
+            console.debug "INIT PROFILE"
+
+        regions:
+            dealsRegion: ".person-deals-wrapper"
 
         # phone
         # email
@@ -40,3 +46,6 @@ define [
                 formatActivity(@next_activity_date)
             lastActivity: ->
                 formatActivity(@last_activity_date)
+
+        onClose: ->
+            console.debug "onClose"

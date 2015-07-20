@@ -26,6 +26,14 @@ define(['marionette', 'moment', 'hbs!application/profiles/templates/profileDetai
 
     ProfileView.prototype.template = profileDetailsTemplate;
 
+    ProfileView.prototype.initialize = function(options) {
+      return console.debug("INIT PROFILE");
+    };
+
+    ProfileView.prototype.regions = {
+      dealsRegion: ".person-deals-wrapper"
+    };
+
     ProfileView.prototype.templateHelpers = {
       pphone: function() {
         var ph;
@@ -56,7 +64,11 @@ define(['marionette', 'moment', 'hbs!application/profiles/templates/profileDetai
       }
     };
 
+    ProfileView.prototype.onClose = function() {
+      return console.debug("onClose");
+    };
+
     return ProfileView;
 
-  })(Marionette.ItemView);
+  })(Marionette.LayoutView);
 });

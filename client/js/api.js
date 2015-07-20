@@ -14,6 +14,9 @@ define(function() {
     getProfilesCollectionUrl: function() {
       return "" + prefix + "persons" + suffix;
     },
+    getPersonDealsUrl: function(personId) {
+      return "" + prefix + "persons/" + personId + "/deals" + suffix;
+    },
     getUserCornerUrl: function() {
       return "" + prefix + "users/733958" + suffix;
     },

@@ -26,6 +26,9 @@ define({
   personProfile: {
     module: 'blocks/views/profile/index'
   },
+  personProfileDeals: {
+    module: 'blocks/views/profile/deals/index'
+  },
   blankProfile: {
     module: 'blocks/views/profile/blank'
   },
@@ -75,6 +78,9 @@ define({
       },
       PersonProfile: {
         $ref: 'personProfile'
+      },
+      PersonProfileDeals: {
+        $ref: 'personProfileDeals'
       },
       profilesCollection: {
         $ref: 'profilesCollection'

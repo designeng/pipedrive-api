@@ -20,6 +20,9 @@ define ->
         getProfilesCollectionUrl: ->
             return "#{prefix}persons#{suffix}"
 
+        getPersonDealsUrl: (personId) ->
+            return "#{prefix}persons/#{personId}/deals#{suffix}"
+
         getUserCornerUrl: ->
             return "#{prefix}users/733958#{suffix}"
 

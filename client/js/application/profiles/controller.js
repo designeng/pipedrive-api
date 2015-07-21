@@ -41,7 +41,6 @@ define(["backbone", "backbone.radio", "marionette", "api"], function(Backbone, R
       this.profilesCollection.fetch({
         personId: personId
       });
-      this.profilesList.setChildTemplate(this.profilesListItemTemplate);
       return this.regions.sidebarRegion.show(this.profilesList);
     };
 

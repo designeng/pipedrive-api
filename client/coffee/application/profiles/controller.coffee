@@ -31,7 +31,6 @@ define [
             @profilesCollection.fetch({
                 personId
             })
-            @profilesList.setChildTemplate @profilesListItemTemplate
             @regions.sidebarRegion.show @profilesList
 
         showProfilesList: () ->

@@ -24,6 +24,11 @@ define({
       profilesChannel: {
         $ref: 'profilesChannel'
       }
+    },
+    ready: {
+      setChildTemplate: {
+        $ref: 'hbs!templates/profilesListItem'
+      }
     }
   },
   personProfile: {
@@ -75,9 +80,6 @@ define({
     properties: {
       profilesList: {
         $ref: 'profilesList'
-      },
-      profilesListItemTemplate: {
-        $ref: 'hbs!templates/profilesListItem'
       },
       PersonProfile: {
         $ref: 'personProfile'

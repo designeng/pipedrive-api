@@ -25,6 +25,8 @@ define
         properties:
             collection          : {$ref: 'profilesCollection'}
             profilesChannel     : {$ref: 'profilesChannel'}
+        ready:
+            setChildTemplate: {$ref: 'hbs!templates/profilesListItem' }
 
     personProfile:
         module: 'blocks/views/profile/index'
@@ -59,7 +61,6 @@ define
         create: 'application/profiles/controller'
         properties:
             profilesList                : {$ref: 'profilesList'}
-            profilesListItemTemplate    : {$ref: 'hbs!templates/profilesListItem' }
             PersonProfile               : {$ref: 'personProfile'}
             PersonProfileDeals          : {$ref: 'personProfileDeals'}
             profilesCollection          : {$ref: 'profilesCollection'}

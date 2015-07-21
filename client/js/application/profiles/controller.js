@@ -1,7 +1,7 @@
 var __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-define(["backbone", "backbone.radio", "marionette", "meld", "api"], function(Backbone, Radio, Marionette, meld, api) {
+define(["underscore", "backbone", "backbone.radio", "marionette", "meld", "api"], function(_, Backbone, Radio, Marionette, meld, api) {
   var ApplicationController, _ref;
   return ApplicationController = (function(_super) {
     __extends(ApplicationController, _super);
@@ -11,10 +11,18 @@ define(["backbone", "backbone.radio", "marionette", "meld", "api"], function(Bac
       return _ref;
     }
 
+    ApplicationController.prototype.removers = [];
+
     ApplicationController.prototype.initialize = function() {
       this.profilesListIsRendered = false;
       _.bindAll(this, 'onRoute', 'showProfilesList', 'showProfileDetailes');
-      return meld.before(this, 'showProfileDetailes', this.showProfilesList);
+      return this.removers.push(meld.before(this, 'showProfileDetailes', this.showProfilesList));
+    };
+
+    ApplicationController.prototype.onDestroy = function() {
+      return _.each(this.removers, function(remover) {
+        return remover.remove();
+      });
     };
 
     ApplicationController.prototype.onRoute = function(name, path, opts) {

@@ -1,19 +1,26 @@
 define [
+    "underscore"
     "backbone"
     "backbone.radio"
     "marionette"
     "meld"
     "api"
-], (Backbone, Radio, Marionette, meld, api) ->
+], (_, Backbone, Radio, Marionette, meld, api) ->
 
     class ApplicationController extends Marionette.Object
+
+        removers: []
 
         initialize: ->
             @profilesListIsRendered = false
             _.bindAll @, 'onRoute', 'showProfilesList', 'showProfileDetailes'
 
             # profiles list should be rendered in case of child route
-            meld.before @, 'showProfileDetailes', @showProfilesList
+            @removers.push meld.before @, 'showProfileDetailes', @showProfilesList
+
+        onDestroy: ->
+            _.each @removers, (remover) ->
+                remover.remove()
 
         onRoute: (name, path, opts) ->
             @profilesChannel.trigger "profiles:list:activate", opts[0]

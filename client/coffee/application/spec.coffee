@@ -64,6 +64,8 @@ define
             profilesCollection          : {$ref: 'profilesCollection'}
             BlankProfile                : {$ref: 'blankProfile'}
             profilesChannel             : {$ref: 'profilesChannel'}
+        destroy:
+            onDestroy: {}
 
     # in Marionette we are not restricted with creating Marionette.Application instances,
     # they can be treated as different modules. Nevertheless in our test app we need only one app instance.

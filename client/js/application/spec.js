@@ -93,6 +93,9 @@ define({
       profilesChannel: {
         $ref: 'profilesChannel'
       }
+    },
+    destroy: {
+      onDestroy: {}
     }
   },
   profilesApplication: {

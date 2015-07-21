@@ -8,11 +8,24 @@ define [
     class ApplicationController extends Marionette.Object
 
         initialize: ->
-            _.bindAll @, 'onProfilesCollectionSync', 'onRoute', 'showProfilesList', 'showProfileDetailes'
+            @profilesListIsRendered = false
+            _.bindAll @, 'onRoute', 'showProfilesList', 'showProfileDetailes'
 
-        onProfilesCollectionSync: (collection, resp, options) ->
-            personId = options.personId
-            model = collection.find (model) ->
+        onRoute: (name, path, opts) ->
+            @profilesChannel.trigger "profiles:list:activate", opts[0]
+
+        renderProfilesList: ->
+            @regions.sidebarRegion.show @profilesList
+
+        showProfilesList: () ->
+            if !@profilesListIsRendered
+                @renderProfilesList()
+                @profilesListIsRendered = true
+
+        showProfileDetailes: (personId) ->
+            @showProfilesList()
+            
+            model = @profilesCollection.find (model) ->
                 return model.get('id') == parseInt(personId)
             if model
                 personProfile = new @PersonProfile({
@@ -23,18 +36,3 @@ define [
                 @regions.mainAreaRegion.show personProfile
             else
                 @regions.mainAreaRegion.show new @BlankProfile
-
-        onRoute: (name, path, opts) ->
-            @profilesChannel.trigger "profiles:list:activate", opts[0]
-
-        profilesDefault: (personId) ->
-            @profilesCollection.fetch({
-                personId
-            })
-            @regions.sidebarRegion.show @profilesList
-
-        showProfilesList: () ->
-            @profilesDefault()
-
-        showProfileDetailes: (personId) ->
-            @profilesDefault(personId)

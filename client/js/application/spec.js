@@ -1,5 +1,5 @@
 define({
-  $plugins: ['wire/debug', 'plugins/router', 'plugins/hbs', 'plugins/channel', 'plugins/application', 'plugins/synchronization'],
+  $plugins: ['wire/debug', 'plugins/router', 'plugins/hbs', 'plugins/channel', 'plugins/application'],
   navigation: {
     create: 'blocks/views/navigation/index'
   },
@@ -10,9 +10,6 @@ define({
     create: 'application/profiles/collections/profiles',
     ready: {
       fetch: {}
-    },
-    onSync: {
-      $ref: 'profilesApplicationController.onProfilesCollectionSync'
     }
   },
   profilesList: {

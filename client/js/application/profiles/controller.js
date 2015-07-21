@@ -12,13 +12,29 @@ define(["backbone", "backbone.radio", "marionette", "api"], function(Backbone, R
     }
 
     ApplicationController.prototype.initialize = function() {
-      return _.bindAll(this, 'onProfilesCollectionSync', 'onRoute', 'showProfilesList', 'showProfileDetailes');
+      this.profilesListIsRendered = false;
+      return _.bindAll(this, 'onRoute', 'showProfilesList', 'showProfileDetailes');
     };
 
-    ApplicationController.prototype.onProfilesCollectionSync = function(collection, resp, options) {
-      var model, personId, personProfile;
-      personId = options.personId;
-      model = collection.find(function(model) {
+    ApplicationController.prototype.onRoute = function(name, path, opts) {
+      return this.profilesChannel.trigger("profiles:list:activate", opts[0]);
+    };
+
+    ApplicationController.prototype.renderProfilesList = function() {
+      return this.regions.sidebarRegion.show(this.profilesList);
+    };
+
+    ApplicationController.prototype.showProfilesList = function() {
+      if (!this.profilesListIsRendered) {
+        this.renderProfilesList();
+        return this.profilesListIsRendered = true;
+      }
+    };
+
+    ApplicationController.prototype.showProfileDetailes = function(personId) {
+      var model, personProfile;
+      this.showProfilesList();
+      model = this.profilesCollection.find(function(model) {
         return model.get('id') === parseInt(personId);
       });
       if (model) {
@@ -31,25 +47,6 @@ define(["backbone", "backbone.radio", "marionette", "api"], function(Backbone, R
       } else {
         return this.regions.mainAreaRegion.show(new this.BlankProfile);
       }
-    };
-
-    ApplicationController.prototype.onRoute = function(name, path, opts) {
-      return this.profilesChannel.trigger("profiles:list:activate", opts[0]);
-    };
-
-    ApplicationController.prototype.profilesDefault = function(personId) {
-      this.profilesCollection.fetch({
-        personId: personId
-      });
-      return this.regions.sidebarRegion.show(this.profilesList);
-    };
-
-    ApplicationController.prototype.showProfilesList = function() {
-      return this.profilesDefault();
-    };
-
-    ApplicationController.prototype.showProfileDetailes = function(personId) {
-      return this.profilesDefault(personId);
     };
 
     return ApplicationController;

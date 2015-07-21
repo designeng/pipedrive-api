@@ -5,7 +5,6 @@ define
         'plugins/hbs'
         'plugins/channel'
         'plugins/application'
-        'plugins/synchronization'
     ]
 
     navigation:
@@ -18,7 +17,6 @@ define
         create: 'application/profiles/collections/profiles'
         ready:
             fetch: {}
-        onSync: {$ref: 'profilesApplicationController.onProfilesCollectionSync'}
 
     profilesList:
         create: 'blocks/views/list/index'

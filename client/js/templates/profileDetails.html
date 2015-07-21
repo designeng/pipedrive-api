@@ -1,10 +1,32 @@
 <div class="profile-details-name">{{ name }}</div>
-<div class="details-wrapper">
-    <p>{{ pphone }}</p>
-    <p>{{ mail }}</p>
-    <p>{{ added }}</p>
-    <p>{{ openDealsCount }}</p>
-    <p>{{ nextActivity}}</p>
-    <p>{{ lastActivity }}</p>
+<div class="details-wrapper-panel clearfix">
+    <table class="details-wrapper">
+        <tbody>
+            <tr>
+                <td class="profile-item">Phone</td>
+                <td class="profile-item-value">{{ pphone }}</td>
+            </tr>
+            <tr>
+                <td class="profile-item">E-mail</td>
+                <td class="profile-item-value">{{ mail }}</td>
+            </tr>
+            <tr>
+                <td class="profile-item">Added</td>
+                <td class="profile-item-value">{{ added }}</td>
+            </tr>
+            <tr>
+                <td class="profile-item">Open deals</td>
+                <td class="profile-item-value">{{ openDealsCount }}</td>
+            </tr>
+            <tr>
+                <td class="profile-item">Next activity</td>
+                <td class="profile-item-value">{{ nextActivity }}</td>
+            </tr>
+            <tr>
+                <td class="profile-item">Last activity</td>
+                <td class="profile-item-value">{{ lastActivity }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="person-deals-wrapper"></div>
 </div>
-<div class="person-deals-wrapper"></div>

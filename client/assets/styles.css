@@ -172,9 +172,11 @@ ul.listView li{
   zoom: 2;
 }
 
-.profile-details .details-wrapper{
+.profile-details .details-wrapper-panel{
   display: block;
-  width: 100%;
+  /*width: 100%;*/
+  width: 822px;
+  height: 100%;
   margin-bottom: 14px;
   background-color: #ffffff;
   padding: 16px;
@@ -189,6 +191,30 @@ ul.listView li{
   border-radius: 4px;
 }
 
-.details-wrapper p{
+table.details-wrapper{
+  /*width: 396px;*/
+  width: 50%;
+  float: left;
+}
+table.details-wrapper td.profile-item{
   font-weight: bold;
+}
+
+.person-deals-wrapper{
+  width: 50%;
+  float: left;
+  border: 1px solid #e0e4e7;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+
+.clearfix {
+  overflow: auto;
+  zoom: 1;
 }

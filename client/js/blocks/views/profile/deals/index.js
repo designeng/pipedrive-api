@@ -1,8 +1,8 @@
 var __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-define(['backbone', 'marionette', 'api', 'utils/currency/converter', 'hbs!templates/deals', 'hbs!templates/oneDeal'], function(Backbone, Marionette, api, convertCurrency, dealsTemplate, oneDealTemplate) {
-  var PersonDealView, PersonDealsCollection, PersonDealsView, _ref, _ref1, _ref2;
+define(['backbone', 'marionette', 'api', 'utils/currency/converter', 'hbs!templates/deals', 'hbs!templates/oneDeal', 'hbs!templates/dealEmpty'], function(Backbone, Marionette, api, convertCurrency, dealsTemplate, oneDealTemplate, dealEmptyTemplate) {
+  var PersonDealEmptyView, PersonDealView, PersonDealsCollection, PersonDealsView, _ref, _ref1, _ref2, _ref3;
   PersonDealsCollection = (function(_super) {
     __extends(PersonDealsCollection, _super);
 
@@ -34,7 +34,7 @@ define(['backbone', 'marionette', 'api', 'utils/currency/converter', 'hbs!templa
       return _ref1;
     }
 
-    PersonDealView.prototype.tagName = "li";
+    PersonDealView.prototype.tagName = "tr";
 
     PersonDealView.prototype.template = oneDealTemplate;
 
@@ -49,12 +49,25 @@ define(['backbone', 'marionette', 'api', 'utils/currency/converter', 'hbs!templa
     return PersonDealView;
 
   })(Marionette.ItemView);
+  PersonDealEmptyView = (function(_super) {
+    __extends(PersonDealEmptyView, _super);
+
+    function PersonDealEmptyView() {
+      _ref2 = PersonDealEmptyView.__super__.constructor.apply(this, arguments);
+      return _ref2;
+    }
+
+    PersonDealEmptyView.prototype.template = dealEmptyTemplate;
+
+    return PersonDealEmptyView;
+
+  })(Marionette.ItemView);
   return PersonDealsView = (function(_super) {
     __extends(PersonDealsView, _super);
 
     function PersonDealsView() {
-      _ref2 = PersonDealsView.__super__.constructor.apply(this, arguments);
-      return _ref2;
+      _ref3 = PersonDealsView.__super__.constructor.apply(this, arguments);
+      return _ref3;
     }
 
     PersonDealsView.prototype.tagName = "table";
@@ -64,6 +77,8 @@ define(['backbone', 'marionette', 'api', 'utils/currency/converter', 'hbs!templa
     PersonDealsView.prototype.template = dealsTemplate;
 
     PersonDealsView.prototype.childView = PersonDealView;
+
+    PersonDealsView.prototype.emptyView = PersonDealEmptyView;
 
     PersonDealsView.prototype.initialize = function(options) {
       this.collection = new PersonDealsCollection({

@@ -5,7 +5,8 @@ define [
     'utils/currency/converter'
     'hbs!templates/deals'
     'hbs!templates/oneDeal'
-], (Backbone, Marionette, api, convertCurrency, dealsTemplate, oneDealTemplate) ->
+    'hbs!templates/dealEmpty'
+], (Backbone, Marionette, api, convertCurrency, dealsTemplate, oneDealTemplate, dealEmptyTemplate) ->
 
     class PersonDealsCollection extends Backbone.Collection
         initialize: (options) ->
@@ -18,12 +19,15 @@ define [
             return deals
 
     class PersonDealView extends Marionette.ItemView
-        tagName: "li"
+        tagName: "tr"
         template: oneDealTemplate
         
         templateHelpers:
             convertedValue: ->
                 convertCurrency @formatted_value if @formatted_value
+
+    class PersonDealEmptyView extends Marionette.ItemView
+        template: dealEmptyTemplate
 
     class PersonDealsView extends Marionette.CompositeView
         tagName: "table"
@@ -32,6 +36,7 @@ define [
         template: dealsTemplate
 
         childView: PersonDealView
+        emptyView: PersonDealEmptyView
 
         initialize: (options) ->
             @collection = new PersonDealsCollection({personId: options.personId})

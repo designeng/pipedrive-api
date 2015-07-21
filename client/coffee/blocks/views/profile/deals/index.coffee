@@ -2,9 +2,10 @@ define [
     'backbone'
     'marionette'
     'api'
+    'utils/currency/converter'
     'hbs!templates/deals'
     'hbs!templates/oneDeal'
-], (Backbone, Marionette, api, dealsTemplate, oneDealTemplate) ->
+], (Backbone, Marionette, api, convertCurrency, dealsTemplate, oneDealTemplate) ->
 
     class PersonDealsCollection extends Backbone.Collection
         initialize: (options) ->
@@ -19,6 +20,10 @@ define [
     class PersonDealView extends Marionette.ItemView
         tagName: "li"
         template: oneDealTemplate
+        
+        templateHelpers:
+            convertedValue: ->
+                convertCurrency @formatted_value if @formatted_value
 
     class PersonDealsView extends Marionette.CompositeView
         tagName: "table"

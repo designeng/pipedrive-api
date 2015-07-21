@@ -59,7 +59,7 @@ define
         create: 'application/profiles/controller'
         properties:
             profilesList                : {$ref: 'profilesList'}
-            profilesListItemTemplate    : {$ref: 'hbs!application/profiles/templates/profilesListItem' }
+            profilesListItemTemplate    : {$ref: 'hbs!templates/profilesListItem' }
             PersonProfile               : {$ref: 'personProfile'}
             PersonProfileDeals          : {$ref: 'personProfileDeals'}
             profilesCollection          : {$ref: 'profilesCollection'}

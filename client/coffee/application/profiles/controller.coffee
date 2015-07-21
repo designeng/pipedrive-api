@@ -37,7 +37,6 @@ define [
             @regions.sidebarRegion.show @profilesList
 
         showProfilesList: () ->
-            console.debug "showProfilesList"
             @profilesDefault()
 
         showProfileDetailes: (personId) ->

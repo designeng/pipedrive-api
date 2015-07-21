@@ -1,6 +1,6 @@
 define [
     'marionette'
-    'hbs!application/profiles/templates/blankProfile'
+    'hbs!templates/blankProfile'
 ], (Marionette, blankProfileTemplate) ->
 
     class ProfileView extends Marionette.ItemView

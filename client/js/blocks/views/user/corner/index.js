@@ -1,7 +1,7 @@
 var __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-define(['underscore', 'backbone', 'marionette', 'api', 'utils/request/index', 'hbs!application/profiles/templates/userCorner'], function(_, Backbone, Marionette, api, AjaxRequest, userCornerTemplate) {
+define(['underscore', 'backbone', 'marionette', 'api', 'utils/request/index', 'hbs!templates/userCorner'], function(_, Backbone, Marionette, api, AjaxRequest, userCornerTemplate) {
   var UserCornerModel, UserCornerView, _ref, _ref1;
   UserCornerModel = (function(_super) {
     __extends(UserCornerModel, _super);

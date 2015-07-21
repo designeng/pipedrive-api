@@ -4,7 +4,7 @@ define [
     'marionette'
     'api'
     'utils/request/index'
-    'hbs!application/profiles/templates/userCorner'
+    'hbs!templates/userCorner'
 ], (_, Backbone, Marionette, api, AjaxRequest, userCornerTemplate) ->
 
     class UserCornerModel extends Backbone.Model

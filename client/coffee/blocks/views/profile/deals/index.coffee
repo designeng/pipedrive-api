@@ -2,16 +2,19 @@ define [
     'backbone'
     'marionette'
     'api'
-    'hbs!application/profiles/templates/deals'
-    'hbs!application/profiles/templates/oneDeal'
+    'hbs!templates/deals'
+    'hbs!templates/oneDeal'
 ], (Backbone, Marionette, api, dealsTemplate, oneDealTemplate) ->
 
     class PersonDealsCollection extends Backbone.Collection
         initialize: (options) ->
             @url = api.getPersonDealsUrl(options?.personId)
 
+        # provide only opened deals
         parse: (resp) ->
-            return resp.data
+            deals = _.filter resp.data, (deal) ->
+                return deal.status == "open"
+            return deals
 
     class PersonDealView extends Marionette.ItemView
         tagName: "li"

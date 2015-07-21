@@ -1,6 +1,6 @@
 define [
     'marionette'
-    'hbs!application/profiles/templates/navigation'
+    'hbs!templates/navigation'
 ], (Marionette, navigationTemplate) ->
     
     class Navigation extends Marionette.LayoutView

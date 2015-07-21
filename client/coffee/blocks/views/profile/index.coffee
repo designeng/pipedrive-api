@@ -1,7 +1,7 @@
 define [
     'marionette'
     'moment'
-    'hbs!application/profiles/templates/profileDetails'
+    'hbs!templates/profileDetails'
 ], (Marionette, moment, profileDetailsTemplate) ->
 
     formatActivity = (activityDate) ->

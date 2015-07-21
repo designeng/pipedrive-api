@@ -77,7 +77,7 @@ define({
         $ref: 'profilesList'
       },
       profilesListItemTemplate: {
-        $ref: 'hbs!application/profiles/templates/profilesListItem'
+        $ref: 'hbs!templates/profilesListItem'
       },
       PersonProfile: {
         $ref: 'personProfile'

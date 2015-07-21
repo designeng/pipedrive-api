@@ -1,7 +1,7 @@
 var __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-define(['backbone', 'marionette', 'api', 'hbs!application/profiles/templates/deals', 'hbs!application/profiles/templates/oneDeal'], function(Backbone, Marionette, api, dealsTemplate, oneDealTemplate) {
+define(['backbone', 'marionette', 'api', 'hbs!templates/deals', 'hbs!templates/oneDeal'], function(Backbone, Marionette, api, dealsTemplate, oneDealTemplate) {
   var PersonDealView, PersonDealsCollection, PersonDealsView, _ref, _ref1, _ref2;
   PersonDealsCollection = (function(_super) {
     __extends(PersonDealsCollection, _super);
@@ -16,7 +16,11 @@ define(['backbone', 'marionette', 'api', 'hbs!application/profiles/templates/dea
     };
 
     PersonDealsCollection.prototype.parse = function(resp) {
-      return resp.data;
+      var deals;
+      deals = _.filter(resp.data, function(deal) {
+        return deal.status === "open";
+      });
+      return deals;
     };
 
     return PersonDealsCollection;

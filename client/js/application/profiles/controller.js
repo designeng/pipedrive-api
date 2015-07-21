@@ -48,7 +48,6 @@ define(["backbone", "backbone.radio", "marionette", "api"], function(Backbone, R
     };
 
     ApplicationController.prototype.showProfilesList = function() {
-      console.debug("showProfilesList");
       return this.profilesDefault();
     };
 

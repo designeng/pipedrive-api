@@ -57,6 +57,8 @@ define(['backbone', 'marionette', 'api', 'utils/currency/converter', 'hbs!templa
       return _ref2;
     }
 
+    PersonDealEmptyView.prototype.tagName = "tr";
+
     PersonDealEmptyView.prototype.template = dealEmptyTemplate;
 
     return PersonDealEmptyView;
@@ -71,6 +73,8 @@ define(['backbone', 'marionette', 'api', 'utils/currency/converter', 'hbs!templa
     }
 
     PersonDealsView.prototype.tagName = "table";
+
+    PersonDealsView.prototype.className = "deals-list-wrapper";
 
     PersonDealsView.prototype.childViewContainer = "tbody";
 

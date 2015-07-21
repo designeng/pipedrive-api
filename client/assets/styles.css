@@ -166,10 +166,24 @@ ul.listView li{
   margin-left: 21px;
 }
 
+.details-header{
+  width: 822px;
+}
+
 .profile-details-name{
+  width: 50%;
+  float: left;
   font-weight: bold;
   font-size: 14px;
   zoom: 2;
+  /*line-height: 20px;*/
+}
+
+.profile-details-deals{
+  width: 50%;
+  float: right;
+  font-weight: bold;
+  /*line-height: 50px;*/
 }
 
 .profile-details .details-wrapper-panel{
@@ -196,6 +210,7 @@ table.details-wrapper{
   width: 50%;
   float: left;
 }
+
 table.details-wrapper td.profile-item{
   font-weight: bold;
 }
@@ -203,6 +218,15 @@ table.details-wrapper td.profile-item{
 .person-deals-wrapper{
   width: 50%;
   float: left;
+}
+
+.clearfix {
+  overflow: auto;
+  zoom: 1;
+}
+
+table.deals-list-wrapper{
+  width: 100%;
   border: 1px solid #e0e4e7;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -214,7 +238,29 @@ table.details-wrapper td.profile-item{
   border-radius: 4px;
 }
 
-.clearfix {
-  overflow: auto;
-  zoom: 1;
+table.deals-list-wrapper{
+  font-weight: bold;
+}
+
+table.deals-list-wrapper thead th{background: #efefef}
+table.deals-list-wrapper thead th{
+  text-align: left;
+}
+table.deals-list-wrapper thead th.deals-list-title{
+  width: 80%;
+  text-align: left;
+}
+table.deals-list-wrapper thead th.deals-list-sum{
+  width: 20%;
+  text-align: right;
+}
+
+table.deals-list-wrapper tr:nth-child(even) {background: #efefef}
+table.deals-list-wrapper tr:nth-child(odd) {background: #FFF}
+
+.deal-list-title{
+
+}
+.deal-list-value{
+  text-align: right;
 }

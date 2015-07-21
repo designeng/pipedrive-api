@@ -27,10 +27,12 @@ define [
                 convertCurrency @formatted_value if @formatted_value
 
     class PersonDealEmptyView extends Marionette.ItemView
+        tagName: "tr"
         template: dealEmptyTemplate
 
     class PersonDealsView extends Marionette.CompositeView
         tagName: "table"
+        className: "deals-list-wrapper"
         childViewContainer: "tbody"
 
         template: dealsTemplate

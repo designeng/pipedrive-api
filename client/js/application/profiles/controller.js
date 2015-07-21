@@ -1,7 +1,7 @@
 var __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-define(["backbone", "backbone.radio", "marionette", "api"], function(Backbone, Radio, Marionette, api) {
+define(["backbone", "backbone.radio", "marionette", "meld", "api"], function(Backbone, Radio, Marionette, meld, api) {
   var ApplicationController, _ref;
   return ApplicationController = (function(_super) {
     __extends(ApplicationController, _super);
@@ -13,7 +13,8 @@ define(["backbone", "backbone.radio", "marionette", "api"], function(Backbone, R
 
     ApplicationController.prototype.initialize = function() {
       this.profilesListIsRendered = false;
-      return _.bindAll(this, 'onRoute', 'showProfilesList', 'showProfileDetailes');
+      _.bindAll(this, 'onRoute', 'showProfilesList', 'showProfileDetailes');
+      return meld.before(this, 'showProfileDetailes', this.showProfilesList);
     };
 
     ApplicationController.prototype.onRoute = function(name, path, opts) {
@@ -33,7 +34,6 @@ define(["backbone", "backbone.radio", "marionette", "api"], function(Backbone, R
 
     ApplicationController.prototype.showProfileDetailes = function(personId) {
       var model, personProfile;
-      this.showProfilesList();
       model = this.profilesCollection.find(function(model) {
         return model.get('id') === parseInt(personId);
       });

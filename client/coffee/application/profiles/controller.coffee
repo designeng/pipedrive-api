@@ -7,8 +7,6 @@ define [
 
     class ApplicationController extends Marionette.Object
 
-        path: undefined
-
         initialize: ->
             _.bindAll @, 'onProfilesCollectionSync', 'onRoute', 'showProfilesList', 'showProfileDetailes'
 

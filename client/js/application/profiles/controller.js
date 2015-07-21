@@ -11,8 +11,6 @@ define(["backbone", "backbone.radio", "marionette", "api"], function(Backbone, R
       return _ref;
     }
 
-    ApplicationController.prototype.path = void 0;
-
     ApplicationController.prototype.initialize = function() {
       return _.bindAll(this, 'onProfilesCollectionSync', 'onRoute', 'showProfilesList', 'showProfileDetailes');
     };

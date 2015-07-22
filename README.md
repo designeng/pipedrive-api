@@ -7,7 +7,7 @@ The one-page application provides interaction with [pipedrive.com API](https://d
 
 ###Demo
 https://pipedrive-api.herokuapp.com/#/profiles/1
-
+(Note: it's unbelievable slow on heroku - but it's very fast on localhost, so do not hesitate to do `git clone`, `npm install`, `bower install` and `grunt` commands to view the application in your favorite browser (I belive it's Chrome :): `http://localhost:7788/#/profiles/1`)
 
 ###Development
 + Client built on the top of Marionette.js `2.4.2v`. Wire.js used for creating DSL application scecification: it plays as composition layer.

@@ -2,13 +2,15 @@
 
 
 ###Description
+The one-page application provides interaction with [pipedrive.com API](https://developers.pipedrive.com/v1).
 
 
 ###Demo
+https://pipedrive-api.herokuapp.com/#/profiles/1
 
 
 ###Development
-+ Client built on the top of Marionette.js `2.4.2v`.
++ Client built on the top of Marionette.js `2.4.2v`. Wire.js used for creating DSL application scecification: it plays as composition layer.
 
 ###Deploy
 + Grunt task `grunt build` should be invoked before deploy to remote server. It will run all nessesary tasks `dataMainAttr:prod` (toggling `data-main` attribute in index.html), `requirejs:compile` (building all js-source into single `main` file).

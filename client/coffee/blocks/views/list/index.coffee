@@ -36,6 +36,11 @@ define [
                 if parseInt($item.find(".person-name").attr("data-id")) == parseInt(id)
                     $item.addClass "active"
 
+        # hack to provide additional ul li with wight background
+        # TODO: find the way to do it with clear css
+        onBeforeRender: ->
+            @collection.add new Backbone.Model()
+
         onRender: ->
             @profilesChannel.on "profiles:list:activate", (id) =>
                 @activateById(id)

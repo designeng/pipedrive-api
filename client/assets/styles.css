@@ -25,6 +25,7 @@ html, body {
   top: 0;
   margin: 0;
   font-family: verdana;
+  font-size: 12px;
 }
 
 body {
@@ -61,7 +62,6 @@ a{
 .user-profile-corner{
     background-color: #343434;
     height: 47px;
-    /*float: right;*/
     font-color: #fff;
 }
 
@@ -158,7 +158,8 @@ img.user-pic{
     margin:0px;
     float: left;
     width: 281px;
-    height: 400px;
+    height: 100%;
+    border-right: 1px solid #ccc;
 }
 
 .main-area{
@@ -180,6 +181,11 @@ ul.listView li{
     padding-bottom: 7px;
     border-bottom: 1px solid #ccc;
     cursor: pointer;
+}
+
+ul.listView li:last-child {
+    background-color: #ffffff;
+    height: 10000px;
 }
 
 .active{
@@ -217,6 +223,7 @@ ul.listView li{
   width: 50%;
   float: right;
   font-weight: bold;
+  padding-top: 6px;
 }
 
 .profile-details .details-wrapper-panel{

@@ -47,6 +47,10 @@ define(['backbone', 'api', './item'], function(Backbone, api, ItemView) {
       });
     };
 
+    ListView.prototype.onBeforeRender = function() {
+      return this.collection.add(new Backbone.Model());
+    };
+
     ListView.prototype.onRender = function() {
       var _this = this;
       return this.profilesChannel.on("profiles:list:activate", function(id) {

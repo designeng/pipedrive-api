@@ -87,13 +87,13 @@ nav .logo_container h1.logo a {
 .user-profile-corner a {
   float: left;
   display: block;
-  /*padding: 7px 34px 8px 12px;*/
   color: #ffffff;
   line-height: 16px;
   text-decoration: none;
 }
 
-.user-profile-corner a.icon-dropdown::before {
+/* TODO: use 'Pipedings' font-family */
+/*.user-profile-corner a.icon-dropdown::before {
   position: absolute;
   right: 8px;
   top: 8px;
@@ -105,20 +105,6 @@ nav .logo_container h1.logo a {
 
 .icon-dropdown:before {
   content: '\E663';
-}
-
-/*[class^='icon-']:before, [class*=' icon-']:before {
-  font-family: 'Pipedings';
-  speak: none;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-size: 16px;
-  color: #26292c;
 }*/
 
 img.user-pic{
@@ -210,6 +196,7 @@ ul.listView li:last-child {
 
 .details-header{
   width: 822px;
+  height: 58px;
 }
 
 .profile-details-name{
@@ -217,13 +204,14 @@ ul.listView li:last-child {
   float: left;
   font-weight: bold;
   zoom: 1.5;
+  padding-top: 11px;
 }
 
 .profile-details-deals{
   width: 50%;
   float: right;
   font-weight: bold;
-  padding-top: 6px;
+  padding-top: 24px;
 }
 
 .profile-details .details-wrapper-panel{
@@ -253,6 +241,8 @@ table.details-wrapper{
 
 table.details-wrapper td.profile-item{
   font-weight: bold;
+  padding-top: 4px;
+  padding-bottom: 4px;
 }
 
 .person-deals-wrapper{

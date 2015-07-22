@@ -73,7 +73,7 @@ define
         createApplication:
             withRegions:
                 navigationRegion    : ".navigation"
-                userCornerRegion    : ".user-corner"
+                userCornerRegion    : ".user-profile-corner"
                 sidebarRegion       : ".sidebar"
                 mainAreaRegion      : ".main-area"
         showInRegion:

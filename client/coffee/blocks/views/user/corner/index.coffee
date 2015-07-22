@@ -19,7 +19,7 @@ define [
 
     class UserCornerView extends Marionette.ItemView
         tagName: "div"
-        className: "user-corner"
+        className: "user-profile-corner"
 
         template: userCornerTemplate
 

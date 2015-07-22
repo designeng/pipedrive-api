@@ -36,7 +36,7 @@ define(['underscore', 'backbone', 'marionette', 'api', 'utils/request/index', 'h
 
     UserCornerView.prototype.tagName = "div";
 
-    UserCornerView.prototype.className = "user-corner";
+    UserCornerView.prototype.className = "user-profile-corner";
 
     UserCornerView.prototype.template = userCornerTemplate;
 

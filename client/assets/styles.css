@@ -58,10 +58,10 @@ a{
     float: left;
 }
 
-.user-corner{
+.user-profile-corner{
     background-color: #343434;
     height: 47px;
-    float: right;
+    /*float: right;*/
     font-color: #fff;
 }
 
@@ -85,35 +85,66 @@ nav .logo_container h1.logo a {
 }
 
 .user-profile-corner a {
-  float: right;
+  float: left;
   display: block;
-  padding: 7px 34px 8px 12px;
+  /*padding: 7px 34px 8px 12px;*/
   color: #ffffff;
   line-height: 16px;
   text-decoration: none;
 }
 
+.user-profile-corner a.icon-dropdown::before {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  height: 24px;
+  width: 24px;
+  font-size: 24px;
+  color: #888e94;
+}
+
+.icon-dropdown:before {
+  content: '\E663';
+}
+
+/*[class^='icon-']:before, [class*=' icon-']:before {
+  font-family: 'Pipedings';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 16px;
+  color: #26292c;
+}*/
+
 img.user-pic{
   width: 32px;
   height: 32px;
   float: left;
-  
+  padding-top: 8px;
 }
 
 .user-wrapper{
   float: right;
+  display: block;
   color: #ffffff;
+  padding: 7px 34px 8px 12px;
+  line-height: 16px;
+  text-decoration: none;
 }
 
-.user-profile-corner span.name {
+.user-profile-corner .user-name {
   display: block;
-  margin-left: 42px;
   white-space: nowrap;
+  font-size: 12px;
 }
 
-.user-profile-corner span.company {
+.user-profile-corner .user-organization-name {
   display: block;
-  margin-left: 42px;
   font-size: 11px;
   color: #c2c8cd;
 }
@@ -121,14 +152,6 @@ img.user-pic{
 .user-info{
 /*  float: left;*/
   display: inline;
-}
-
-.user-name{
-  
-}
-
-.user-organization-name{
-
 }
 
 .sidebar{

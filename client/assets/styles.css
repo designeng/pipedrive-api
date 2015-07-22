@@ -176,8 +176,8 @@ ul.listView{
 }
 
 ul.listView li{
-    height: 32px;
-    margin: 0;
+    padding-top: 7px;
+    padding-bottom: 7px;
     border-bottom: 1px solid #ccc;
     cursor: pointer;
 }
@@ -210,16 +210,13 @@ ul.listView li{
   width: 50%;
   float: left;
   font-weight: bold;
-  font-size: 14px;
-  zoom: 2;
-  /*line-height: 20px;*/
+  zoom: 1.5;
 }
 
 .profile-details-deals{
   width: 50%;
   float: right;
   font-weight: bold;
-  /*line-height: 50px;*/
 }
 
 .profile-details .details-wrapper-panel{

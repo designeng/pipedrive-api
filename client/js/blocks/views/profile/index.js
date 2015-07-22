@@ -41,7 +41,6 @@ define(['marionette', 'moment', 'hbs!templates/profileDetails'], function(Marion
         ph = _.find(this.phone, {
           primary: true
         });
-        console.debug("@phone", this.phone, ph.value);
         if (ph && ph.value) {
           return ph.value;
         } else {
@@ -50,7 +49,7 @@ define(['marionette', 'moment', 'hbs!templates/profileDetails'], function(Marion
       },
       mail: function() {
         var _ref1;
-        return (_ref1 = this.email.shift()) != null ? _ref1.value : void 0;
+        return (_ref1 = this.email[0]) != null ? _ref1.value : void 0;
       },
       added: function() {
         return moment(this.add_time).format("DD MM YYYY");

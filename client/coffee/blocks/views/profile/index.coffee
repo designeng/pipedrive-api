@@ -32,16 +32,13 @@ define [
         # last activity (last_activity_date)
         templateHelpers:
             pphone: ->
-
                 ph = _.find @phone, {primary: true}
-
-                console.debug "@phone", @phone, ph.value
                 if ph and ph.value
                     return ph.value 
                 else
                     "no phone"
             mail: ->
-                @email.shift()?.value
+                @email[0]?.value
             added: ->
                 moment(@add_time).format("DD MM YYYY")
             openDealsCount: ->

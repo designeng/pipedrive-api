@@ -97,10 +97,12 @@ img.user-pic{
   width: 32px;
   height: 32px;
   float: left;
+  
 }
 
 .user-wrapper{
   float: right;
+  color: #ffffff;
 }
 
 .user-profile-corner span.name {

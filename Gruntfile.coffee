@@ -21,6 +21,10 @@ module.exports = (grunt) ->
                 files: ["client/js/**/**.js"]
                 options:
                     livereload: true
+            css:
+                files: ["client/assets/styles.css"]
+                options:
+                    livereload: true
 
         coffee:
             app:

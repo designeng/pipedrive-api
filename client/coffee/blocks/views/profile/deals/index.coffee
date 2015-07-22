@@ -40,6 +40,12 @@ define [
         childView: PersonDealView
         emptyView: PersonDealEmptyView
 
+        ui:
+            preloader: ".deals-preloader"
+
         initialize: (options) ->
             @collection = new PersonDealsCollection({personId: options.personId})
             @collection.fetch()
+
+            @collection.on "sync", =>
+                @ui.preloader.remove()

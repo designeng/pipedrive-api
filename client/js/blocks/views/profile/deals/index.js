@@ -84,11 +84,19 @@ define(['backbone', 'marionette', 'api', 'utils/currency/converter', 'hbs!templa
 
     PersonDealsView.prototype.emptyView = PersonDealEmptyView;
 
+    PersonDealsView.prototype.ui = {
+      preloader: ".deals-preloader"
+    };
+
     PersonDealsView.prototype.initialize = function(options) {
+      var _this = this;
       this.collection = new PersonDealsCollection({
         personId: options.personId
       });
-      return this.collection.fetch();
+      this.collection.fetch();
+      return this.collection.on("sync", function() {
+        return _this.ui.preloader.remove();
+      });
     };
 
     return PersonDealsView;

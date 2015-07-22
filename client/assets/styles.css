@@ -296,6 +296,13 @@ table.deals-list-wrapper thead th.deals-list-sum{
 table.deals-list-wrapper tr:nth-child(even) {background: #efefef}
 table.deals-list-wrapper tr:nth-child(odd) {background: #FFF}
 
+table.deals-list-wrapper th, td{
+  padding-top: 6px;
+  padding-bottom: 6px;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
 .deal-list-title{
 
 }

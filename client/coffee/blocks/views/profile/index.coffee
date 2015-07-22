@@ -32,9 +32,12 @@ define [
         # last activity (last_activity_date)
         templateHelpers:
             pphone: ->
+
                 ph = _.find @phone, {primary: true}
-                if ph and ph.length
-                    ph 
+
+                console.debug "@phone", @phone, ph.value
+                if ph and ph.value
+                    return ph.value 
                 else
                     "no phone"
             mail: ->

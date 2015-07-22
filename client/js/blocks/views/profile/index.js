@@ -41,8 +41,9 @@ define(['marionette', 'moment', 'hbs!templates/profileDetails'], function(Marion
         ph = _.find(this.phone, {
           primary: true
         });
-        if (ph && ph.length) {
-          return ph;
+        console.debug("@phone", this.phone, ph.value);
+        if (ph && ph.value) {
+          return ph.value;
         } else {
           return "no phone";
         }

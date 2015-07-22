@@ -24,6 +24,7 @@ html, body {
   bottom: 0;
   top: 0;
   margin: 0;
+  font-family: verdana;
 }
 
 body {
@@ -33,6 +34,7 @@ body {
 
 a{
   text-decoration: none;
+  font-family: verdana;
 }
 
 .nav_wrapper{
@@ -41,6 +43,12 @@ a{
   background-color: #343434;
   width: 100%;
   height: 47px;
+}
+
+.nav-wrapper{
+  width: 100%;
+  height: 47px;
+  background-color: #343434;
 }
 
 .navigation {
@@ -52,9 +60,8 @@ a{
 
 .user-corner{
     background-color: #343434;
-    width: 20%;
     height: 47px;
-    float: left;
+    float: right;
     font-color: #fff;
 }
 
@@ -89,7 +96,11 @@ nav .logo_container h1.logo a {
 img.user-pic{
   width: 32px;
   height: 32px;
-  display: inline;
+  float: left;
+}
+
+.user-wrapper{
+  float: right;
 }
 
 .user-profile-corner span.name {

@@ -12,6 +12,8 @@ https://pipedrive-api.herokuapp.com/#/profiles/1
 ###Development
 + Client built on the top of Marionette.js `2.4.2v`. Wire.js used for creating DSL application scecification: it plays as composition layer.
 
++ Do not forget uncomment index.html livereload script for connect livereload interaction (TODO: automate it on deploy/development).
+
 ###Deploy
 + Grunt task `grunt build` should be invoked before deploy to remote server. It will run all nessesary tasks `dataMainAttr:prod` (toggling `data-main` attribute in index.html), `requirejs:compile` (building all js-source into single `main` file).
 

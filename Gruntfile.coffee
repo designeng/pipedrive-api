@@ -10,6 +10,7 @@ module.exports = (grunt) ->
     indexPath = "client/index.html"
   
     grunt.initConfig
+        
         watch:
             coffee_app:
                 files: ['client/coffee/**/**.coffee']

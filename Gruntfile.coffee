@@ -1,7 +1,4 @@
-path = require "path"
-
-folderMount = (connect, point) ->
-    return connect.static path.resolve(point)
+connectMW = require(require("path").resolve("middleware", "connectMW.coffee"))
 
 module.exports = (grunt) ->
 
@@ -62,7 +59,8 @@ module.exports = (grunt) ->
                     base: './client'
                     middleware: (connect, options) ->
                         return [
-                            folderMount(connect, options.base)
+                            connectMW.stubService
+                            connectMW.folderMount(connect, options.base)
                         ]
 
         concat:

@@ -24,12 +24,6 @@ define [
         regions:
             dealsRegion: ".person-deals-wrapper"
 
-        # phone
-        # email
-        # added (add_time)
-        # open deals (open_deals_count)
-        # next activity (next_activity_date)
-        # last activity (last_activity_date)
         templateHelpers:
             pphone: ->
                 ph = _.find @phone, {primary: true}

@@ -29,6 +29,8 @@ https://pipedrive-api.herokuapp.com/#/profiles/1
 
 + Templates with `.html` extention loaded by [requirejs-hbs](https://github.com/epeli/requirejs-hbs) plugin. It depends on [require-text](https://github.com/requirejs/text) plugin. Path to `handlebars-compiler` defined in requirejs config.
 
++The essence of profile application provided in 'client/coffee/application/spec' file. It's the wire.js specification. (Profiles application core)
+
 ###Browsers compatibility
 Tested in Chrome (v42), Safari (v7.0), Firefox (v37).
 

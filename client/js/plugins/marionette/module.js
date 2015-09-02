@@ -4,10 +4,10 @@ define(['underscore', 'marionette'], function(_, Marionette) {
     createModuleFactory = function(resolver, compDef, wire) {
       var app;
       app = new Marionette.Application();
-      app.on("start", function() {
-        return Backbone.history.start();
-      });
       return wire(compDef.options).then(function(options) {
+        app.on("start", function() {
+          return options.onStart();
+        });
         app.addRegions(options.withRegions);
         return resolver.resolve(app);
       });
@@ -29,7 +29,8 @@ define(['underscore', 'marionette'], function(_, Marionette) {
     };
     pluginInstance = {
       factories: {
-        createModule: createModuleFactory
+        createModule: createModuleFactory,
+        createApplication: createModuleFactory
       },
       facets: {
         showInRegion: {

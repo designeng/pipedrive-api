@@ -75,6 +75,8 @@ define
                 userCornerRegion    : ".user-profile-corner"
                 sidebarRegion       : ".sidebar"
                 mainAreaRegion      : ".main-area"
+            onStart: ->
+                Backbone.history.start()
         showInRegion:
             'navigationRegion': {$ref: 'navigation'}
             'userCornerRegion': {$ref: 'userCorner'}

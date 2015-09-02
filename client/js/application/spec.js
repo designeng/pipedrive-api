@@ -106,6 +106,9 @@ define({
         userCornerRegion: ".user-profile-corner",
         sidebarRegion: ".sidebar",
         mainAreaRegion: ".main-area"
+      },
+      onStart: function() {
+        return Backbone.history.start();
       }
     },
     showInRegion: {

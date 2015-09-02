@@ -4,15 +4,17 @@ define [
 ], (_, Marionette) ->
 
     return (options) ->
-
+        # Marionette.Module is deprecated, and is scheduled to be removed in the next major release:
+        # http://marionettejs.com/docs/v2.4.2/marionette.module.html
         # in Marionette we are not restricted with creating Marionette.Application instances,
-        # they can be treated as different modules.
+        # so they can be treated as different modules.
         createModuleFactory = (resolver, compDef, wire) ->
             app = new Marionette.Application()
-            app.on "start", () ->
-                Backbone.history.start()
 
             wire(compDef.options).then (options) ->
+                app.on "start", () ->
+                    options.onStart()
+
                 app.addRegions options.withRegions
                 resolver.resolve app
 
@@ -31,6 +33,8 @@ define [
         pluginInstance = 
             factories: 
                 createModule: createModuleFactory
+                # alias:
+                createApplication: createModuleFactory
             facets:
                 showInRegion:
                     "ready"     : showInRegionFacet

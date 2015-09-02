@@ -38,25 +38,11 @@ a{
   font-family: verdana;
 }
 
-.nav_wrapper{
+.navigation{
   position: fixed;
-
-  background-color: #343434;
-  width: 100%;
-  height: 47px;
-}
-
-.nav-wrapper{
   width: 100%;
   height: 47px;
   background-color: #343434;
-}
-
-.navigation {
-    background-color: #343434;
-    width: 80%;
-    height: 47px;
-    float: left;
 }
 
 .user-profile-corner{

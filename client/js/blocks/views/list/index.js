@@ -38,7 +38,7 @@ define(['backbone', 'api', './item'], function(Backbone, api, ItemView) {
     ListView.prototype.activateCurrent = function(event) {
       var currentId, li;
       li = $(event.target).closest("li");
-      currentId = li.find(".person-name").attr("data-id");
+      currentId = li.find(".profile-name").attr("data-id");
       this.items = this.$el.find("li");
       _.each(this.items, function(item) {
         return $(item).removeClass("active");
@@ -53,7 +53,7 @@ define(['backbone', 'api', './item'], function(Backbone, api, ItemView) {
         var $item;
         $item = $(item);
         $item.removeClass("active");
-        if (parseInt($item.find(".person-name").attr("data-id")) === parseInt(id)) {
+        if (parseInt($item.find(".profile-name").attr("data-id")) === parseInt(id)) {
           return $item.addClass("active");
         }
       });

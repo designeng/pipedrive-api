@@ -178,14 +178,14 @@ ul.listView li:last-child {
     background-color: #3381c5;
 }
 
-.person-name{
+.profile-name{
     font-weight: bold;
 }
 .person-organization-name{
   font-size: 10px;
 }
 
-.person-name, .person-organization-name{
+.profile-name, .person-organization-name{
     padding-left: 12px;
 }
 

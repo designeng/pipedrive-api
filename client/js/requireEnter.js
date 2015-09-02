@@ -1,3 +1,3 @@
-require(["wire!bootstrap/spec,application/spec"], function(applicationContext) {
+require(["wire!bootstrap/spec,application/core"], function(applicationContext) {
   return applicationContext.start();
 });

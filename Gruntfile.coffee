@@ -75,7 +75,8 @@ module.exports = (grunt) ->
                     base: '.'
                     middleware: (connect, options) ->
                         return [
-                            folderMount(connect, options.base)
+                            connectMW.stubService
+                            connectMW.folderMount(connect, options.base)
                         ]
 
         concat:

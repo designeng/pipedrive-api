@@ -2,16 +2,23 @@
 
 define ->
 
-    protocol    = "http"
-    # domain      = "api.pipedrive.com"
-    domain      = "localhost"
-    port     = "7788"
+    localMocks = false
+
+    if localMocks
+        protocol    = "http"
+        domain      = "localhost"
+        port     = "7788"
+        prefix      = "#{protocol}://#{domain}:#{port}/"
+    else
+        protocol    = "https"
+        domain      = "api.pipedrive.com"
+        version     = "v1"
+        prefix      = "#{protocol}://#{domain}/#{version}/"
 
     #hardcoded:
     apiToken    = "7dacd3f1efaed95b707174872d2b8497e576fd73"
     userId      = 733958
 
-    prefix      = "#{protocol}://#{domain}:#{port}/"
     suffix      = "?api_token=#{apiToken}"
 
     api = 

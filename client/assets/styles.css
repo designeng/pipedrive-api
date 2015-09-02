@@ -258,6 +258,10 @@ table.details-wrapper td.profile-item{
   float: left;
 }
 
+.deal-empty{
+  color: red;
+}
+
 .clearfix {
   overflow: auto;
   zoom: 1;

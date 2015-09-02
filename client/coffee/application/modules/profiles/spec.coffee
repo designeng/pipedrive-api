@@ -2,7 +2,15 @@ define
     $plugins: [
         'wire/debug'
         'plugins/hbs'
+        'plugins/marionette/layout'
     ]
+
+    profilesLayout:
+        createLayout:
+            fromTemplate: {$ref: 'hbs!templates/profiles'}
+            withRegions:
+                sidebarRegion       : ".sidebar-area"
+                mainAreaRegion      : ".main-area"
 
     profilesCollection:
         create: 'application/profiles/collections/profiles'
@@ -13,7 +21,7 @@ define
         create: 'blocks/views/list/index'
         properties:
             collection          : {$ref: 'profilesCollection'}
-            # channel             : {$ref: 'channel'}
+            channel             : {$ref: 'channel'}
             entity              : "profile"
         ready:
             setChildTemplate: {$ref: 'hbs!templates/profilesListItem' }
@@ -30,5 +38,8 @@ define
             collection          : {$ref: 'profilesCollection'}
             channel             : {$ref: 'channel'}
             list                : {$ref: 'profilesList'}
+            PersonProfile       : {$ref: 'personProfile'}
+            PersonProfileDeals  : {$ref: 'personProfileDeals'}
+            profilesLayout      : {$ref: 'profilesLayout'}
         ready:
             onReady: {}

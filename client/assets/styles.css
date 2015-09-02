@@ -127,7 +127,12 @@ img.user-pic{
 }
 
 .sidebar{
-    margin:0px;
+  /* HACK? */
+    position: absolute;
+    top: 47px;
+  /* /HACK */
+
+    margin: 0px;
     float: left;
     width: 281px;
     height: 100%;

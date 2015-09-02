@@ -10,6 +10,7 @@ define
         createModule:
             withRegions:
                 navigationRegion    : ".navigation"
+                # TODO: move to profiles layout?
                 sidebarRegion       : ".sidebar"
                 mainAreaRegion      : ".main-area"
             onStart: ->

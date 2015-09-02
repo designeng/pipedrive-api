@@ -13,12 +13,30 @@ define(["underscore", "backbone", "backbone.radio", "marionette", "meld", "api"]
 
     ProfilesController.prototype.onReady = function() {
       var _this = this;
-      this.channel.on("profiles:list:activate", function(id) {
-        return _this.list.activateById(id);
-      });
       return this.channel.on("profiles:person:details", function(id) {
         return console.debug("ProfilesController:::::profiles:person:details", id);
       });
+    };
+
+    ProfilesController.prototype.activateById = function(id) {
+      return this.list.channel.trigger("profiles:list:activate", id);
+    };
+
+    ProfilesController.prototype.showProfileDetailes = function(personId) {
+      var model, personProfile;
+      model = this.collection.find(function(model) {
+        return model.get('id') === parseInt(personId);
+      });
+      if (model) {
+        personProfile = new this.PersonProfile({
+          model: model,
+          PersonProfileDeals: this.PersonProfileDeals,
+          personId: personId
+        });
+        return this.profilesLayout.showChildView("mainAreaRegion", personProfile);
+      } else {
+        return this.profilesLayout.showChildView("mainAreaRegion", new this.BlankProfile);
+      }
     };
 
     return ProfilesController;

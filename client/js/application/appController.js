@@ -26,7 +26,10 @@ define(["underscore", "backbone", "backbone.radio", "marionette", "when", "meld"
     };
 
     AppController.prototype.onRoute = function(name, path, opts) {
-      return this.profilesChannel.trigger("profiles:list:activate", opts[0]);
+      var _this = this;
+      return When(this.profiles()).then(function(profilesContext) {
+        return profilesContext.profilesController.activateById(opts[0]);
+      });
     };
 
     AppController.prototype.renderProfilesList = function() {
@@ -44,7 +47,11 @@ define(["underscore", "backbone", "backbone.radio", "marionette", "when", "meld"
     };
 
     AppController.prototype.showProfileDetailes = function(personId) {
-      return this.profilesChannel.trigger("profiles:person:details", personId);
+      var _this = this;
+      this.profilesChannel.trigger("profiles:person:details", personId);
+      return When(this.profiles()).then(function(profilesContext) {
+        return profilesContext.profilesController.showProfileDetailes(personId);
+      });
     };
 
     AppController.prototype.showDealsList = function() {

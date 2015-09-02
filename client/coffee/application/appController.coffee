@@ -24,7 +24,11 @@ define [
                 remover.remove()
 
         onRoute: (name, path, opts) ->
-            @profilesChannel.trigger "profiles:list:activate", opts[0]
+            # TODO: should be cleared...
+            # @profilesChannel.trigger "profiles:list:activate", opts[0]
+
+            When(@profiles()).then (profilesContext) =>
+                profilesContext.profilesController.activateById opts[0]
 
         renderProfilesList: ->
             When(@profiles()).then (profilesContext) =>
@@ -39,6 +43,9 @@ define [
 
         showProfileDetailes: (personId) ->
             @profilesChannel.trigger "profiles:person:details", personId
+
+            When(@profiles()).then (profilesContext) =>
+                profilesContext.profilesController.showProfileDetailes personId
 
             # model = @profilesCollection.find (model) ->
             #     return model.get('id') == parseInt(personId)

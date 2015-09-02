@@ -22,9 +22,9 @@ define [
             # TODO: find the way to do it with clear css
             @collection.add new Backbone.Model()
 
-        # onRender: ->
-        #     @channel.on "#{@entities}:list:activate", (id) =>
-        #         @activateById(id)
+        onRender: ->
+            @channel.on "#{@entities}:list:activate", (id) =>
+                @activateById(id)
 
         activateCurrent: (event) ->
             li = $(event.target).closest("li")

@@ -1,6 +1,7 @@
 define
     $plugins: [
         'wire/debug'
+        'plugins/hbs'
     ]
 
     profilesCollection:
@@ -12,7 +13,7 @@ define
         create: 'blocks/views/list/index'
         properties:
             collection          : {$ref: 'profilesCollection'}
-            channel             : {$ref: 'channel'}
+            # channel             : {$ref: 'channel'}
             entity              : "profile"
         ready:
             setChildTemplate: {$ref: 'hbs!templates/profilesListItem' }
@@ -22,3 +23,12 @@ define
 
     personProfileDeals:
         module: 'blocks/views/profile/deals/index'
+
+    profilesController:
+        create: 'application/modules/profiles/controller'
+        properties:
+            collection          : {$ref: 'profilesCollection'}
+            channel             : {$ref: 'channel'}
+            list                : {$ref: 'profilesList'}
+        ready:
+            onReady: {}

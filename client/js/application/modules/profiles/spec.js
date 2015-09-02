@@ -1,5 +1,5 @@
 define({
-  $plugins: ['wire/debug'],
+  $plugins: ['wire/debug', 'plugins/hbs'],
   profilesCollection: {
     create: 'application/profiles/collections/profiles',
     ready: {
@@ -11,9 +11,6 @@ define({
     properties: {
       collection: {
         $ref: 'profilesCollection'
-      },
-      channel: {
-        $ref: 'channel'
       },
       entity: "profile"
     },
@@ -28,5 +25,22 @@ define({
   },
   personProfileDeals: {
     module: 'blocks/views/profile/deals/index'
+  },
+  profilesController: {
+    create: 'application/modules/profiles/controller',
+    properties: {
+      collection: {
+        $ref: 'profilesCollection'
+      },
+      channel: {
+        $ref: 'channel'
+      },
+      list: {
+        $ref: 'profilesList'
+      }
+    },
+    ready: {
+      onReady: {}
+    }
   }
 });

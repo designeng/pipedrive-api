@@ -47,7 +47,7 @@ define
         channelEvents:
             'list:show'    : {$ref: 'appController.showDealsList'}
 
-    # application modules:
+    # APPLICATION MODULES
 
     navigation:
         wire:
@@ -57,11 +57,17 @@ define
         wire:
             spec: "application/modules/profiles/spec"
             defer: true
+            provide:
+                channel: {$ref: 'profilesChannel'}
 
     deals:
         wire:
             spec: "application/modules/deals/spec"
             defer: true
+            provide:
+                channel: {$ref: 'dealsChannel'}
+
+    # /APPLICATION MODULES
 
     start: ->
         console.debug "START"

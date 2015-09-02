@@ -73,13 +73,23 @@ define({
   profiles: {
     wire: {
       spec: "application/modules/profiles/spec",
-      defer: true
+      defer: true,
+      provide: {
+        channel: {
+          $ref: 'profilesChannel'
+        }
+      }
     }
   },
   deals: {
     wire: {
       spec: "application/modules/deals/spec",
-      defer: true
+      defer: true,
+      provide: {
+        channel: {
+          $ref: 'dealsChannel'
+        }
+      }
     }
   },
   start: function() {

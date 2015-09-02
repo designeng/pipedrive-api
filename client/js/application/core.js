@@ -4,7 +4,6 @@ define({
     createModule: {
       withRegions: {
         navigationRegion: ".navigation",
-        userCornerRegion: ".user-profile-corner",
         sidebarRegion: ".sidebar",
         mainAreaRegion: ".main-area"
       },

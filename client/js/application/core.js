@@ -11,6 +11,11 @@ define({
       onStart: function() {
         return Backbone.history.start();
       }
+    },
+    showInRegion: {
+      'navigationRegion': {
+        $ref: 'navigation.layout'
+      }
     }
   },
   appController: {

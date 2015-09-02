@@ -15,6 +15,9 @@ define
                 mainAreaRegion      : ".main-area"
             onStart: ->
                 Backbone.history.start()
+        showInRegion:
+            'navigationRegion': {$ref: 'navigation.layout'}
+        # addController: {$ref: 'appController'}
 
     appController:
         create: "application/appController"

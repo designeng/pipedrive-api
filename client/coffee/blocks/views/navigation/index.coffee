@@ -6,5 +6,3 @@ define [
     class Navigation extends Marionette.LayoutView
 
         template: navigationTemplate
-
-        showNavigation: (view) ->

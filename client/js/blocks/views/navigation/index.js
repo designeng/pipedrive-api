@@ -13,8 +13,6 @@ define(['marionette', 'hbs!templates/navigation'], function(Marionette, navigati
 
     Navigation.prototype.template = navigationTemplate;
 
-    Navigation.prototype.showNavigation = function(view) {};
-
     return Navigation;
 
   })(Marionette.LayoutView);

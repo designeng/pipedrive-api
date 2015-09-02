@@ -23,6 +23,7 @@ define
         properties:
             collection          : {$ref: 'profilesCollection'}
             profilesChannel     : {$ref: 'profilesChannel'}
+            rootFragment        : "profiles"
         ready:
             setChildTemplate: {$ref: 'hbs!templates/profilesListItem' }
 

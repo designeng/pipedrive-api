@@ -32,7 +32,7 @@ define(['backbone', 'api', './item'], function(Backbone, api, ItemView) {
         return $(item).removeClass("active");
       });
       li.addClass("active");
-      return window.location.href = "#/profiles/" + currentId;
+      return window.location.href = "#/" + this.rootFragment + "/" + currentId;
     };
 
     ListView.prototype.activateById = function(id) {

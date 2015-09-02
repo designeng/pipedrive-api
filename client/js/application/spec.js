@@ -20,7 +20,8 @@ define({
       },
       profilesChannel: {
         $ref: 'profilesChannel'
-      }
+      },
+      rootFragment: "profiles"
     },
     ready: {
       setChildTemplate: {

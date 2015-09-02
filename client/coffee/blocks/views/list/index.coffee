@@ -25,8 +25,8 @@ define [
 
             li.addClass "active"
 
-            # navigate to profile details route
-            window.location.href = "#/profiles/#{currentId}"
+            # navigate to list item details route
+            window.location.href = "#/#{@rootFragment}/#{currentId}"
 
         activateById: (id) ->
             @items = @$el.find("li")

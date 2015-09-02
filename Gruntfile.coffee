@@ -15,6 +15,9 @@ module.exports = (grunt) ->
             coffee_app:
                 files: ['client/coffee/**/**.coffee']
                 tasks: ["coffee-compile-app"]
+            coffee_jasmine:
+                files: ['test/jasmine/coffee/**/**.coffee', 'test/jasmine/coffee/SpecRunner.coffee']
+                tasks: ["coffee-compile-jasmine"]
             js_requireConfig:
                 files: ["client/js/requireConfig.js", "client/js/requireEnter.js"]
                 tasks: ["concat:main"]
@@ -109,3 +112,4 @@ module.exports = (grunt) ->
 
     # compilation
     grunt.registerTask "coffee-compile-app", ["newer:coffee:app"]
+    grunt.registerTask "coffee-compile-jasmine", ["newer:coffee:jasmine"]

@@ -7,7 +7,7 @@ define [
     "api"
 ], (_, Backbone, Radio, Marionette, meld, api) ->
 
-    class ApplicationController extends Marionette.Object
+    class ProfilesModuleController extends Marionette.Object
 
         removers: []
 

@@ -1,13 +1,25 @@
 define
     $plugins: [
-        # 'wire/debug'
+        'wire/debug'
         'plugins/radio/channel'
         'plugins/marionette/router'
         'plugins/marionette/module'
     ]
 
+    appInstance:
+        createModule:
+            withRegions:
+                navigationRegion    : ".navigation"
+                userCornerRegion    : ".user-profile-corner"
+                sidebarRegion       : ".sidebar"
+                mainAreaRegion      : ".main-area"
+            onStart: ->
+                Backbone.history.start()
+
     appController:
         create: "application/appController"
+        ready:
+            onReady: [{$ref: 'deals'}]
 
     routerController:
         create: "application/routerController"
@@ -18,20 +30,24 @@ define
             routes:
                 'profiles'      : 'showProfilesList'
                 'profiles/:id'  : 'showProfileDetailes'
+                'deals'         : 'showDealsList'
+                'deals/:id'     : 'showDealsDetailes'
         onRoute: {$ref: 'appController.onRoute'}
 
     profilesChannel:
         createChannel:
             name: 'profiles'
         channelEvents:
-            'list:show'    : {$ref: 'profiles.showProfilesList'}
-            'person:show'  : {$ref: 'profiles.showProfileDetailes'}
+            'list:show'    : {$ref: 'appController.showProfilesList'}
+            'person:show'  : {$ref: 'appController.showProfileDetailes'}
 
     dealsChannel:
         createChannel:
             name: 'deals'
         channelEvents:
-            'list:show'             : {$ref: 'deals.showDealsList'}
+            'list:show'    : {$ref: 'appController.showDealsList'}
+
+    # application modules:
 
     navigation:
         wire:
@@ -40,7 +56,13 @@ define
     profiles:
         wire:
             spec: "application/modules/profiles/spec"
+            defer: true
 
     deals:
         wire:
             spec: "application/modules/deals/spec"
+            defer: true
+
+    start: ->
+        console.debug "START"
+        @appInstance.start()

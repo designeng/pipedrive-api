@@ -1,7 +1,27 @@
 define({
-  $plugins: ['plugins/radio/channel', 'plugins/marionette/router', 'plugins/marionette/module'],
+  $plugins: ['wire/debug', 'plugins/radio/channel', 'plugins/marionette/router', 'plugins/marionette/module'],
+  appInstance: {
+    createModule: {
+      withRegions: {
+        navigationRegion: ".navigation",
+        userCornerRegion: ".user-profile-corner",
+        sidebarRegion: ".sidebar",
+        mainAreaRegion: ".main-area"
+      },
+      onStart: function() {
+        return Backbone.history.start();
+      }
+    }
+  },
   appController: {
-    create: "application/appController"
+    create: "application/appController",
+    ready: {
+      onReady: [
+        {
+          $ref: 'deals'
+        }
+      ]
+    }
   },
   routerController: {
     create: "application/routerController"
@@ -13,7 +33,9 @@ define({
       },
       routes: {
         'profiles': 'showProfilesList',
-        'profiles/:id': 'showProfileDetailes'
+        'profiles/:id': 'showProfileDetailes',
+        'deals': 'showDealsList',
+        'deals/:id': 'showDealsDetailes'
       }
     },
     onRoute: {
@@ -26,10 +48,10 @@ define({
     },
     channelEvents: {
       'list:show': {
-        $ref: 'profiles.showProfilesList'
+        $ref: 'appController.showProfilesList'
       },
       'person:show': {
-        $ref: 'profiles.showProfileDetailes'
+        $ref: 'appController.showProfileDetailes'
       }
     }
   },
@@ -39,7 +61,7 @@ define({
     },
     channelEvents: {
       'list:show': {
-        $ref: 'deals.showDealsList'
+        $ref: 'appController.showDealsList'
       }
     }
   },
@@ -50,12 +72,18 @@ define({
   },
   profiles: {
     wire: {
-      spec: "application/modules/profiles/spec"
+      spec: "application/modules/profiles/spec",
+      defer: true
     }
   },
   deals: {
     wire: {
-      spec: "application/modules/deals/spec"
+      spec: "application/modules/deals/spec",
+      defer: true
     }
+  },
+  start: function() {
+    console.debug("START");
+    return this.appInstance.start();
   }
 });

@@ -1,5 +1,5 @@
 define({
-  $plugins: ['plugins/channel', 'plugins/marionette/router', 'plugins/marionette/module'],
+  $plugins: ['plugins/radio/channel', 'plugins/marionette/router', 'plugins/marionette/module'],
   appController: {
     create: "application/appController"
   },
@@ -25,11 +25,21 @@ define({
       name: 'profiles'
     },
     channelEvents: {
-      'profiles:list:show': {
+      'list:show': {
         $ref: 'profiles.showProfilesList'
       },
-      'profiles:person:show': {
+      'person:show': {
         $ref: 'profiles.showProfileDetailes'
+      }
+    }
+  },
+  dealsChannel: {
+    createChannel: {
+      name: 'deals'
+    },
+    channelEvents: {
+      'list:show': {
+        $ref: 'deals.showDealsList'
       }
     }
   },

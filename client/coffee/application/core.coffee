@@ -1,7 +1,7 @@
 define
     $plugins: [
         # 'wire/debug'
-        'plugins/channel'
+        'plugins/radio/channel'
         'plugins/marionette/router'
         'plugins/marionette/module'
     ]
@@ -24,8 +24,14 @@ define
         createChannel:
             name: 'profiles'
         channelEvents:
-            'profiles:list:show'    : {$ref: 'profiles.showProfilesList'}
-            'profiles:person:show'  : {$ref: 'profiles.showProfileDetailes'}
+            'list:show'    : {$ref: 'profiles.showProfilesList'}
+            'person:show'  : {$ref: 'profiles.showProfileDetailes'}
+
+    dealsChannel:
+        createChannel:
+            name: 'deals'
+        channelEvents:
+            'list:show'             : {$ref: 'deals.showDealsList'}
 
     navigation:
         wire:

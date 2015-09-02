@@ -1,3 +1,4 @@
 define({
-  $plugins: ['wire/debug']
+  $plugins: ['wire/debug'],
+  showDealsList: function() {}
 });

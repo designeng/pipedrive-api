@@ -1,12 +1,10 @@
+requirejs.s.contexts._.config.baseUrl = "/client/js/";
+
 requirejs.s.contexts._.config.paths["jasmine"] = '/test/jasmine/js/lib/jasmine-2.0.0/jasmine';
 
 requirejs.s.contexts._.config.paths["jasmine-html"] = '/test/jasmine/js/lib/jasmine-2.0.0/jasmine-html';
 
 requirejs.s.contexts._.config.paths["boot"] = '/test/jasmine/js/lib/jasmine-2.0.0/boot';
-
-requirejs.s.contexts._.config.paths["jasmine-jquery"] = '../../../bower_components/jasmine-jquery/lib/jasmine-jquery';
-
-requirejs.s.contexts._.config.paths["jquery-simulate"] = '../../../bower_components/jquery-simulate/jquery.simulate';
 
 requirejs.s.contexts._.config.shim["jasmine"] = {
   exports: "jasmine"

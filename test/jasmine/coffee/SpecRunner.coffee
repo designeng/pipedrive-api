@@ -1,5 +1,8 @@
 # autoconcatenation with require.config - see app/coffee/requireConfig.coffee, Gruntfile
 
+requirejs.s.contexts._.config.baseUrl = "/client/js/"
+
+
 # additional paths
 requirejs.s.contexts._.config.paths["jasmine"] = '/test/jasmine/js/lib/jasmine-2.0.0/jasmine'
 requirejs.s.contexts._.config.paths["jasmine-html"] = '/test/jasmine/js/lib/jasmine-2.0.0/jasmine-html'

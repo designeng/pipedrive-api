@@ -21,8 +21,11 @@ module.exports = (grunt) ->
             js_requireConfig:
                 files: ["client/js/requireConfig.js", "client/js/requireEnter.js"]
                 tasks: ["concat:main"]
+            js_jasmine_requireConfig:
+                files: ["client/js/requireConfig.js", "test/jasmine/js/SpecRunner.js"]
+                tasks: ["concat:jasmine"]
             js:
-                files: ["client/js/**/**.js"]
+                files: ["client/js/**/**.js", "test/jasmine/js/**/**.js"]
                 options:
                     livereload: true
             css:
@@ -59,10 +62,18 @@ module.exports = (grunt) ->
                 ]
 
         connect:
-            server:
+            app:
                 options:
                     port: port
                     base: './client'
+                    middleware: (connect, options) ->
+                        return [
+                            folderMount(connect, options.base)
+                        ]
+            jasmine:
+                options:
+                    port: 1234
+                    base: '.'
                     middleware: (connect, options) ->
                         return [
                             folderMount(connect, options.base)
@@ -74,7 +85,7 @@ module.exports = (grunt) ->
                 dest: "client/js/main.js"
             jasmine:
                 src: ["client/js/requireConfig.js", "test/jasmine/js/SpecRunner.js"]
-                dest: "test/jasmine/js/superSpecRunner.js"
+                dest: "test/jasmine/js/main.js"
 
         requirejs:
             compile:
@@ -106,7 +117,7 @@ module.exports = (grunt) ->
     # ["dataMainAttr"] tasks
     grunt.loadTasks "tasks"
 
-    grunt.registerTask "default", ["dataMainAttr:dev", "connect:server", "watch"]
+    grunt.registerTask "default", ["dataMainAttr:dev", "connect:app", "connect:jasmine", "watch"]
 
     grunt.registerTask "build", ["dataMainAttr:prod", "requirejs:compile"]
 

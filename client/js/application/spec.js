@@ -1,5 +1,5 @@
 define({
-  $plugins: ['plugins/router', 'plugins/hbs', 'plugins/channel', 'plugins/application'],
+  $plugins: ['plugins/hbs', 'plugins/channel', 'plugins/marionette/router', 'plugins/marionette/module'],
   navigation: {
     create: 'blocks/views/navigation/index'
   },
@@ -100,7 +100,7 @@ define({
     }
   },
   profilesApplication: {
-    createApplication: {
+    createModule: {
       withRegions: {
         navigationRegion: ".navigation",
         userCornerRegion: ".user-profile-corner",

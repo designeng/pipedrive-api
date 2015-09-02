@@ -15,11 +15,12 @@ define [
             "click li": "activateCurrent"
 
         onBeforeRender: ->
+            # calculate entities based on passed to the view 'entity' property
+            @entities = @entity + "s"
+            
             # hack to provide additional ul li with wight background
             # TODO: find the way to do it with clear css
             @collection.add new Backbone.Model()
-            # calculate entities based on passed to the view 'entity' property
-            @entities = @entity + "s"
 
         onRender: ->
             @channel.on "#{@entities}:list:activate", (id) =>

@@ -24,8 +24,8 @@ define(['backbone', 'api', './item'], function(Backbone, api, ItemView) {
     };
 
     ListView.prototype.onBeforeRender = function() {
-      this.collection.add(new Backbone.Model());
-      return this.entities = this.entity + "s";
+      this.entities = this.entity + "s";
+      return this.collection.add(new Backbone.Model());
     };
 
     ListView.prototype.onRender = function() {

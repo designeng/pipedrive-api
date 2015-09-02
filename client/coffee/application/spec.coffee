@@ -1,10 +1,10 @@
 define
     $plugins: [
         # 'wire/debug'
-        'plugins/router'
         'plugins/hbs'
         'plugins/channel'
-        'plugins/application'
+        'plugins/marionette/router'
+        'plugins/marionette/module'
     ]
 
     navigation:
@@ -68,10 +68,8 @@ define
         destroy:
             onDestroy: {}
 
-    # in Marionette we are not restricted with creating Marionette.Application instances,
-    # they can be treated as different modules. Nevertheless in our test app we need only one app instance.
     profilesApplication:
-        createApplication:
+        createModule:
             withRegions:
                 navigationRegion    : ".navigation"
                 userCornerRegion    : ".user-profile-corner"

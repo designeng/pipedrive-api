@@ -13,7 +13,10 @@ define({
     }
   },
   profilesList: {
-    create: 'blocks/views/list/index',
+    create: {
+      module: 'blocks/views/list/index',
+      args: ["profile"]
+    },
     properties: {
       collection: {
         $ref: 'profilesCollection'
@@ -21,7 +24,7 @@ define({
       profilesChannel: {
         $ref: 'profilesChannel'
       },
-      rootFragment: "profiles"
+      entity: "profile"
     },
     ready: {
       setChildTemplate: {

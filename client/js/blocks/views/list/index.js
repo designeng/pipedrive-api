@@ -23,6 +23,18 @@ define(['backbone', 'api', './item'], function(Backbone, api, ItemView) {
       };
     };
 
+    ListView.prototype.onBeforeRender = function() {
+      this.collection.add(new Backbone.Model());
+      return this.entities = this.entity + "s";
+    };
+
+    ListView.prototype.onRender = function() {
+      var _this = this;
+      return this.profilesChannel.on("" + this.entities + ":list:activate", function(id) {
+        return _this.activateById(id);
+      });
+    };
+
     ListView.prototype.activateCurrent = function(event) {
       var currentId, li;
       li = $(event.target).closest("li");
@@ -32,7 +44,7 @@ define(['backbone', 'api', './item'], function(Backbone, api, ItemView) {
         return $(item).removeClass("active");
       });
       li.addClass("active");
-      return window.location.href = "#/" + this.rootFragment + "/" + currentId;
+      return window.location.href = "#/" + this.entities + "/" + currentId;
     };
 
     ListView.prototype.activateById = function(id) {
@@ -44,17 +56,6 @@ define(['backbone', 'api', './item'], function(Backbone, api, ItemView) {
         if (parseInt($item.find(".person-name").attr("data-id")) === parseInt(id)) {
           return $item.addClass("active");
         }
-      });
-    };
-
-    ListView.prototype.onBeforeRender = function() {
-      return this.collection.add(new Backbone.Model());
-    };
-
-    ListView.prototype.onRender = function() {
-      var _this = this;
-      return this.profilesChannel.on("profiles:list:activate", function(id) {
-        return _this.activateById(id);
       });
     };
 

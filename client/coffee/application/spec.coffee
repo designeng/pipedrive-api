@@ -19,11 +19,13 @@ define
             fetch: {}
 
     profilesList:
-        create: 'blocks/views/list/index'
+        create: 
+            module: 'blocks/views/list/index'
+            args: ["profile"]
         properties:
             collection          : {$ref: 'profilesCollection'}
             profilesChannel     : {$ref: 'profilesChannel'}
-            rootFragment        : "profiles"
+            entity              : "profile"
         ready:
             setChildTemplate: {$ref: 'hbs!templates/profilesListItem' }
 

@@ -14,6 +14,17 @@ define [
         events: ->
             "click li": "activateCurrent"
 
+        onBeforeRender: ->
+            # hack to provide additional ul li with wight background
+            # TODO: find the way to do it with clear css
+            @collection.add new Backbone.Model()
+            # calculate entities name based on passed to the view 'entity' property
+            @entities = @entity + "s"
+
+        onRender: ->
+            @profilesChannel.on "#{@entities}:list:activate", (id) =>
+                @activateById(id)
+
         activateCurrent: (event) ->
             li = $(event.target).closest("li")
             currentId = li.find(".person-name").attr("data-id")
@@ -26,7 +37,7 @@ define [
             li.addClass "active"
 
             # navigate to list item details route
-            window.location.href = "#/#{@rootFragment}/#{currentId}"
+            window.location.href = "#/#{@entities}/#{currentId}"
 
         activateById: (id) ->
             @items = @$el.find("li")
@@ -35,15 +46,6 @@ define [
                 $item.removeClass "active"
                 if parseInt($item.find(".person-name").attr("data-id")) == parseInt(id)
                     $item.addClass "active"
-
-        # hack to provide additional ul li with wight background
-        # TODO: find the way to do it with clear css
-        onBeforeRender: ->
-            @collection.add new Backbone.Model()
-
-        onRender: ->
-            @profilesChannel.on "profiles:list:activate", (id) =>
-                @activateById(id)
 
         setChildTemplate: (tpl) ->
             @childTemplate = tpl

@@ -2,24 +2,25 @@
 
 define ->
 
-    localMocks = false
-
-    if localMocks
-        protocol    = "http"
-        domain      = "localhost"
-        port     = "7788"
-        prefix      = "#{protocol}://#{domain}:#{port}/"
-    else
-        protocol    = "https"
-        domain      = "api.pipedrive.com"
-        version     = "v1"
-        prefix      = "#{protocol}://#{domain}/#{version}/"
-
     #hardcoded:
     apiToken    = "7dacd3f1efaed95b707174872d2b8497e576fd73"
     userId      = 733958
 
-    suffix      = "?api_token=#{apiToken}"
+    # for local development on mocks without apiToken and internet connection
+    localMocks = false
+
+    if !localMocks
+        protocol    = "https"
+        domain      = "api.pipedrive.com"
+        version     = "v1"
+        prefix      = "#{protocol}://#{domain}/#{version}/"
+        suffix      = "?api_token=#{apiToken}"
+    else
+        protocol    = "http"
+        domain      = "localhost"
+        port        = "7788"
+        prefix      = "#{protocol}://#{domain}:#{port}/"
+        suffix      = ""
 
     api = 
         getSuffix: ->

@@ -27,13 +27,10 @@ define({
       ]
     }
   },
-  routerController: {
-    create: "application/routerController"
-  },
   router: {
     createRouter: {
       controller: {
-        $ref: 'routerController'
+        $ref: 'appController'
       },
       routes: {
         'profiles': 'showProfilesList',

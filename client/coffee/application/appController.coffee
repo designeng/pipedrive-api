@@ -7,11 +7,17 @@ define ->
         onRoute: ->
             console.debug "onRoute"
 
-        # PROFILES
+
+        # routes interaction:
+
         showProfilesList: ->
+            console.debug "RouterController::showProfilesList"
 
-        showProfileDetailes: ->
+        showProfileDetailes: (id) ->
+            console.debug "RouterController::showProfileDetailes", id
 
-        # DEALS
         showDealsList: ->
-            console.debug "showDealsList"
+            console.debug "RouterController::showDealsList"
+
+        showDealsDetailes: (id) ->
+            console.debug "RouterController::showDealsDetailes", id

@@ -16,19 +16,15 @@ define
                 Backbone.history.start()
         showInRegion:
             'navigationRegion': {$ref: 'navigation.layout'}
-        # addController: {$ref: 'appController'}
 
     appController:
         create: "application/appController"
         ready:
             onReady: [{$ref: 'deals'}]
 
-    routerController:
-        create: "application/routerController"
-
     router:
         createRouter:
-            controller: {$ref: 'routerController'}
+            controller: {$ref: 'appController'}
             routes:
                 'profiles'      : 'showProfilesList'
                 'profiles/:id'  : 'showProfileDetailes'

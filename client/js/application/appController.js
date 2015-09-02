@@ -11,12 +11,20 @@ define(function() {
       return console.debug("onRoute");
     };
 
-    AppController.prototype.showProfilesList = function() {};
+    AppController.prototype.showProfilesList = function() {
+      return console.debug("RouterController::showProfilesList");
+    };
 
-    AppController.prototype.showProfileDetailes = function() {};
+    AppController.prototype.showProfileDetailes = function(id) {
+      return console.debug("RouterController::showProfileDetailes", id);
+    };
 
     AppController.prototype.showDealsList = function() {
-      return console.debug("showDealsList");
+      return console.debug("RouterController::showDealsList");
+    };
+
+    AppController.prototype.showDealsDetailes = function(id) {
+      return console.debug("RouterController::showDealsDetailes", id);
     };
 
     return AppController;

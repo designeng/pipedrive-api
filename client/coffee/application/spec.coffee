@@ -22,7 +22,7 @@ define
         create: 'blocks/views/list/index'
         properties:
             collection          : {$ref: 'profilesCollection'}
-            profilesChannel     : {$ref: 'profilesChannel'}
+            channel             : {$ref: 'profilesChannel'}
             entity              : "profile"
         ready:
             setChildTemplate: {$ref: 'hbs!templates/profilesListItem' }

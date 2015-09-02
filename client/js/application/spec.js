@@ -18,7 +18,7 @@ define({
       collection: {
         $ref: 'profilesCollection'
       },
-      profilesChannel: {
+      channel: {
         $ref: 'profilesChannel'
       },
       entity: "profile"

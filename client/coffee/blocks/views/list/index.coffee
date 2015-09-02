@@ -22,7 +22,7 @@ define [
             @entities = @entity + "s"
 
         onRender: ->
-            @profilesChannel.on "#{@entities}:list:activate", (id) =>
+            @channel.on "#{@entities}:list:activate", (id) =>
                 @activateById(id)
 
         activateCurrent: (event) ->

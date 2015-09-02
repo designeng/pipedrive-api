@@ -30,7 +30,7 @@ define(['backbone', 'api', './item'], function(Backbone, api, ItemView) {
 
     ListView.prototype.onRender = function() {
       var _this = this;
-      return this.profilesChannel.on("" + this.entities + ":list:activate", function(id) {
+      return this.channel.on("" + this.entities + ":list:activate", function(id) {
         return _this.activateById(id);
       });
     };

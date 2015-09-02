@@ -19,9 +19,7 @@ define
             fetch: {}
 
     profilesList:
-        create: 
-            module: 'blocks/views/list/index'
-            args: ["profile"]
+        create: 'blocks/views/list/index'
         properties:
             collection          : {$ref: 'profilesCollection'}
             profilesChannel     : {$ref: 'profilesChannel'}

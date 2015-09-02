@@ -44,10 +44,10 @@ define({
     },
     channelEvents: {
       'profiles:list:show': {
-        $ref: 'profilesApplicationController.showProfilesList'
+        $ref: 'profilesModuleController.showProfilesList'
       },
       'profiles:person:show': {
-        $ref: 'profilesApplicationController.showProfileDetailes'
+        $ref: 'profilesModuleController.showProfileDetailes'
       }
     }
   },
@@ -70,10 +70,10 @@ define({
       }
     },
     onRoute: {
-      $ref: 'profilesApplicationController.onRoute'
+      $ref: 'profilesModuleController.onRoute'
     }
   },
-  profilesApplicationController: {
+  profilesModuleController: {
     create: 'application/profiles/controller',
     properties: {
       profilesList: {
@@ -99,7 +99,7 @@ define({
       onDestroy: {}
     }
   },
-  profilesApplication: {
+  profilesModule: {
     createModule: {
       withRegions: {
         navigationRegion: ".navigation",
@@ -117,10 +117,10 @@ define({
       }
     },
     addController: {
-      $ref: 'profilesApplicationController'
+      $ref: 'profilesModuleController'
     }
   },
   start: function() {
-    return this.profilesApplication.start();
+    return this.profilesModule.start();
   }
 });

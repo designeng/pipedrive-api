@@ -40,8 +40,8 @@ define
         createChannel:
             name: 'profiles'
         channelEvents:
-            'profiles:list:show'    : {$ref: 'profilesApplicationController.showProfilesList'}
-            'profiles:person:show'  : {$ref: 'profilesApplicationController.showProfileDetailes'}
+            'profiles:list:show'    : {$ref: 'profilesModuleController.showProfilesList'}
+            'profiles:person:show'  : {$ref: 'profilesModuleController.showProfileDetailes'}
 
     profilesRouterController:
         create: 'application/profiles/router/controller'
@@ -54,9 +54,9 @@ define
             routes:
                 'profiles'      : 'showProfilesList'
                 'profiles/:id'  : 'showProfileDetailes'
-        onRoute: {$ref: 'profilesApplicationController.onRoute'}
+        onRoute: {$ref: 'profilesModuleController.onRoute'}
 
-    profilesApplicationController:
+    profilesModuleController:
         create: 'application/profiles/controller'
         properties:
             profilesList                : {$ref: 'profilesList'}
@@ -68,7 +68,7 @@ define
         destroy:
             onDestroy: {}
 
-    profilesApplication:
+    profilesModule:
         createModule:
             withRegions:
                 navigationRegion    : ".navigation"
@@ -78,7 +78,7 @@ define
         showInRegion:
             'navigationRegion': {$ref: 'navigation'}
             'userCornerRegion': {$ref: 'userCorner'}
-        addController: {$ref: 'profilesApplicationController'}
+        addController: {$ref: 'profilesModuleController'}
 
     start: ->
-        @profilesApplication.start()
+        @profilesModule.start()

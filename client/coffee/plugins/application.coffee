@@ -22,9 +22,7 @@ define [
 
         addControllerFacet = (resolver, facet, wire) ->
             wire(facet.options).then (controller) ->
-                # controller.regions = facet.target.getRegions() #TODO: cloned regions do'nt work with original regions?
-                controller.regions = facet.target._regionManager._regions
-                controller.regionManager = facet.target._regionManager
+                controller.regions = facet.target.getRegions()
                 facet.target.controller = controller
                 resolver.resolve facet.target
 

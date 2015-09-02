@@ -5,7 +5,8 @@ folderMount = (connect, point) ->
 
 module.exports = (grunt) ->
 
-    port = 7788
+    appPort = 7788
+    jasminePort = 8888
 
     indexPath = "client/index.html"
   
@@ -64,7 +65,7 @@ module.exports = (grunt) ->
         connect:
             app:
                 options:
-                    port: port
+                    port: appPort
                     base: './client'
                     middleware: (connect, options) ->
                         return [
@@ -72,7 +73,7 @@ module.exports = (grunt) ->
                         ]
             jasmine:
                 options:
-                    port: 1234
+                    port: jasminePort
                     base: '.'
                     middleware: (connect, options) ->
                         return [

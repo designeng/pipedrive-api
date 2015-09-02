@@ -1,7 +1,6 @@
-# autoconcatenation with require.config - see app/coffee/requireConfig.coffee, Gruntfile
+# autoconcatenation with require.config - see client/coffee/requireConfig.coffee, Gruntfile
 
 requirejs.s.contexts._.config.baseUrl = "/client/js/"
-
 
 # additional paths
 requirejs.s.contexts._.config.paths["jasmine"] = '/test/jasmine/js/lib/jasmine-2.0.0/jasmine'
@@ -18,6 +17,7 @@ require [
     "boot"
     "underscore"
     "js/SpecIndex.js"
+    "wire!bootstrap/spec"
     "/test/jasmine/js/common/beforeEach.js"
 ], (boot, _, indexSpecs) ->
 

@@ -3,9 +3,7 @@ define(["wire", "when"], function(wire, When) {
   define('behaviorController', function() {
     var behaviorController;
     return behaviorController = (function() {
-      function behaviorController() {
-        console.debug("created");
-      }
+      function behaviorController() {}
 
       return behaviorController;
 

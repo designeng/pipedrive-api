@@ -1,4 +1,4 @@
 define(function() {
   var specs;
-  return specs = ["modules/profiles"];
+  return specs = ["applicationCore", "modules/profiles"];
 });

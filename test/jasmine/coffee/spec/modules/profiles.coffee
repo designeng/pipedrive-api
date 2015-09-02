@@ -6,7 +6,6 @@ define [
     define 'behaviorController', () ->
         class behaviorController
             constructor: ->
-                console.debug "created"
 
     # spec
     behaviorSpec = 

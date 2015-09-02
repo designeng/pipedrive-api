@@ -27,7 +27,7 @@ define [
 
         activateCurrent: (event) ->
             li = $(event.target).closest("li")
-            currentId = li.find(".profile-name").attr("data-id")
+            currentId = li.find(".#{@entity}-name").attr("data-id")
 
             @items = @$el.find("li")
 
@@ -41,10 +41,10 @@ define [
 
         activateById: (id) ->
             @items = @$el.find("li")
-            _.each @items, (item) ->
+            _.each @items, (item) =>
                 $item = $(item)
                 $item.removeClass "active"
-                if parseInt($item.find(".profile-name").attr("data-id")) == parseInt(id)
+                if parseInt($item.find(".#{@entity}-name").attr("data-id")) == parseInt(id)
                     $item.addClass "active"
 
         setChildTemplate: (tpl) ->

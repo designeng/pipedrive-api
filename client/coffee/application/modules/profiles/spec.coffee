@@ -20,6 +20,9 @@ define
     personProfile:
         module: 'blocks/views/profile/index'
 
+    blankProfile:
+        module: 'blocks/views/profile/blank'
+
     personProfileDeals:
         module: 'blocks/views/profile/deals/index'
 
@@ -29,8 +32,8 @@ define
             collection          : {$ref: 'profilesCollection'}
             list                : {$ref: 'profilesList'}
             PersonProfile       : {$ref: 'personProfile'}
+            BlankProfile        : {$ref: 'blankProfile'}
             PersonProfileDeals  : {$ref: 'personProfileDeals'}
-
             listRegion          : {$ref: 'listRegion'}
             personProfileRegion : {$ref: 'personProfileRegion'}
 

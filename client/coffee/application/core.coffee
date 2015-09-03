@@ -27,10 +27,10 @@ define
         createRouter:
             controller: {$ref: 'appController'}
             routes:
-                'profiles'      : 'showProfilesList'
-                'profiles/:id'  : 'showProfileDetailes'
-                'deals'         : 'showDealsList'
-                'deals/:id'     : 'showDealsDetailes'
+                'profiles'      : 'showProfilesModule'
+                'profiles/:id'  : 'showProfilesModule'
+                'deals'         : 'showDealsModule'
+                'deals/:id'     : 'showDealsModule'
         onRoute: {$ref: 'appController.onRoute'}
 
     # APPLICATION MODULES

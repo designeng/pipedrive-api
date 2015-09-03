@@ -16,12 +16,7 @@ define [
         initialize: ->
             _.bindAll @,
                 'onRoute', 
-                'showProfilesList', 
-                'showProfileDetailes'
-
-            # profiles/deals list should be rendered anyway
-            @removers.push meld.before @, 'showProfileDetailes', @showProfilesList
-            @removers.push meld.before @, 'showDealsDetailes'  , @showDealsList
+                'showProfilesModule'
             
             @removers.push meld.around @, 'showEntityList', @aroundMethod
             @removers.push meld.around @, 'showEntityDetailes', @aroundMethod
@@ -32,6 +27,8 @@ define [
             id = joinpoint.args[1]
 
             if !@contextHash[moduleName]
+                console.debug "MODULE NAME", moduleName
+
                 When(@[moduleName]()).then (moduleContext) =>
                     @contextHash[moduleName] = moduleContext
                     joinpoint.proceed(moduleContext, id)
@@ -44,24 +41,21 @@ define [
 
         # DEFAULT ROUTE HANDLER:
         onRoute: (name, path, opts) ->
-            
 
         # ROUTES HANDLERS:
+        # note that the same handler is responsible for both 'profiles' and 'profiles/:id' (for 'deals' and 'deals/:id' as well) routes.
+
         # PROFILES:
 
-        showProfilesList: () ->
-            @showEntityList "profiles"
-
-        showProfileDetailes: (personId) ->
-            @showEntityDetailes "profiles", personId
+        showProfilesModule: (personId) ->
+            When(@showEntityList "profiles").then () =>
+                @showEntityDetailes "profiles", personId
 
         # DEALS:
 
-        showDealsList: ->
-            @showEntityList "deals"
-
-        showDealsDetailes: (dealId) ->
-            @showEntityDetailes "deals", dealId
+        showDealsModule: (dealId) ->
+            When(@showEntityList "deals").then () =>
+                @showEntityDetailes "deals", dealId
 
         # COMMON METHODS:
 

@@ -16,9 +16,7 @@ define(["underscore", "backbone", "marionette", "when", "meld", "api"], function
     AppController.prototype.contextHash = {};
 
     AppController.prototype.initialize = function() {
-      _.bindAll(this, 'onRoute', 'showProfilesList', 'showProfileDetailes');
-      this.removers.push(meld.before(this, 'showProfileDetailes', this.showProfilesList));
-      this.removers.push(meld.before(this, 'showDealsDetailes', this.showDealsList));
+      _.bindAll(this, 'onRoute', 'showProfilesModule');
       this.removers.push(meld.around(this, 'showEntityList', this.aroundMethod));
       return this.removers.push(meld.around(this, 'showEntityDetailes', this.aroundMethod));
     };
@@ -29,6 +27,7 @@ define(["underscore", "backbone", "marionette", "when", "meld", "api"], function
       moduleName = joinpoint.args[0];
       id = joinpoint.args[1];
       if (!this.contextHash[moduleName]) {
+        console.debug("MODULE NAME", moduleName);
         return When(this[moduleName]()).then(function(moduleContext) {
           _this.contextHash[moduleName] = moduleContext;
           return joinpoint.proceed(moduleContext, id);
@@ -46,20 +45,18 @@ define(["underscore", "backbone", "marionette", "when", "meld", "api"], function
 
     AppController.prototype.onRoute = function(name, path, opts) {};
 
-    AppController.prototype.showProfilesList = function() {
-      return this.showEntityList("profiles");
+    AppController.prototype.showProfilesModule = function(personId) {
+      var _this = this;
+      return When(this.showEntityList("profiles")).then(function() {
+        return _this.showEntityDetailes("profiles", personId);
+      });
     };
 
-    AppController.prototype.showProfileDetailes = function(personId) {
-      return this.showEntityDetailes("profiles", personId);
-    };
-
-    AppController.prototype.showDealsList = function() {
-      return this.showEntityList("deals");
-    };
-
-    AppController.prototype.showDealsDetailes = function(dealId) {
-      return this.showEntityDetailes("deals", dealId);
+    AppController.prototype.showDealsModule = function(dealId) {
+      var _this = this;
+      return When(this.showEntityList("deals")).then(function() {
+        return _this.showEntityDetailes("deals", dealId);
+      });
     };
 
     AppController.prototype.showEntityList = function(moduleContext) {

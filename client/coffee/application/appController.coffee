@@ -63,12 +63,12 @@ define [
         # DEALS:
 
         showDealsModule: (dealId) ->
-            @regions.mainAreaRegion.show new @Preloader
+            # @regions.mainAreaRegion.show new @Preloader
+            # if !dealId
+            #     @regions.sidebarRegion.reset()
+            
             When(@showEntityList "deals").then () =>
                 @showEntityDetailes "deals", dealId
-
-            if !dealId
-                @regions.sidebarRegion.reset()
 
         # COMMON METHODS:
 

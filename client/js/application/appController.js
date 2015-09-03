@@ -66,13 +66,9 @@ define(["underscore", "backbone", "marionette", "when", "meld", "api"], function
 
     AppController.prototype.showDealsModule = function(dealId) {
       var _this = this;
-      this.regions.mainAreaRegion.show(new this.Preloader);
-      When(this.showEntityList("deals")).then(function() {
+      return When(this.showEntityList("deals")).then(function() {
         return _this.showEntityDetailes("deals", dealId);
       });
-      if (!dealId) {
-        return this.regions.sidebarRegion.reset();
-      }
     };
 
     AppController.prototype.showEntityList = function(moduleContext) {

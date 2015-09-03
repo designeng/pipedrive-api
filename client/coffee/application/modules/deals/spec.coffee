@@ -1,6 +1,7 @@
 define
     $plugins: [
         'wire/debug'
+        'plugins/hbs'
     ]
 
     dealsCollection:
@@ -26,3 +27,5 @@ define
 
     activateById: (id) ->
         @dealsController.activateById id
+
+    showDealsDetailes: (id) ->

@@ -1,5 +1,5 @@
 define({
-  $plugins: ['wire/debug'],
+  $plugins: ['wire/debug', 'plugins/hbs'],
   dealsCollection: {
     create: 'application/modules/deals/collections/deals',
     ready: {
@@ -39,5 +39,6 @@ define({
   },
   activateById: function(id) {
     return this.dealsController.activateById(id);
-  }
+  },
+  showDealsDetailes: function(id) {}
 });

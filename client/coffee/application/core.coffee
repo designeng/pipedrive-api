@@ -3,6 +3,7 @@ define
         'wire/debug'
         'plugins/marionette/router'
         'plugins/marionette/module'
+        'plugins/element'
     ]
 
     appInstance:
@@ -23,6 +24,7 @@ define
             profiles            : {$ref: 'profiles'}
             deals               : {$ref: 'deals'}
             Preloader           : {$ref: 'preloader'}
+            notFoundPage       : {$ref: 'notFoundPage'}
 
     router:
         createRouter:

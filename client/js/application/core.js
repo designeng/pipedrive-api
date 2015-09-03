@@ -1,5 +1,5 @@
 define({
-  $plugins: ['wire/debug', 'plugins/marionette/router', 'plugins/marionette/module'],
+  $plugins: ['wire/debug', 'plugins/marionette/router', 'plugins/marionette/module', 'plugins/element'],
   appInstance: {
     createModule: {
       withRegions: {
@@ -31,6 +31,9 @@ define({
       },
       Preloader: {
         $ref: 'preloader'
+      },
+      notFoundPage: {
+        $ref: 'notFoundPage'
       }
     }
   },

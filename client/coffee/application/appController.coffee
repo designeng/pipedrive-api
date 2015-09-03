@@ -40,6 +40,7 @@ define [
         # DEFAULT ROUTE HANDLER:
         onRoute: (name, path, opts) ->
             @rootFragmentMutation(path.split("/")[0])
+            @notFoundPage.hide() unless path is "*notFound"
 
         # remove cached context if root fragment is changed
         rootFragmentMutation: (rootFragment) ->
@@ -48,7 +49,7 @@ define [
                 @currentRootFragment = rootFragment
 
         notFound: ->
-            
+            @notFoundPage.show()
 
         # ROUTES HANDLERS:
 
@@ -64,9 +65,7 @@ define [
 
         showDealsModule: (dealId) ->
             # @regions.mainAreaRegion.show new @Preloader
-            # if !dealId
-            #     @regions.sidebarRegion.reset()
-            
+
             When(@showEntityList "deals").then () =>
                 @showEntityDetailes "deals", dealId
 

@@ -5,5 +5,8 @@ define({
   },
   preloader: {
     module: "blocks/views/preloader/index"
+  },
+  notFoundPage: {
+    $ref: "element!.not-found"
   }
 });

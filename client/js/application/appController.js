@@ -45,7 +45,10 @@ define(["underscore", "backbone", "marionette", "when", "meld", "api"], function
     };
 
     AppController.prototype.onRoute = function(name, path, opts) {
-      return this.rootFragmentMutation(path.split("/")[0]);
+      this.rootFragmentMutation(path.split("/")[0]);
+      if (path !== "*notFound") {
+        return this.notFoundPage.hide();
+      }
     };
 
     AppController.prototype.rootFragmentMutation = function(rootFragment) {
@@ -55,7 +58,9 @@ define(["underscore", "backbone", "marionette", "when", "meld", "api"], function
       }
     };
 
-    AppController.prototype.notFound = function() {};
+    AppController.prototype.notFound = function() {
+      return this.notFoundPage.show();
+    };
 
     AppController.prototype.showProfilesModule = function(personId) {
       var _this = this;

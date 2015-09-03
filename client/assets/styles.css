@@ -129,7 +129,6 @@ img.user-pic{
 .sidebar{
     position: relative;
     top: 47px;
-
     margin: 0px;
     float: left;
     width: 281px;
@@ -138,6 +137,8 @@ img.user-pic{
 }
 
 .main-area{
+    position: relative;
+    top: 47px;
     margin:0px;
     float: left;
     width: 281px;

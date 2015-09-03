@@ -13,9 +13,6 @@ define [
         removers: []
 
         initialize: ->
-            @profilesListIsRendered = false
-            @dealsListIsRendered = false
-
             _.bindAll @,
                 'onRoute', 
                 'showProfilesList', 
@@ -29,34 +26,28 @@ define [
             _.each @removers, (remover) ->
                 remover.remove()
 
+        # DEFAULT ROUTE HANDLER:
         onRoute: (name, path, opts) ->
+            console.debug "name, path, opts", name, path, opts
             When(@profiles()).then (profilesContext) ->
                 profilesContext.activateById opts[0]
 
-        renderList: (entities) ->
-            When(@[entities]()).then (moduleContext) =>
-                console.debug "LIST>>>>>", entities, moduleContext[entities + "List"]
-                @regions.sidebarRegion.show moduleContext[entities + "List"]
-
-        # routes interaction:
+        # ROUTES HANDLERS:
+        # PROFILES:
 
         showProfilesList: () ->
-            # TODO: move to profile module?
-            @dealsListIsRendered = !@dealsListIsRendered
-            if !@profilesListIsRendered
-                @renderList "profiles"
-                @profilesListIsRendered = true
+            When(@profiles()).then (profilesContext) ->
+                profilesContext.showProfilesList()
 
         showProfileDetailes: (personId) ->
             When(@profiles()).then (profilesContext) ->
                 profilesContext.showProfileDetailes personId
 
+        # DEALS:
+
         showDealsList: ->
-            # TODO: move to profile module?
-            @profilesListIsRendered = !@profilesListIsRendered
-            if !@dealsListIsRendered
-                @renderList "deals"
-                @dealsListIsRendered = true
+            When(@deals()).then (dealsContext) ->
+                dealsContext.showDealsList()
 
         showDealsDetailes: (dealId) ->
             When(@deals()).then (dealsContext) ->

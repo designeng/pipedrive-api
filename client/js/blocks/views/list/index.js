@@ -50,7 +50,6 @@ define(['backbone', 'api', './item'], function(Backbone, api, ItemView) {
     ListView.prototype.activateById = function(id) {
       var _this = this;
       this.items = this.$el.find("li");
-      console.debug("@items", this.items);
       return _.each(this.items, function(item) {
         var $item;
         $item = $(item);

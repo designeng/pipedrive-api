@@ -83,6 +83,9 @@ define({
         channel: {
           $ref: 'profilesChannel'
         },
+        listRegion: {
+          $ref: 'appController.regions.sidebarRegion'
+        },
         personProfileRegion: {
           $ref: 'appController.regions.mainAreaRegion'
         }
@@ -96,6 +99,9 @@ define({
       provide: {
         channel: {
           $ref: 'dealsChannel'
+        },
+        listRegion: {
+          $ref: 'appController.regions.sidebarRegion'
         },
         dealDetailsRegion: {
           $ref: 'appController.regions.mainAreaRegion'

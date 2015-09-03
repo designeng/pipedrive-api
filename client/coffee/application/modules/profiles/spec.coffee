@@ -38,5 +38,8 @@ define
     activateById: (id) ->
         @profilesController.activateById id
 
+    showProfilesList: ->
+        @listRegion.show @profilesList
+
     showProfileDetailes: (id) ->
         @profilesController.showProfileDetailes id

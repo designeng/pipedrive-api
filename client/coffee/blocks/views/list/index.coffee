@@ -46,9 +46,6 @@ define [
 
         activateById: (id) ->
             @items = @$el.find("li")
-
-            console.debug "@items", @items
-
             _.each @items, (item) =>
                 $item = $(item)
                 $item.removeClass "active"

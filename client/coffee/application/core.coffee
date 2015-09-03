@@ -61,7 +61,8 @@ define
             defer: true
             provide:
                 channel: {$ref: 'profilesChannel'}
-                personProfileRegion: {$ref: 'appController.regions.mainAreaRegion'}
+                listRegion          : {$ref: 'appController.regions.sidebarRegion'}
+                personProfileRegion : {$ref: 'appController.regions.mainAreaRegion'}
 
     deals:
         wire:
@@ -69,7 +70,8 @@ define
             defer: true
             provide:
                 channel: {$ref: 'dealsChannel'}
-                dealDetailsRegion: {$ref: 'appController.regions.mainAreaRegion'}
+                listRegion          : {$ref: 'appController.regions.sidebarRegion'}
+                dealDetailsRegion   : {$ref: 'appController.regions.mainAreaRegion'}
 
     # /APPLICATION MODULES
 

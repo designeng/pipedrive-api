@@ -43,5 +43,8 @@ define({
   activateById: function(id) {
     return this.dealsController.activateById(id);
   },
+  showDealsList: function() {
+    return this.listRegion.show(this.dealsList);
+  },
   showDealsDetailes: function(id) {}
 });

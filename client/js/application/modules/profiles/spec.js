@@ -55,6 +55,9 @@ define({
   activateById: function(id) {
     return this.profilesController.activateById(id);
   },
+  showProfilesList: function() {
+    return this.listRegion.show(this.profilesList);
+  },
   showProfileDetailes: function(id) {
     return this.profilesController.showProfileDetailes(id);
   }

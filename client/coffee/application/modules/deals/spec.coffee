@@ -30,4 +30,7 @@ define
     activateById: (id) ->
         @dealsController.activateById id
 
+    showDealsList: ->
+        @listRegion.show @dealsList
+
     showDealsDetailes: (id) ->

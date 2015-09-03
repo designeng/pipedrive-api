@@ -13,6 +13,8 @@ define [
 
         contextHash: {}
 
+        currentRootFragment: null
+
         initialize: ->
             _.bindAll @, 'onRoute'
             
@@ -37,8 +39,22 @@ define [
 
         # DEFAULT ROUTE HANDLER:
         onRoute: (name, path, opts) ->
+            @rootFragmentMutation(path.split("/")[0])
+
+        # remove cached context if root fragment is changed
+        rootFragmentMutation: (rootFragment) ->
+            if @currentRootFragment != rootFragment
+                delete @contextHash[@currentRootFragment]
+                @currentRootFragment = rootFragment
+
+        page404: (path) ->
+            console.debug _.indexOf(@knownRoutes, path), @knownRoutes, path
+
+            if _.indexOf(@knownRoutes, path) == -1
+                console.debug "UNKNOUN ROUTE!!!!!"
 
         # ROUTES HANDLERS:
+
         # note that the same handler is responsible for both 'profiles' and 'profiles/:id' (for 'deals' and 'deals/:id' as well) routes.
 
         # PROFILES:

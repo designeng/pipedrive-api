@@ -15,6 +15,8 @@ define(["underscore", "backbone", "marionette", "when", "meld", "api"], function
 
     AppController.prototype.contextHash = {};
 
+    AppController.prototype.currentRootFragment = null;
+
     AppController.prototype.initialize = function() {
       _.bindAll(this, 'onRoute');
       this.removers.push(meld.around(this, 'showEntityList', this.aroundMethod));
@@ -42,7 +44,23 @@ define(["underscore", "backbone", "marionette", "when", "meld", "api"], function
       });
     };
 
-    AppController.prototype.onRoute = function(name, path, opts) {};
+    AppController.prototype.onRoute = function(name, path, opts) {
+      return this.rootFragmentMutation(path.split("/")[0]);
+    };
+
+    AppController.prototype.rootFragmentMutation = function(rootFragment) {
+      if (this.currentRootFragment !== rootFragment) {
+        delete this.contextHash[this.currentRootFragment];
+        return this.currentRootFragment = rootFragment;
+      }
+    };
+
+    AppController.prototype.page404 = function(path) {
+      console.debug(_.indexOf(this.knownRoutes, path), this.knownRoutes, path);
+      if (_.indexOf(this.knownRoutes, path) === -1) {
+        return console.debug("UNKNOUN ROUTE!!!!!");
+      }
+    };
 
     AppController.prototype.showProfilesModule = function(personId) {
       var _this = this;

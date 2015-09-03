@@ -16,6 +16,7 @@ define [
                 router = new Marionette.AppRouter
                     controller: routerController
                     appRoutes: compDef.options.routes
+                routerController.knownRoutes = _.keys compDef.options.routes
                 resolver.resolve(router)
 
         onRouteFacet = (resolver, facet, wire) ->

@@ -15,8 +15,10 @@ define(["underscore", "backbone", "backbone.radio", "marionette", "when", "meld"
 
     AppController.prototype.initialize = function() {
       this.profilesListIsRendered = false;
+      this.dealsListIsRendered = false;
       _.bindAll(this, 'onRoute', 'showProfilesList', 'showProfileDetailes');
-      return this.removers.push(meld.before(this, 'showProfileDetailes', this.showProfilesList));
+      this.removers.push(meld.before(this, 'showProfileDetailes', this.showProfilesList));
+      return this.removers.push(meld.before(this, 'showDealsDetailes', this.showDealsList));
     };
 
     AppController.prototype.onDestroy = function() {
@@ -31,16 +33,18 @@ define(["underscore", "backbone", "backbone.radio", "marionette", "when", "meld"
       });
     };
 
-    AppController.prototype.renderProfilesList = function() {
+    AppController.prototype.renderList = function(entities) {
       var _this = this;
-      return When(this.profiles()).then(function(profilesContext) {
-        return _this.regions.sidebarRegion.show(profilesContext.profilesList);
+      return When(this[entities]()).then(function(moduleContext) {
+        console.debug("LIST>>>>>", entities, moduleContext[entities + "List"]);
+        return _this.regions.sidebarRegion.show(moduleContext[entities + "List"]);
       });
     };
 
     AppController.prototype.showProfilesList = function() {
+      this.dealsListIsRendered = !this.dealsListIsRendered;
       if (!this.profilesListIsRendered) {
-        this.renderProfilesList();
+        this.renderList("profiles");
         return this.profilesListIsRendered = true;
       }
     };
@@ -52,10 +56,11 @@ define(["underscore", "backbone", "backbone.radio", "marionette", "when", "meld"
     };
 
     AppController.prototype.showDealsList = function() {
-      var _this = this;
-      return When(this.deals()).then(function(dealsContext) {
-        return _this.regions.sidebarRegion.show(dealsContext.dealsList);
-      });
+      this.profilesListIsRendered = !this.profilesListIsRendered;
+      if (!this.dealsListIsRendered) {
+        this.renderList("deals");
+        return this.dealsListIsRendered = true;
+      }
     };
 
     AppController.prototype.showDealsDetailes = function(dealId) {

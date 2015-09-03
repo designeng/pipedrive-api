@@ -14,10 +14,16 @@ define [
 
         initialize: ->
             @profilesListIsRendered = false
-            _.bindAll @, 'onRoute', 'showProfilesList', 'showProfileDetailes'
+            @dealsListIsRendered = false
+
+            _.bindAll @,
+                'onRoute', 
+                'showProfilesList', 
+                'showProfileDetailes'
 
             # profiles list should be rendered in case of child route
             @removers.push meld.before @, 'showProfileDetailes', @showProfilesList
+            @removers.push meld.before @, 'showDealsDetailes'  , @showDealsList
 
         onDestroy: ->
             _.each @removers, (remover) ->
@@ -27,16 +33,18 @@ define [
             When(@profiles()).then (profilesContext) ->
                 profilesContext.activateById opts[0]
 
-        renderProfilesList: ->
-            When(@profiles()).then (profilesContext) =>
-                @regions.sidebarRegion.show profilesContext.profilesList
+        renderList: (entities) ->
+            When(@[entities]()).then (moduleContext) =>
+                console.debug "LIST>>>>>", entities, moduleContext[entities + "List"]
+                @regions.sidebarRegion.show moduleContext[entities + "List"]
 
         # routes interaction:
 
         showProfilesList: () ->
             # TODO: move to profile module?
+            @dealsListIsRendered = !@dealsListIsRendered
             if !@profilesListIsRendered
-                @renderProfilesList()
+                @renderList "profiles"
                 @profilesListIsRendered = true
 
         showProfileDetailes: (personId) ->
@@ -44,8 +52,11 @@ define [
                 profilesContext.showProfileDetailes personId
 
         showDealsList: ->
-            When(@deals()).then (dealsContext) =>
-                @regions.sidebarRegion.show dealsContext.dealsList
+            # TODO: move to profile module?
+            @profilesListIsRendered = !@profilesListIsRendered
+            if !@dealsListIsRendered
+                @renderList "deals"
+                @dealsListIsRendered = true
 
         showDealsDetailes: (dealId) ->
             When(@deals()).then (dealsContext) ->

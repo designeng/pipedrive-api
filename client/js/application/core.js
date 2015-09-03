@@ -104,7 +104,6 @@ define({
     }
   },
   start: function() {
-    console.debug("START");
     return this.appInstance.start();
   }
 });

@@ -24,6 +24,8 @@ define
             collection          : {$ref: 'dealsCollection'}
             channel             : {$ref: 'channel'}
             list                : {$ref: 'dealsList'}
+        ready:
+            onReady: {}
 
     activateById: (id) ->
         @dealsController.activateById id

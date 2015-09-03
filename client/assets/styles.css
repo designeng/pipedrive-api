@@ -168,9 +168,10 @@ ul.listView li:last-child {
     background-color: #3381c5;
 }
 
-.profile-name{
+.profile-name, .deal-title{
     font-weight: bold;
 }
+
 .person-organization-name{
   font-size: 10px;
 }

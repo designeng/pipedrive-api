@@ -9,5 +9,8 @@ define [
 
     class DealsController extends Marionette.Object
 
+        onReady: ->
+            console.debug "DEALS LIST:::::", @list
+
         activateById: (id) ->
             @list.channel.trigger "deals:list:activate", id

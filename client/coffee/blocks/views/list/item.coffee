@@ -8,4 +8,4 @@ define [
 
         templateHelpers:
             organizationName: ->
-                @organization?.name
+                @organization?.name || @org_name

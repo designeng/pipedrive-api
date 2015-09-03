@@ -35,6 +35,9 @@ define({
       list: {
         $ref: 'dealsList'
       }
+    },
+    ready: {
+      onReady: {}
     }
   },
   activateById: function(id) {

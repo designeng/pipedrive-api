@@ -35,7 +35,7 @@ define
         onRoute: {$ref: 'appController.onRoute'}
 
     # TODO: remove channels 
-    
+
     profilesChannel:
         createChannel:
             name: 'profiles'
@@ -74,5 +74,4 @@ define
     # /APPLICATION MODULES
 
     start: ->
-        console.debug "START"
         @appInstance.start()

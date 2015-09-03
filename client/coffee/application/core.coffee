@@ -10,7 +10,6 @@ define
         createModule:
             withRegions:
                 navigationRegion    : ".navigation"
-                # TODO: move to profiles layout?
                 sidebarRegion       : ".sidebar"
                 mainAreaRegion      : ".main-area"
             onStart: ->
@@ -23,9 +22,7 @@ define
         create: "application/appController"
         properties:
             profiles            : {$ref: 'profiles'}
-            profilesChannel     : {$ref: 'profilesChannel'}
             deals               : {$ref: 'deals'}
-            dealsChannel        : {$ref: 'dealsChannel'}
 
     router:
         createRouter:
@@ -37,6 +34,8 @@ define
                 'deals/:id'     : 'showDealsDetailes'
         onRoute: {$ref: 'appController.onRoute'}
 
+    # TODO: remove channels 
+    
     profilesChannel:
         createChannel:
             name: 'profiles'
@@ -62,6 +61,7 @@ define
             defer: true
             provide:
                 channel: {$ref: 'profilesChannel'}
+                personProfileRegion: {$ref: 'appController.regions.mainAreaRegion'}
 
     deals:
         wire:
@@ -69,6 +69,7 @@ define
             defer: true
             provide:
                 channel: {$ref: 'dealsChannel'}
+                dealDetailsRegion: {$ref: 'appController.regions.mainAreaRegion'}
 
     # /APPLICATION MODULES
 

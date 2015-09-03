@@ -26,14 +26,8 @@ define({
       profiles: {
         $ref: 'profiles'
       },
-      profilesChannel: {
-        $ref: 'profilesChannel'
-      },
       deals: {
         $ref: 'deals'
-      },
-      dealsChannel: {
-        $ref: 'dealsChannel'
       }
     }
   },
@@ -88,6 +82,9 @@ define({
       provide: {
         channel: {
           $ref: 'profilesChannel'
+        },
+        personProfileRegion: {
+          $ref: 'appController.regions.mainAreaRegion'
         }
       }
     }
@@ -99,6 +96,9 @@ define({
       provide: {
         channel: {
           $ref: 'dealsChannel'
+        },
+        dealDetailsRegion: {
+          $ref: 'appController.regions.mainAreaRegion'
         }
       }
     }

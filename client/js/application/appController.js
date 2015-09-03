@@ -26,9 +26,8 @@ define(["underscore", "backbone", "backbone.radio", "marionette", "when", "meld"
     };
 
     AppController.prototype.onRoute = function(name, path, opts) {
-      var _this = this;
       return When(this.profiles()).then(function(profilesContext) {
-        return profilesContext.profilesController.activateById(opts[0]);
+        return profilesContext.activateById(opts[0]);
       });
     };
 
@@ -47,19 +46,22 @@ define(["underscore", "backbone", "backbone.radio", "marionette", "when", "meld"
     };
 
     AppController.prototype.showProfileDetailes = function(personId) {
-      var _this = this;
-      this.profilesChannel.trigger("profiles:person:details", personId);
       return When(this.profiles()).then(function(profilesContext) {
-        return profilesContext.profilesController.showProfileDetailes(personId);
+        return profilesContext.showProfileDetailes(personId);
       });
     };
 
     AppController.prototype.showDealsList = function() {
-      return console.debug("RouterController::showDealsList");
+      var _this = this;
+      return When(this.deals()).then(function(dealsContext) {
+        return _this.regions.sidebarRegion.show(dealsContext.dealsList);
+      });
     };
 
-    AppController.prototype.showDealsDetailes = function(id) {
-      return console.debug("RouterController::showDealsDetailes", id);
+    AppController.prototype.showDealsDetailes = function(dealId) {
+      return When(this.deals()).then(function(dealsContext) {
+        return dealsContext.showDealsDetailes(dealId);
+      });
     };
 
     return AppController;

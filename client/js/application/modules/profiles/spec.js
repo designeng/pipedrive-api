@@ -1,16 +1,5 @@
 define({
-  $plugins: ['wire/debug', 'plugins/hbs', 'plugins/marionette/layout'],
-  profilesLayout: {
-    createLayout: {
-      fromTemplate: {
-        $ref: 'hbs!templates/profiles'
-      },
-      withRegions: {
-        sidebarRegion: ".sidebar-area",
-        mainAreaRegion: ".main-area"
-      }
-    }
-  },
+  $plugins: ['wire/debug', 'plugins/hbs'],
   profilesCollection: {
     create: 'application/profiles/collections/profiles',
     ready: {
@@ -58,12 +47,15 @@ define({
       PersonProfileDeals: {
         $ref: 'personProfileDeals'
       },
-      profilesLayout: {
-        $ref: 'profilesLayout'
+      personProfileRegion: {
+        $ref: 'personProfileRegion'
       }
-    },
-    ready: {
-      onReady: {}
     }
+  },
+  activateById: function(id) {
+    return this.profilesController.activateById(id);
+  },
+  showProfileDetailes: function(id) {
+    return this.profilesController.showProfileDetailes(id);
   }
 });

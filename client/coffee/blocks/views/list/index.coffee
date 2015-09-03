@@ -26,6 +26,10 @@ define [
             @channel.on "#{@entities}:list:activate", (id) =>
                 @activateById(id)
 
+            # @on "list:activate", (id) =>
+            #     console.debug "ACTIVATE", id
+            #     @activateById(id)
+
         activateCurrent: (event) ->
             li = $(event.target).closest("li")
             currentId = li.find(".#{@entity}-name").attr("data-id")
@@ -42,6 +46,9 @@ define [
 
         activateById: (id) ->
             @items = @$el.find("li")
+
+            console.debug "@items", @items
+
             _.each @items, (item) =>
                 $item = $(item)
                 $item.removeClass "active"

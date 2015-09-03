@@ -9,13 +9,10 @@ define [
 
     class ProfilesController extends Marionette.Object
 
-        onReady: ->
-
-            @channel.on "profiles:person:details", (id) =>
-                console.debug "ProfilesController:::::profiles:person:details", id
-
         activateById: (id) ->
             @list.channel.trigger "profiles:list:activate", id
+
+            # @list.trigger "list:activate", id
 
         showProfileDetailes: (personId) ->
             model = @collection.find (model) ->
@@ -26,7 +23,7 @@ define [
                     PersonProfileDeals: @PersonProfileDeals
                     personId: personId
                 })
-                
-                @profilesLayout.showChildView "mainAreaRegion", personProfile
+
+                @personProfileRegion.show personProfile
             else
-                @profilesLayout.showChildView "mainAreaRegion", new @BlankProfile
+                @personProfileRegion.show new @BlankProfile

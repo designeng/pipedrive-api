@@ -2,15 +2,7 @@ define
     $plugins: [
         'wire/debug'
         'plugins/hbs'
-        'plugins/marionette/layout'
     ]
-
-    profilesLayout:
-        createLayout:
-            fromTemplate: {$ref: 'hbs!templates/profiles'}
-            withRegions:
-                sidebarRegion       : ".sidebar-area"
-                mainAreaRegion      : ".main-area"
 
     profilesCollection:
         create: 'application/profiles/collections/profiles'
@@ -40,6 +32,11 @@ define
             list                : {$ref: 'profilesList'}
             PersonProfile       : {$ref: 'personProfile'}
             PersonProfileDeals  : {$ref: 'personProfileDeals'}
-            profilesLayout      : {$ref: 'profilesLayout'}
-        ready:
-            onReady: {}
+            
+            personProfileRegion : {$ref: 'personProfileRegion'}
+
+    activateById: (id) ->
+        @profilesController.activateById id
+
+    showProfileDetailes: (id) ->
+        @profilesController.showProfileDetailes id

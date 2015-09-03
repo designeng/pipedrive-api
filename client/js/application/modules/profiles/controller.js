@@ -11,13 +11,6 @@ define(["underscore", "backbone", "backbone.radio", "marionette", "meld", "api"]
       return _ref;
     }
 
-    ProfilesController.prototype.onReady = function() {
-      var _this = this;
-      return this.channel.on("profiles:person:details", function(id) {
-        return console.debug("ProfilesController:::::profiles:person:details", id);
-      });
-    };
-
     ProfilesController.prototype.activateById = function(id) {
       return this.list.channel.trigger("profiles:list:activate", id);
     };
@@ -33,9 +26,9 @@ define(["underscore", "backbone", "backbone.radio", "marionette", "meld", "api"]
           PersonProfileDeals: this.PersonProfileDeals,
           personId: personId
         });
-        return this.profilesLayout.showChildView("mainAreaRegion", personProfile);
+        return this.personProfileRegion.show(personProfile);
       } else {
-        return this.profilesLayout.showChildView("mainAreaRegion", new this.BlankProfile);
+        return this.personProfileRegion.show(new this.BlankProfile);
       }
     };
 

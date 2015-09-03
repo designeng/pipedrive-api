@@ -24,11 +24,8 @@ define [
                 remover.remove()
 
         onRoute: (name, path, opts) ->
-            # TODO: should be cleared...
-            # @profilesChannel.trigger "profiles:list:activate", opts[0]
-
-            When(@profiles()).then (profilesContext) =>
-                profilesContext.profilesController.activateById opts[0]
+            When(@profiles()).then (profilesContext) ->
+                profilesContext.activateById opts[0]
 
         renderProfilesList: ->
             When(@profiles()).then (profilesContext) =>
@@ -37,30 +34,19 @@ define [
         # routes interaction:
 
         showProfilesList: () ->
+            # TODO: move to profile module?
             if !@profilesListIsRendered
                 @renderProfilesList()
                 @profilesListIsRendered = true
 
         showProfileDetailes: (personId) ->
-            @profilesChannel.trigger "profiles:person:details", personId
-
-            When(@profiles()).then (profilesContext) =>
-                profilesContext.profilesController.showProfileDetailes personId
-
-            # model = @profilesCollection.find (model) ->
-            #     return model.get('id') == parseInt(personId)
-            # if model
-            #     personProfile = new @PersonProfile({
-            #         model
-            #         PersonProfileDeals: @PersonProfileDeals
-            #         personId: personId
-            #     })
-            #     @regions.mainAreaRegion.show personProfile
-            # else
-            #     @regions.mainAreaRegion.show new @BlankProfile
+            When(@profiles()).then (profilesContext) ->
+                profilesContext.showProfileDetailes personId
 
         showDealsList: ->
-            console.debug "RouterController::showDealsList"
+            When(@deals()).then (dealsContext) =>
+                @regions.sidebarRegion.show dealsContext.dealsList
 
-        showDealsDetailes: (id) ->
-            console.debug "RouterController::showDealsDetailes", id
+        showDealsDetailes: (dealId) ->
+            When(@deals()).then (dealsContext) ->
+                dealsContext.showDealsDetailes dealId

@@ -12,5 +12,9 @@ define [
         onReady: ->
             console.debug "DEALS LIST:::::", @list
 
+        showList: ->
+            @listRegion.show @list
+            console.debug "DealsController @list.cid", @list.isRendered, @list.cid
+
         activateById: (id) ->
             @list.activateById id

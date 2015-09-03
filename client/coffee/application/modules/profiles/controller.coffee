@@ -10,8 +10,10 @@ define [
 
         showList: ->
             @listRegion.show @list
+            console.debug "@list.cid", @list.isRendered, @list.cid
 
         activateById: (id) ->
+            console.debug "IS REND", @list.isRendered, @list.cid
             @list.activateById id
 
         showProfileDetailes: (personId) ->

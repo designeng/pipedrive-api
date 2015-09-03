@@ -22,6 +22,7 @@ define
         properties:
             collection          : {$ref: 'dealsCollection'}
             list                : {$ref: 'dealsList'}
+            listRegion          : {$ref: 'listRegion'}
         ready:
             onReady: {}
 
@@ -29,6 +30,6 @@ define
         @dealsController.activateById id
 
     showList: ->
-        @listRegion.show @dealsList
+        @dealsController.showList()
 
     showDetailes: (id) ->

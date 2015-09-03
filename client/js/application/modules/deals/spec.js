@@ -28,6 +28,9 @@ define({
       },
       list: {
         $ref: 'dealsList'
+      },
+      listRegion: {
+        $ref: 'listRegion'
       }
     },
     ready: {
@@ -38,7 +41,7 @@ define({
     return this.dealsController.activateById(id);
   },
   showList: function() {
-    return this.listRegion.show(this.dealsList);
+    return this.dealsController.showList();
   },
   showDetailes: function(id) {}
 });

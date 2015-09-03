@@ -13,7 +13,6 @@ define
         create: 'blocks/views/list/index'
         properties:
             collection          : {$ref: 'profilesCollection'}
-            channel             : {$ref: 'channel'}
             entity              : "profile"
         ready:
             setChildTemplate: {$ref: 'hbs!templates/profilesListItem' }
@@ -28,11 +27,9 @@ define
         create: 'application/modules/profiles/controller'
         properties:
             collection          : {$ref: 'profilesCollection'}
-            channel             : {$ref: 'channel'}
             list                : {$ref: 'profilesList'}
             PersonProfile       : {$ref: 'personProfile'}
             PersonProfileDeals  : {$ref: 'personProfileDeals'}
-            
             personProfileRegion : {$ref: 'personProfileRegion'}
 
     activateById: (id) ->

@@ -23,11 +23,7 @@ define [
             @collection.add new Backbone.Model()
 
         onRender: ->
-            @channel.on "#{@entities}:list:activate", (id) =>
-                @activateById(id)
-
-            # @on "list:activate", (id) =>
-            #     console.debug "ACTIVATE", id
+            # @channel.on "#{@entities}:list:activate", (id) =>
             #     @activateById(id)
 
         activateCurrent: (event) ->

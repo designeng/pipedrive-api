@@ -12,9 +12,6 @@ define({
       collection: {
         $ref: 'profilesCollection'
       },
-      channel: {
-        $ref: 'channel'
-      },
       entity: "profile"
     },
     ready: {
@@ -34,9 +31,6 @@ define({
     properties: {
       collection: {
         $ref: 'profilesCollection'
-      },
-      channel: {
-        $ref: 'channel'
       },
       list: {
         $ref: 'profilesList'

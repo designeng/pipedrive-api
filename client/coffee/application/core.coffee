@@ -1,7 +1,6 @@
 define
     $plugins: [
         'wire/debug'
-        'plugins/radio/channel'
         'plugins/marionette/router'
         'plugins/marionette/module'
     ]
@@ -34,21 +33,6 @@ define
                 'deals/:id'     : 'showDealsDetailes'
         onRoute: {$ref: 'appController.onRoute'}
 
-    # TODO: remove channels 
-
-    profilesChannel:
-        createChannel:
-            name: 'profiles'
-        channelEvents:
-            'list:show'    : {$ref: 'appController.showProfilesList'}
-            'person:show'  : {$ref: 'appController.showProfileDetailes'}
-
-    dealsChannel:
-        createChannel:
-            name: 'deals'
-        channelEvents:
-            'list:show'    : {$ref: 'appController.showDealsList'}
-
     # APPLICATION MODULES
 
     navigation:
@@ -60,7 +44,6 @@ define
             spec: "application/modules/profiles/spec"
             defer: true
             provide:
-                channel: {$ref: 'profilesChannel'}
                 listRegion          : {$ref: 'appController.regions.sidebarRegion'}
                 personProfileRegion : {$ref: 'appController.regions.mainAreaRegion'}
 
@@ -69,7 +52,6 @@ define
             spec: "application/modules/deals/spec"
             defer: true
             provide:
-                channel: {$ref: 'dealsChannel'}
                 listRegion          : {$ref: 'appController.regions.sidebarRegion'}
                 dealDetailsRegion   : {$ref: 'appController.regions.mainAreaRegion'}
 

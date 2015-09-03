@@ -1,12 +1,11 @@
 define [
     "underscore"
     "backbone"
-    "backbone.radio"
     "marionette"
     "when"
     "meld"
     "api"
-], (_, Backbone, Radio, Marionette, When, meld, api) ->
+], (_, Backbone, Marionette, When, meld, api) ->
 
     class AppController extends Marionette.Object
 

@@ -12,9 +12,6 @@ define({
       collection: {
         $ref: 'dealsCollection'
       },
-      channel: {
-        $ref: 'channel'
-      },
       entity: "deal"
     },
     ready: {
@@ -28,9 +25,6 @@ define({
     properties: {
       collection: {
         $ref: 'dealsCollection'
-      },
-      channel: {
-        $ref: 'channel'
       },
       list: {
         $ref: 'dealsList'

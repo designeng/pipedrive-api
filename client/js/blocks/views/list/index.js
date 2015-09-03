@@ -28,12 +28,7 @@ define(['backbone', 'api', './item'], function(Backbone, api, ItemView) {
       return this.collection.add(new Backbone.Model());
     };
 
-    ListView.prototype.onRender = function() {
-      var _this = this;
-      return this.channel.on("" + this.entities + ":list:activate", function(id) {
-        return _this.activateById(id);
-      });
-    };
+    ListView.prototype.onRender = function() {};
 
     ListView.prototype.activateCurrent = function(event) {
       var currentId, li;

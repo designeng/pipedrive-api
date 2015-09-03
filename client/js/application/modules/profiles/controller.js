@@ -1,7 +1,7 @@
 var __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-define(["underscore", "backbone", "backbone.radio", "marionette", "meld", "api"], function(_, Backbone, Radio, Marionette, meld, api) {
+define(["underscore", "backbone", "marionette", "meld", "api"], function(_, Backbone, Marionette, meld, api) {
   var ProfilesController, _ref;
   return ProfilesController = (function(_super) {
     __extends(ProfilesController, _super);
@@ -11,9 +11,7 @@ define(["underscore", "backbone", "backbone.radio", "marionette", "meld", "api"]
       return _ref;
     }
 
-    ProfilesController.prototype.activateById = function(id) {
-      return this.list.channel.trigger("profiles:list:activate", id);
-    };
+    ProfilesController.prototype.activateById = function(id) {};
 
     ProfilesController.prototype.showProfileDetailes = function(personId) {
       var model, personProfile;

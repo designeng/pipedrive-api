@@ -1,5 +1,5 @@
 define({
-  $plugins: ['wire/debug', 'plugins/radio/channel', 'plugins/marionette/router', 'plugins/marionette/module'],
+  $plugins: ['wire/debug', 'plugins/marionette/router', 'plugins/marionette/module'],
   appInstance: {
     createModule: {
       withRegions: {
@@ -47,29 +47,6 @@ define({
       $ref: 'appController.onRoute'
     }
   },
-  profilesChannel: {
-    createChannel: {
-      name: 'profiles'
-    },
-    channelEvents: {
-      'list:show': {
-        $ref: 'appController.showProfilesList'
-      },
-      'person:show': {
-        $ref: 'appController.showProfileDetailes'
-      }
-    }
-  },
-  dealsChannel: {
-    createChannel: {
-      name: 'deals'
-    },
-    channelEvents: {
-      'list:show': {
-        $ref: 'appController.showDealsList'
-      }
-    }
-  },
   navigation: {
     wire: {
       spec: "application/modules/navigation/spec"
@@ -80,9 +57,6 @@ define({
       spec: "application/modules/profiles/spec",
       defer: true,
       provide: {
-        channel: {
-          $ref: 'profilesChannel'
-        },
         listRegion: {
           $ref: 'appController.regions.sidebarRegion'
         },
@@ -97,9 +71,6 @@ define({
       spec: "application/modules/deals/spec",
       defer: true,
       provide: {
-        channel: {
-          $ref: 'dealsChannel'
-        },
         listRegion: {
           $ref: 'appController.regions.sidebarRegion'
         },

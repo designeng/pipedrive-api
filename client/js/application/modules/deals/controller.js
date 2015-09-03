@@ -15,9 +15,7 @@ define(["underscore", "backbone", "backbone.radio", "marionette", "meld", "api"]
       return console.debug("DEALS LIST:::::", this.list);
     };
 
-    DealsController.prototype.activateById = function(id) {
-      return this.list.channel.trigger("deals:list:activate", id);
-    };
+    DealsController.prototype.activateById = function(id) {};
 
     return DealsController;
 

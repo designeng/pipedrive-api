@@ -1,18 +1,14 @@
 define [
     "underscore"
     "backbone"
-    "backbone.radio"
     "marionette"
     "meld"
     "api"
-], (_, Backbone, Radio, Marionette, meld, api) ->
+], (_, Backbone, Marionette, meld, api) ->
 
     class ProfilesController extends Marionette.Object
 
         activateById: (id) ->
-            @list.channel.trigger "profiles:list:activate", id
-
-            # @list.trigger "list:activate", id
 
         showProfileDetailes: (personId) ->
             model = @collection.find (model) ->

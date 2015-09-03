@@ -33,22 +33,16 @@ body {
     background-color: #f3f5f6;
 }
 
-a{
+a {
   text-decoration: none;
   font-family: verdana;
 }
 
-.navigation{
+.navigation {
   position: fixed;
   width: 100%;
   height: 47px;
   background-color: #343434;
-}
-
-.user-profile-corner{
-    background-color: #343434;
-    height: 47px;
-    font-color: #fff;
 }
 
 nav .logo_container {
@@ -64,6 +58,13 @@ nav .logo_container h1.logo a {
   color: #ffffff;
   background: transparent url("https://assets.pipedrive.com/images/logo_header.png") 12px 13px no-repeat;
   background-size: 100px 22px;
+}
+
+.navigation-deals a{
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+  float: left;
 }
 
 .user-profile-corner{

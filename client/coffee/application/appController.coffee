@@ -11,6 +11,8 @@ define [
 
         removers: []
 
+        contextHash: {}
+
         initialize: ->
             _.bindAll @,
                 'onRoute', 
@@ -20,6 +22,21 @@ define [
             # profiles/deals list should be rendered anyway
             @removers.push meld.before @, 'showProfileDetailes', @showProfilesList
             @removers.push meld.before @, 'showDealsDetailes'  , @showDealsList
+            
+            @removers.push meld.around @, 'showEntityList', @aroundMethod
+            @removers.push meld.around @, 'showEntityDetailes', @aroundMethod
+
+        # wired context should be cached (we should not wire the module twice!)
+        aroundMethod: (joinpoint) ->
+            moduleName = joinpoint.args[0]
+            id = joinpoint.args[1]
+
+            if !@contextHash[moduleName]
+                When(@[moduleName]()).then (moduleContext) =>
+                    @contextHash[moduleName] = moduleContext
+                    joinpoint.proceed(moduleContext, id)
+            else
+                joinpoint.proceed(@contextHash[moduleName], id)
 
         onDestroy: ->
             _.each @removers, (remover) ->
@@ -27,9 +44,7 @@ define [
 
         # DEFAULT ROUTE HANDLER:
         onRoute: (name, path, opts) ->
-            moduleName = path.split("/")[0]
-            When(@[moduleName]()).then (moduleContext) ->
-                # moduleContext.activateById opts[0]
+            
 
         # ROUTES HANDLERS:
         # PROFILES:
@@ -50,13 +65,9 @@ define [
 
         # COMMON METHODS:
 
-        showEntityList: (moduleName) ->
-            When(@[moduleName]()).then (moduleContext) ->
-                moduleContext.showList()
+        showEntityList: (moduleContext) ->
+            moduleContext.showList()
 
-        showEntityDetailes: (moduleName, id) ->
-            console.debug "PROFILES", @profiles
-            
-            When(@[moduleName]()).then (moduleContext) ->
-                moduleContext.activateById id
-                moduleContext.showDetailes id
+        showEntityDetailes: (moduleContext, id) ->
+            moduleContext.activateById id
+            moduleContext.showDetailes id

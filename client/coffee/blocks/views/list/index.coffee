@@ -11,6 +11,8 @@ define [
 
         childView: ItemView
 
+        activeElements: []
+
         events: ->
             "click li": "activateCurrent"
 
@@ -23,8 +25,6 @@ define [
             @collection.add new Backbone.Model()
 
         onRender: ->
-            # @channel.on "#{@entities}:list:activate", (id) =>
-            #     @activateById(id)
 
         activateCurrent: (event) ->
             li = $(event.target).closest("li")
@@ -42,6 +42,7 @@ define [
 
         activateById: (id) ->
             @items = @$el.find("li")
+
             _.each @items, (item) =>
                 $item = $(item)
                 $item.removeClass "active"

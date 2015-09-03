@@ -13,4 +13,4 @@ define [
             console.debug "DEALS LIST:::::", @list
 
         activateById: (id) ->
-            
+            @list.activateById id

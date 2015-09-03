@@ -8,7 +8,11 @@ define [
 
     class ProfilesController extends Marionette.Object
 
+        showList: ->
+            @listRegion.show @list
+
         activateById: (id) ->
+            @list.activateById id
 
         showProfileDetailes: (personId) ->
             model = @collection.find (model) ->
@@ -17,7 +21,7 @@ define [
                 personProfile = new @PersonProfile({
                     model
                     PersonProfileDeals: @PersonProfileDeals
-                    personId: personId
+                    personId
                 })
 
                 @personProfileRegion.show personProfile

@@ -17,6 +17,8 @@ define(['backbone', 'api', './item'], function(Backbone, api, ItemView) {
 
     ListView.prototype.childView = ItemView;
 
+    ListView.prototype.activeElements = [];
+
     ListView.prototype.events = function() {
       return {
         "click li": "activateCurrent"

@@ -11,7 +11,13 @@ define(["underscore", "backbone", "marionette", "meld", "api"], function(_, Back
       return _ref;
     }
 
-    ProfilesController.prototype.activateById = function(id) {};
+    ProfilesController.prototype.showList = function() {
+      return this.listRegion.show(this.list);
+    };
+
+    ProfilesController.prototype.activateById = function(id) {
+      return this.list.activateById(id);
+    };
 
     ProfilesController.prototype.showProfileDetailes = function(personId) {
       var model, personProfile;

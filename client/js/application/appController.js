@@ -28,9 +28,7 @@ define(["underscore", "backbone", "marionette", "when", "meld", "api"], function
     AppController.prototype.onRoute = function(name, path, opts) {
       var moduleName;
       moduleName = path.split("/")[0];
-      return When(this[moduleName]()).then(function(moduleContext) {
-        return moduleContext.activateById(opts[0]);
-      });
+      return When(this[moduleName]()).then(function(moduleContext) {});
     };
 
     AppController.prototype.showProfilesList = function() {
@@ -57,6 +55,7 @@ define(["underscore", "backbone", "marionette", "when", "meld", "api"], function
 
     AppController.prototype.showEntityDetailes = function(moduleName, id) {
       return When(this[moduleName]()).then(function(moduleContext) {
+        moduleContext.activateById(id);
         return moduleContext.showDetailes(id);
       });
     };

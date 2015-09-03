@@ -1,5 +1,5 @@
 define({
-  $plugins: ['wire/debug', 'plugins/hbs'],
+  $plugins: ['plugins/hbs'],
   dealsCollection: {
     create: 'application/modules/deals/collections/deals',
     ready: {

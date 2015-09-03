@@ -30,13 +30,15 @@ define
             list                : {$ref: 'profilesList'}
             PersonProfile       : {$ref: 'personProfile'}
             PersonProfileDeals  : {$ref: 'personProfileDeals'}
+
+            listRegion          : {$ref: 'listRegion'}
             personProfileRegion : {$ref: 'personProfileRegion'}
 
     activateById: (id) ->
         @profilesController.activateById id
 
     showList: ->
-        @listRegion.show @profilesList
+        @profilesController.showList()
 
     showDetailes: (id) ->
         @profilesController.showProfileDetailes id

@@ -41,6 +41,9 @@ define({
       PersonProfileDeals: {
         $ref: 'personProfileDeals'
       },
+      listRegion: {
+        $ref: 'listRegion'
+      },
       personProfileRegion: {
         $ref: 'personProfileRegion'
       }
@@ -50,7 +53,7 @@ define({
     return this.profilesController.activateById(id);
   },
   showList: function() {
-    return this.listRegion.show(this.profilesList);
+    return this.profilesController.showList();
   },
   showDetailes: function(id) {
     return this.profilesController.showProfileDetailes(id);

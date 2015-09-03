@@ -29,7 +29,7 @@ define [
         onRoute: (name, path, opts) ->
             moduleName = path.split("/")[0]
             When(@[moduleName]()).then (moduleContext) ->
-                moduleContext.activateById opts[0]
+                # moduleContext.activateById opts[0]
 
         # ROUTES HANDLERS:
         # PROFILES:
@@ -56,4 +56,5 @@ define [
 
         showEntityDetailes: (moduleName, id) ->
             When(@[moduleName]()).then (moduleContext) ->
+                moduleContext.activateById id
                 moduleContext.showDetailes id

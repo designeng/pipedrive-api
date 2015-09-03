@@ -40,7 +40,8 @@ define({
         'profiles': 'showProfilesModule',
         'profiles/:id': 'showProfilesModule',
         'deals': 'showDealsModule',
-        'deals/:id': 'showDealsModule'
+        'deals/:id': 'showDealsModule',
+        '*notFound': 'notFound'
       }
     },
     onRoute: {

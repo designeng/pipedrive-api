@@ -31,6 +31,7 @@ define
                 'profiles/:id'  : 'showProfilesModule'
                 'deals'         : 'showDealsModule'
                 'deals/:id'     : 'showDealsModule'
+                '*notFound'     : 'notFound'
         onRoute: {$ref: 'appController.onRoute'}
 
     # APPLICATION MODULES

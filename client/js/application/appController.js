@@ -55,12 +55,7 @@ define(["underscore", "backbone", "marionette", "when", "meld", "api"], function
       }
     };
 
-    AppController.prototype.page404 = function(path) {
-      console.debug(_.indexOf(this.knownRoutes, path), this.knownRoutes, path);
-      if (_.indexOf(this.knownRoutes, path) === -1) {
-        return console.debug("UNKNOUN ROUTE!!!!!");
-      }
-    };
+    AppController.prototype.notFound = function() {};
 
     AppController.prototype.showProfilesModule = function(personId) {
       var _this = this;

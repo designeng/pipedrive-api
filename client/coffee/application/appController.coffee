@@ -47,11 +47,8 @@ define [
                 delete @contextHash[@currentRootFragment]
                 @currentRootFragment = rootFragment
 
-        page404: (path) ->
-            console.debug _.indexOf(@knownRoutes, path), @knownRoutes, path
-
-            if _.indexOf(@knownRoutes, path) == -1
-                console.debug "UNKNOUN ROUTE!!!!!"
+        notFound: ->
+            
 
         # ROUTES HANDLERS:
 

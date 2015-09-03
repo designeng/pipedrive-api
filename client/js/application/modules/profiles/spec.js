@@ -55,10 +55,10 @@ define({
   activateById: function(id) {
     return this.profilesController.activateById(id);
   },
-  showProfilesList: function() {
+  showList: function() {
     return this.listRegion.show(this.profilesList);
   },
-  showProfileDetailes: function(id) {
+  showDetailes: function(id) {
     return this.profilesController.showProfileDetailes(id);
   }
 });

@@ -18,7 +18,7 @@ define [
                 'showProfilesList', 
                 'showProfileDetailes'
 
-            # profiles list should be rendered in case of child route
+            # profiles/deals list should be rendered anyway
             @removers.push meld.before @, 'showProfileDetailes', @showProfilesList
             @removers.push meld.before @, 'showDealsDetailes'  , @showDealsList
 
@@ -28,27 +28,33 @@ define [
 
         # DEFAULT ROUTE HANDLER:
         onRoute: (name, path, opts) ->
-            console.debug "name, path, opts", name, path, opts
-            When(@profiles()).then (profilesContext) ->
-                profilesContext.activateById opts[0]
+            moduleName = path.split("/")[0]
+            When(@[moduleName]()).then (moduleContext) ->
+                moduleContext.activateById opts[0]
 
         # ROUTES HANDLERS:
         # PROFILES:
 
         showProfilesList: () ->
-            When(@profiles()).then (profilesContext) ->
-                profilesContext.showProfilesList()
+            @showEntityList "profiles"
 
         showProfileDetailes: (personId) ->
-            When(@profiles()).then (profilesContext) ->
-                profilesContext.showProfileDetailes personId
+            @showEntityDetailes "profiles", personId
 
         # DEALS:
 
         showDealsList: ->
-            When(@deals()).then (dealsContext) ->
-                dealsContext.showDealsList()
+            @showEntityList "deals"
 
         showDealsDetailes: (dealId) ->
-            When(@deals()).then (dealsContext) ->
-                dealsContext.showDealsDetailes dealId
+            @showEntityDetailes "deals", dealId
+
+        # COMMON METHODS:
+
+        showEntityList: (moduleName) ->
+            When(@[moduleName]()).then (moduleContext) ->
+                moduleContext.showList()
+
+        showEntityDetailes: (moduleName, id) ->
+            When(@[moduleName]()).then (moduleContext) ->
+                moduleContext.showDetailes id

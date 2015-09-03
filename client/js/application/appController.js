@@ -26,33 +26,38 @@ define(["underscore", "backbone", "backbone.radio", "marionette", "when", "meld"
     };
 
     AppController.prototype.onRoute = function(name, path, opts) {
-      console.debug("name, path, opts", name, path, opts);
-      return When(this.profiles()).then(function(profilesContext) {
-        return profilesContext.activateById(opts[0]);
+      var moduleName;
+      moduleName = path.split("/")[0];
+      return When(this[moduleName]()).then(function(moduleContext) {
+        return moduleContext.activateById(opts[0]);
       });
     };
 
     AppController.prototype.showProfilesList = function() {
-      return When(this.profiles()).then(function(profilesContext) {
-        return profilesContext.showProfilesList();
-      });
+      return this.showEntityList("profiles");
     };
 
     AppController.prototype.showProfileDetailes = function(personId) {
-      return When(this.profiles()).then(function(profilesContext) {
-        return profilesContext.showProfileDetailes(personId);
-      });
+      return this.showEntityDetailes("profiles", personId);
     };
 
     AppController.prototype.showDealsList = function() {
-      return When(this.deals()).then(function(dealsContext) {
-        return dealsContext.showDealsList();
-      });
+      return this.showEntityList("deals");
     };
 
     AppController.prototype.showDealsDetailes = function(dealId) {
-      return When(this.deals()).then(function(dealsContext) {
-        return dealsContext.showDealsDetailes(dealId);
+      return this.showEntityDetailes("deals", dealId);
+    };
+
+    AppController.prototype.showEntityList = function(moduleName) {
+      return When(this[moduleName]()).then(function(moduleContext) {
+        return moduleContext.showList();
+      });
+    };
+
+    AppController.prototype.showEntityDetailes = function(moduleName, id) {
+      return When(this[moduleName]()).then(function(moduleContext) {
+        return moduleContext.showDetailes(id);
       });
     };
 

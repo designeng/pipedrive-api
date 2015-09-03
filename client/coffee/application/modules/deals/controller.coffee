@@ -13,8 +13,8 @@ define [
             console.debug "DEALS LIST:::::", @list
 
         showList: ->
+            console.debug "SHOW LIST DEALS", @list, @list.cid
             @listRegion.show @list
-            console.debug "DealsController @list.cid", @list.isRendered, @list.cid
 
         activateById: (id) ->
             @list.activateById id

@@ -12,6 +12,7 @@ define(["underscore", "backbone", "marionette", "meld", "api"], function(_, Back
     }
 
     ProfilesController.prototype.showList = function() {
+      console.debug("SHOW LIST", this.list, this.list.cid);
       return this.listRegion.show(this.list);
     };
 

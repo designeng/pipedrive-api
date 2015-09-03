@@ -16,7 +16,7 @@ define(["underscore", "backbone", "marionette", "when", "meld", "api"], function
     AppController.prototype.contextHash = {};
 
     AppController.prototype.initialize = function() {
-      _.bindAll(this, 'onRoute', 'showProfilesModule');
+      _.bindAll(this, 'onRoute');
       this.removers.push(meld.around(this, 'showEntityList', this.aroundMethod));
       return this.removers.push(meld.around(this, 'showEntityDetailes', this.aroundMethod));
     };
@@ -27,7 +27,6 @@ define(["underscore", "backbone", "marionette", "when", "meld", "api"], function
       moduleName = joinpoint.args[0];
       id = joinpoint.args[1];
       if (!this.contextHash[moduleName]) {
-        console.debug("MODULE NAME", moduleName);
         return When(this[moduleName]()).then(function(moduleContext) {
           _this.contextHash[moduleName] = moduleContext;
           return joinpoint.proceed(moduleContext, id);

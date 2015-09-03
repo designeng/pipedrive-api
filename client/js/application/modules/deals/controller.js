@@ -16,8 +16,8 @@ define(["underscore", "backbone", "backbone.radio", "marionette", "meld", "api"]
     };
 
     DealsController.prototype.showList = function() {
-      this.listRegion.show(this.list);
-      return console.debug("DealsController @list.cid", this.list.isRendered, this.list.cid);
+      console.debug("SHOW LIST DEALS", this.list, this.list.cid);
+      return this.listRegion.show(this.list);
     };
 
     DealsController.prototype.activateById = function(id) {

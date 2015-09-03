@@ -9,6 +9,7 @@ define [
     class ProfilesController extends Marionette.Object
 
         showList: ->
+            console.debug "SHOW LIST", @list, @list.cid
             @listRegion.show @list
 
         activateById: (id) ->

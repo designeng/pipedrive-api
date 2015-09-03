@@ -14,9 +14,7 @@ define [
         contextHash: {}
 
         initialize: ->
-            _.bindAll @,
-                'onRoute', 
-                'showProfilesModule'
+            _.bindAll @, 'onRoute'
             
             @removers.push meld.around @, 'showEntityList', @aroundMethod
             @removers.push meld.around @, 'showEntityDetailes', @aroundMethod
@@ -27,8 +25,6 @@ define [
             id = joinpoint.args[1]
 
             if !@contextHash[moduleName]
-                console.debug "MODULE NAME", moduleName
-
                 When(@[moduleName]()).then (moduleContext) =>
                     @contextHash[moduleName] = moduleContext
                     joinpoint.proceed(moduleContext, id)

@@ -55,6 +55,8 @@ define [
                 moduleContext.showList()
 
         showEntityDetailes: (moduleName, id) ->
+            console.debug "PROFILES", @profiles
+            
             When(@[moduleName]()).then (moduleContext) ->
                 moduleContext.activateById id
                 moduleContext.showDetailes id

@@ -54,6 +54,7 @@ define(["underscore", "backbone", "marionette", "when", "meld", "api"], function
     };
 
     AppController.prototype.showEntityDetailes = function(moduleName, id) {
+      console.debug("PROFILES", this.profiles);
       return When(this[moduleName]()).then(function(moduleContext) {
         moduleContext.activateById(id);
         return moduleContext.showDetailes(id);

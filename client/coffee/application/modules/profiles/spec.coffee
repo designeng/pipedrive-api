@@ -5,7 +5,7 @@ define
     ]
 
     profilesCollection:
-        create: 'application/profiles/collections/profiles'
+        create: 'application/modules/profiles/collections/profiles'
         ready:
             fetch: {}
 

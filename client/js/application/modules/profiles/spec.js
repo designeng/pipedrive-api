@@ -1,7 +1,7 @@
 define({
   $plugins: ['wire/debug', 'plugins/hbs'],
   profilesCollection: {
-    create: 'application/profiles/collections/profiles',
+    create: 'application/modules/profiles/collections/profiles',
     ready: {
       fetch: {}
     }

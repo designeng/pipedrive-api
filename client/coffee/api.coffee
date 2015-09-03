@@ -37,3 +37,6 @@ define ->
 
         getOrganizationsUrl: ->
             return "#{prefix}organizations#{suffix}"
+
+        getDealsCollectionUrl: ->
+            return "#{prefix}deals#{suffix}"

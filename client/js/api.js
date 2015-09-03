@@ -31,6 +31,9 @@ define(function() {
     },
     getOrganizationsUrl: function() {
       return "" + prefix + "organizations" + suffix;
+    },
+    getDealsCollectionUrl: function() {
+      return "" + prefix + "deals" + suffix;
     }
   };
 });

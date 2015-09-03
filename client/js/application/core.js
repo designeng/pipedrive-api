@@ -28,6 +28,9 @@ define({
       },
       deals: {
         $ref: 'deals'
+      },
+      Preloader: {
+        $ref: 'preloader'
       }
     }
   },
@@ -73,10 +76,10 @@ define({
       defer: true,
       provide: {
         listRegion: {
-          $ref: 'appController.regions.sidebarRegion'
+          $ref: 'appController.regions.mainAreaRegion'
         },
         dealDetailsRegion: {
-          $ref: 'appController.regions.mainAreaRegion'
+          $ref: 'appController.regions.sidebarRegion'
         }
       }
     }

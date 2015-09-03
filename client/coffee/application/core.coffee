@@ -22,6 +22,7 @@ define
         properties:
             profiles            : {$ref: 'profiles'}
             deals               : {$ref: 'deals'}
+            Preloader           : {$ref: 'preloader'}
 
     router:
         createRouter:
@@ -53,8 +54,8 @@ define
             spec: "application/modules/deals/spec"
             defer: true
             provide:
-                listRegion          : {$ref: 'appController.regions.sidebarRegion'}
-                dealDetailsRegion   : {$ref: 'appController.regions.mainAreaRegion'}
+                listRegion          : {$ref: 'appController.regions.mainAreaRegion'}
+                dealDetailsRegion   : {$ref: 'appController.regions.sidebarRegion'}
 
     # /APPLICATION MODULES
 

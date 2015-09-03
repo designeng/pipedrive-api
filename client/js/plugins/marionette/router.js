@@ -16,7 +16,6 @@ define(['underscore', 'marionette'], function(_, Marionette) {
           controller: routerController,
           appRoutes: compDef.options.routes
         });
-        routerController.knownRoutes = _.keys(compDef.options.routes);
         return resolver.resolve(router);
       });
     };

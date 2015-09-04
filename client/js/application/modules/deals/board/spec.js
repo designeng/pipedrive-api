@@ -1,7 +1,10 @@
 define({
   $plugins: ['wire/debug', 'plugins/collection/transform'],
-  board: {
-    create: 'blocks/views/board/index'
+  boardHeader: {
+    create: 'blocks/views/board/header/index'
+  },
+  boardBody: {
+    create: 'blocks/views/board/body/index'
   },
   boardCollectionGroups: {
     transform: {

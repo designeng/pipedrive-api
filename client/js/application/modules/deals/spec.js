@@ -37,6 +37,16 @@ define({
       onReady: {}
     }
   },
+  dealsBoard: {
+    wire: {
+      spec: 'application/modules/deals/board/spec',
+      provide: {
+        collection: {
+          $ref: 'dealsCollection'
+        }
+      }
+    }
+  },
   activateById: function(id) {
     return this.dealsController.activateById(id);
   },

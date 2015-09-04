@@ -26,6 +26,12 @@ define
         ready:
             onReady: {}
 
+    dealsBoard:
+        wire:
+            spec: 'application/modules/deals/board/spec'
+            provide:
+                collection: {$ref: 'dealsCollection'}
+
     activateById: (id) ->
         @dealsController.activateById id
 

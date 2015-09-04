@@ -7,7 +7,7 @@ define
     ]
 
     appInstance:
-        createModule:
+        createApplication:
             withRegions:
                 navigationRegion    : ".navigation"
                 sidebarRegion       : ".sidebar"

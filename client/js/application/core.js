@@ -1,7 +1,7 @@
 define({
   $plugins: ['wire/debug', 'plugins/marionette/router', 'plugins/marionette/module', 'plugins/element'],
   appInstance: {
-    createModule: {
+    createApplication: {
       withRegions: {
         navigationRegion: ".navigation",
         sidebarRegion: ".sidebar",

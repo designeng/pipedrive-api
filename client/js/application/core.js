@@ -11,11 +11,6 @@ define({
         return Backbone.history.start();
       }
     },
-    showInRegions: {
-      'navigationRegion': {
-        $ref: 'navigation.layout'
-      }
-    },
     addController: {
       $ref: 'appController'
     }
@@ -56,7 +51,13 @@ define({
   },
   navigation: {
     wire: {
-      spec: "application/modules/navigation/spec"
+      spec: "application/modules/navigation/spec",
+      waitParent: true,
+      provide: {
+        navigationRegion: {
+          $ref: 'appController.regions.navigationRegion'
+        }
+      }
     }
   },
   profiles: {

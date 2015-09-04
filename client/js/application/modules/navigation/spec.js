@@ -9,6 +9,9 @@ define({
         userCornerRegion: ".user-corner"
       }
     },
+    renderIn: {
+      $ref: 'navigationRegion'
+    },
     showInRegions: {
       'userCornerRegion': {
         $ref: 'userCorner'

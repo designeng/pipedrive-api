@@ -7,4 +7,4 @@ define [
         onReady: ->
             # console.debug "GROUPS", @groups, @stagesCollection
 
-            @boardLayout.showChildView "boardHeaderRegion", @boardHeader
+            # @boardLayout.showChildView "boardHeaderRegion", @boardHeader

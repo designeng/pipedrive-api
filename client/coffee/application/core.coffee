@@ -14,8 +14,6 @@ define
                 mainAreaRegion      : ".main-area"
             onStart: ->
                 Backbone.history.start()
-        showInRegions:
-            'navigationRegion': {$ref: 'navigation.layout'}
         addController: {$ref: 'appController'}
 
     appController:
@@ -42,6 +40,9 @@ define
     navigation:
         wire:
             spec: "application/modules/navigation/spec"
+            waitParent: true
+            provide:
+                navigationRegion    : {$ref: 'appController.regions.navigationRegion'}
 
     profiles:
         wire:

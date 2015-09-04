@@ -10,9 +10,11 @@ define
         createLayout:
             fromTemplate: {$ref: 'hbs!templates/boardLayout'}
             withRegions:
-                boardHeaderRegion   : ".board-header"
-                boardBodyRegion     : ".board-body"
+                'boardHeaderRegion'   : ".board-header"
+                'boardBodyRegion'     : ".board-body"
         renderIn: {$ref: 'dealsBoardRegion'}
+        showInRegions:
+            'boardHeaderRegion'     : {$ref: 'boardHeader'}
 
     stagesCollection:
         create: 'application/modules/deals/board/collections/stages'

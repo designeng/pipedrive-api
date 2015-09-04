@@ -11,9 +11,7 @@ define(["underscore"], function(_) {
       return _ref;
     }
 
-    BoardController.prototype.onReady = function() {
-      return this.boardLayout.showChildView("boardHeaderRegion", this.boardHeader);
-    };
+    BoardController.prototype.onReady = function() {};
 
     return BoardController;
 

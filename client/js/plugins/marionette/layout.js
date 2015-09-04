@@ -20,9 +20,7 @@ define(['underscore', 'marionette'], function(_, Marionette) {
     showInRegionsFacet = function(resolver, facet, wire) {
       return wire(facet.options).then(function(options) {
         _.each(options, function(view, region) {
-          return facet.target.onBeforeShow = function() {
-            return facet.target.showChildView(region, view);
-          };
+          return facet.target.showChildView(region, view);
         });
         return resolver.resolve(facet.target);
       });

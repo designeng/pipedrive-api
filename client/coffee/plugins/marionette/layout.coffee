@@ -21,8 +21,7 @@ define [
         showInRegionsFacet = (resolver, facet, wire) ->
             wire(facet.options).then (options) ->
                 _.each options, (view, region) ->
-                    facet.target.onBeforeShow = ->
-                        facet.target.showChildView region, view
+                    facet.target.showChildView region, view
                 resolver.resolve facet.target
 
         pluginInstance = 

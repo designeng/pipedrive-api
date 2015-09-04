@@ -10,6 +10,7 @@ define
             fromTemplate: {$ref: 'hbs!templates/navigation'}
             withRegions:
                 userCornerRegion: ".user-corner"
+        renderIn: {$ref: 'navigationRegion'}
         showInRegions:
             'userCornerRegion': {$ref: 'userCorner'}
 

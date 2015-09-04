@@ -1,13 +1,13 @@
 define [
     'backbone'
     'marionette'
-    'hbs!templates/board'
-], (Backbone, Marionette, board) ->
+    'hbs!templates/boardBody'
+], (Backbone, Marionette, boardBody) ->
 
-    class BoardView extends Marionette.CompositeView
+    class BoardBodyView extends Marionette.CompositeView
 
         tagName: 'table'
-        template: board
+        template: boardBody
 
         initialize: ->
             console.debug "BoardView......"

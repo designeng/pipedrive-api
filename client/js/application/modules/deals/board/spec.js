@@ -1,5 +1,5 @@
 define({
-  $plugins: ['wire/debug', 'plugins/collection/transform'],
+  $plugins: ['wire/debug', 'plugins/backbone/collection/underscore/apply'],
   boardHeader: {
     create: 'blocks/views/board/header/index'
   },
@@ -7,11 +7,15 @@ define({
     create: 'blocks/views/board/body/index'
   },
   boardCollectionGroups: {
-    transform: {
+    applyTo: {
       collection: {
         $ref: 'collection'
       },
-      groupBy: "stage_id"
+      methods: [
+        {
+          "groupBy": ["stage_id"]
+        }
+      ]
     }
   },
   stagesCollection: {

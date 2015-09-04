@@ -1,25 +1,25 @@
 var __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-define(['backbone', 'marionette', 'hbs!templates/board'], function(Backbone, Marionette, board) {
-  var BoardView, _ref;
-  return BoardView = (function(_super) {
-    __extends(BoardView, _super);
+define(['backbone', 'marionette', 'hbs!templates/boardBody'], function(Backbone, Marionette, boardBody) {
+  var BoardBodyView, _ref;
+  return BoardBodyView = (function(_super) {
+    __extends(BoardBodyView, _super);
 
-    function BoardView() {
-      _ref = BoardView.__super__.constructor.apply(this, arguments);
+    function BoardBodyView() {
+      _ref = BoardBodyView.__super__.constructor.apply(this, arguments);
       return _ref;
     }
 
-    BoardView.prototype.tagName = 'table';
+    BoardBodyView.prototype.tagName = 'table';
 
-    BoardView.prototype.template = board;
+    BoardBodyView.prototype.template = boardBody;
 
-    BoardView.prototype.initialize = function() {
+    BoardBodyView.prototype.initialize = function() {
       return console.debug("BoardView......");
     };
 
-    return BoardView;
+    return BoardBodyView;
 
   })(Marionette.CompositeView);
 });

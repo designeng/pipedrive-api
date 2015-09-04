@@ -3,22 +3,28 @@ define [
     'backbone'
 ], (_, Backbone) ->
 
+    # TODO: tests
     return (options) ->
 
         # Backbone built-in feature: every underscore collection method can be called on Backbone.Collection
-        applyMethods = (_collection, methods) ->
-            _.reduce methods, (collection, method) ->
+        applyMethods = (collection, methods) ->
+            _.reduce methods, (result, method) ->
                 if _.isObject method
                     methodName = _.keys(method)[0]
                     methodArgs = method[methodName]
                 else if _.isString method
                     methodName = method
 
-                if !collection[methodName]
-                    throw new Error "There is no method '#{methodName}' in underscore library!"
-
-                return collection[methodName](methodArgs)
-            , _collection
+                if result instanceof Backbone.Collection 
+                    if !result[methodName]
+                        throw new Error "There is no method '#{methodName}' in Backbone.Collection!"
+                    else
+                        return result[methodName](methodArgs)
+                else if _[methodName]
+                    return _[methodName](result, methodArgs)
+                else
+                    throw new Error "There is no method '#{methodName}' in Underscore!"
+            , collection
 
         applyToFactory = (resolver, compDef, wire) ->
             wire(compDef.options).then (options) ->

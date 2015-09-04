@@ -1,8 +1,8 @@
 define(['underscore', 'backbone'], function(_, Backbone) {
   return function(options) {
     var applyMethods, applyToFactory, pluginInstance;
-    applyMethods = function(_collection, methods) {
-      return _.reduce(methods, function(collection, method) {
+    applyMethods = function(collection, methods) {
+      return _.reduce(methods, function(result, method) {
         var methodArgs, methodName;
         if (_.isObject(method)) {
           methodName = _.keys(method)[0];
@@ -10,11 +10,18 @@ define(['underscore', 'backbone'], function(_, Backbone) {
         } else if (_.isString(method)) {
           methodName = method;
         }
-        if (!collection[methodName]) {
-          throw new Error("There is no method '" + methodName + "' in underscore library!");
+        if (result instanceof Backbone.Collection) {
+          if (!result[methodName]) {
+            throw new Error("There is no method '" + methodName + "' in Backbone.Collection!");
+          } else {
+            return result[methodName](methodArgs);
+          }
+        } else if (_[methodName]) {
+          return _[methodName](result, methodArgs);
+        } else {
+          throw new Error("There is no method '" + methodName + "' in Underscore!");
         }
-        return collection[methodName](methodArgs);
-      }, _collection);
+      }, collection);
     };
     applyToFactory = function(resolver, compDef, wire) {
       return wire(compDef.options).then(function(options) {

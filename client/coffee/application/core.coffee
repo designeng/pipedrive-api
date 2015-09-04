@@ -24,7 +24,7 @@ define
             profiles            : {$ref: 'profiles'}
             deals               : {$ref: 'deals'}
             Preloader           : {$ref: 'preloader'}
-            notFoundPage       : {$ref: 'notFoundPage'}
+            notFoundPage        : {$ref: 'notFoundPage'}
 
     router:
         createRouter:

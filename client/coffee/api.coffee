@@ -40,3 +40,6 @@ define ->
 
         getDealsCollectionUrl: ->
             return "#{prefix}deals#{suffix}"
+
+        getStagesCollectionUrl: ->
+            return "#{prefix}stages#{suffix}"

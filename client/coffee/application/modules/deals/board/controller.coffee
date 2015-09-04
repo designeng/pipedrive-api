@@ -5,4 +5,4 @@ define [
     class BoardController extends Marionette.Object
 
         onReady: ->
-            console.debug "GROUPS", @groups
+            console.debug "GROUPS", @groups, @stagesCollection

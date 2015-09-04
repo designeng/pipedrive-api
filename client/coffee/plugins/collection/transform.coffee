@@ -4,6 +4,7 @@ define [
 
     return (options) ->
 
+        # here's only groupBy realized, but we can realize every underscore collection method
         transformFactory = (resolver, compDef, wire) ->
             wire(compDef.options).then (options) ->
                 options.collection.on 'sync', (collection) =>

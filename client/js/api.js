@@ -34,6 +34,9 @@ define(function() {
     },
     getDealsCollectionUrl: function() {
       return "" + prefix + "deals" + suffix;
+    },
+    getStagesCollectionUrl: function() {
+      return "" + prefix + "stages" + suffix;
     }
   };
 });

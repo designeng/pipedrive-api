@@ -1,7 +1,4 @@
-define [
-    'underscore'
-    'backbone.radio'
-], (_, Radio) ->
+define ->
 
     return (options) ->
 

@@ -1,4 +1,4 @@
-define(['underscore', 'backbone.radio'], function(_, Radio) {
+define(function() {
   return function(options) {
     var onSyncFacet, pluginInstance;
     onSyncFacet = function(resolver, facet, wire) {

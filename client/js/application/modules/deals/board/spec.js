@@ -6,7 +6,7 @@ define({
   boardBody: {
     create: 'blocks/views/board/body/index'
   },
-  boardCollectionGroups: {
+  boardGroups: {
     applyTo: {
       collection: {
         $ref: 'collection'
@@ -28,7 +28,7 @@ define({
     create: 'application/modules/deals/board/controller',
     properties: {
       groups: {
-        $ref: 'boardCollectionGroups'
+        $ref: 'boardGroups'
       },
       stagesCollection: {
         $ref: 'stagesCollection'

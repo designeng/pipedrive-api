@@ -10,7 +10,7 @@ define
     boardBody:
         create: 'blocks/views/board/body/index'
 
-    boardCollectionGroups:
+    boardGroups:
         applyTo:
             collection: {$ref: 'collection'}
             methods: [
@@ -25,7 +25,7 @@ define
     boardController:
         create: 'application/modules/deals/board/controller'
         properties:
-            groups: {$ref: 'boardCollectionGroups'}
+            groups: {$ref: 'boardGroups'}
             stagesCollection: {$ref: 'stagesCollection'}
         ready:
             onReady: {}

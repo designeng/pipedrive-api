@@ -8,6 +8,7 @@ define [
 
         # Backbone built-in feature: every underscore collection method can be called on Backbone.Collection
         applyMethods = (collection, methods) ->
+            errorPrefix = "There is no method"
             _.reduce methods, (result, method) ->
                 if _.isObject method
                     methodName = _.keys(method)[0]
@@ -17,13 +18,13 @@ define [
 
                 if result instanceof Backbone.Collection 
                     if !result[methodName]
-                        throw new Error "There is no method '#{methodName}' in Backbone.Collection!"
+                        throw new Error "#{errorPrefix} '#{methodName}' in Backbone.Collection!"
                     else
                         return result[methodName](methodArgs)
                 else if _[methodName]
                     return _[methodName](result, methodArgs)
                 else
-                    throw new Error "There is no method '#{methodName}' in Underscore!"
+                    throw new Error "#{errorPrefix} '#{methodName}' in Underscore!"
             , collection
 
         applyToFactory = (resolver, compDef, wire) ->

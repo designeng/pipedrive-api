@@ -2,6 +2,8 @@ define(['underscore', 'backbone'], function(_, Backbone) {
   return function(options) {
     var applyMethods, applyToFactory, pluginInstance;
     applyMethods = function(collection, methods) {
+      var errorPrefix;
+      errorPrefix = "There is no method";
       return _.reduce(methods, function(result, method) {
         var methodArgs, methodName;
         if (_.isObject(method)) {
@@ -12,14 +14,14 @@ define(['underscore', 'backbone'], function(_, Backbone) {
         }
         if (result instanceof Backbone.Collection) {
           if (!result[methodName]) {
-            throw new Error("There is no method '" + methodName + "' in Backbone.Collection!");
+            throw new Error("" + errorPrefix + " '" + methodName + "' in Backbone.Collection!");
           } else {
             return result[methodName](methodArgs);
           }
         } else if (_[methodName]) {
           return _[methodName](result, methodArgs);
         } else {
-          throw new Error("There is no method '" + methodName + "' in Underscore!");
+          throw new Error("" + errorPrefix + " '" + methodName + "' in Underscore!");
         }
       }, collection);
     };

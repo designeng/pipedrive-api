@@ -64,8 +64,6 @@ define [
         # DEALS:
 
         showDealsModule: (dealId) ->
-            # @regions.mainAreaRegion.show new @Preloader
-
             When(@showEntityList "deals").then () =>
                 @showEntityDetailes "deals", dealId
 

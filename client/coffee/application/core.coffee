@@ -42,23 +42,23 @@ define
             spec: "application/modules/navigation/spec"
             waitParent: true
             provide:
-                navigationRegion    : {$ref: 'appController.regions.navigationRegion'}
+                navigationRegion    : {$ref: 'appInstance.regions.navigationRegion'}
 
     profiles:
         wire:
             spec: "application/modules/profiles/spec"
             defer: true
             provide:
-                listRegion          : {$ref: 'appController.regions.sidebarRegion'}
-                personProfileRegion : {$ref: 'appController.regions.mainAreaRegion'}
+                listRegion          : {$ref: 'appInstance.regions.sidebarRegion'}
+                personProfileRegion : {$ref: 'appInstance.regions.mainAreaRegion'}
 
     deals:
         wire:
             spec: "application/modules/deals/spec"
             defer: true
             provide:
-                listRegion          : {$ref: 'appController.regions.mainAreaRegion'}
-                dealDetailsRegion   : {$ref: 'appController.regions.sidebarRegion'}
+                listRegion          : {$ref: 'appInstance.regions.mainAreaRegion'}
+                dealDetailsRegion   : {$ref: 'appInstance.regions.sidebarRegion'}
 
     # /APPLICATION MODULES
 

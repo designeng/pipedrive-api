@@ -55,7 +55,7 @@ define({
       waitParent: true,
       provide: {
         navigationRegion: {
-          $ref: 'appController.regions.navigationRegion'
+          $ref: 'appInstance.regions.navigationRegion'
         }
       }
     }
@@ -66,10 +66,10 @@ define({
       defer: true,
       provide: {
         listRegion: {
-          $ref: 'appController.regions.sidebarRegion'
+          $ref: 'appInstance.regions.sidebarRegion'
         },
         personProfileRegion: {
-          $ref: 'appController.regions.mainAreaRegion'
+          $ref: 'appInstance.regions.mainAreaRegion'
         }
       }
     }
@@ -80,10 +80,10 @@ define({
       defer: true,
       provide: {
         listRegion: {
-          $ref: 'appController.regions.mainAreaRegion'
+          $ref: 'appInstance.regions.mainAreaRegion'
         },
         dealDetailsRegion: {
-          $ref: 'appController.regions.sidebarRegion'
+          $ref: 'appInstance.regions.sidebarRegion'
         }
       }
     }

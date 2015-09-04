@@ -26,7 +26,8 @@ define [
 
         addControllerFacet = (resolver, facet, wire) ->
             wire(facet.options).then (controller) ->
-                controller.regions = facet.target.getRegions()
+                # for short regions reference
+                controller.regions = facet.target.regions = facet.target.getRegions()
                 facet.target.controller = controller
                 resolver.resolve facet.target
 

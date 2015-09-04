@@ -22,7 +22,7 @@ define(['underscore', 'marionette'], function(_, Marionette) {
     };
     addControllerFacet = function(resolver, facet, wire) {
       return wire(facet.options).then(function(controller) {
-        controller.regions = facet.target.getRegions();
+        controller.regions = facet.target.regions = facet.target.getRegions();
         facet.target.controller = controller;
         return resolver.resolve(facet.target);
       });

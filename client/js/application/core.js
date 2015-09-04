@@ -11,7 +11,7 @@ define({
         return Backbone.history.start();
       }
     },
-    showInRegion: {
+    showInRegions: {
       'navigationRegion': {
         $ref: 'navigation.layout'
       }

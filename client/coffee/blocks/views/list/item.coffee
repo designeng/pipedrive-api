@@ -2,7 +2,7 @@ define [
     'marionette'
 ], (Marionette) ->
 
-    class ListItemTemplateView extends Marionette.ItemView
+    class ListItemView extends Marionette.ItemView
         tagName: "li"
         className: "list-item"
 

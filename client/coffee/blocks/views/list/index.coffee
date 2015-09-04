@@ -1,10 +1,11 @@
 define [
     'backbone'
     'api'
+    'blocks/views/base/collectionView'
     './item'
-], (Backbone, api, ItemView) ->
+], (Backbone, api, CollectionView, ItemView) ->
 
-    class ListView extends Marionette.CollectionView
+    class ListView extends CollectionView
 
         tagName: 'ul'
         className: 'listView'
@@ -48,9 +49,3 @@ define [
                 $item.removeClass "active"
                 if parseInt($item.find(".#{@entity}-name").attr("data-id")) == parseInt(id)
                     $item.addClass "active"
-
-        setChildTemplate: (tpl) ->
-            @childTemplate = tpl
-
-        childViewOptions: (model, index) ->
-            template: @childTemplate

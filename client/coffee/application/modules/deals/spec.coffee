@@ -14,8 +14,7 @@ define
         properties:
             collection          : {$ref: 'dealsCollection'}
             entity              : "deal"
-        ready:
-            setChildTemplate: {$ref: 'hbs!templates/dealsListItem' }
+            childTemplate       : {$ref: 'hbs!templates/dealsListItem' }
 
     dealsController:
         create: 'application/modules/deals/controller'
@@ -30,12 +29,13 @@ define
         wire:
             spec: 'application/modules/deals/board/spec'
             provide:
-                collection: {$ref: 'dealsCollection'}
+                collection          : {$ref: 'dealsCollection'}
+                dealsBoardRegion    : {$ref: 'listRegion'}
 
     activateById: (id) ->
         @dealsController.activateById id
 
     showList: ->
-        @dealsController.showList()
+        # @dealsController.showList()
 
     showDetailes: (id) ->

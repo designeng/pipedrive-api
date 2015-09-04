@@ -18,7 +18,7 @@ define [
                 app.addRegions options.withRegions
                 resolver.resolve app
 
-        showInRegionFacet = (resolver, facet, wire) ->
+        showInRegionsFacet = (resolver, facet, wire) ->
             wire(facet.options).then (options) ->
                 _.each options, (view, region) ->
                     facet.target[region].show view
@@ -36,8 +36,8 @@ define [
                 # alias:
                 createApplication: createModuleFactory
             facets:
-                showInRegion:
-                    "ready"     : showInRegionFacet
+                showInRegions:
+                    "ready"     : showInRegionsFacet
                 addController:
                     "ready"     : addControllerFacet
 

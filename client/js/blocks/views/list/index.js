@@ -1,7 +1,7 @@
 var __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-define(['backbone', 'api', './item'], function(Backbone, api, ItemView) {
+define(['backbone', 'api', 'blocks/views/base/collectionView', './item'], function(Backbone, api, CollectionView, ItemView) {
   var ListView, _ref;
   return ListView = (function(_super) {
     __extends(ListView, _super);
@@ -57,17 +57,7 @@ define(['backbone', 'api', './item'], function(Backbone, api, ItemView) {
       });
     };
 
-    ListView.prototype.setChildTemplate = function(tpl) {
-      return this.childTemplate = tpl;
-    };
-
-    ListView.prototype.childViewOptions = function(model, index) {
-      return {
-        template: this.childTemplate
-      };
-    };
-
     return ListView;
 
-  })(Marionette.CollectionView);
+  })(CollectionView);
 });

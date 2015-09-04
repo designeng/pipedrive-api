@@ -14,8 +14,7 @@ define
         properties:
             collection          : {$ref: 'profilesCollection'}
             entity              : "profile"
-        ready:
-            setChildTemplate: {$ref: 'hbs!templates/profilesListItem' }
+            childTemplate       : {$ref: 'hbs!templates/profilesListItem' }
 
     personProfile:
         module: 'blocks/views/profile/index'

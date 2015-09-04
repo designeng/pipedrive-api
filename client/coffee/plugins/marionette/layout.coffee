@@ -12,7 +12,13 @@ define [
                 layout.addRegions options.withRegions
                 resolver.resolve layout
 
-        showInRegionFacet = (resolver, facet, wire) ->
+        # region, where the layout should be rendered
+        renderInFacet = (resolver, facet, wire) ->
+            wire(facet.options).then (region) ->
+                resolver.resolve region.show(facet.target)
+
+        # what views the layout should show in its own regions
+        showInRegionsFacet = (resolver, facet, wire) ->
             wire(facet.options).then (options) ->
                 _.each options, (view, region) ->
                     facet.target.onBeforeShow = ->
@@ -23,7 +29,9 @@ define [
             factories: 
                 createLayout: createLayoutFactory
             facets:
-                showInRegion:
-                    "ready"     : showInRegionFacet
+                showInRegions:
+                    "ready"     : showInRegionsFacet
+                renderIn:
+                    "ready"     : renderInFacet
 
         return pluginInstance

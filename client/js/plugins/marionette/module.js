@@ -1,6 +1,6 @@
 define(['underscore', 'marionette'], function(_, Marionette) {
   return function(options) {
-    var addControllerFacet, createModuleFactory, pluginInstance, showInRegionFacet;
+    var addControllerFacet, createModuleFactory, pluginInstance, showInRegionsFacet;
     createModuleFactory = function(resolver, compDef, wire) {
       var app;
       app = new Marionette.Application();
@@ -12,7 +12,7 @@ define(['underscore', 'marionette'], function(_, Marionette) {
         return resolver.resolve(app);
       });
     };
-    showInRegionFacet = function(resolver, facet, wire) {
+    showInRegionsFacet = function(resolver, facet, wire) {
       return wire(facet.options).then(function(options) {
         _.each(options, function(view, region) {
           return facet.target[region].show(view);
@@ -33,8 +33,8 @@ define(['underscore', 'marionette'], function(_, Marionette) {
         createApplication: createModuleFactory
       },
       facets: {
-        showInRegion: {
-          "ready": showInRegionFacet
+        showInRegions: {
+          "ready": showInRegionsFacet
         },
         addController: {
           "ready": addControllerFacet

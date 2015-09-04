@@ -12,7 +12,7 @@ define(["underscore"], function(_) {
     }
 
     BoardController.prototype.onReady = function() {
-      return console.debug("GROUPS", this.groups, this.stagesCollection);
+      return this.boardLayout.showChildView("boardHeaderRegion", this.boardHeader);
     };
 
     return BoardController;

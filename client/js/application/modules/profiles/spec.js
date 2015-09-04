@@ -12,10 +12,8 @@ define({
       collection: {
         $ref: 'profilesCollection'
       },
-      entity: "profile"
-    },
-    ready: {
-      setChildTemplate: {
+      entity: "profile",
+      childTemplate: {
         $ref: 'hbs!templates/profilesListItem'
       }
     }

@@ -1,10 +1,11 @@
 define [
     'backbone'
     'marionette'
+    'blocks/views/base/collectionView'
     'hbs!templates/boardBody'
-], (Backbone, Marionette, boardBody) ->
+], (Backbone, Marionette, CollectionView, boardBody) ->
 
-    class BoardBodyView extends Marionette.CompositeView
+    class BoardBodyView extends CollectionView
 
         tagName: 'table'
         template: boardBody

@@ -12,10 +12,8 @@ define({
       collection: {
         $ref: 'dealsCollection'
       },
-      entity: "deal"
-    },
-    ready: {
-      setChildTemplate: {
+      entity: "deal",
+      childTemplate: {
         $ref: 'hbs!templates/dealsListItem'
       }
     }
@@ -43,6 +41,9 @@ define({
       provide: {
         collection: {
           $ref: 'dealsCollection'
+        },
+        dealsBoardRegion: {
+          $ref: 'listRegion'
         }
       }
     }
@@ -50,8 +51,6 @@ define({
   activateById: function(id) {
     return this.dealsController.activateById(id);
   },
-  showList: function() {
-    return this.dealsController.showList();
-  },
+  showList: function() {},
   showDetailes: function(id) {}
 });

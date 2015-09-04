@@ -9,7 +9,7 @@ define({
         userCornerRegion: ".user-corner"
       }
     },
-    showInRegion: {
+    showInRegions: {
       'userCornerRegion': {
         $ref: 'userCorner'
       }

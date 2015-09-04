@@ -10,7 +10,7 @@ define
             fromTemplate: {$ref: 'hbs!templates/navigation'}
             withRegions:
                 userCornerRegion: ".user-corner"
-        showInRegion:
+        showInRegions:
             'userCornerRegion': {$ref: 'userCorner'}
 
     userCorner:

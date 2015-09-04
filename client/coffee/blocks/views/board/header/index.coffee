@@ -1,12 +1,20 @@
 define [
     'backbone'
     'marionette'
+    'blocks/views/base/collectionView'
     'hbs!templates/boardHeader'
-], (Backbone, Marionette, boardHeader) ->
+    './item'
+], (Backbone, Marionette, CollectionView, boardHeader, ItemView) ->
 
-    class BoardHeaderView extends Marionette.CollectionView
+    class BoardHeaderView extends CollectionView
         
+        tagName: "ul"
         template: boardHeader
+
+        childView: ItemView
 
         initialize: ->
             console.debug "BoardHeaderView......"
+
+        childViewOptions: (model, index) ->
+            template: @childTemplate

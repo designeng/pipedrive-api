@@ -25,8 +25,6 @@ define [
             # TODO: find the way to do it with clear css
             @collection.add new Backbone.Model()
 
-        onRender: ->
-
         activateCurrent: (event) ->
             li = $(event.target).closest("li")
             currentId = li.find(".#{@entity}-name").attr("data-id")

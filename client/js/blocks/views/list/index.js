@@ -30,8 +30,6 @@ define(['backbone', 'api', 'blocks/views/base/collectionView', './item'], functi
       return this.collection.add(new Backbone.Model());
     };
 
-    ListView.prototype.onRender = function() {};
-
     ListView.prototype.activateCurrent = function(event) {
       var currentId, li;
       li = $(event.target).closest("li");

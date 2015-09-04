@@ -15,6 +15,3 @@ define [
 
         initialize: ->
             console.debug "BoardHeaderView......"
-
-        childViewOptions: (model, index) ->
-            template: @childTemplate

@@ -21,12 +21,6 @@ define(['backbone', 'marionette', 'blocks/views/base/collectionView', 'hbs!templ
       return console.debug("BoardHeaderView......");
     };
 
-    BoardHeaderView.prototype.childViewOptions = function(model, index) {
-      return {
-        template: this.childTemplate
-      };
-    };
-
     return BoardHeaderView;
 
   })(CollectionView);

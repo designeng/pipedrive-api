@@ -22,8 +22,6 @@ define
             collection          : {$ref: 'dealsCollection'}
             list                : {$ref: 'dealsList'}
             listRegion          : {$ref: 'listRegion'}
-        ready:
-            onReady: {}
 
     dealsBoard:
         wire:

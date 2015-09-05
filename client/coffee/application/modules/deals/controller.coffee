@@ -9,9 +9,6 @@ define [
 
     class DealsController extends Marionette.Object
 
-        onReady: ->
-            console.debug "DEALS LIST:::::", @list
-
         showList: ->
             @listRegion.show @list
 

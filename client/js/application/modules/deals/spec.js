@@ -30,9 +30,6 @@ define({
       listRegion: {
         $ref: 'listRegion'
       }
-    },
-    ready: {
-      onReady: {}
     }
   },
   dealsBoard: {

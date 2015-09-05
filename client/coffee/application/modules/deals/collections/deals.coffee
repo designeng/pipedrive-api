@@ -10,8 +10,6 @@ define [
         model: DealsModel
 
         parse: (resp) ->
-            console.debug "DEALS RESP", resp
-            
             resp.data = _.map resp.data, (item) ->
                 organization = _.find resp.related_objects.organization, {id: item.id}
                 item.organization = organization if organization

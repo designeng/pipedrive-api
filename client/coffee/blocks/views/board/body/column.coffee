@@ -1,14 +1,14 @@
 define [
     'marionette'
-    'blocks/views/board/header/item'
+    'blocks/views/board/body/item'
     'hbs!templates/boardBodyCell'
-], (Marionette, ItemView, cell) ->
+], (Marionette, ColumnItemView, cell) ->
 
     class ColumnView extends Marionette.CollectionView
         tagName: "ul"
         className: "column-item"
 
-        childView: ItemView
+        childView: ColumnItemView
 
         childViewOptions: (model, index) ->
             template: cell

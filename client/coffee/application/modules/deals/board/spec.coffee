@@ -39,27 +39,17 @@ define
     boardBody:
         create: 'blocks/views/board/body/index'
         properties:
-            childView       : {$ref: 'stageColumn'}
+            childView       : {$ref: 'boardBodyColumn'}
             boardGroups     : {$ref: 'boardGroups'}
             collection      : {$ref: 'stagesCollection'}
             childViewOptions: (model, index) ->
                 collection: _.find(@boardGroups, {id: "" + model.get("id")})?.collection
 
-    stageColumn:
+    boardBodyColumn:
         module: 'blocks/views/board/body/column'
 
-    stageColumnList:
-        module: 'blocks/views/list/index'
-
-    boardController:
-        create: 'application/modules/deals/board/controller'
-        properties:
-            boardBody           : {$ref: 'boardBody'}
-            StageColumnList     : {$ref: 'stageColumnList'}
-            groups              : {$ref: 'boardGroups'}
-            stagesCollection    : {$ref: 'stagesCollection'}
-        ready:
-            onReady: {}
+    # boardBodyColumnList:
+    #     module: 'blocks/views/list/index'
 
     # @returns Object {id: ... , collection: Backbone.Collection}
     mapper:

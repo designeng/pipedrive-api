@@ -59,7 +59,7 @@ define({
     create: 'blocks/views/board/body/index',
     properties: {
       childView: {
-        $ref: 'stageColumn'
+        $ref: 'boardBodyColumn'
       },
       boardGroups: {
         $ref: 'boardGroups'
@@ -77,31 +77,8 @@ define({
       }
     }
   },
-  stageColumn: {
+  boardBodyColumn: {
     module: 'blocks/views/board/body/column'
-  },
-  stageColumnList: {
-    module: 'blocks/views/list/index'
-  },
-  boardController: {
-    create: 'application/modules/deals/board/controller',
-    properties: {
-      boardBody: {
-        $ref: 'boardBody'
-      },
-      StageColumnList: {
-        $ref: 'stageColumnList'
-      },
-      groups: {
-        $ref: 'boardGroups'
-      },
-      stagesCollection: {
-        $ref: 'stagesCollection'
-      }
-    },
-    ready: {
-      onReady: {}
-    }
   },
   mapper: {
     module: 'utils/groups/mapper'

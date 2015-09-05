@@ -27,7 +27,6 @@ define(["backbone", "api"], function(Backbone, api) {
     DealsCollection.prototype.model = DealsModel;
 
     DealsCollection.prototype.parse = function(resp) {
-      console.debug("DEALS RESP", resp);
       resp.data = _.map(resp.data, function(item) {
         var organization;
         organization = _.find(resp.related_objects.organization, {

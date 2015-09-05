@@ -45,6 +45,7 @@ define [
         # remove cached context if root fragment is changed
         rootFragmentMutation: (rootFragment) ->
             if @currentRootFragment != rootFragment
+                @contextHash[@currentRootFragment]?.destroy()
                 delete @contextHash[@currentRootFragment]
                 @currentRootFragment = rootFragment
 

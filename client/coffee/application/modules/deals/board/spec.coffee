@@ -55,6 +55,6 @@ define
         ready:
             onReady: {}
 
-    # returns object {id: ... , collection: Backbone.Collection}
+    # @returns Object {id: ... , collection: Backbone.Collection}
     mapper:
         module: 'utils/groups/mapper'

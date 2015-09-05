@@ -52,7 +52,11 @@ define(["underscore", "backbone", "marionette", "when", "meld", "api"], function
     };
 
     AppController.prototype.rootFragmentMutation = function(rootFragment) {
+      var _ref1;
       if (this.currentRootFragment !== rootFragment) {
+        if ((_ref1 = this.contextHash[this.currentRootFragment]) != null) {
+          _ref1.destroy();
+        }
         delete this.contextHash[this.currentRootFragment];
         return this.currentRootFragment = rootFragment;
       }

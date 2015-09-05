@@ -15,6 +15,8 @@ define(['backbone', 'api', 'blocks/views/base/collectionView', './item'], functi
 
     ListView.prototype.className = 'listView';
 
+    ListView.prototype.activeCellClass = 'active';
+
     ListView.prototype.childView = ItemView;
 
     ListView.prototype.activeElements = [];
@@ -31,14 +33,15 @@ define(['backbone', 'api', 'blocks/views/base/collectionView', './item'], functi
     };
 
     ListView.prototype.activateCurrent = function(event) {
-      var currentId, li;
+      var currentId, li,
+        _this = this;
       li = $(event.target).closest("li");
       currentId = li.find("." + this.entity + "-name").attr("data-id");
       this.items = this.$el.find("li");
       _.each(this.items, function(item) {
-        return $(item).removeClass("active");
+        return $(item).removeClass(_this.activeCellClass);
       });
-      li.addClass("active");
+      li.addClass(this.activeCellClass);
       return window.location.href = "#/" + this.entities + "/" + currentId;
     };
 
@@ -48,9 +51,9 @@ define(['backbone', 'api', 'blocks/views/base/collectionView', './item'], functi
       return _.each(this.items, function(item) {
         var $item;
         $item = $(item);
-        $item.removeClass("active");
+        $item.removeClass(_this.activeCellClass);
         if (parseInt($item.find("." + _this.entity + "-name").attr("data-id")) === parseInt(id)) {
-          return $item.addClass("active");
+          return $item.addClass(_this.activeCellClass);
         }
       });
     };

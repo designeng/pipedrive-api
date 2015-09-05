@@ -155,6 +155,7 @@ img.user-pic{
     width: 281px;
     height: 100%;
     border-right: 1px solid #ccc;
+    overflow-y: auto;
 }
 
 .main-area{
@@ -188,15 +189,19 @@ ul.listView li:last-child {
     background-color: #3381c5;
 }
 
+.active-deal{
+    background-color: #FFCC00;
+}
+
 .profile-name, .deal-name{
     font-weight: bold;
 }
 
-.person-organization-name{
+.profile-organization-name, .deal-organization-name{
   font-size: 10px;
 }
 
-.profile-name, .person-organization-name{
+.profile-name, .deal-name, .profile-organization-name, .deal-organization-name{
     padding-left: 12px;
 }
 
@@ -311,7 +316,7 @@ table.deals-list-wrapper thead th.deals-list-sum{
 table.deals-list-wrapper tr:nth-child(even) {background: #efefef}
 table.deals-list-wrapper tr:nth-child(odd) {background: #FFF}
 
-table.deals-list-wrapper th, td{
+table.deals-list-wrapper th, table.deals-list-wrapper td{
   padding-top: 6px;
   padding-bottom: 6px;
   padding-left: 12px;

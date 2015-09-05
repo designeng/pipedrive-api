@@ -15,7 +15,8 @@ define({
       entity: "deal",
       childTemplate: {
         $ref: 'hbs!templates/dealsListItem'
-      }
+      },
+      activeCellClass: "active-deal"
     }
   },
   dealsController: {

@@ -9,6 +9,7 @@ define [
 
         tagName: 'ul'
         className: 'listView'
+        activeCellClass: 'active'
 
         childView: ItemView
 
@@ -31,10 +32,10 @@ define [
 
             @items = @$el.find("li")
 
-            _.each @items, (item) ->
-                $(item).removeClass "active"
+            _.each @items, (item) =>
+                $(item).removeClass @activeCellClass
 
-            li.addClass "active"
+            li.addClass @activeCellClass
 
             # navigate to list item details route
             window.location.href = "#/#{@entities}/#{currentId}"
@@ -44,6 +45,6 @@ define [
 
             _.each @items, (item) =>
                 $item = $(item)
-                $item.removeClass "active"
+                $item.removeClass @activeCellClass
                 if parseInt($item.find(".#{@entity}-name").attr("data-id")) == parseInt(id)
-                    $item.addClass "active"
+                    $item.addClass @activeCellClass

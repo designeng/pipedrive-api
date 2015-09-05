@@ -15,6 +15,7 @@ define
             collection          : {$ref: 'dealsCollection'}
             entity              : "deal"
             childTemplate       : {$ref: 'hbs!templates/dealsListItem' }
+            activeCellClass     : "active-deal"
 
     dealsController:
         create: 'application/modules/deals/controller'

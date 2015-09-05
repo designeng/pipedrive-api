@@ -5,5 +5,5 @@ define [
 
     class ColumnView extends Marionette.CollectionView
         tagName: "ul"
-        className: "column-item"
+        className: "column-item stageDeals"
         childView: ColumnItemView

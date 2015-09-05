@@ -76,6 +76,17 @@ nav .logo_container h1.logo a {
   float: left;
 }
 
+/* mainmenu styles */
+/*#mainmenu menu li {
+    display: block;
+    position: relative;
+    float: left;
+    list-style: none;
+    white-space: nowrap;
+    margin: 0;
+    padding: 0;
+}*/
+/* /mainmenu styles */
 .user-profile-corner{
   float: right;
 }
@@ -151,7 +162,6 @@ img.user-pic{
     top: 47px;
     margin:0px;
     float: left;
-    width: 281px;
 }
 
 ul.listView{
@@ -323,4 +333,87 @@ table.deals-list-wrapper th, td{
   background-position: center 95%, center center, top left;
   background-size: 101px auto, 150px auto, auto auto;
   background-color: #f3f5f6; 
+}
+
+/* pipelineStages */
+#pipelineStages .pipeline{
+    position: absolute;
+    top: 50px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+table.dealsBoard{
+  width: 100%;
+  height: 100%;
+}
+
+
+.header-list-item{
+  display: table-cell;
+}
+
+.dealsTable{
+  height: 100%;
+  display: table;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.stageDeals{
+  display: table-cell;
+}
+
+.stages{
+  /*display: table-cell;*/
+  border-top: 1px #c2c8cd solid;
+  border-bottom: 1px #c2c8cd solid;
+}
+
+.stages.ready ul {
+    -webkit-transition: opacity 0.14s ease-in;
+    -moz-transition: opacity 0.14s ease-in;
+    -ms-transition: opacity 0.14s ease-in;
+    -o-transition: opacity 0.14s ease-in;
+    transition: opacity 0.14s ease-in;
+    opacity: 1;
+}
+
+.stages ul {
+  width: 100%;
+  height: 45px;
+}
+
+.stages ul {
+    width: 100%;
+}
+
+.stages ul li {
+    display: table-cell;
+    text-align: left;
+    color: #000000;
+    padding: 6px 25px 6px 12px;
+    background-color: #f3f5f6;
+    background: url(stage-arrow.png) no-repeat 100% 0, linear-gradient(#ffffff, #f3f5f6);
+    background-size: 20px 100%, 100% 100%;
+    border-right: 1px #c2c8cd solid;
+    line-height: 1.3em;
+    overflow: visible;
+    vertical-align: middle;
+}
+
+.stages ul li{
+  /*width: 10%;*/
+}
+
+.stages ul li .stagename {
+    font-size: 16px;
+    line-height: 21px;
+    font-weight: 600;
+    width: 100%;
+    display: inline-block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }

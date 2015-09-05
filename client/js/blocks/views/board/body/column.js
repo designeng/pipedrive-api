@@ -13,7 +13,7 @@ define(['marionette', 'blocks/views/board/body/item'], function(Marionette, Colu
 
     ColumnView.prototype.tagName = "ul";
 
-    ColumnView.prototype.className = "column-item";
+    ColumnView.prototype.className = "column-item stageDeals";
 
     ColumnView.prototype.childView = ColumnItemView;
 

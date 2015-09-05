@@ -15,7 +15,6 @@ define [
                     methodArgs = method[methodName]
                 else if _.isString method
                     methodName = method
-
                 if result instanceof Backbone.Collection 
                     if !result[methodName]
                         throw new Error "#{errorPrefix} '#{methodName}' in Backbone.Collection!"
@@ -23,8 +22,6 @@ define [
                         return result[methodName](methodArgs)
                 else if _[methodName]
                     return _[methodName](result, methodArgs)
-                # else if _.isFunction(method)
-                #     return method.apply result, methodArgs
                 else
                     throw new Error "#{errorPrefix} '#{methodName}' in Underscore!"
             , collection

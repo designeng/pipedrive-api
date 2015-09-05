@@ -17,25 +17,25 @@ define(["wire", "when", "backbone"], function(wire, When, Backbone) {
         return this.add([
           {
             id: 0,
-            stage_id: 0
+            stage_id: "id0"
           }, {
             id: 1,
-            stage_id: 0
+            stage_id: "id0"
           }, {
             id: 2,
-            stage_id: 1
+            stage_id: "id1"
           }, {
             id: 3,
-            stage_id: 1
+            stage_id: "id1"
           }, {
             id: 4,
-            stage_id: 2
+            stage_id: "id2"
           }, {
             id: 5,
-            stage_id: 2
+            stage_id: "id2"
           }, {
             id: 6,
-            stage_id: 2
+            stage_id: "id2"
           }
         ]);
       };
@@ -46,6 +46,9 @@ define(["wire", "when", "backbone"], function(wire, When, Backbone) {
   });
   spec = {
     $plugins: ['wire/debug', 'plugins/backbone/collection/underscore/apply'],
+    mapper: {
+      module: 'utils/groups/mapper'
+    },
     collection: {
       create: 'plugins/apply/collection'
     },
@@ -56,12 +59,11 @@ define(["wire", "when", "backbone"], function(wire, When, Backbone) {
         },
         methods: [
           {
-            "groupBy": ["stage_id"],
-            "map": [
-              function(item, index) {
-                return new Backbone.Collection(item);
-              }
-            ]
+            "groupBy": "stage_id"
+          }, {
+            "map": {
+              $ref: 'mapper'
+            }
           }
         ]
       }
@@ -72,7 +74,6 @@ define(["wire", "when", "backbone"], function(wire, When, Backbone) {
       var _this = this;
       return wire(spec).then(function(ctx) {
         _this.ctx = ctx;
-        console.debug("CTXT", _this.ctx.groups);
         return done();
       }).otherwise(function(err) {
         return console.log("ERROR", err);
@@ -82,8 +83,16 @@ define(["wire", "when", "backbone"], function(wire, When, Backbone) {
       expect(_.size(this.ctx.groups)).toBe(3);
       return done();
     });
+    it("group item.collection should be Backbone.Collection", function(done) {
+      expect(_.find(this.ctx.groups, {
+        id: "id0"
+      }).collection instanceof Backbone.Collection).toBe(true);
+      return done();
+    });
     return it("group number 2 should have 3 elements", function(done) {
-      expect(this.ctx.groups[2].length).toBe(3);
+      expect(_.find(this.ctx.groups, {
+        id: "id2"
+      }).collection.length).toBe(3);
       return done();
     });
   });

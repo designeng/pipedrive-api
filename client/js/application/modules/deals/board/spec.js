@@ -54,12 +54,11 @@ define({
       },
       methods: [
         {
-          "groupBy": ["stage_id"],
-          "map": [
-            function(item, index) {
-              return new Backbone.Collection(item);
-            }
-          ]
+          "groupBy": "stage_id"
+        }, {
+          "map": {
+            $ref: 'mapper'
+          }
         }
       ]
     }
@@ -86,5 +85,8 @@ define({
     ready: {
       onReady: {}
     }
+  },
+  mapper: {
+    module: 'utils/groups/mapper'
   }
 });

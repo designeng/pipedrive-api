@@ -8,13 +8,13 @@ define [
         class Collection extends Backbone.Collection
             initialize: ->
                 @.add [
-                    {id: 0, stage_id: 0}
-                    {id: 1, stage_id: 0}
-                    {id: 2, stage_id: 1}
-                    {id: 3, stage_id: 1}
-                    {id: 4, stage_id: 2}
-                    {id: 5, stage_id: 2}
-                    {id: 6, stage_id: 2}
+                    {id: 0, stage_id: "id0"}
+                    {id: 1, stage_id: "id0"}
+                    {id: 2, stage_id: "id1"}
+                    {id: 3, stage_id: "id1"}
+                    {id: 4, stage_id: "id2"}
+                    {id: 5, stage_id: "id2"}
+                    {id: 6, stage_id: "id2"}
                 ]
 
     spec = 
@@ -23,6 +23,9 @@ define [
             'plugins/backbone/collection/underscore/apply'
         ]
 
+        mapper:
+            module: 'utils/groups/mapper'
+
         collection:
             create: 'plugins/apply/collection'
 
@@ -30,15 +33,14 @@ define [
             applyTo:
                 collection: {$ref: 'collection'}
                 methods: [
-                    "groupBy": ["stage_id"]
-                    "map": [(item, index) -> new Backbone.Collection(item)]
+                    {"groupBy": "stage_id"}
+                    {"map": {$ref: 'mapper'}}
                 ]
 
     describe "apply plugin", ->
 
         beforeEach (done) ->
             wire(spec).then (@ctx) =>
-                console.debug "CTXT", @ctx.groups
                 done()
             .otherwise (err) ->
                 console.log "ERROR", err
@@ -47,6 +49,10 @@ define [
             expect(_.size(@ctx.groups)).toBe 3
             done()
 
+        it "group item.collection should be Backbone.Collection", (done) ->
+            expect(_.find(@ctx.groups, {id: "id0"}).collection instanceof Backbone.Collection).toBe true
+            done()
+
         it "group number 2 should have 3 elements", (done) ->
-            expect(@ctx.groups[2].length).toBe 3
+            expect(_.find(@ctx.groups, {id: "id2"}).collection.length).toBe 3
             done()

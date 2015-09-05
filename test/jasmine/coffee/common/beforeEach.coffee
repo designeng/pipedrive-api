@@ -7,9 +7,6 @@ define [
 
     beforeEach ->
 
-        jasmine.Expectation.addMatchers toBeInstanceOf: (type) ->
-            @actual instanceof type
-
         jasmine.addMatchers
             toBeString: () ->
                 return {

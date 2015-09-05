@@ -38,9 +38,8 @@ define
         applyTo:
             collection: {$ref: 'collection'}
             methods: [
-                "groupBy": ["stage_id"]
-                "map": [(item, index) -> new Backbone.Collection(item)]
-                # (res) -> return res[2]
+                {"groupBy": "stage_id"}
+                {"map": {$ref: 'mapper'}}
             ]
 
     stageColumnList:
@@ -55,3 +54,7 @@ define
             stagesCollection    : {$ref: 'stagesCollection'}
         ready:
             onReady: {}
+
+    # returns object {id: ... , collection: Backbone.Collection}
+    mapper:
+        module: 'utils/groups/mapper'

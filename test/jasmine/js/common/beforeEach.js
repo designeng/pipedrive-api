@@ -1,10 +1,5 @@
 define(["underscore", "when", "jasmine", "boot"], function(_, When) {
   return beforeEach(function() {
-    jasmine.Expectation.addMatchers({
-      toBeInstanceOf: function(type) {
-        return this.actual instanceof type;
-      }
-    });
     return jasmine.addMatchers({
       toBeString: function() {
         return {

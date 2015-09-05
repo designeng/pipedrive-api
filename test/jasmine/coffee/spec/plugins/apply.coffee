@@ -17,6 +17,21 @@ define [
                     {id: 6, stage_id: "id2"}
                 ]
 
+    define 'boardBodySpec',
+        $plugins:[
+            'wire/debug'
+        ]
+
+        bodyView:
+            create: 'blocks/views/board/body/index'
+            properties:
+                groups: {$ref: 'groups'}
+                collection      : {$ref: 'collection'}
+                childViewOptions: (model, index) ->
+                    console.debug "childViewOptions::::", @groups, model, index, _.find(@groups, {id: "id" + index})
+            ready:
+                render: {}
+
     spec = 
         $plugins:[
             'wire/debug'
@@ -36,6 +51,14 @@ define [
                     {"groupBy": "stage_id"}
                     {"map": {$ref: 'mapper'}}
                 ]
+
+        boardBody:
+            wire:
+                spec: 'boardBodySpec'
+                waitParent: true
+                provide:
+                    groups: {$ref: 'groups'}
+                    collection: {$ref: 'collection'}
 
     describe "apply plugin", ->
 

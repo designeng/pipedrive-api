@@ -28,25 +28,6 @@ define({
       fetch: {}
     }
   },
-  boardHeader: {
-    create: 'blocks/views/board/header/index',
-    properties: {
-      collection: {
-        $ref: 'stagesCollection'
-      },
-      childTemplate: {
-        $ref: 'hbs!templates/boardHeaderCell'
-      }
-    }
-  },
-  boardBody: {
-    create: 'blocks/views/board/body/index',
-    properties: {
-      collection: {
-        $ref: 'stagesCollection'
-      }
-    }
-  },
   boardGroups: {
     applyTo: {
       collection: {
@@ -62,6 +43,42 @@ define({
         }
       ]
     }
+  },
+  boardHeader: {
+    create: 'blocks/views/board/header/index',
+    properties: {
+      collection: {
+        $ref: 'stagesCollection'
+      },
+      childTemplate: {
+        $ref: 'hbs!templates/boardHeaderCell'
+      }
+    }
+  },
+  boardBody: {
+    create: 'blocks/views/board/body/index',
+    properties: {
+      childView: {
+        $ref: 'stageColumn'
+      },
+      boardGroups: {
+        $ref: 'boardGroups'
+      },
+      collection: {
+        $ref: 'stagesCollection'
+      },
+      childViewOptions: function(model, index) {
+        var _ref;
+        return {
+          collection: (_ref = _.find(this.boardGroups, {
+            id: "" + model.get("id")
+          })) != null ? _ref.collection : void 0
+        };
+      }
+    }
+  },
+  stageColumn: {
+    module: 'blocks/views/board/body/column'
   },
   stageColumnList: {
     module: 'blocks/views/list/index'

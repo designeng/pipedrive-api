@@ -42,7 +42,7 @@ define [
             @rootFragmentMutation(path.split("/")[0])
             @notFoundPage.hide() unless path is "*notFound"
 
-        # remove cached context if root fragment is changed
+        # remove and destroy cached context if root fragment is changed
         rootFragmentMutation: (rootFragment) ->
             if @currentRootFragment != rootFragment
                 @contextHash[@currentRootFragment]?.destroy()

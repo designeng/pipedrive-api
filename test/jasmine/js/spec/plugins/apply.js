@@ -44,6 +44,28 @@ define(["wire", "when", "backbone"], function(wire, When, Backbone) {
 
     })(Backbone.Collection);
   });
+  define('boardBodySpec', {
+    $plugins: ['wire/debug'],
+    bodyView: {
+      create: 'blocks/views/board/body/index',
+      properties: {
+        groups: {
+          $ref: 'groups'
+        },
+        collection: {
+          $ref: 'collection'
+        },
+        childViewOptions: function(model, index) {
+          return console.debug("childViewOptions::::", this.groups, model, index, _.find(this.groups, {
+            id: "id" + index
+          }));
+        }
+      },
+      ready: {
+        render: {}
+      }
+    }
+  });
   spec = {
     $plugins: ['wire/debug', 'plugins/backbone/collection/underscore/apply'],
     mapper: {
@@ -66,6 +88,20 @@ define(["wire", "when", "backbone"], function(wire, When, Backbone) {
             }
           }
         ]
+      }
+    },
+    boardBody: {
+      wire: {
+        spec: 'boardBodySpec',
+        waitParent: true,
+        provide: {
+          groups: {
+            $ref: 'groups'
+          },
+          collection: {
+            $ref: 'collection'
+          }
+        }
       }
     }
   };

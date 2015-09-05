@@ -22,6 +22,14 @@ define
         ready:
             fetch: {}
 
+    boardGroups:
+        applyTo:
+            collection: {$ref: 'collection'}
+            methods: [
+                {"groupBy": "stage_id"}
+                {"map": {$ref: 'mapper'}}
+            ]
+
     boardHeader:
         create: 'blocks/views/board/header/index'
         properties:
@@ -31,16 +39,14 @@ define
     boardBody:
         create: 'blocks/views/board/body/index'
         properties:
-            # childView       : {$ref: 'stageColumnList'}
+            childView       : {$ref: 'stageColumn'}
+            boardGroups     : {$ref: 'boardGroups'}
             collection      : {$ref: 'stagesCollection'}
+            childViewOptions: (model, index) ->
+                collection: _.find(@boardGroups, {id: "" + model.get("id")})?.collection
 
-    boardGroups:
-        applyTo:
-            collection: {$ref: 'collection'}
-            methods: [
-                {"groupBy": "stage_id"}
-                {"map": {$ref: 'mapper'}}
-            ]
+    stageColumn:
+        module: 'blocks/views/board/body/column'
 
     stageColumnList:
         module: 'blocks/views/list/index'

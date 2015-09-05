@@ -5,6 +5,16 @@ define [
     class BoardController extends Marionette.Object
 
         onReady: ->
-            # console.debug "GROUPS", @groups, @stagesCollection
+            # @groups = _.map @groups, (item, index) ->
+            #     obj = {}
+            #     obj[index] = new Backbone.Collection(item)
+            #     return obj
 
-            # @boardLayout.showChildView "boardHeaderRegion", @boardHeader
+            console.debug "GROUPS", @groups, @stagesCollection
+
+            # @boardBody.childViewOptions = (model, index) =>
+            #     console.debug "........", model, index
+            #     id = model.get "id"
+            #     return {
+            #         collection: @groups[id]
+            #     }

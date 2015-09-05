@@ -17,7 +17,6 @@ require [
     "boot"
     "underscore"
     "js/SpecIndex.js"
-    "wire!bootstrap/spec"
     "/test/jasmine/js/common/beforeEach.js"
 ], (boot, _, indexSpecs) ->
 

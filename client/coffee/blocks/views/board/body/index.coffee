@@ -1,14 +1,18 @@
 define [
     'backbone'
     'marionette'
-    'blocks/views/base/collectionView'
     'hbs!templates/boardBody'
-], (Backbone, Marionette, CollectionView, boardBody) ->
+    './column'
+], (Backbone, Marionette, boardBody, Column) ->
 
-    class BoardBodyView extends CollectionView
+    class BoardBodyView extends Marionette.CompositeView
 
         tagName: 'table'
+        childViewContainer: 'tbody'
+
+        childView: Column
+
         template: boardBody
 
         initialize: ->
-            console.debug "BoardView......"
+            console.debug "BoardBodyView......"

@@ -23,6 +23,8 @@ define [
                         return result[methodName](methodArgs)
                 else if _[methodName]
                     return _[methodName](result, methodArgs)
+                # else if _.isFunction(method)
+                #     return method.apply result, methodArgs
                 else
                     throw new Error "#{errorPrefix} '#{methodName}' in Underscore!"
             , collection
@@ -34,7 +36,7 @@ define [
                     _collection.on 'sync', (collection) =>
                         resolver.resolve applyMethods(collection, options.methods)
                 else
-                    resolver.resolve applyMethods(collection, options.methods)
+                    resolver.resolve applyMethods(_collection, options.methods)
 
         pluginInstance = 
             factories: 

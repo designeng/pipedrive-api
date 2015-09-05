@@ -15,6 +15,7 @@ define
         renderIn: {$ref: 'dealsBoardRegion'}
         showInRegions:
             'boardHeaderRegion'     : {$ref: 'boardHeader'}
+            'boardBodyRegion'       : {$ref: 'boardBody'}
 
     stagesCollection:
         create: 'application/modules/deals/board/collections/stages'
@@ -29,19 +30,27 @@ define
 
     boardBody:
         create: 'blocks/views/board/body/index'
+        properties:
+            # childView       : {$ref: 'stageColumnList'}
+            collection      : {$ref: 'stagesCollection'}
 
     boardGroups:
         applyTo:
             collection: {$ref: 'collection'}
             methods: [
                 "groupBy": ["stage_id"]
+                "map": [(item, index) -> new Backbone.Collection(item)]
+                # (res) -> return res[2]
             ]
+
+    stageColumnList:
+        module: 'blocks/views/list/index'
 
     boardController:
         create: 'application/modules/deals/board/controller'
         properties:
-            boardLayout         : {$ref: 'boardLayout'}
-            boardHeader         : {$ref: 'boardHeader'}
+            boardBody           : {$ref: 'boardBody'}
+            StageColumnList     : {$ref: 'stageColumnList'}
             groups              : {$ref: 'boardGroups'}
             stagesCollection    : {$ref: 'stagesCollection'}
         ready:

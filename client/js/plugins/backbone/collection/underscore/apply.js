@@ -35,7 +35,7 @@ define(['underscore', 'backbone'], function(_, Backbone) {
             return resolver.resolve(applyMethods(collection, options.methods));
           });
         } else {
-          return resolver.resolve(applyMethods(collection, options.methods));
+          return resolver.resolve(applyMethods(_collection, options.methods));
         }
       });
     };

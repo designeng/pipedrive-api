@@ -11,7 +11,9 @@ define(["underscore"], function(_) {
       return _ref;
     }
 
-    BoardController.prototype.onReady = function() {};
+    BoardController.prototype.onReady = function() {
+      return console.debug("GROUPS", this.groups, this.stagesCollection);
+    };
 
     return BoardController;
 

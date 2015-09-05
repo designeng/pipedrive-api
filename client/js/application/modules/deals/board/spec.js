@@ -16,6 +16,9 @@ define({
     showInRegions: {
       'boardHeaderRegion': {
         $ref: 'boardHeader'
+      },
+      'boardBodyRegion': {
+        $ref: 'boardBody'
       }
     }
   },
@@ -37,7 +40,12 @@ define({
     }
   },
   boardBody: {
-    create: 'blocks/views/board/body/index'
+    create: 'blocks/views/board/body/index',
+    properties: {
+      collection: {
+        $ref: 'stagesCollection'
+      }
+    }
   },
   boardGroups: {
     applyTo: {
@@ -46,19 +54,27 @@ define({
       },
       methods: [
         {
-          "groupBy": ["stage_id"]
+          "groupBy": ["stage_id"],
+          "map": [
+            function(item, index) {
+              return new Backbone.Collection(item);
+            }
+          ]
         }
       ]
     }
   },
+  stageColumnList: {
+    module: 'blocks/views/list/index'
+  },
   boardController: {
     create: 'application/modules/deals/board/controller',
     properties: {
-      boardLayout: {
-        $ref: 'boardLayout'
+      boardBody: {
+        $ref: 'boardBody'
       },
-      boardHeader: {
-        $ref: 'boardHeader'
+      StageColumnList: {
+        $ref: 'stageColumnList'
       },
       groups: {
         $ref: 'boardGroups'

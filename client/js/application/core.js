@@ -80,10 +80,10 @@ define({
       defer: true,
       provide: {
         listRegion: {
-          $ref: 'appInstance.regions.mainAreaRegion'
-        },
-        dealDetailsRegion: {
           $ref: 'appInstance.regions.sidebarRegion'
+        },
+        dealsBoardRegion: {
+          $ref: 'appInstance.regions.mainAreaRegion'
         }
       }
     }

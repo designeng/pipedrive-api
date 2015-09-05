@@ -40,7 +40,7 @@ define({
           $ref: 'dealsCollection'
         },
         dealsBoardRegion: {
-          $ref: 'listRegion'
+          $ref: 'dealsBoardRegion'
         }
       }
     }
@@ -48,6 +48,8 @@ define({
   activateById: function(id) {
     return this.dealsController.activateById(id);
   },
-  showList: function() {},
+  showList: function() {
+    return this.dealsController.showList();
+  },
   showDetailes: function(id) {}
 });

@@ -48,9 +48,6 @@ define
     boardBodyColumn:
         module: 'blocks/views/board/body/column'
 
-    # boardBodyColumnList:
-    #     module: 'blocks/views/list/index'
-
     # @returns Object {id: ... , collection: Backbone.Collection}
     mapper:
         module: 'utils/groups/mapper'

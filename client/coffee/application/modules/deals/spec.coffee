@@ -28,12 +28,12 @@ define
             spec: 'application/modules/deals/board/spec'
             provide:
                 collection          : {$ref: 'dealsCollection'}
-                dealsBoardRegion    : {$ref: 'listRegion'}
+                dealsBoardRegion    : {$ref: 'dealsBoardRegion'}
 
     activateById: (id) ->
         @dealsController.activateById id
 
     showList: ->
-        # @dealsController.showList()
+        @dealsController.showList()
 
     showDetailes: (id) ->

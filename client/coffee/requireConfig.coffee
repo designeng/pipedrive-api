@@ -2,6 +2,9 @@ require.config
 
     baseUrl: "/js"
 
+    paths:
+        "text": "lib/text"
+
     packages: [
         {
             name: "backbone"
@@ -33,11 +36,11 @@ require.config
             main: "handlebars"
             location: "vendors/handlebars"
         }
-        {
-            name: "text"
-            main: "text"
-            location: "vendors/text"
-        }
+        # {
+        #     name: "text"
+        #     main: "text"
+        #     location: "vendors/text"
+        # }
         {
             name: "hbs"
             main: "hbs"

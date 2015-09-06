@@ -60,6 +60,6 @@ require.config({
   }
 });
 
-require(["wire!bootstrap/spec,application/core"], function(applicationContext) {
+require(["wire!bootstrap/spec,application/core", "buildAssets"], function(applicationContext) {
   return applicationContext.start();
 });

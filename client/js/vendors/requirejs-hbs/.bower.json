@@ -1,6 +1,6 @@
 {
   "name": "requirejs-hbs",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "homepage": "https://github.com/epeli/requirejs-hbs",
   "authors": [
     "Esa-Matti Suuronen <esa-matti@suuronen.org>"
@@ -29,13 +29,13 @@
     "test",
     "tests"
   ],
-  "_release": "0.1.1",
+  "_release": "0.1.2",
   "_resolution": {
     "type": "version",
-    "tag": "v0.1.1",
-    "commit": "a62a4b74d4fd569b0e2c383e200db51797438e72"
+    "tag": "v0.1.2",
+    "commit": "b2515485be00a3d73a738820acea5c98f9d8505a"
   },
-  "_source": "git://github.com/epeli/requirejs-hbs.git",
-  "_target": "~0.1.1",
-  "_originalSource": "requirejs-hbs"
+  "_source": "git://github.com/designeng/requirejs-hbs.git",
+  "_target": "*",
+  "_originalSource": "git://github.com/designeng/requirejs-hbs.git"
 }

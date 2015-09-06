@@ -1,7 +1,7 @@
 {
-  "name": "github-repo-info",
+  "name": "pipedrive-api",
   "version": "0.0.0",
-  "homepage": "https://github.com/designeng/github-repo-info",
+  "homepage": "https://github.com/designeng/pipedrive-api",
   "authors": [
     "Denis Savenok <denissavenok@gmail.com>"
   ],
@@ -10,7 +10,7 @@
     "marionette": "~2.4.2",
     "moment": "~2.10.3",
     "handlebars": "~3.0.3",
-    "requirejs-hbs": "~0.1.1",
+    "requirejs-hbs": "git://github.com/designeng/requirejs-hbs.git",
     "text": "~2.0.14",
     "meld": "~1.3.2",
     "wire": "~0.10.11",

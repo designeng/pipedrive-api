@@ -1,4 +1,4 @@
-define(["handlebars-compiler"], function (Handlebars) {
+define(["handlebars"], function (Handlebars) {
   var buildMap = {},
       templateExtension = ".hbs";
 

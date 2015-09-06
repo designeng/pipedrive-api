@@ -19,4 +19,5 @@ define [
     "wire/lib/ObjectProxy"
     "wire/lib/invoker"
     "wire/lib/pipeline"
+    "handlebars/handlebars"
 ], () ->

@@ -53,7 +53,8 @@ require.config({
   shim: {},
   hbs: {
     templateExtension: ".html"
-  }
+  },
+  findNestedDependencies: true
 });
 
 requirejs.s.contexts._.config.baseUrl = "/client/js/";

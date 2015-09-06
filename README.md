@@ -17,6 +17,8 @@ https://pipedrive-api.herokuapp.com/#/profiles/1
 ###Deploy
 + Grunt task `grunt build` should be invoked before deploy to remote server. It will run all nessesary tasks `dataMainAttr:prod` (toggling `data-main` attribute in index.html), `requirejs:compile` (building all js-source into single `main` file).
 
++ Build process needs `buildAssets` with wire.js files to be required on the early stage. TODO: [wire-rjs-builder](github.com/pieterv/wire-rjs-builder) should be inspected for issue of detection required wire.js lib modules.
+
 ###Structure description
 
 + `requireConfig` and `requireEnter` just two parts of `main` file and assembled together with grunt task during the development process. `requireEnter` is logic enter point for our one-page application.

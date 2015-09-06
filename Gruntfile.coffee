@@ -94,8 +94,8 @@ module.exports = (grunt) ->
                     mainConfigFile: "client/js/requireConfig.js"
                     name: "main"
                     out: "client/build/main.js"
-                    pathes:
-                        "vendors/wire/builder/rjs": "lib/builder"
+                    paths:
+                        "wire/builder/rjs": "lib/builder"
 
         dataMainAttr:
             dev:
@@ -118,6 +118,7 @@ module.exports = (grunt) ->
     grunt.loadTasks "tasks"
 
     grunt.registerTask "default", ["dataMainAttr:dev", "connect:app", "connect:jasmine", "watch"]
+    grunt.registerTask "server", ["connect:app", "watch"]
 
     grunt.registerTask "build", ["dataMainAttr:prod", "requirejs:compile"]
 

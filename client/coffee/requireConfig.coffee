@@ -36,11 +36,6 @@ require.config
             main: "handlebars"
             location: "vendors/handlebars"
         }
-        # {
-        #     name: "text"
-        #     main: "text"
-        #     location: "vendors/text"
-        # }
         {
             name: "hbs"
             main: "hbs"

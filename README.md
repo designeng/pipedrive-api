@@ -1,9 +1,8 @@
-###Single-Page Application "Pipedrive profiles information"
+###Single-Page Application "Pipedrive api interaction"
 
 
 ###Description
 The one-page application provides interaction with [pipedrive.com API](https://developers.pipedrive.com/v1).
-
 
 ###Demo
 https://pipedrive-api.herokuapp.com/#/profiles/1
@@ -22,15 +21,15 @@ https://pipedrive-api.herokuapp.com/#/profiles/1
 
 + `requireConfig` and `requireEnter` just two parts of `main` file and assembled together with grunt task during the development process. `requireEnter` is logic enter point for our one-page application.
 
-+ Marionette.TemplateCache.prototype.compileTemplate was overridden because Handlebars template engine is used. 
++ Marionette.TemplateCache.prototype.compileTemplate was overridden because Handlebars template engine is used.
 
 + Provided implementation for `Marionette.Behaviors.behaviorsLookup` to point Marionette where we stored shared Behaviors.
 
 + [TemplateHelpers](http://marionettejs.com/docs/v2.4.2/marionette.view.html#viewtemplatehelpers) used for calculating and rendering fields not presented by item view model.
 
-+ Templates with `.html` extention loaded by [requirejs-hbs](https://github.com/epeli/requirejs-hbs) plugin. It depends on [require-text](https://github.com/requirejs/text) plugin. Path to `handlebars-compiler` defined in requirejs config.
-
-+The essence of profile application provided in 'client/coffee/application/spec' file. It's the wire.js specification. (Profiles application core)
++ Templates with `.html` extention loaded by [requirejs-hbs](https://github.com/designeng/requirejs-hbs) plugin. It depends on [require-text](https://github.com/requirejs/text) plugin, and just a slightly modified fork of original `https://github.com/epeli/requirejs-hbs`.
+ 
++ Application core is provided by 'client/coffee/application/core' wire.js specification file.
 
 ###Browsers compatibility
 Tested in Chrome (v42), Safari (v7.0), Firefox (v37).

@@ -3,6 +3,6 @@ api.txt
 Profiles.md
 
 node_modules/*
-vendors/*
+client/js/vendors/*
 
 build/*

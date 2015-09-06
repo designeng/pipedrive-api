@@ -10,7 +10,7 @@ https://pipedrive-api.herokuapp.com/#/profiles/1
 ###Development
 + Do not hesitate to do `git clone`, `npm install`, `bower install` and `grunt` commands to view the application in your favorite browser: `http://localhost:7788/#/profiles/1`
 
-+ Client built on the top of Marionette.js `2.4.2v`. Wire.js used for creating DSL application scecification: it plays as composition layer.
++ Client built on the top of Marionette.js `2.4.2v`. Wire.js used for creating DSL application specifications: it plays as composition layer.
 
 + Do not forget uncomment index.html livereload script for connect livereload interaction (TODO: automate it on deploy/development).
 
@@ -23,7 +23,7 @@ https://pipedrive-api.herokuapp.com/#/profiles/1
 
 + Marionette.TemplateCache.prototype.compileTemplate was overridden because Handlebars template engine is used.
 
-+ Provided implementation for `Marionette.Behaviors.behaviorsLookup` to point Marionette where we stored shared Behaviors.
++ Provided implementation for `Marionette.Behaviors.behaviorsLookup` to point Marionette where we are going to store shared Behaviors (if they appear).
 
 + [TemplateHelpers](http://marionettejs.com/docs/v2.4.2/marionette.view.html#viewtemplatehelpers) used for calculating and rendering fields not presented by item view model.
 

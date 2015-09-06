@@ -30,6 +30,9 @@ define({
       notFoundPage: {
         $ref: 'notFoundPage'
       }
+    },
+    destroy: {
+      onDestroy: {}
     }
   },
   router: {

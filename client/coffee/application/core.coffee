@@ -23,6 +23,8 @@ define
             deals               : {$ref: 'deals'}
             Preloader           : {$ref: 'preloader'}
             notFoundPage        : {$ref: 'notFoundPage'}
+        destroy:
+            onDestroy: {}
 
     router:
         createRouter:

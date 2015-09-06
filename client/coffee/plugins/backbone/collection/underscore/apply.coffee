@@ -3,7 +3,6 @@ define [
     'backbone'
 ], (_, Backbone) ->
 
-    # TODO: tests
     return (options) ->
 
         # Backbone built-in feature: every underscore collection method can be called on Backbone.Collection

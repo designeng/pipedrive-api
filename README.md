@@ -1,4 +1,4 @@
-###Single-Page Application "Pipedrive api interaction"
+###Single-Page Application "Pipedrive api interaction" (v0.0.2)
 
 
 ###Description
@@ -38,3 +38,6 @@ Tested in Chrome (v42), Safari (v7.0), Firefox (v37).
 
 ###Issues
 About all found bugs please report [issues](https://github.com/designeng/pipedrive-api/issues).
+
+###Note
+I implemented `deals` module on my own risk - there was not a word about it in the test task - just to see some possibilities of the architecture. So, `Deals` link is active.

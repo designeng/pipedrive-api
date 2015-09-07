@@ -438,11 +438,10 @@ table.dealsBoard td, table.dealsBoard th
   margin: 0;
 }
 
-table.dealsBoard{
+table.dealsBoard thead th{
+  background: #efefef;
   font-weight: bold;
 }
-
-table.dealsBoard thead th{background: #efefef}
 table.dealsBoard thead th{
     text-align: left;
     color: #000000;
@@ -470,9 +469,20 @@ th.header-list-item{
 
 .board-body-column-item {
     position: relative;
-    min-height: 50px;
+    min-height: 40px;
     margin: 0;
     border-bottom: 1px solid #e0e4e7;
     padding-left: 12px;
     padding-right: 12px;
+    padding-top: 6px;
+}
+
+.board-body-cell-sum, .board-body-cell-organizationName{
+  font-size: 10px;
+}
+
+.board-body-column-item img {
+  height: 16px;
+  margin: 1px 5px 0 0;
+  vertical-align: top;
 }

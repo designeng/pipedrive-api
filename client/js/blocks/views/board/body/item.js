@@ -17,6 +17,10 @@ define(['marionette', 'hbs!templates/boardBodyCell'], function(Marionette, board
 
     BodyColumnItemView.prototype.template = boardBodyCell;
 
+    BodyColumnItemView.prototype.onRender = function() {
+      return console.debug("MODEL", this.model);
+    };
+
     return BodyColumnItemView;
 
   })(Marionette.ItemView);

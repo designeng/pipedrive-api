@@ -1,6 +1,7 @@
 define
     $plugins: [
         'wire/debug'
+        'wire/aop'
         'plugins/hbs'
     ]
 
@@ -35,9 +36,8 @@ define
             PersonProfileDeals  : {$ref: 'personProfileDeals'}
             listRegion          : {$ref: 'listRegion'}
             personProfileRegion : {$ref: 'personProfileRegion'}
-
-    activateById: (id) ->
-        @profilesController.activateById id
+        after:
+            'showProfileDetailes': 'activateById'
 
     showList: ->
         @profilesController.showList()

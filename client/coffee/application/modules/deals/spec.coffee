@@ -1,6 +1,7 @@
 define
     $plugins: [
         'wire/debug'
+        'wire/aop'
         'plugins/hbs'
     ]
 
@@ -24,6 +25,8 @@ define
             list                : {$ref: 'dealsList'}
             listRegion          : {$ref: 'listRegion'}
             dealsBoard          : {$ref: 'dealsBoard'}
+        after:
+            'showDealDetailes'  : 'activateById'
 
     dealsBoard:
         wire:
@@ -32,10 +35,8 @@ define
                 collection          : {$ref: 'dealsCollection'}
                 dealsBoardRegion    : {$ref: 'dealsBoardRegion'}
 
-    activateById: (id) ->
-        @dealsController.activateById id
-
     showList: ->
         @dealsController.showList()
 
     showDetailes: (id) ->
+        @dealsController.showDealDetailes id

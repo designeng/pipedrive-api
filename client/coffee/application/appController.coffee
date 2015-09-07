@@ -16,8 +16,6 @@ define [
         currentRootFragment: null
 
         initialize: ->
-            _.bindAll @, 'onRoute'
-            
             @removers.push meld.around @, 'showEntityList', @provideModuleContext
             @removers.push meld.around @, 'showEntityDetailes', @provideModuleContext
 
@@ -41,7 +39,7 @@ define [
                 remover.remove()
 
         # DEFAULT ROUTE HANDLER:
-        onRoute: (name, path, opts) ->
+        onRoute: (name, path, opts) =>
             @rootFragmentMutation(path.split("/")[0])
             @notFoundPage.hide() unless path is "*notFound"
 
@@ -79,5 +77,4 @@ define [
             moduleContext.showList()
 
         showEntityDetailes: (moduleContext, id) ->
-            moduleContext.activateById id
             moduleContext.showDetailes id

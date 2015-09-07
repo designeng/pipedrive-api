@@ -1,5 +1,5 @@
 define({
-  $plugins: ['wire/debug', 'plugins/hbs'],
+  $plugins: ['wire/debug', 'wire/aop', 'plugins/hbs'],
   profilesCollection: {
     create: 'application/modules/profiles/collections/profiles',
     ready: {
@@ -51,10 +51,10 @@ define({
       personProfileRegion: {
         $ref: 'personProfileRegion'
       }
+    },
+    after: {
+      'showProfileDetailes': 'activateById'
     }
-  },
-  activateById: function(id) {
-    return this.profilesController.activateById(id);
   },
   showList: function() {
     return this.profilesController.showList();

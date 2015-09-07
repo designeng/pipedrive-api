@@ -19,22 +19,23 @@ define(["underscore", "backbone", "marionette", "when", "meld", "api"], function
 
     AppController.prototype.initialize = function() {
       _.bindAll(this, 'onRoute');
-      this.removers.push(meld.around(this, 'showEntityList', this.aroundMethod));
-      return this.removers.push(meld.around(this, 'showEntityDetailes', this.aroundMethod));
+      this.removers.push(meld.around(this, 'showEntityList', this.provideModuleContext));
+      return this.removers.push(meld.around(this, 'showEntityDetailes', this.provideModuleContext));
     };
 
-    AppController.prototype.aroundMethod = function(joinpoint) {
-      var id, moduleName,
+    AppController.prototype.provideModuleContext = function(joinpoint) {
+      var context, id, moduleName,
         _this = this;
       moduleName = joinpoint.args[0];
       id = joinpoint.args[1];
-      if (!this.contextHash[moduleName]) {
+      context = this.contextHash[moduleName];
+      if (context == null) {
         return When(this[moduleName]()).then(function(moduleContext) {
           _this.contextHash[moduleName] = moduleContext;
           return joinpoint.proceed(moduleContext, id);
         });
       } else {
-        return joinpoint.proceed(this.contextHash[moduleName], id);
+        return joinpoint.proceed(context, id);
       }
     };
 

@@ -18,20 +18,20 @@ define [
         initialize: ->
             _.bindAll @, 'onRoute'
             
-            @removers.push meld.around @, 'showEntityList', @aroundMethod
-            @removers.push meld.around @, 'showEntityDetailes', @aroundMethod
+            @removers.push meld.around @, 'showEntityList', @provideModuleContext
+            @removers.push meld.around @, 'showEntityDetailes', @provideModuleContext
 
         # wired context should be cached (we should not wire the module twice!)
-        aroundMethod: (joinpoint) ->
+        provideModuleContext: (joinpoint) ->
             moduleName = joinpoint.args[0]
             id = joinpoint.args[1]
-
-            if !@contextHash[moduleName]
+            context = @contextHash[moduleName]
+            if !context?
                 When(@[moduleName]()).then (moduleContext) =>
                     @contextHash[moduleName] = moduleContext
                     joinpoint.proceed(moduleContext, id)
             else
-                joinpoint.proceed(@contextHash[moduleName], id)
+                joinpoint.proceed(context, id)
 
         onDestroy: ->
             _.each @removers, (remover) ->

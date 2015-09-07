@@ -1,5 +1,5 @@
 define({
-  $plugins: ['wire/debug', 'plugins/hbs'],
+  $plugins: ['wire/debug', 'wire/aop', 'plugins/hbs'],
   dealsCollection: {
     create: 'application/modules/deals/collections/deals',
     ready: {
@@ -34,6 +34,9 @@ define({
       dealsBoard: {
         $ref: 'dealsBoard'
       }
+    },
+    after: {
+      'showDealDetailes': 'activateById'
     }
   },
   dealsBoard: {
@@ -49,11 +52,10 @@ define({
       }
     }
   },
-  activateById: function(id) {
-    return this.dealsController.activateById(id);
-  },
   showList: function() {
     return this.dealsController.showList();
   },
-  showDetailes: function(id) {}
+  showDetailes: function(id) {
+    return this.dealsController.showDealDetailes(id);
+  }
 });

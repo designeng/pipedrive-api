@@ -1,10 +1,6 @@
 define [
-    "underscore"
-    "backbone"
     "marionette"
-    "meld"
-    "api"
-], (_, Backbone, Marionette, meld, api) ->
+], (Marionette) ->
 
     class ProfilesController extends Marionette.Object
 
@@ -27,3 +23,4 @@ define [
                 @personProfileRegion.show personProfile
             else
                 @personProfileRegion.show new @BlankProfile
+            return personId

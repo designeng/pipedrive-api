@@ -1,17 +1,15 @@
 define [
-    "underscore"
-    "backbone"
-    "backbone.radio"
     "marionette"
-    "meld"
-    "api"
-], (_, Backbone, Radio, Marionette, meld, api) ->
+], (Marionette) ->
 
     class DealsController extends Marionette.Object
 
         showList: ->
             @listRegion.show @list
 
+        showDealDetailes: (id) ->
+            @dealsBoard.activateById id
+            return id
+
         activateById: (id) ->
             @list.activateById id
-            @dealsBoard.activateById id

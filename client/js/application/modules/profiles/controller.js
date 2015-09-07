@@ -1,7 +1,7 @@
 var __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-define(["underscore", "backbone", "marionette", "meld", "api"], function(_, Backbone, Marionette, meld, api) {
+define(["marionette"], function(Marionette) {
   var ProfilesController, _ref;
   return ProfilesController = (function(_super) {
     __extends(ProfilesController, _super);
@@ -30,10 +30,11 @@ define(["underscore", "backbone", "marionette", "meld", "api"], function(_, Back
           PersonProfileDeals: this.PersonProfileDeals,
           personId: personId
         });
-        return this.personProfileRegion.show(personProfile);
+        this.personProfileRegion.show(personProfile);
       } else {
-        return this.personProfileRegion.show(new this.BlankProfile);
+        this.personProfileRegion.show(new this.BlankProfile);
       }
+      return personId;
     };
 
     return ProfilesController;

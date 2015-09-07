@@ -66,6 +66,7 @@ define [
                 @showEntityDetailes "deals", dealId
 
         # 404 ERROR:
+        
         notFoundHandler: ->
             @notFoundPage.show()
 

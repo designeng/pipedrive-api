@@ -4,9 +4,9 @@ define
     ]
 
     marionetteHooks:
-        module: "bootstrap/hooks"
+        create: "bootstrap/hooks"
 
     preloader:
-        module: "blocks/views/preloader/index"
+        create: "blocks/views/preloader/index"
 
     notFoundPage: {$ref: "element!.not-found"}

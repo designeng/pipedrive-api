@@ -24,12 +24,15 @@ define({
       deals: {
         $ref: 'deals'
       },
-      Preloader: {
+      preloader: {
         $ref: 'preloader'
       },
       notFoundPage: {
         $ref: 'notFoundPage'
       }
+    },
+    ready: {
+      showPreloader: {}
     },
     destroy: {
       onDestroy: {}

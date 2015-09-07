@@ -23,6 +23,10 @@ define(["underscore", "backbone", "marionette", "when", "meld", "api"], function
       return this.removers.push(meld.around(this, 'showEntityDetailes', this.provideModuleContext));
     };
 
+    AppController.prototype.showPreloader = function() {
+      return this.regions.mainAreaRegion.show(this.preloader);
+    };
+
     AppController.prototype.provideModuleContext = function(joinpoint) {
       var context, id, moduleName,
         _this = this;

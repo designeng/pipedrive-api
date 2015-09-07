@@ -21,6 +21,9 @@ define [
             @removers.push meld.around @, 'showEntityList', @provideModuleContext
             @removers.push meld.around @, 'showEntityDetailes', @provideModuleContext
 
+        showPreloader: ->
+            @regions.mainAreaRegion.show @preloader
+
         # wired context should be cached (we should not wire the module twice!)
         provideModuleContext: (joinpoint) ->
             moduleName = joinpoint.args[0]
@@ -66,7 +69,7 @@ define [
                 @showEntityDetailes "deals", dealId
 
         # 404 ERROR:
-        
+
         notFoundHandler: ->
             @notFoundPage.show()
 

@@ -21,8 +21,10 @@ define
         properties:
             profiles            : {$ref: 'profiles'}
             deals               : {$ref: 'deals'}
-            Preloader           : {$ref: 'preloader'}
+            preloader           : {$ref: 'preloader'}
             notFoundPage        : {$ref: 'notFoundPage'}
+        ready:
+            showPreloader: {}
         destroy:
             onDestroy: {}
 

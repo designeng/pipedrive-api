@@ -1,4 +1,4 @@
-###Single-Page Application "Pipedrive api interaction" (v0.0.2)
+###Single-Page Application "Pipedrive api interaction" (v0.0.3)
 
 
 ###Description

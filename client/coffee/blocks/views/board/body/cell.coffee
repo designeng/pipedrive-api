@@ -3,7 +3,7 @@ define [
     'hbs!templates/boardBodyCell'
 ], (Marionette, boardBodyCell) ->
 
-    class BodyColumnItemView extends Marionette.ItemView
+    class ColumnCellView extends Marionette.ItemView
         tagName: "li"
         className: "board-body-column-item"
         template: boardBodyCell

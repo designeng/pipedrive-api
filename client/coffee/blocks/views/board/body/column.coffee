@@ -1,10 +1,10 @@
 define [
     'marionette'
-    'blocks/views/board/body/item'
-], (Marionette, ColumnItemView) ->
+    'blocks/views/board/body/cell'
+], (Marionette, ColumnCellView) ->
 
     class ColumnView extends Marionette.CompositeView
-        tagName: "td"
+        tagName: 'td'
         childViewContainer: 'ul'
-        childView: ColumnItemView
-        template: "<ul></ul>"
+        childView: ColumnCellView
+        template: '<ul></ul>'

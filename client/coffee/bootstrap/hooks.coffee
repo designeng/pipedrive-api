@@ -9,7 +9,6 @@ define [
 
     # all nessesary marionette hooks can be listed here
     Marionette.TemplateCache::compileTemplate = (rawTemplate) ->
-        console.debug "rawTemplate", rawTemplate
         Handlebars.compile(rawTemplate)
 
     # usualy template is loaded by 'hbs!' plugin. In this case template is returned by Handlebars 'function ret(context, execOptions)'

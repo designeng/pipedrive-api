@@ -27,7 +27,6 @@ define(["backbone", "api"], function(Backbone, api) {
     StagesCollection.prototype.model = StagesModel;
 
     StagesCollection.prototype.parse = function(resp) {
-      console.debug("STAGES RESP", resp);
       return resp.data;
     };
 

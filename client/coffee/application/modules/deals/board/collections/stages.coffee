@@ -10,5 +10,4 @@ define [
         model: StagesModel
 
         parse: (resp) ->
-            console.debug "STAGES RESP", resp
             return resp.data

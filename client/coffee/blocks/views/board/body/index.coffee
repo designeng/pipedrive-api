@@ -18,5 +18,3 @@ define [
         activateById: (id) ->
             _.each @cells, (cell) ->
                 cell.toggleActive(id)
-
-            

@@ -24,12 +24,15 @@ define({
       deals: {
         $ref: 'deals'
       },
-      Preloader: {
+      preloader: {
         $ref: 'preloader'
       },
       notFoundPage: {
         $ref: 'notFoundPage'
       }
+    },
+    ready: {
+      showPreloader: {}
     },
     destroy: {
       onDestroy: {}
@@ -41,11 +44,11 @@ define({
         $ref: 'appController'
       },
       routes: {
-        'profiles': 'showProfilesModule',
-        'profiles/:id': 'showProfilesModule',
-        'deals': 'showDealsModule',
-        'deals/:id': 'showDealsModule',
-        '*notFound': 'notFound'
+        'profiles': 'profilesModuleHandler',
+        'profiles/:id': 'profilesModuleHandler',
+        'deals': 'dealsModuleHandler',
+        'deals/:id': 'dealsModuleHandler',
+        '*notFound': 'notFoundHandler'
       }
     },
     onRoute: {

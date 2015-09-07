@@ -21,6 +21,9 @@ define [
             @removers.push meld.around @, 'showEntityList', @provideModuleContext
             @removers.push meld.around @, 'showEntityDetailes', @provideModuleContext
 
+        showPreloader: ->
+            @regions.mainAreaRegion.show @preloader
+
         # wired context should be cached (we should not wire the module twice!)
         provideModuleContext: (joinpoint) ->
             moduleName = joinpoint.args[0]
@@ -49,24 +52,26 @@ define [
                 delete @contextHash[@currentRootFragment]
                 @currentRootFragment = rootFragment
 
-        notFound: ->
-            @notFoundPage.show()
-
         # ROUTES HANDLERS:
 
         # note that the same handler is responsible for both 'profiles' and 'profiles/:id' (for 'deals' and 'deals/:id' as well) routes.
 
         # PROFILES:
 
-        showProfilesModule: (personId) ->
+        profilesModuleHandler: (personId) ->
             When(@showEntityList "profiles").then () =>
                 @showEntityDetailes "profiles", personId
 
         # DEALS:
 
-        showDealsModule: (dealId) ->
+        dealsModuleHandler: (dealId) ->
             When(@showEntityList "deals").then () =>
                 @showEntityDetailes "deals", dealId
+
+        # 404 ERROR:
+
+        notFoundHandler: ->
+            @notFoundPage.show()
 
         # COMMON METHODS:
 

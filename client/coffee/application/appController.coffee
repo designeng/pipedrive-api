@@ -49,24 +49,25 @@ define [
                 delete @contextHash[@currentRootFragment]
                 @currentRootFragment = rootFragment
 
-        notFound: ->
-            @notFoundPage.show()
-
         # ROUTES HANDLERS:
 
         # note that the same handler is responsible for both 'profiles' and 'profiles/:id' (for 'deals' and 'deals/:id' as well) routes.
 
         # PROFILES:
 
-        showProfilesModule: (personId) ->
+        profilesModuleHandler: (personId) ->
             When(@showEntityList "profiles").then () =>
                 @showEntityDetailes "profiles", personId
 
         # DEALS:
 
-        showDealsModule: (dealId) ->
+        dealsModuleHandler: (dealId) ->
             When(@showEntityList "deals").then () =>
                 @showEntityDetailes "deals", dealId
+
+        # 404 ERROR:
+        notFoundHandler: ->
+            @notFoundPage.show()
 
         # COMMON METHODS:
 

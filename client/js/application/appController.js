@@ -63,22 +63,22 @@ define(["underscore", "backbone", "marionette", "when", "meld", "api"], function
       }
     };
 
-    AppController.prototype.notFound = function() {
-      return this.notFoundPage.show();
-    };
-
-    AppController.prototype.showProfilesModule = function(personId) {
+    AppController.prototype.profilesModuleHandler = function(personId) {
       var _this = this;
       return When(this.showEntityList("profiles")).then(function() {
         return _this.showEntityDetailes("profiles", personId);
       });
     };
 
-    AppController.prototype.showDealsModule = function(dealId) {
+    AppController.prototype.dealsModuleHandler = function(dealId) {
       var _this = this;
       return When(this.showEntityList("deals")).then(function() {
         return _this.showEntityDetailes("deals", dealId);
       });
+    };
+
+    AppController.prototype.notFoundHandler = function() {
+      return this.notFoundPage.show();
     };
 
     AppController.prototype.showEntityList = function(moduleContext) {

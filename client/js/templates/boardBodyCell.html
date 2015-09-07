@@ -1,5 +1,10 @@
-<div class="board-body-cell" data-id={{ id }}>{{ title }}</div>
-<div>
+<div class="board-body-cell-title" data-id={{ id }}>{{ title }}</div>
+<div class="board-body-cell-subtitle">
     <span class="board-body-cell-sum">{{ formatted_value }}</span>
     <span class="board-body-cell-organizationName">{{ organization.name }}</span>
+</div>
+<div class="board-body-cell-additional-info">
+    <div class="board-body-cell-person_name">By person: {{ person_name }}</div>
+    <div class="board-body-cell-add_time">Added: {{ addTime }}</div>
+    <div class="board-body-cell-stage_change_time">Stage change time: {{ stageChangeTime }}</div>
 </div>

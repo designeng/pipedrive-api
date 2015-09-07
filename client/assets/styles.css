@@ -47,6 +47,12 @@ a {
   display: none;
 }
 
+.not-found p{
+  font-weight: bold;
+  padding-left: 280px;
+  padding-top: 10px;
+}
+
 .navigation {
   position: fixed;
   width: 100%;

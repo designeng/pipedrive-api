@@ -22,7 +22,15 @@ define [
         showPreloader: ->
             @regions.mainAreaRegion.show @preloader
 
-        # wired context should be cached (we should not wire the module twice!)
+        # sandbox provides module functional api and hides other details of realization
+        wrapModuleContextInSandbox: (moduleContext) ->
+            sandbox = {}
+            for prop of moduleContext
+                if _.isFunction(moduleContext[prop]) and moduleContext.hasOwnProperty(prop)
+                    sandbox[prop] = moduleContext[prop].bind moduleContext
+            return sandbox
+
+        # wired context is cached (we should not wire the module twice!)
         provideModuleContext: (joinpoint) ->
             moduleName = joinpoint.args[0]
             id = joinpoint.args[1]
@@ -30,9 +38,9 @@ define [
             if !context?
                 When(@[moduleName]()).then (moduleContext) =>
                     @contextHash[moduleName] = moduleContext
-                    joinpoint.proceed(moduleContext, id)
+                    joinpoint.proceed(@wrapModuleContextInSandbox(moduleContext), id)
             else
-                joinpoint.proceed(context, id)
+                joinpoint.proceed(@wrapModuleContextInSandbox(context), id)
 
         onDestroy: ->
             _.each @removers, (remover) ->
@@ -73,8 +81,8 @@ define [
 
         # COMMON METHODS:
 
-        showEntityList: (moduleContext) ->
-            moduleContext.showList()
+        showEntityList: (sandbox) ->
+            sandbox.showList()
 
-        showEntityDetailes: (moduleContext, id) ->
-            moduleContext.showDetailes id
+        showEntityDetailes: (sandbox, id) ->
+            sandbox.showDetailes id

@@ -28,6 +28,17 @@ define(["underscore", "backbone", "marionette", "when", "meld", "api"], function
       return this.regions.mainAreaRegion.show(this.preloader);
     };
 
+    AppController.prototype.wrapModuleContextInSandbox = function(moduleContext) {
+      var prop, sandbox;
+      sandbox = {};
+      for (prop in moduleContext) {
+        if (_.isFunction(moduleContext[prop]) && moduleContext.hasOwnProperty(prop)) {
+          sandbox[prop] = moduleContext[prop].bind(moduleContext);
+        }
+      }
+      return sandbox;
+    };
+
     AppController.prototype.provideModuleContext = function(joinpoint) {
       var context, id, moduleName,
         _this = this;
@@ -37,10 +48,10 @@ define(["underscore", "backbone", "marionette", "when", "meld", "api"], function
       if (context == null) {
         return When(this[moduleName]()).then(function(moduleContext) {
           _this.contextHash[moduleName] = moduleContext;
-          return joinpoint.proceed(moduleContext, id);
+          return joinpoint.proceed(_this.wrapModuleContextInSandbox(moduleContext), id);
         });
       } else {
-        return joinpoint.proceed(context, id);
+        return joinpoint.proceed(this.wrapModuleContextInSandbox(context), id);
       }
     };
 
@@ -86,12 +97,12 @@ define(["underscore", "backbone", "marionette", "when", "meld", "api"], function
       return this.notFoundPage.show();
     };
 
-    AppController.prototype.showEntityList = function(moduleContext) {
-      return moduleContext.showList();
+    AppController.prototype.showEntityList = function(sandbox) {
+      return sandbox.showList();
     };
 
-    AppController.prototype.showEntityDetailes = function(moduleContext, id) {
-      return moduleContext.showDetailes(id);
+    AppController.prototype.showEntityDetailes = function(sandbox, id) {
+      return sandbox.showDetailes(id);
     };
 
     return AppController;

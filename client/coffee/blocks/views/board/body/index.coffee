@@ -5,6 +5,5 @@ define [
 ], (Backbone, Marionette, boardBody) ->
 
     class BoardBodyView extends Marionette.CompositeView
-        tagName: 'div'
-        className: 'dealsTable'
+        tagName: 'tr'
         template: boardBody

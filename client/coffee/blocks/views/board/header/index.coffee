@@ -8,7 +8,7 @@ define [
 
     class BoardHeaderView extends CollectionView
         
-        tagName: "ul"
+        tagName: "tr"
         template: boardHeader
 
         childView: ItemView

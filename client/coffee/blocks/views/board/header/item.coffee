@@ -3,5 +3,5 @@ define [
 ], (Marionette) ->
 
     class HeaderItemView extends Marionette.ItemView
-        tagName: "li"
+        tagName: "th"
         className: "header-list-item"

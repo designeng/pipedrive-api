@@ -11,7 +11,7 @@ define(['marionette'], function(Marionette) {
       return _ref;
     }
 
-    HeaderItemView.prototype.tagName = "li";
+    HeaderItemView.prototype.tagName = "th";
 
     HeaderItemView.prototype.className = "header-list-item";
 

@@ -11,7 +11,7 @@ define(['backbone', 'marionette', 'blocks/views/base/collectionView', 'hbs!templ
       return _ref;
     }
 
-    BoardHeaderView.prototype.tagName = "ul";
+    BoardHeaderView.prototype.tagName = "tr";
 
     BoardHeaderView.prototype.template = boardHeader;
 

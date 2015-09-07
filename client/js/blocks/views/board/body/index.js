@@ -11,9 +11,7 @@ define(['backbone', 'marionette', 'hbs!templates/boardBody'], function(Backbone,
       return _ref;
     }
 
-    BoardBodyView.prototype.tagName = 'div';
-
-    BoardBodyView.prototype.className = 'dealsTable';
+    BoardBodyView.prototype.tagName = 'tr';
 
     BoardBodyView.prototype.template = boardBody;
 

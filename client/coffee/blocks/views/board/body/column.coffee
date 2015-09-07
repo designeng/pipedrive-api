@@ -3,7 +3,8 @@ define [
     'blocks/views/board/body/item'
 ], (Marionette, ColumnItemView) ->
 
-    class ColumnView extends Marionette.CollectionView
-        tagName: "ul"
-        className: "column-item stageDeals"
+    class ColumnView extends Marionette.CompositeView
+        tagName: "td"
+        childViewContainer: 'ul'
         childView: ColumnItemView
+        template: "<ul></ul>"

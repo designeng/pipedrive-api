@@ -11,13 +11,15 @@ define(['marionette', 'blocks/views/board/body/item'], function(Marionette, Colu
       return _ref;
     }
 
-    ColumnView.prototype.tagName = "ul";
+    ColumnView.prototype.tagName = "td";
 
-    ColumnView.prototype.className = "column-item stageDeals";
+    ColumnView.prototype.childViewContainer = 'ul';
 
     ColumnView.prototype.childView = ColumnItemView;
 
+    ColumnView.prototype.template = "<ul></ul>";
+
     return ColumnView;
 
-  })(Marionette.CollectionView);
+  })(Marionette.CompositeView);
 });

@@ -7,6 +7,3 @@ define [
         tagName: "li"
         className: "board-body-column-item"
         template: boardBodyCell
-
-        onRender: ->
-            console.debug "MODEL", @model

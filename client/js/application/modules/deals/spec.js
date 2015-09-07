@@ -30,6 +30,9 @@ define({
       },
       listRegion: {
         $ref: 'listRegion'
+      },
+      dealsBoard: {
+        $ref: 'dealsBoard'
       }
     }
   },

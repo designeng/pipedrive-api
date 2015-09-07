@@ -15,6 +15,9 @@ define(["underscore", "backbone", "backbone.radio", "marionette", "handlebars", 
     }
     return template;
   };
+  Marionette.CollectionView.prototype.getChildren = function() {
+    return this.children._views;
+  };
   Marionette.Behaviors.behaviorsLookup = function() {
     return Behaviors;
   };

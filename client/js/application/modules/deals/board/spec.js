@@ -82,5 +82,8 @@ define({
   },
   mapper: {
     module: 'utils/groups/mapper'
+  },
+  activateById: function(id) {
+    return this.boardBody.activateById(id);
   }
 });

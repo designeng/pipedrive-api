@@ -25,6 +25,9 @@ define [
   
         return template
 
+    Marionette.CollectionView::getChildren = ->
+        return @children._views
+
     Marionette.Behaviors.behaviorsLookup = ->
         return Behaviors
 

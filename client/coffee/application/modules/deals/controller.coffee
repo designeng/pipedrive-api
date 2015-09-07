@@ -14,3 +14,4 @@ define [
 
         activateById: (id) ->
             @list.activateById id
+            @dealsBoard.activateById id

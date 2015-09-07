@@ -17,6 +17,16 @@ define(['marionette', 'hbs!templates/boardBodyCell'], function(Marionette, board
 
     BodyColumnItemView.prototype.template = boardBodyCell;
 
+    BodyColumnItemView.prototype.activeCellClass = "activeCell";
+
+    BodyColumnItemView.prototype.toggleActive = function(id) {
+      if (parseInt(id) === parseInt(this.model.get("id"))) {
+        return this.$el.toggleClass(this.activeCellClass);
+      } else {
+        return this.$el.removeClass(this.activeCellClass);
+      }
+    };
+
     return BodyColumnItemView;
 
   })(Marionette.ItemView);

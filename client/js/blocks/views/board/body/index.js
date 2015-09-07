@@ -15,6 +15,20 @@ define(['backbone', 'marionette', 'hbs!templates/boardBody'], function(Backbone,
 
     BoardBodyView.prototype.template = boardBody;
 
+    BoardBodyView.prototype.cells = [];
+
+    BoardBodyView.prototype.onRender = function() {
+      return this.cells = _.flatten(_.map(this.getChildren(), function(child) {
+        return _.values(child.getChildren());
+      }));
+    };
+
+    BoardBodyView.prototype.activateById = function(id) {
+      return _.each(this.cells, function(cell) {
+        return cell.toggleActive(id);
+      });
+    };
+
     return BoardBodyView;
 
   })(Marionette.CompositeView);

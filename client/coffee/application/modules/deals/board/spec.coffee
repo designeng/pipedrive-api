@@ -51,3 +51,6 @@ define
     # @returns Object {id: ... , collection: Backbone.Collection}
     mapper:
         module: 'utils/groups/mapper'
+
+    activateById: (id) ->
+        @boardBody.activateById id

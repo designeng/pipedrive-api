@@ -23,6 +23,7 @@ define
             collection          : {$ref: 'dealsCollection'}
             list                : {$ref: 'dealsList'}
             listRegion          : {$ref: 'listRegion'}
+            dealsBoard          : {$ref: 'dealsBoard'}
 
     dealsBoard:
         wire:

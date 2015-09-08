@@ -47,5 +47,5 @@ define [
         showEntityList: (sandbox) ->
             sandbox.showList()
 
-        showEntityDetailes: (sandbox, id) ->
-            sandbox.showDetailes id
+        showEntityDetailes: (sandbox, args) ->
+            sandbox.showDetailes args[0]

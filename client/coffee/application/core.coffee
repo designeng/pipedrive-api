@@ -29,8 +29,6 @@ define
             container: {$ref: 'container'}
         ready:
             showPreloader: {}
-        destroy:
-            onDestroy: {}
 
     router:
         createRouter:
@@ -45,13 +43,16 @@ define
 
     # APPLICATION MODULES
 
+    # DIRECT WORKFLOW MODULES
     navigation:
         wire:
             spec: "application/modules/navigation/spec"
             waitParent: true
             provide:
                 navigationRegion    : {$ref: 'appInstance.regions.navigationRegion'}
+    # /DIRECT WORKFLOW MODULES
 
+    # SANDBOXED MODULES:
     profiles:
         wire:
             spec: "application/modules/profiles/spec"
@@ -68,6 +69,7 @@ define
                 listRegion          : {$ref: 'appInstance.regions.sidebarRegion'}
                 dealsBoardRegion    : {$ref: 'appInstance.regions.mainAreaRegion'}
 
+    # /SANDBOXED MODULES
     # /APPLICATION MODULES
 
     preloader:

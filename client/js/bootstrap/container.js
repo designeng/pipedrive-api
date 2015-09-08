@@ -22,18 +22,18 @@ define(["underscore", "when", "meld"], function(_, When, meld) {
     };
 
     Container.prototype.provideModuleSandbox = function(joinpoint) {
-      var context, id, moduleName,
+      var args, context, moduleName,
         _this = this;
       moduleName = joinpoint.args[0];
-      id = joinpoint.args[1];
+      args = _.rest(joinpoint.args);
       context = this.contextHash[moduleName];
       if (context == null) {
         return When(joinpoint.target[moduleName]()).then(function(moduleContext) {
           _this.contextHash[moduleName] = moduleContext;
-          return joinpoint.proceed(_this.wrapModuleContextInSandbox(moduleContext), id);
+          return joinpoint.proceed(_this.wrapModuleContextInSandbox(moduleContext), args);
         });
       } else {
-        return joinpoint.proceed(this.wrapModuleContextInSandbox(context), id);
+        return joinpoint.proceed(this.wrapModuleContextInSandbox(context), args);
       }
     };
 

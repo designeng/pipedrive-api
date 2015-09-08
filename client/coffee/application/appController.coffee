@@ -16,8 +16,8 @@ define [
         currentRootFragment: null
 
         initialize: ->
-            @removers.push meld.around @, 'showEntityList', @provideModuleContext
-            @removers.push meld.around @, 'showEntityDetailes', @provideModuleContext
+            @removers.push meld.around @, 'showEntityList', @provideModuleSandbox
+            @removers.push meld.around @, 'showEntityDetailes', @provideModuleSandbox
 
         showPreloader: ->
             @regions.mainAreaRegion.show @preloader
@@ -31,7 +31,7 @@ define [
             return sandbox
 
         # wired context is cached (we should not wire the module twice!)
-        provideModuleContext: (joinpoint) ->
+        provideModuleSandbox: (joinpoint) ->
             moduleName = joinpoint.args[0]
             id = joinpoint.args[1]
             context = @contextHash[moduleName]

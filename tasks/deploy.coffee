@@ -14,14 +14,15 @@ runBushCommands = (command) ->
 
 module.exports = (grunt) ->
     grunt.registerTask "deployToRemote", "deploy master to remote origin", (branch) ->
-        console.log "BRANCH", branch
         done = @async()
+        date = new Date()
 
         bashCommands = [
+            "git checkout master"
             "git merge dev"
             "grunt build"
             "git add ."
-            "git commit -m 'build (timestamp)'"
+            "git commit -m 'build (date)'"
             "git push origin #{branch}"
         ]
 

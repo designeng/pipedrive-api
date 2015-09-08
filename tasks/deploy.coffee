@@ -22,7 +22,7 @@ module.exports = (grunt) ->
             "git merge dev"
             "grunt build"
             "git add ."
-            "git commit -m 'build (date)'"
+            "git commit -m 'build #{date}'"
             "git push origin #{branch}"
         ]
 

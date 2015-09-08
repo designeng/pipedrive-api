@@ -1,50 +1,16 @@
 define [
     "underscore"
-    "backbone"
     "marionette"
     "when"
     "meld"
-    "api"
-], (_, Backbone, Marionette, When, meld, api) ->
+], (_, Marionette, When, meld) ->
 
     class AppController extends Marionette.Object
 
-        removers: []
-
-        contextHash: {}
-
         currentRootFragment: null
-
-        initialize: ->
-            @removers.push meld.around @, 'showEntityList', @provideModuleSandbox
-            @removers.push meld.around @, 'showEntityDetailes', @provideModuleSandbox
 
         showPreloader: ->
             @regions.mainAreaRegion.show @preloader
-
-        # sandbox provides module functional api and hides other details of realization
-        wrapModuleContextInSandbox: (moduleContext) ->
-            sandbox = {}
-            for prop of moduleContext
-                if _.isFunction(moduleContext[prop]) and moduleContext.hasOwnProperty(prop)
-                    sandbox[prop] = moduleContext[prop].bind moduleContext
-            return sandbox
-
-        # wired context is cached (we should not wire the module twice!)
-        provideModuleSandbox: (joinpoint) ->
-            moduleName = joinpoint.args[0]
-            id = joinpoint.args[1]
-            context = @contextHash[moduleName]
-            if !context?
-                When(@[moduleName]()).then (moduleContext) =>
-                    @contextHash[moduleName] = moduleContext
-                    joinpoint.proceed(@wrapModuleContextInSandbox(moduleContext), id)
-            else
-                joinpoint.proceed(@wrapModuleContextInSandbox(context), id)
-
-        onDestroy: ->
-            _.each @removers, (remover) ->
-                remover.remove()
 
         # DEFAULT ROUTE HANDLER:
         onRoute: (name, path, opts) =>
@@ -54,8 +20,7 @@ define [
         # remove and destroy cached context if root fragment is changed
         rootFragmentMutation: (rootFragment) ->
             if @currentRootFragment != rootFragment
-                @contextHash[@currentRootFragment]?.destroy()
-                delete @contextHash[@currentRootFragment]
+                @container.destroyModule @currentRootFragment
                 @currentRootFragment = rootFragment
 
         # ROUTES HANDLERS:
@@ -79,7 +44,7 @@ define [
         notFoundHandler: ->
             @notFoundPage.show()
 
-        # COMMON METHODS:
+        # COMMON API METHODS:
 
         showEntityList: (sandbox) ->
             sandbox.showList()

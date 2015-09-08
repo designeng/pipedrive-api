@@ -6,7 +6,7 @@ define
     marionetteHooks:
         create: "bootstrap/hooks"
 
-    preloader:
-        create: "blocks/views/preloader/index"
+    container:
+        create: "bootstrap/container"
 
     notFoundPage: {$ref: "element!.not-found"}

@@ -1,5 +1,5 @@
 define({
-  $plugins: ['wire/debug', 'plugins/marionette/router', 'plugins/marionette/module', 'plugins/element'],
+  $plugins: ['wire/debug', 'plugins/marionette/router', 'plugins/marionette/module', 'plugins/container/register', 'plugins/element'],
   appInstance: {
     createApplication: {
       withRegions: {
@@ -29,6 +29,12 @@ define({
       },
       notFoundPage: {
         $ref: 'notFoundPage'
+      }
+    },
+    register: {
+      api: ['showEntityList', 'showEntityDetailes'],
+      container: {
+        $ref: 'container'
       }
     },
     ready: {
@@ -93,6 +99,9 @@ define({
         }
       }
     }
+  },
+  preloader: {
+    create: "blocks/views/preloader/index"
   },
   start: function() {
     return this.appInstance.start();

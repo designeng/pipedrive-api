@@ -3,6 +3,7 @@ define
         'wire/debug'
         'plugins/marionette/router'
         'plugins/marionette/module'
+        'plugins/container/register'
         'plugins/element'
     ]
 
@@ -23,6 +24,9 @@ define
             deals               : {$ref: 'deals'}
             preloader           : {$ref: 'preloader'}
             notFoundPage        : {$ref: 'notFoundPage'}
+        register: 
+            api: ['showEntityList', 'showEntityDetailes']
+            container: {$ref: 'container'}
         ready:
             showPreloader: {}
         destroy:
@@ -65,6 +69,9 @@ define
                 dealsBoardRegion    : {$ref: 'appInstance.regions.mainAreaRegion'}
 
     # /APPLICATION MODULES
+
+    preloader:
+        create: "blocks/views/preloader/index"
 
     start: ->
         @appInstance.start()

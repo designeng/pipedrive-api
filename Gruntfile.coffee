@@ -119,9 +119,11 @@ module.exports = (grunt) ->
 
     grunt.registerTask "default", ["dataMainAttr:dev", "connect:app", "connect:jasmine", "watch"]
 
-    grunt.registerTask "build", ["dataMainAttr:prod", "requirejs:compile", "server"]
+    grunt.registerTask "build", ["dataMainAttr:prod", "requirejs:compile"]
     grunt.registerTask "server", ["connect:app", "watch"]
+    grunt.registerTask "deploy", ["deployToRemote:master"]
 
     # compilation
     grunt.registerTask "coffee-compile-app", ["newer:coffee:app"]
     grunt.registerTask "coffee-compile-jasmine", ["newer:coffee:jasmine"]
+

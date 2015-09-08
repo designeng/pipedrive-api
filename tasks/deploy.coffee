@@ -24,7 +24,6 @@ module.exports = (grunt) ->
             "git add ."
             "git commit -m 'build #{date}'"
             "git push origin #{branch}"
-            "git checkout dev"
         ]
 
         runBushCommands(bashCommands.join(' && ')).done =>

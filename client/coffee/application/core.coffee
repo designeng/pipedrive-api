@@ -29,8 +29,6 @@ define
             container: {$ref: 'container'}
         ready:
             showPreloader: {}
-        destroy:
-            onDestroy: {}
 
     router:
         createRouter:

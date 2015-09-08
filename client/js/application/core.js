@@ -39,9 +39,6 @@ define({
     },
     ready: {
       showPreloader: {}
-    },
-    destroy: {
-      onDestroy: {}
     }
   },
   router: {

@@ -126,4 +126,3 @@ module.exports = (grunt) ->
     # compilation
     grunt.registerTask "coffee-compile-app", ["newer:coffee:app"]
     grunt.registerTask "coffee-compile-jasmine", ["newer:coffee:jasmine"]
-

@@ -19,14 +19,14 @@ define [
         # wired context is cached (we should not wire the module twice!)
         provideModuleSandbox: (joinpoint) =>
             moduleName = joinpoint.args[0]
-            id = joinpoint.args[1]
+            args = _.rest joinpoint.args
             context = @contextHash[moduleName]
             if !context?
                 When(joinpoint.target[moduleName]()).then (moduleContext) =>
                     @contextHash[moduleName] = moduleContext
-                    joinpoint.proceed(@wrapModuleContextInSandbox(moduleContext), id)
+                    joinpoint.proceed(@wrapModuleContextInSandbox(moduleContext), args)
             else
-                joinpoint.proceed(@wrapModuleContextInSandbox(context), id)
+                joinpoint.proceed(@wrapModuleContextInSandbox(context), args)
 
         destroyModule: (name) ->
             @contextHash[name]?.destroy()

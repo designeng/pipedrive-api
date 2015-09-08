@@ -55,8 +55,8 @@ define(["marionette", "when"], function(Marionette, When) {
       return sandbox.showList();
     };
 
-    AppController.prototype.showEntityDetailes = function(sandbox, id) {
-      return sandbox.showDetailes(id);
+    AppController.prototype.showEntityDetailes = function(sandbox, args) {
+      return sandbox.showDetailes(args[0]);
     };
 
     return AppController;

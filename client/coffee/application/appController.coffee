@@ -1,9 +1,7 @@
 define [
-    "underscore"
     "marionette"
     "when"
-    "meld"
-], (_, Marionette, When, meld) ->
+], (Marionette, When) ->
 
     class AppController extends Marionette.Object
 

@@ -27,8 +27,8 @@ define({
       preloader: {
         $ref: 'preloader'
       },
-      notFoundPage: {
-        $ref: 'notFoundPage'
+      notFoundPageLayer: {
+        $ref: "element!.not-found"
       }
     },
     register: {

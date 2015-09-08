@@ -27,8 +27,6 @@ define [
             properties:
                 groups: {$ref: 'groups'}
                 collection      : {$ref: 'collection'}
-                childViewOptions: (model, index) ->
-                    console.debug "childViewOptions::::", @groups, model, index, _.find(@groups, {id: "id" + index})
             ready:
                 render: {}
 

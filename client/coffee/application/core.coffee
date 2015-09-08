@@ -23,7 +23,7 @@ define
             profiles            : {$ref: 'profiles'}
             deals               : {$ref: 'deals'}
             preloader           : {$ref: 'preloader'}
-            notFoundPage        : {$ref: 'notFoundPage'}
+            notFoundPageLayer   : {$ref: "element!.not-found"}
         register: 
             api: ['showEntityList', 'showEntityDetailes']
             container: {$ref: 'container'}

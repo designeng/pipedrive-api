@@ -1,4 +1,4 @@
-define(function() {
+define(["wire!bootstrap/spec"], function() {
   var specs;
   return specs = ["modules/profiles", "plugins/apply"];
 });

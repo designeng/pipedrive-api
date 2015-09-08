@@ -13,7 +13,7 @@ define [
         # DEFAULT ROUTE HANDLER:
         onRoute: (name, path, opts) =>
             @rootFragmentMutation(path.split("/")[0])
-            @notFoundPage.hide() unless path is "*notFound"
+            @notFoundPageLayer.hide() unless path is "*notFound"
 
         # remove and destroy cached context if root fragment is changed
         rootFragmentMutation: (rootFragment) ->
@@ -40,7 +40,7 @@ define [
         # 404 ERROR:
 
         notFoundHandler: ->
-            @notFoundPage.show()
+            @notFoundPageLayer.show()
 
         # COMMON API METHODS:
 

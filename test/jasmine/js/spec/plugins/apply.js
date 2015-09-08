@@ -54,11 +54,6 @@ define(["wire", "when", "backbone"], function(wire, When, Backbone) {
         },
         collection: {
           $ref: 'collection'
-        },
-        childViewOptions: function(model, index) {
-          return console.debug("childViewOptions::::", this.groups, model, index, _.find(this.groups, {
-            id: "id" + index
-          }));
         }
       },
       ready: {

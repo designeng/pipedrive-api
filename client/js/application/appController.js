@@ -22,7 +22,7 @@ define(["marionette", "when"], function(Marionette, When) {
     AppController.prototype.onRoute = function(name, path, opts) {
       this.rootFragmentMutation(path.split("/")[0]);
       if (path !== "*notFound") {
-        return this.notFoundPage.hide();
+        return this.notFoundPageLayer.hide();
       }
     };
 
@@ -48,7 +48,7 @@ define(["marionette", "when"], function(Marionette, When) {
     };
 
     AppController.prototype.notFoundHandler = function() {
-      return this.notFoundPage.show();
+      return this.notFoundPageLayer.show();
     };
 
     AppController.prototype.showEntityList = function(sandbox) {

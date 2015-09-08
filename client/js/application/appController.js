@@ -20,8 +20,8 @@ define(["underscore", "backbone", "marionette", "when", "meld", "api"], function
     AppController.prototype.currentRootFragment = null;
 
     AppController.prototype.initialize = function() {
-      this.removers.push(meld.around(this, 'showEntityList', this.provideModuleContext));
-      return this.removers.push(meld.around(this, 'showEntityDetailes', this.provideModuleContext));
+      this.removers.push(meld.around(this, 'showEntityList', this.provideModuleSandbox));
+      return this.removers.push(meld.around(this, 'showEntityDetailes', this.provideModuleSandbox));
     };
 
     AppController.prototype.showPreloader = function() {
@@ -39,7 +39,7 @@ define(["underscore", "backbone", "marionette", "when", "meld", "api"], function
       return sandbox;
     };
 
-    AppController.prototype.provideModuleContext = function(joinpoint) {
+    AppController.prototype.provideModuleSandbox = function(joinpoint) {
       var context, id, moduleName,
         _this = this;
       moduleName = joinpoint.args[0];

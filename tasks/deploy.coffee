@@ -18,8 +18,6 @@ module.exports = (grunt) ->
         date = new Date()
 
         bashCommands = [
-            "git checkout dev"
-            "git push origin dev"
             "git checkout master"
             "git merge dev"
             "grunt build"

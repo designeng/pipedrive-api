@@ -43,7 +43,7 @@ define({
     wire: {
       spec: 'application/modules/deals/board/spec',
       provide: {
-        collection: {
+        dealsCollection: {
           $ref: 'dealsCollection'
         },
         dealsBoardRegion: {

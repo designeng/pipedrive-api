@@ -32,7 +32,7 @@ define
         wire:
             spec: 'application/modules/deals/board/spec'
             provide:
-                collection          : {$ref: 'dealsCollection'}
+                dealsCollection     : {$ref: 'dealsCollection'}
                 dealsBoardRegion    : {$ref: 'dealsBoardRegion'}
 
     showList: ->

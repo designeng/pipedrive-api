@@ -24,7 +24,7 @@ define
 
     boardGroups:
         applyTo:
-            collection: {$ref: 'collection'}
+            collection: {$ref: 'dealsCollection'}
             methods: [
                 {"groupBy": "stage_id"}
                 {"map": {$ref: 'mapper'}}

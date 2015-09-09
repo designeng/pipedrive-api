@@ -10,35 +10,13 @@ define [
     triggerOneRouteSpy = jasmine.createSpy("triggerOneRouteSpy")
     sendMessageSpy = jasmine.createSpy("triggerOneRouteSpy")
 
-    define 'sandbox/modules/one/controller', ->
-        class OneController extends Marionette.Object
-            onReady: ->
-                @trigger "onready:send:something"
-
-    define 'sandbox/modules/one',
-        $plugins:[
-            'wire/debug'
-            'plugins/sandbox'
-        ]
-
-        sandbox:
-            createSandbox:
-                api: {}
-            eventsFlow: [
-            ]
-
-        controller:
-            create: 'sandbox/modules/one/controller'
-            ready:
-                onReady: {}
-
-    define 'sandbox/modules/two/controller', ->
-        class TwoController
+    define 'sandbox/modules/moduleOne/controller', ->
+        class ModuleOneController
             sendMessage: (message) ->
                 sendMessageSpy(message)
                 sandboxDeferred.resolve()
 
-    define 'sandbox/modules/two',
+    define 'sandbox/modules/moduleOne',
         $plugins: [
             'wire/debug'
             'plugins/sandbox'
@@ -50,7 +28,7 @@ define [
                     sendMessage: {$ref: 'controller.sendMessage'}
 
         controller:
-            create: 'sandbox/modules/two/controller'
+            create: 'sandbox/modules/moduleOne/controller'
 
     define 'sandbox/core/controller', ->
         class CoreController extends Marionette.Object
@@ -61,7 +39,7 @@ define [
 
             triggerOneRoute: (id) ->
                 triggerOneRouteSpy(id)
-                When(@activateModule "two", id).then (res) =>
+                @activateModule "moduleOne", id
 
     # CORE SPEC
     sandboxCoreSpec = 
@@ -73,22 +51,16 @@ define [
         appController:
             create: "sandbox/core/controller"
             properties:
-                one: {$ref: 'one'}
-                two: {$ref: 'two'}
+                moduleOne: {$ref: 'moduleOne'}
             registerInContainer:
                 api: ['activateModule']
 
-        one:
+        moduleOne:
             wire:
-                spec: 'sandbox/modules/one'
+                spec: 'sandbox/modules/moduleOne'
                 defer: true
 
-        two:
-            wire:
-                spec: 'sandbox/modules/two'
-                defer: true
-
-    # CORE SPEC
+    # /CORE SPEC
 
     describe "sandbox plugin", ->
 
@@ -105,13 +77,3 @@ define [
                 expect(activateModuleSpy).toHaveBeenCalled()
                 expect(sendMessageSpy).toHaveBeenCalledWith(123)
                 done()
-            
-
-        # it "activateModuleSpy called", (done) ->
-            # expect(activateModuleSpy).toHaveBeenCalled()
-        #     done()
-
-        # it "activateModuleSpy called", (done) ->
-        #     expect(activateModuleSpy).toHaveBeenCalled()
-        #     done()
-

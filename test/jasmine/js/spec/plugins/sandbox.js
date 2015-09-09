@@ -7,54 +7,21 @@ define(["wire", "when", "marionette"], function(wire, When) {
   activateModuleSpy = jasmine.createSpy("activateModuleSpy");
   triggerOneRouteSpy = jasmine.createSpy("triggerOneRouteSpy");
   sendMessageSpy = jasmine.createSpy("triggerOneRouteSpy");
-  define('sandbox/modules/one/controller', function() {
-    var OneController, _ref;
-    return OneController = (function(_super) {
-      __extends(OneController, _super);
+  define('sandbox/modules/moduleOne/controller', function() {
+    var ModuleOneController;
+    return ModuleOneController = (function() {
+      function ModuleOneController() {}
 
-      function OneController() {
-        _ref = OneController.__super__.constructor.apply(this, arguments);
-        return _ref;
-      }
-
-      OneController.prototype.onReady = function() {
-        return this.trigger("onready:send:something");
-      };
-
-      return OneController;
-
-    })(Marionette.Object);
-  });
-  define('sandbox/modules/one', {
-    $plugins: ['wire/debug', 'plugins/sandbox'],
-    sandbox: {
-      createSandbox: {
-        api: {}
-      },
-      eventsFlow: []
-    },
-    controller: {
-      create: 'sandbox/modules/one/controller',
-      ready: {
-        onReady: {}
-      }
-    }
-  });
-  define('sandbox/modules/two/controller', function() {
-    var TwoController;
-    return TwoController = (function() {
-      function TwoController() {}
-
-      TwoController.prototype.sendMessage = function(message) {
+      ModuleOneController.prototype.sendMessage = function(message) {
         sendMessageSpy(message);
         return sandboxDeferred.resolve();
       };
 
-      return TwoController;
+      return ModuleOneController;
 
     })();
   });
-  define('sandbox/modules/two', {
+  define('sandbox/modules/moduleOne', {
     $plugins: ['wire/debug', 'plugins/sandbox'],
     sandbox: {
       createSandbox: {
@@ -66,7 +33,7 @@ define(["wire", "when", "marionette"], function(wire, When) {
       }
     },
     controller: {
-      create: 'sandbox/modules/two/controller'
+      create: 'sandbox/modules/moduleOne/controller'
     }
   });
   define('sandbox/core/controller', function() {
@@ -85,9 +52,8 @@ define(["wire", "when", "marionette"], function(wire, When) {
       };
 
       CoreController.prototype.triggerOneRoute = function(id) {
-        var _this = this;
         triggerOneRouteSpy(id);
-        return When(this.activateModule("two", id)).then(function(res) {});
+        return this.activateModule("moduleOne", id);
       };
 
       return CoreController;
@@ -99,26 +65,17 @@ define(["wire", "when", "marionette"], function(wire, When) {
     appController: {
       create: "sandbox/core/controller",
       properties: {
-        one: {
-          $ref: 'one'
-        },
-        two: {
-          $ref: 'two'
+        moduleOne: {
+          $ref: 'moduleOne'
         }
       },
       registerInContainer: {
         api: ['activateModule']
       }
     },
-    one: {
+    moduleOne: {
       wire: {
-        spec: 'sandbox/modules/one',
-        defer: true
-      }
-    },
-    two: {
-      wire: {
-        spec: 'sandbox/modules/two',
+        spec: 'sandbox/modules/moduleOne',
         defer: true
       }
     }

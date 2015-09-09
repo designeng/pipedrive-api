@@ -19,7 +19,6 @@ define [
         # sandbox provides module functional api and hides other details of realization
         # wired context is cached (we should not wire the module twice!)
         registerModuleSandbox: (joinpoint) =>
-            console.debug "joinpoint::::", joinpoint
             moduleName = joinpoint.args[0]
             args = _.rest joinpoint.args
             context = @contextHash[moduleName]

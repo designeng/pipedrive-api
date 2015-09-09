@@ -20,7 +20,6 @@ define(["underscore", "backbone.radio", "when", "meld"], function(_, Radio, When
     Container.prototype.registerModuleSandbox = function(joinpoint) {
       var args, context, moduleName,
         _this = this;
-      console.debug("joinpoint::::", joinpoint);
       moduleName = joinpoint.args[0];
       args = _.rest(joinpoint.args);
       context = this.contextHash[moduleName];

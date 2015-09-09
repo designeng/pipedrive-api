@@ -16,7 +16,7 @@ define [
 
         eventsFlowFacet = (resolver, facet, wire) ->
             wire(facet.options).then (options) ->
-                
+                # TODO
                 resolver.resolve facet.target
 
         pluginInstance = 

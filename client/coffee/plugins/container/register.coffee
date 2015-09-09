@@ -11,7 +11,7 @@ define [
 
         contextHash: {}
 
-        mediators: {}
+        applicationChannel: Radio.channel("application")
 
         # sandbox provides module functional api and hides other details of realization
         wrapModuleContextInSandbox: (moduleContext) =>
@@ -30,10 +30,9 @@ define [
                 When(joinpoint.target[moduleName]({
                     _radio:
                         literal:
-                            channel: Radio.channel(moduleName)
+                            channel: @applicationChannel
                     })).then (moduleContext) =>
                     @contextHash[moduleName] = moduleContext
-                    @mediators[moduleName] = moduleContext._radio.channel
                     joinpoint.proceed(@wrapModuleContextInSandbox(moduleContext), args)
             else
                 joinpoint.proceed(@wrapModuleContextInSandbox(context), args)

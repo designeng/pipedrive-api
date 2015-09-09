@@ -40,10 +40,9 @@ define [
         container = new Container()
 
         # what views the layout should show in its own regions
-        registerApiFacet = (resolver, facet, wire) ->
-            wire(facet.options).then (options) ->
-                api = options.api
-                _.each options.api, (method) ->
+        registerIntercessorsFacet = (resolver, facet, wire) ->
+            wire(facet.options).then (sandboxIntercessors) ->
+                _.each sandboxIntercessors, (method) ->
                     container.removers.push meld.around facet.target, method, container.registerModuleSandbox
                 facet.target.container = container
                 resolver.resolve facet.target
@@ -55,8 +54,8 @@ define [
 
         pluginInstance = 
             facets:
-                registerInContainer:
-                    "ready"     : registerApiFacet
+                registerIntercessors:
+                    "ready"     : registerIntercessorsFacet
                     "destroy"   : destroyFacet
 
         return pluginInstance

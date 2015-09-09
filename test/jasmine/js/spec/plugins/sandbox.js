@@ -1,10 +1,7 @@
-var __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
-
-define(["wire", "when", "marionette"], function(wire, When) {
-  var activateModuleSpy, sandboxCoreSpec, sandboxDeferred, sendMessageSpy, triggerOneRouteSpy;
+define(["wire", "when"], function(wire, When) {
+  var interactWithModuleSpy, sandboxCoreSpec, sandboxDeferred, sendMessageSpy, triggerOneRouteSpy;
   sandboxDeferred = When.defer();
-  activateModuleSpy = jasmine.createSpy("activateModuleSpy");
+  interactWithModuleSpy = jasmine.createSpy("interactWithModuleSpy");
   triggerOneRouteSpy = jasmine.createSpy("triggerOneRouteSpy");
   sendMessageSpy = jasmine.createSpy("triggerOneRouteSpy");
   define('sandbox/modules/moduleOne/controller', function() {
@@ -37,28 +34,23 @@ define(["wire", "when", "marionette"], function(wire, When) {
     }
   });
   define('sandbox/core/controller', function() {
-    var CoreController, _ref;
-    return CoreController = (function(_super) {
-      __extends(CoreController, _super);
+    var CoreController;
+    return CoreController = (function() {
+      function CoreController() {}
 
-      function CoreController() {
-        _ref = CoreController.__super__.constructor.apply(this, arguments);
-        return _ref;
-      }
-
-      CoreController.prototype.activateModule = function(sandbox, args) {
-        activateModuleSpy();
+      CoreController.prototype.interactWithModule = function(sandbox, args) {
+        interactWithModuleSpy();
         return sandbox.sendMessage(args[0]);
       };
 
       CoreController.prototype.triggerOneRoute = function(id) {
         triggerOneRouteSpy(id);
-        return this.activateModule("moduleOne", id);
+        return this.interactWithModule("moduleOne", id);
       };
 
       return CoreController;
 
-    })(Marionette.Object);
+    })();
   });
   sandboxCoreSpec = {
     $plugins: ['wire/debug', 'plugins/container/register'],
@@ -69,9 +61,7 @@ define(["wire", "when", "marionette"], function(wire, When) {
           $ref: 'moduleOne'
         }
       },
-      registerInContainer: {
-        api: ['activateModule']
-      }
+      registerIntercessors: ['interactWithModule']
     },
     moduleOne: {
       wire: {
@@ -90,12 +80,12 @@ define(["wire", "when", "marionette"], function(wire, When) {
         return console.log("ERROR", err);
       });
     });
-    return it("sendMessageSpy called with id 123", function(done) {
+    return it("sendMessageSpy should be called with id 123", function(done) {
       var _this = this;
       this.ctx.appController.triggerOneRoute(123);
       return When(sandboxDeferred.promise).then(function() {
         expect(triggerOneRouteSpy).toHaveBeenCalledWith(123);
-        expect(activateModuleSpy).toHaveBeenCalled();
+        expect(interactWithModuleSpy).toHaveBeenCalled();
         expect(sendMessageSpy).toHaveBeenCalledWith(123);
         return done();
       });

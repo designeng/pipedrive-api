@@ -10,8 +10,7 @@ define({
           $ref: 'profilesController.showProfileDetailes'
         }
       }
-    },
-    eventsFlow: ["right:show"]
+    }
   },
   profilesCollection: {
     create: 'application/modules/profiles/collections/profiles',

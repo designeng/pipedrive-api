@@ -1,12 +1,11 @@
 define [
     "wire"
     "when"
-    "marionette"
 ], (wire, When) ->
 
     sandboxDeferred = When.defer()
 
-    activateModuleSpy = jasmine.createSpy("activateModuleSpy")
+    interactWithModuleSpy = jasmine.createSpy("interactWithModuleSpy")
     triggerOneRouteSpy = jasmine.createSpy("triggerOneRouteSpy")
     sendMessageSpy = jasmine.createSpy("triggerOneRouteSpy")
 
@@ -31,15 +30,15 @@ define [
             create: 'sandbox/modules/moduleOne/controller'
 
     define 'sandbox/core/controller', ->
-        class CoreController extends Marionette.Object
+        class CoreController
 
-            activateModule: (sandbox, args) ->
-                activateModuleSpy()
+            interactWithModule: (sandbox, args) ->
+                interactWithModuleSpy()
                 sandbox.sendMessage(args[0])
 
             triggerOneRoute: (id) ->
                 triggerOneRouteSpy(id)
-                @activateModule "moduleOne", id
+                @interactWithModule "moduleOne", id
 
     # CORE SPEC
     sandboxCoreSpec = 
@@ -52,9 +51,10 @@ define [
             create: "sandbox/core/controller"
             properties:
                 moduleOne: {$ref: 'moduleOne'}
-            registerInContainer:
-                api: ['activateModule']
+            registerIntercessors: ['interactWithModule']
 
+        # options.defer is true, so this module will be wired only after invocation: moduleOne()
+        # but it's wrapped into 'plugins/container/register' plugin.
         moduleOne:
             wire:
                 spec: 'sandbox/modules/moduleOne'
@@ -70,10 +70,10 @@ define [
             .otherwise (err) ->
                 console.log "ERROR", err
 
-        it "sendMessageSpy called with id 123", (done) ->
+        it "sendMessageSpy should be called with id 123", (done) ->
             @ctx.appController.triggerOneRoute(123)
             When(sandboxDeferred.promise).then () =>
                 expect(triggerOneRouteSpy).toHaveBeenCalledWith(123)
-                expect(activateModuleSpy).toHaveBeenCalled()
+                expect(interactWithModuleSpy).toHaveBeenCalled()
                 expect(sendMessageSpy).toHaveBeenCalledWith(123)
                 done()

@@ -10,9 +10,6 @@ define
             api: 
                 showList        : {$ref: 'profilesController.showList'}
                 showDetailes    : {$ref: 'profilesController.showProfileDetailes'}
-        eventsFlow: [
-            "right:show"
-        ]
 
     profilesCollection:
         create: 'application/modules/profiles/collections/profiles'

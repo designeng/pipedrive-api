@@ -31,9 +31,7 @@ define({
         $ref: "element!.not-found"
       }
     },
-    registerInContainer: {
-      api: ['showEntityList', 'showEntityDetailes']
-    },
+    registerIntercessors: ['showEntityList', 'showEntityDetailes'],
     ready: {
       showPreloader: {}
     }

@@ -47,13 +47,11 @@ define(["underscore", "backbone.radio", "when", "meld"], function(_, Radio, When
 
   })();
   return function(options) {
-    var container, destroyFacet, pluginInstance, registerApiFacet;
+    var container, destroyFacet, pluginInstance, registerIntercessorsFacet;
     container = new Container();
-    registerApiFacet = function(resolver, facet, wire) {
-      return wire(facet.options).then(function(options) {
-        var api;
-        api = options.api;
-        _.each(options.api, function(method) {
+    registerIntercessorsFacet = function(resolver, facet, wire) {
+      return wire(facet.options).then(function(sandboxIntercessors) {
+        _.each(sandboxIntercessors, function(method) {
           return container.removers.push(meld.around(facet.target, method, container.registerModuleSandbox));
         });
         facet.target.container = container;
@@ -68,8 +66,8 @@ define(["underscore", "backbone.radio", "when", "meld"], function(_, Radio, When
     };
     pluginInstance = {
       facets: {
-        registerInContainer: {
-          "ready": registerApiFacet,
+        registerIntercessors: {
+          "ready": registerIntercessorsFacet,
           "destroy": destroyFacet
         }
       }

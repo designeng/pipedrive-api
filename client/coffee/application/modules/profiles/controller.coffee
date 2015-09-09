@@ -4,6 +4,9 @@ define [
 
     class ProfilesController extends Marionette.Object
 
+        onReady: ->
+            console.debug "controller READY"
+
         showList: =>
             @listRegion.show @list
 
@@ -23,4 +26,6 @@ define [
                 @personProfileRegion.show personProfile
             else
                 @personProfileRegion.show new @BlankProfile
+
+            @activateById(personId)
             return personId

@@ -14,6 +14,10 @@ define(["marionette"], function(Marionette) {
       return _ref;
     }
 
+    ProfilesController.prototype.onReady = function() {
+      return console.debug("controller READY");
+    };
+
     ProfilesController.prototype.showList = function() {
       return this.listRegion.show(this.list);
     };
@@ -37,6 +41,7 @@ define(["marionette"], function(Marionette) {
       } else {
         this.personProfileRegion.show(new this.BlankProfile);
       }
+      this.activateById(personId);
       return personId;
     };
 

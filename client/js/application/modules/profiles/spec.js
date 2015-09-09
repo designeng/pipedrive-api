@@ -1,5 +1,5 @@
 define({
-  $plugins: ['wire/debug', 'wire/aop', 'plugins/hbs', 'plugins/sandbox'],
+  $plugins: ['wire/debug', 'plugins/hbs', 'plugins/sandbox'],
   sandbox: {
     createSandbox: {
       api: {
@@ -11,10 +11,8 @@ define({
         }
       }
     },
-    properties: {
-      list: {
-        $ref: 'profilesList'
-      }
+    ready: {
+      onReady: {}
     }
   },
   profilesCollection: {
@@ -69,8 +67,8 @@ define({
         $ref: 'personProfileRegion'
       }
     },
-    after: {
-      'showProfileDetailes': 'activateById'
+    ready: {
+      onReady: {}
     }
   }
 });

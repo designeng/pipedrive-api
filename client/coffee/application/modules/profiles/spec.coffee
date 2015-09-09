@@ -1,7 +1,6 @@
 define
     $plugins: [
         'wire/debug'
-        'wire/aop'
         'plugins/hbs'
         'plugins/sandbox'
     ]
@@ -11,8 +10,8 @@ define
             api: 
                 showList        : {$ref: 'profilesController.showList'}
                 showDetailes    : {$ref: 'profilesController.showProfileDetailes'}
-        properties:
-            list                : {$ref: 'profilesList'}
+        ready:
+            onReady: {}
 
     profilesCollection:
         create: 'application/modules/profiles/collections/profiles'
@@ -45,5 +44,5 @@ define
             PersonProfileDeals  : {$ref: 'personProfileDeals'}
             listRegion          : {$ref: 'listRegion'}
             personProfileRegion : {$ref: 'personProfileRegion'}
-        after:
-            'showProfileDetailes': 'activateById'
+        ready:
+            onReady: {}

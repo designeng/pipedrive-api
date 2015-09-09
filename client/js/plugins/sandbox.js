@@ -4,7 +4,11 @@ define(['underscore', 'backbone.radio'], function(_, Radio) {
     createSandboxFactory = function(resolver, compDef, wire) {
       return wire(compDef.options.api).then(function(api) {
         var sandbox;
-        sandbox = {};
+        sandbox = {
+          onReady: function() {
+            return console.debug("READY!!!");
+          }
+        };
         _.each(api, function(method, methodName) {
           return sandbox[methodName] = method;
         });

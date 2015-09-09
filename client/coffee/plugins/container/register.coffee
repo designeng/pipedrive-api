@@ -14,11 +14,8 @@ define [
         channels: {}
 
         # sandbox provides module functional api and hides other details of realization
-        wrapModuleContextInSandbox: (moduleContext) =>
-            return moduleContext.sandbox
-
         # wired context is cached (we should not wire the module twice!)
-        provideModuleSandbox: (joinpoint) =>
+        registerModuleSandbox: (joinpoint) =>
             moduleName = joinpoint.args[0]
             args = _.rest joinpoint.args
             context = @contextHash[moduleName]
@@ -30,9 +27,9 @@ define [
                     })).then (moduleContext) =>
                     @contextHash[moduleName] = moduleContext
                     @channels[moduleName] = moduleContext._radio.channel
-                    joinpoint.proceed(@wrapModuleContextInSandbox(moduleContext), args)
+                    joinpoint.proceed(moduleContext.sandbox, args)
             else
-                joinpoint.proceed(@wrapModuleContextInSandbox(context), args)
+                joinpoint.proceed(context.sandbox, args)
 
         destroyModule: (name) ->
             @contextHash[name]?.destroy()
@@ -49,7 +46,7 @@ define [
             wire(facet.options).then (options) ->
                 api = options.api
                 _.each options.api, (method) ->
-                    container.removers.push meld.around facet.target, method, container.provideModuleSandbox
+                    container.removers.push meld.around facet.target, method, container.registerModuleSandbox
                 facet.target.container = container
                 resolver.resolve facet.target
 

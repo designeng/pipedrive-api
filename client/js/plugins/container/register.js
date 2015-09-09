@@ -4,8 +4,7 @@ define(["underscore", "backbone.radio", "when", "meld"], function(_, Radio, When
   var Container;
   Container = (function() {
     function Container() {
-      this.provideModuleSandbox = __bind(this.provideModuleSandbox, this);
-      this.wrapModuleContextInSandbox = __bind(this.wrapModuleContextInSandbox, this);
+      this.registerModuleSandbox = __bind(this.registerModuleSandbox, this);
     }
 
     Container.prototype.removers = [];
@@ -14,11 +13,7 @@ define(["underscore", "backbone.radio", "when", "meld"], function(_, Radio, When
 
     Container.prototype.channels = {};
 
-    Container.prototype.wrapModuleContextInSandbox = function(moduleContext) {
-      return moduleContext.sandbox;
-    };
-
-    Container.prototype.provideModuleSandbox = function(joinpoint) {
+    Container.prototype.registerModuleSandbox = function(joinpoint) {
       var args, context, moduleName,
         _this = this;
       moduleName = joinpoint.args[0];
@@ -34,10 +29,10 @@ define(["underscore", "backbone.radio", "when", "meld"], function(_, Radio, When
         })).then(function(moduleContext) {
           _this.contextHash[moduleName] = moduleContext;
           _this.channels[moduleName] = moduleContext._radio.channel;
-          return joinpoint.proceed(_this.wrapModuleContextInSandbox(moduleContext), args);
+          return joinpoint.proceed(moduleContext.sandbox, args);
         });
       } else {
-        return joinpoint.proceed(this.wrapModuleContextInSandbox(context), args);
+        return joinpoint.proceed(context.sandbox, args);
       }
     };
 
@@ -64,7 +59,7 @@ define(["underscore", "backbone.radio", "when", "meld"], function(_, Radio, When
         var api;
         api = options.api;
         _.each(options.api, function(method) {
-          return container.removers.push(meld.around(facet.target, method, container.provideModuleSandbox));
+          return container.removers.push(meld.around(facet.target, method, container.registerModuleSandbox));
         });
         facet.target.container = container;
         return resolver.resolve(facet.target);

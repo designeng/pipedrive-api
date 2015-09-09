@@ -14,8 +14,7 @@ define(["underscore", "backbone.radio", "when", "meld"], function(_, Radio, When
     Container.prototype.modulesApi = {};
 
     Container.prototype.registerModuleApi = function(moduleName, sandbox) {
-      this.modulesApi[moduleName] = sandbox;
-      return console.debug("sandbox", sandbox);
+      return this.modulesApi[moduleName] = sandbox;
     };
 
     Container.prototype.registerModuleSandbox = function(joinpoint) {

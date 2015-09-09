@@ -5,9 +5,6 @@ define(['underscore', 'backbone.radio'], function(_, Radio) {
       return wire(compDef.options.api).then(function(api) {
         var sandbox;
         sandbox = {};
-        if (sandbox.emitter == null) {
-          sandbox.emitter = Radio.channel("application");
-        }
         _.each(api, function(method, methodName) {
           return sandbox[methodName] = method;
         });

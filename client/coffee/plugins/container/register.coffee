@@ -15,7 +15,6 @@ define [
 
         registerModuleApi: (moduleName, sandbox) ->
             @modulesApi[moduleName] = sandbox
-            console.debug "sandbox", sandbox
 
         # sandbox provides module functional api and hides other details of realization
         # wired context is cached (we should not wire the module twice!)

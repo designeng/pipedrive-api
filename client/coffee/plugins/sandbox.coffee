@@ -8,8 +8,8 @@ define [
         createSandboxFactory = (resolver, compDef, wire) ->
             wire(compDef.options.api).then (api) ->
                 sandbox = {}
-                if !sandbox.emitter?
-                    sandbox.emitter = Radio.channel("application")
+                # if !sandbox.emitter?
+                #     sandbox.emitter = Radio.channel("application")
                 _.each api, (method, methodName) ->
                     sandbox[methodName] = method
                 resolver.resolve(sandbox)

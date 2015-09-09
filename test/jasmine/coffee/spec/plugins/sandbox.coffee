@@ -4,33 +4,16 @@ define [
     "marionette"
 ], (wire, When) ->
 
+    sandboxDeferred = When.defer()
 
     activateModuleSpy = jasmine.createSpy("activateModuleSpy")
-
     triggerOneRouteSpy = jasmine.createSpy("triggerOneRouteSpy")
+    sendMessageSpy = jasmine.createSpy("triggerOneRouteSpy")
 
     define 'sandbox/modules/one/controller', ->
         class OneController extends Marionette.Object
             onReady: ->
                 @trigger "onready:send:something"
-
-    define 'sandbox/modules/two/controller', ->
-        class TwoController extends Marionette.Object
-            sendMessage: ->
-                console.debug "sendMessage"
-
-    define 'sandbox/core/controller', ->
-        class CoreController extends Marionette.Object
-
-            activateModule: (id) ->
-                console.debug "activateModuleSpy...", id
-                activateModuleSpy(id)
-
-            triggerOneRoute: (id) ->
-                triggerOneRouteSpy(id)
-                When(@activateModule "two").then (res) =>
-                    @activateModule "two", id
-                    console.debug "RESULT:::", res
 
     define 'sandbox/modules/one',
         $plugins:[
@@ -49,6 +32,12 @@ define [
             ready:
                 onReady: {}
 
+    define 'sandbox/modules/two/controller', ->
+        class TwoController
+            sendMessage: (message) ->
+                sendMessageSpy(message)
+                sandboxDeferred.resolve()
+
     define 'sandbox/modules/two',
         $plugins: [
             'wire/debug'
@@ -57,14 +46,22 @@ define [
 
         sandbox:
             createSandbox:
-                api: 
+                api:
                     sendMessage: {$ref: 'controller.sendMessage'}
-            eventsFlow: [
-                "two:message"
-            ]
 
         controller:
             create: 'sandbox/modules/two/controller'
+
+    define 'sandbox/core/controller', ->
+        class CoreController extends Marionette.Object
+
+            activateModule: (sandbox, args) ->
+                activateModuleSpy()
+                sandbox.sendMessage(args[0])
+
+            triggerOneRoute: (id) ->
+                triggerOneRouteSpy(id)
+                When(@activateModule "two", id).then (res) =>
 
     # CORE SPEC
     sandboxCoreSpec = 
@@ -80,8 +77,6 @@ define [
                 two: {$ref: 'two'}
             registerInContainer:
                 api: ['activateModule']
-            ready:
-                triggerOneRoute: 123
 
         one:
             wire:
@@ -103,19 +98,20 @@ define [
             .otherwise (err) ->
                 console.log "ERROR", err
 
-        # it "core is defined", (done) ->
-        #     expect(@ctx.one()).toBeDefined()
+        it "sendMessageSpy called with id 123", (done) ->
+            @ctx.appController.triggerOneRoute(123)
+            When(sandboxDeferred.promise).then () =>
+                expect(triggerOneRouteSpy).toHaveBeenCalledWith(123)
+                expect(activateModuleSpy).toHaveBeenCalled()
+                expect(sendMessageSpy).toHaveBeenCalledWith(123)
+                done()
+            
+
+        # it "activateModuleSpy called", (done) ->
+            # expect(activateModuleSpy).toHaveBeenCalled()
         #     done()
 
-        it "triggerOneRouteSpy called with id 123", (done) ->
-            expect(triggerOneRouteSpy).toHaveBeenCalledWith(123)
-            done()
-
-        it "activateModuleSpy called", (done) ->
-            expect(activateModuleSpy).toHaveBeenCalled()
-            done()
-
-        it "activateModuleSpy called", (done) ->
-            expect(activateModuleSpy).toHaveBeenCalled()
-            done()
+        # it "activateModuleSpy called", (done) ->
+        #     expect(activateModuleSpy).toHaveBeenCalled()
+        #     done()
 

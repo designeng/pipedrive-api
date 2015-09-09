@@ -27,6 +27,7 @@ define
         registerIntercessors: ['showEntityList', 'showEntityDetailes']
         ready:
             showPreloader: {}
+            listenToDealsModule: {}
 
     router:
         createRouter:

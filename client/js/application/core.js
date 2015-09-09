@@ -33,7 +33,8 @@ define({
     },
     registerIntercessors: ['showEntityList', 'showEntityDetailes'],
     ready: {
-      showPreloader: {}
+      showPreloader: {},
+      listenToDealsModule: {}
     }
   },
   router: {

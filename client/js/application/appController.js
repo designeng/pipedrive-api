@@ -19,6 +19,12 @@ define(["marionette", "when"], function(Marionette, When) {
       return this.regions.mainAreaRegion.show(this.preloader);
     };
 
+    AppController.prototype.listenToDealsModule = function() {
+      return this.container.containerChannel.on("deals:id:activated", function(id) {
+        return console.debug("ACTIVATED ITEM: ", id);
+      });
+    };
+
     AppController.prototype.onRoute = function(name, path, opts) {
       this.rootFragmentMutation(path.split("/")[0]);
       if (path !== "*notFound") {

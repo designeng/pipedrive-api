@@ -10,6 +10,10 @@ define [
         showPreloader: ->
             @regions.mainAreaRegion.show @preloader
 
+        listenToDealsModule: ->
+            @container.containerChannel.on "deals:id:activated", (id) ->
+                console.debug "ACTIVATED ITEM: ", id
+
         # DEFAULT ROUTE HANDLER:
         onRoute: (name, path, opts) =>
             @rootFragmentMutation(path.split("/")[0])

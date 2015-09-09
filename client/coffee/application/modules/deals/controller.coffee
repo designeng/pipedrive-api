@@ -17,3 +17,6 @@ define [
 
         activateById: (id) ->
             @list.activateById id
+
+            # demonstration of module's feedback
+            @channel.trigger "deals:id:activated", id

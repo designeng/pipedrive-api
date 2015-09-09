@@ -13,6 +13,8 @@ define [
 
         modulesApi: {}
 
+        containerChannel: Radio.channel("container")
+
         registerModuleApi: (moduleName, sandbox) ->
             @modulesApi[moduleName] = sandbox
 
@@ -23,7 +25,11 @@ define [
             args = _.rest joinpoint.args
             context = @contextHash[moduleName]
             if !context?
-                When(joinpoint.target[moduleName]()).then (moduleContext) =>
+                When(joinpoint.target[moduleName]({
+                    _radio:
+                        literal:
+                            channel: @containerChannel
+                })).then (moduleContext) =>
                     @contextHash[moduleName] = moduleContext
                     @registerModuleApi(moduleName, moduleContext.sandbox)
                     joinpoint.proceed(moduleContext.sandbox, args)

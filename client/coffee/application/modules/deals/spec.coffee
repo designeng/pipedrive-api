@@ -3,7 +3,7 @@ define
         'wire/debug'
         'wire/aop'
         'plugins/hbs'
-        'plugins/sandbox'
+        'plugins/container/sandbox'
     ]
 
     sandbox:
@@ -32,6 +32,7 @@ define
             list                : {$ref: 'dealsList'}
             listRegion          : {$ref: 'listRegion'}
             dealsBoard          : {$ref: 'dealsBoard'}
+            radio               : {$ref: '_radio'}
 
     dealsBoard:
         wire:

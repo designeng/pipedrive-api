@@ -1,24 +1,28 @@
 define [
     "wire"
     "when"
-], (wire, When) ->
+    "backbone.radio"
+], (wire, When, Radio) ->
 
     sandboxDeferred = When.defer()
 
     interactWithModuleSpy = jasmine.createSpy("interactWithModuleSpy")
     triggerOneRouteSpy = jasmine.createSpy("triggerOneRouteSpy")
     sendMessageSpy = jasmine.createSpy("triggerOneRouteSpy")
+    radioChannelCommunicationSpy = jasmine.createSpy("radioChannelCommunicationSpy")
 
     define 'sandbox/modules/moduleOne/controller', ->
         class ModuleOneController
-            sendMessage: (message) ->
+
+            sendMessage: (message) =>
+                @channel.trigger "to:container:from:one", "Hello from moduleOne"
                 sendMessageSpy(message)
                 sandboxDeferred.resolve()
 
     define 'sandbox/modules/moduleOne',
         $plugins: [
             'wire/debug'
-            'plugins/sandbox'
+            'plugins/container/sandbox'
         ]
 
         sandbox:
@@ -28,6 +32,8 @@ define [
 
         controller:
             create: 'sandbox/modules/moduleOne/controller'
+            properties:
+                channel: {$ref: '_radio.channel'}
 
     define 'sandbox/core/controller', ->
         class CoreController
@@ -39,6 +45,10 @@ define [
             triggerOneRoute: (id) ->
                 triggerOneRouteSpy(id)
                 @interactWithModule "moduleOne", id
+
+            listenToModule: ->
+                @container.containerChannel.on "to:container:from:one", (data) ->
+                    radioChannelCommunicationSpy(data)
 
     # CORE SPEC
     sandboxCoreSpec = 
@@ -52,6 +62,8 @@ define [
             properties:
                 moduleOne: {$ref: 'moduleOne'}
             registerIntercessors: ['interactWithModule']
+            ready:
+                listenToModule: {}
 
         # options.defer is true, so this module will be wired only after invocation: moduleOne()
         # but it's wrapped into 'plugins/container/register' plugin.
@@ -76,4 +88,5 @@ define [
                 expect(triggerOneRouteSpy).toHaveBeenCalledWith(123)
                 expect(interactWithModuleSpy).toHaveBeenCalled()
                 expect(sendMessageSpy).toHaveBeenCalledWith(123)
+                expect(radioChannelCommunicationSpy).toHaveBeenCalledWith("Hello from moduleOne")
                 done()

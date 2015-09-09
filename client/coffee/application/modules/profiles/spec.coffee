@@ -2,7 +2,7 @@ define
     $plugins: [
         'wire/debug'
         'plugins/hbs'
-        'plugins/sandbox'
+        'plugins/container/sandbox'
     ]
 
     sandbox:

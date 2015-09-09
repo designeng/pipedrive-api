@@ -33,16 +33,10 @@ define({
       },
       dealsBoard: {
         $ref: 'dealsBoard'
-      },
-      radio: {
-        $ref: '_radio'
       }
     },
     after: {
       'showDealDetailes': 'activateById'
-    },
-    ready: {
-      onReady: {}
     }
   },
   dealsBoard: {

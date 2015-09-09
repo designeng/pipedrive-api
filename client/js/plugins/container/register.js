@@ -12,7 +12,7 @@ define(["underscore", "backbone.radio", "when", "meld"], function(_, Radio, When
 
     Container.prototype.contextHash = {};
 
-    Container.prototype.mediators = {};
+    Container.prototype.channels = {};
 
     Container.prototype.wrapModuleContextInSandbox = function(moduleContext) {
       var prop, sandbox;
@@ -40,7 +40,7 @@ define(["underscore", "backbone.radio", "when", "meld"], function(_, Radio, When
           }
         })).then(function(moduleContext) {
           _this.contextHash[moduleName] = moduleContext;
-          _this.mediators[moduleName] = moduleContext._radio.channel;
+          _this.channels[moduleName] = moduleContext._radio.channel;
           return joinpoint.proceed(_this.wrapModuleContextInSandbox(moduleContext), args);
         });
       } else {
@@ -54,10 +54,10 @@ define(["underscore", "backbone.radio", "when", "meld"], function(_, Radio, When
         _ref.destroy();
       }
       delete this.contextHash[name];
-      if ((_ref1 = this.mediators[name]) != null) {
+      if ((_ref1 = this.channels[name]) != null) {
         _ref1.reset();
       }
-      return delete this.mediators[name];
+      return delete this.channels[name];
     };
 
     return Container;

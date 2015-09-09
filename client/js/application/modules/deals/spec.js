@@ -34,9 +34,6 @@ define({
   dealsController: {
     create: 'application/modules/deals/controller',
     properties: {
-      collection: {
-        $ref: 'dealsCollection'
-      },
       list: {
         $ref: 'dealsList'
       },
@@ -46,8 +43,8 @@ define({
       dealsBoard: {
         $ref: 'dealsBoard'
       },
-      radio: {
-        $ref: '_radio'
+      channel: {
+        $ref: '_radio.channel'
       }
     }
   },

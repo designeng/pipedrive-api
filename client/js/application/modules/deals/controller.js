@@ -26,7 +26,8 @@ define(["marionette"], function(Marionette) {
     };
 
     DealsController.prototype.activateById = function(id) {
-      return this.list.activateById(id);
+      this.list.activateById(id);
+      return this.channel.trigger("deals:id:activated", id);
     };
 
     return DealsController;

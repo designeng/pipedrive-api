@@ -28,11 +28,10 @@ define
     dealsController:
         create: 'application/modules/deals/controller'
         properties:
-            collection          : {$ref: 'dealsCollection'}
             list                : {$ref: 'dealsList'}
             listRegion          : {$ref: 'listRegion'}
             dealsBoard          : {$ref: 'dealsBoard'}
-            radio               : {$ref: '_radio'}
+            channel             : {$ref: '_radio.channel'}
 
     dealsBoard:
         wire:

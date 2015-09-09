@@ -10,8 +10,9 @@ define
             api: 
                 showList        : {$ref: 'profilesController.showList'}
                 showDetailes    : {$ref: 'profilesController.showProfileDetailes'}
-        ready:
-            onReady: {}
+        eventsFlow: [
+            "right:show"
+        ]
 
     profilesCollection:
         create: 'application/modules/profiles/collections/profiles'
@@ -44,5 +45,3 @@ define
             PersonProfileDeals  : {$ref: 'personProfileDeals'}
             listRegion          : {$ref: 'listRegion'}
             personProfileRegion : {$ref: 'personProfileRegion'}
-        ready:
-            onReady: {}

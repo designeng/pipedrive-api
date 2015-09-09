@@ -11,24 +11,24 @@ define(["underscore", "backbone.radio", "when", "meld"], function(_, Radio, When
 
     Container.prototype.contextHash = {};
 
-    Container.prototype.channels = {};
+    Container.prototype.modulesApi = {};
+
+    Container.prototype.registerModuleApi = function(moduleName, sandbox) {
+      this.modulesApi[moduleName] = sandbox;
+      return console.debug("sandbox", sandbox);
+    };
 
     Container.prototype.registerModuleSandbox = function(joinpoint) {
       var args, context, moduleName,
         _this = this;
+      console.debug("joinpoint::::", joinpoint);
       moduleName = joinpoint.args[0];
       args = _.rest(joinpoint.args);
       context = this.contextHash[moduleName];
       if (context == null) {
-        return When(joinpoint.target[moduleName]({
-          _radio: {
-            literal: {
-              channel: Radio.channel(moduleName)
-            }
-          }
-        })).then(function(moduleContext) {
+        return When(joinpoint.target[moduleName]()).then(function(moduleContext) {
           _this.contextHash[moduleName] = moduleContext;
-          _this.channels[moduleName] = moduleContext._radio.channel;
+          _this.registerModuleApi(moduleName, moduleContext.sandbox);
           return joinpoint.proceed(moduleContext.sandbox, args);
         });
       } else {
@@ -37,15 +37,12 @@ define(["underscore", "backbone.radio", "when", "meld"], function(_, Radio, When
     };
 
     Container.prototype.destroyModule = function(name) {
-      var _ref, _ref1;
+      var _ref;
       if ((_ref = this.contextHash[name]) != null) {
         _ref.destroy();
       }
       delete this.contextHash[name];
-      if ((_ref1 = this.channels[name]) != null) {
-        _ref1.reset();
-      }
-      return delete this.channels[name];
+      return delete this.modulesApi[name];
     };
 
     return Container;

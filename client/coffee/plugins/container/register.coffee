@@ -11,22 +11,23 @@ define [
 
         contextHash: {}
 
-        channels: {}
+        modulesApi: {}
+
+        registerModuleApi: (moduleName, sandbox) ->
+            @modulesApi[moduleName] = sandbox
+            console.debug "sandbox", sandbox
 
         # sandbox provides module functional api and hides other details of realization
         # wired context is cached (we should not wire the module twice!)
         registerModuleSandbox: (joinpoint) =>
+            console.debug "joinpoint::::", joinpoint
             moduleName = joinpoint.args[0]
             args = _.rest joinpoint.args
             context = @contextHash[moduleName]
             if !context?
-                When(joinpoint.target[moduleName]({
-                    _radio:
-                        literal:
-                            channel: Radio.channel(moduleName)
-                    })).then (moduleContext) =>
+                When(joinpoint.target[moduleName]()).then (moduleContext) =>
                     @contextHash[moduleName] = moduleContext
-                    @channels[moduleName] = moduleContext._radio.channel
+                    @registerModuleApi(moduleName, moduleContext.sandbox)
                     joinpoint.proceed(moduleContext.sandbox, args)
             else
                 joinpoint.proceed(context.sandbox, args)
@@ -34,8 +35,7 @@ define [
         destroyModule: (name) ->
             @contextHash[name]?.destroy()
             delete @contextHash[name]
-            @channels[name]?.reset()
-            delete @channels[name]
+            delete @modulesApi[name]
 
     return (options) ->
 

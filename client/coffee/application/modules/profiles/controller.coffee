@@ -4,9 +4,6 @@ define [
 
     class ProfilesController extends Marionette.Object
 
-        onReady: ->
-            console.debug "controller READY"
-
         showList: =>
             @listRegion.show @list
 

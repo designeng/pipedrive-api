@@ -6,4 +6,5 @@ define [
         # "applicationCore"
         "modules/profiles"
         "plugins/apply"
+        "plugins/sandbox"
     ]

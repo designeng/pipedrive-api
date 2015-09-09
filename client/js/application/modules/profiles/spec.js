@@ -11,9 +11,7 @@ define({
         }
       }
     },
-    ready: {
-      onReady: {}
-    }
+    eventsFlow: ["right:show"]
   },
   profilesCollection: {
     create: 'application/modules/profiles/collections/profiles',
@@ -66,9 +64,6 @@ define({
       personProfileRegion: {
         $ref: 'personProfileRegion'
       }
-    },
-    ready: {
-      onReady: {}
     }
   }
 });

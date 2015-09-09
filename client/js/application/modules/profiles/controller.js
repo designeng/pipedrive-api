@@ -14,10 +14,6 @@ define(["marionette"], function(Marionette) {
       return _ref;
     }
 
-    ProfilesController.prototype.onReady = function() {
-      return console.debug("controller READY");
-    };
-
     ProfilesController.prototype.showList = function() {
       return this.listRegion.show(this.list);
     };

@@ -32,6 +32,7 @@ define
             list                : {$ref: 'dealsList'}
             listRegion          : {$ref: 'listRegion'}
             dealsBoard          : {$ref: 'dealsBoard'}
+            radio               : {$ref: '_radio'}
 
     dealsBoard:
         wire:

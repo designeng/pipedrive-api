@@ -1,15 +1,21 @@
-define(["wire", "when"], function(wire, When) {
-  var interactWithModuleSpy, sandboxCoreSpec, sandboxDeferred, sendMessageSpy, triggerOneRouteSpy;
+var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+
+define(["wire", "when", "backbone.radio"], function(wire, When, Radio) {
+  var interactWithModuleSpy, radioChannelCommunicationSpy, sandboxCoreSpec, sandboxDeferred, sendMessageSpy, triggerOneRouteSpy;
   sandboxDeferred = When.defer();
   interactWithModuleSpy = jasmine.createSpy("interactWithModuleSpy");
   triggerOneRouteSpy = jasmine.createSpy("triggerOneRouteSpy");
   sendMessageSpy = jasmine.createSpy("triggerOneRouteSpy");
+  radioChannelCommunicationSpy = jasmine.createSpy("radioChannelCommunicationSpy");
   define('sandbox/modules/moduleOne/controller', function() {
     var ModuleOneController;
     return ModuleOneController = (function() {
-      function ModuleOneController() {}
+      function ModuleOneController() {
+        this.sendMessage = __bind(this.sendMessage, this);
+      }
 
       ModuleOneController.prototype.sendMessage = function(message) {
+        this.channel.trigger("to:container:from:one", "Hello from moduleOne");
         sendMessageSpy(message);
         return sandboxDeferred.resolve();
       };
@@ -30,7 +36,12 @@ define(["wire", "when"], function(wire, When) {
       }
     },
     controller: {
-      create: 'sandbox/modules/moduleOne/controller'
+      create: 'sandbox/modules/moduleOne/controller',
+      properties: {
+        channel: {
+          $ref: '_radio.channel'
+        }
+      }
     }
   });
   define('sandbox/core/controller', function() {
@@ -48,6 +59,12 @@ define(["wire", "when"], function(wire, When) {
         return this.interactWithModule("moduleOne", id);
       };
 
+      CoreController.prototype.listenToModule = function() {
+        return this.container.containerChannel.on("to:container:from:one", function(data) {
+          return radioChannelCommunicationSpy(data);
+        });
+      };
+
       return CoreController;
 
     })();
@@ -61,7 +78,10 @@ define(["wire", "when"], function(wire, When) {
           $ref: 'moduleOne'
         }
       },
-      registerIntercessors: ['interactWithModule']
+      registerIntercessors: ['interactWithModule'],
+      ready: {
+        listenToModule: {}
+      }
     },
     moduleOne: {
       wire: {
@@ -87,6 +107,7 @@ define(["wire", "when"], function(wire, When) {
         expect(triggerOneRouteSpy).toHaveBeenCalledWith(123);
         expect(interactWithModuleSpy).toHaveBeenCalled();
         expect(sendMessageSpy).toHaveBeenCalledWith(123);
+        expect(radioChannelCommunicationSpy).toHaveBeenCalledWith("Hello from moduleOne");
         return done();
       });
     });

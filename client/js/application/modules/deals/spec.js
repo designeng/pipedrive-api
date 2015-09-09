@@ -45,6 +45,9 @@ define({
       },
       dealsBoard: {
         $ref: 'dealsBoard'
+      },
+      radio: {
+        $ref: '_radio'
       }
     }
   },

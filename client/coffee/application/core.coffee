@@ -24,9 +24,8 @@ define
             deals               : {$ref: 'deals'}
             preloader           : {$ref: 'preloader'}
             notFoundPageLayer   : {$ref: "element!.not-found"}
-        register: 
+        registerInContainer: 
             api: ['showEntityList', 'showEntityDetailes']
-            container: {$ref: 'container'}
         ready:
             showPreloader: {}
 

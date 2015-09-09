@@ -31,11 +31,8 @@ define({
         $ref: "element!.not-found"
       }
     },
-    register: {
-      api: ['showEntityList', 'showEntityDetailes'],
-      container: {
-        $ref: 'container'
-      }
+    registerInContainer: {
+      api: ['showEntityList', 'showEntityDetailes']
     },
     ready: {
       showPreloader: {}

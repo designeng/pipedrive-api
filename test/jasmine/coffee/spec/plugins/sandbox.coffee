@@ -1,7 +1,6 @@
 define [
     "wire"
     "when"
-    "marionette"
 ], (wire, When) ->
 
     sandboxDeferred = When.defer()
@@ -31,7 +30,7 @@ define [
             create: 'sandbox/modules/moduleOne/controller'
 
     define 'sandbox/core/controller', ->
-        class CoreController extends Marionette.Object
+        class CoreController
 
             activateModule: (sandbox, args) ->
                 activateModuleSpy()
@@ -55,6 +54,8 @@ define [
             registerInContainer:
                 api: ['activateModule']
 
+        # options.defer is true, so this module will be wired only after invocation: moduleOne()
+        # but it's wrapped into 'plugins/container/register' plugin.
         moduleOne:
             wire:
                 spec: 'sandbox/modules/moduleOne'
@@ -70,7 +71,7 @@ define [
             .otherwise (err) ->
                 console.log "ERROR", err
 
-        it "sendMessageSpy called with id 123", (done) ->
+        it "sendMessageSpy should be called with id 123", (done) ->
             @ctx.appController.triggerOneRoute(123)
             When(sandboxDeferred.promise).then () =>
                 expect(triggerOneRouteSpy).toHaveBeenCalledWith(123)

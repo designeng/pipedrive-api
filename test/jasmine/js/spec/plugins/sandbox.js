@@ -1,7 +1,4 @@
-var __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
-
-define(["wire", "when", "marionette"], function(wire, When) {
+define(["wire", "when"], function(wire, When) {
   var activateModuleSpy, sandboxCoreSpec, sandboxDeferred, sendMessageSpy, triggerOneRouteSpy;
   sandboxDeferred = When.defer();
   activateModuleSpy = jasmine.createSpy("activateModuleSpy");
@@ -37,14 +34,9 @@ define(["wire", "when", "marionette"], function(wire, When) {
     }
   });
   define('sandbox/core/controller', function() {
-    var CoreController, _ref;
-    return CoreController = (function(_super) {
-      __extends(CoreController, _super);
-
-      function CoreController() {
-        _ref = CoreController.__super__.constructor.apply(this, arguments);
-        return _ref;
-      }
+    var CoreController;
+    return CoreController = (function() {
+      function CoreController() {}
 
       CoreController.prototype.activateModule = function(sandbox, args) {
         activateModuleSpy();
@@ -58,7 +50,7 @@ define(["wire", "when", "marionette"], function(wire, When) {
 
       return CoreController;
 
-    })(Marionette.Object);
+    })();
   });
   sandboxCoreSpec = {
     $plugins: ['wire/debug', 'plugins/container/register'],
@@ -90,7 +82,7 @@ define(["wire", "when", "marionette"], function(wire, When) {
         return console.log("ERROR", err);
       });
     });
-    return it("sendMessageSpy called with id 123", function(done) {
+    return it("sendMessageSpy should be called with id 123", function(done) {
       var _this = this;
       this.ctx.appController.triggerOneRoute(123);
       return When(sandboxDeferred.promise).then(function() {

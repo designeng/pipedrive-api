@@ -6,7 +6,6 @@ define [
     return ->
 
         createSandboxFactory = (resolver, compDef, wire) ->
-            console.debug "compDef.options", compDef.options
             wire(compDef.options.api).then (api) ->
                 sandbox = {}
                 _.each api, (method, methodName) ->

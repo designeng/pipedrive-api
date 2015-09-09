@@ -15,7 +15,6 @@ define [
 
         # sandbox provides module functional api and hides other details of realization
         wrapModuleContextInSandbox: (moduleContext) =>
-            console.debug "moduleContext.sandbox", moduleContext.sandbox
             return moduleContext.sandbox
 
         # wired context is cached (we should not wire the module twice!)

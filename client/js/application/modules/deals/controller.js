@@ -11,12 +11,17 @@ define(["marionette"], function(Marionette) {
       return _ref;
     }
 
+    DealsController.prototype.initialize = function() {
+      return _.bindAll(this, 'showList', 'showDealDetailes');
+    };
+
     DealsController.prototype.showList = function() {
       return this.listRegion.show(this.list);
     };
 
     DealsController.prototype.showDealDetailes = function(id) {
       this.dealsBoard.activateById(id);
+      this.activateById(id);
       return id;
     };
 

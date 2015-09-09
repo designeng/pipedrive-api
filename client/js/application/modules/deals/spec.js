@@ -1,17 +1,15 @@
 define({
-  $plugins: ['wire/debug', 'wire/aop', 'plugins/hbs'],
+  $plugins: ['wire/debug', 'wire/aop', 'plugins/hbs', 'plugins/sandbox'],
   sandbox: {
     createSandbox: {
-      api: [
-        {
-          "showList": {
-            $ref: 'dealsController.showList'
-          },
-          "showDetailes": {
-            $ref: 'dealsController.showDealDetailes'
-          }
+      api: {
+        showList: {
+          $ref: 'dealsController.showList'
+        },
+        showDetailes: {
+          $ref: 'dealsController.showDealDetailes'
         }
-      ]
+      }
     }
   },
   dealsCollection: {
@@ -48,9 +46,6 @@ define({
       dealsBoard: {
         $ref: 'dealsBoard'
       }
-    },
-    after: {
-      'showDealDetailes': 'activateById'
     }
   },
   dealsBoard: {

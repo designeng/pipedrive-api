@@ -3,14 +3,14 @@ define
         'wire/debug'
         'wire/aop'
         'plugins/hbs'
+        'plugins/sandbox'
     ]
 
     sandbox:
         createSandbox:
-            api:    [
-                "showList"      : {$ref: 'dealsController.showList'}
-                "showDetailes"  : {$ref: 'dealsController.showDealDetailes'}
-            ]
+            api: 
+                showList        : {$ref: 'dealsController.showList'}
+                showDetailes    : {$ref: 'dealsController.showDealDetailes'}
 
     dealsCollection:
         create: 'application/modules/deals/collections/deals'
@@ -32,8 +32,6 @@ define
             list                : {$ref: 'dealsList'}
             listRegion          : {$ref: 'listRegion'}
             dealsBoard          : {$ref: 'dealsBoard'}
-        after:
-            'showDealDetailes'  : 'activateById'
 
     dealsBoard:
         wire:
@@ -41,9 +39,3 @@ define
             provide:
                 dealsCollection     : {$ref: 'dealsCollection'}
                 dealsBoardRegion    : {$ref: 'dealsBoardRegion'}
-
-    # showList: ->
-    #     @dealsController.showList()
-
-    # showDetailes: (id) ->
-    #     @dealsController.showDealDetailes id

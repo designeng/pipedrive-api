@@ -4,13 +4,13 @@ define [
 
     class ProfilesController extends Marionette.Object
 
-        showList: ->
+        showList: =>
             @listRegion.show @list
 
         activateById: (id) ->
             @list.activateById id
 
-        showProfileDetailes: (personId) ->
+        showProfileDetailes: (personId) =>
             model = @collection.find (model) ->
                 return model.get('id') == parseInt(personId)
             if model

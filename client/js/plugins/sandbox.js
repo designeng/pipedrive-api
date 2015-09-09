@@ -2,7 +2,6 @@ define(['underscore', 'backbone.radio'], function(_, Radio) {
   return function() {
     var createSandboxFactory, pluginInstance;
     createSandboxFactory = function(resolver, compDef, wire) {
-      console.debug("compDef.options", compDef.options);
       return wire(compDef.options.api).then(function(api) {
         var sandbox;
         sandbox = {};

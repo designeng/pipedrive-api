@@ -47,9 +47,3 @@ define
             personProfileRegion : {$ref: 'personProfileRegion'}
         after:
             'showProfileDetailes': 'activateById'
-
-    # showList: ->
-    #     @profilesController.showList()
-
-    # showDetailes: (id) ->
-    #     @profilesController.showProfileDetailes id

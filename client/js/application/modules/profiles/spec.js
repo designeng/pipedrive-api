@@ -1,5 +1,22 @@
 define({
-  $plugins: ['wire/debug', 'wire/aop', 'plugins/hbs'],
+  $plugins: ['wire/debug', 'wire/aop', 'plugins/hbs', 'plugins/sandbox'],
+  sandbox: {
+    createSandbox: {
+      api: {
+        showList: {
+          $ref: 'profilesController.showList'
+        },
+        showDetailes: {
+          $ref: 'profilesController.showProfileDetailes'
+        }
+      }
+    },
+    properties: {
+      list: {
+        $ref: 'profilesList'
+      }
+    }
+  },
   profilesCollection: {
     create: 'application/modules/profiles/collections/profiles',
     ready: {
@@ -55,11 +72,5 @@ define({
     after: {
       'showProfileDetailes': 'activateById'
     }
-  },
-  showList: function() {
-    return this.profilesController.showList();
-  },
-  showDetailes: function(id) {
-    return this.profilesController.showProfileDetailes(id);
   }
 });

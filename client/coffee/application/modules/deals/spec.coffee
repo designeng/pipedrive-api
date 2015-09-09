@@ -5,6 +5,13 @@ define
         'plugins/hbs'
     ]
 
+    sandbox:
+        createSandbox:
+            api:    [
+                "showList"      : {$ref: 'dealsController.showList'}
+                "showDetailes"  : {$ref: 'dealsController.showDealDetailes'}
+            ]
+
     dealsCollection:
         create: 'application/modules/deals/collections/deals'
         ready:
@@ -35,8 +42,8 @@ define
                 dealsCollection     : {$ref: 'dealsCollection'}
                 dealsBoardRegion    : {$ref: 'dealsBoardRegion'}
 
-    showList: ->
-        @dealsController.showList()
+    # showList: ->
+    #     @dealsController.showList()
 
-    showDetailes: (id) ->
-        @dealsController.showDealDetailes id
+    # showDetailes: (id) ->
+    #     @dealsController.showDealDetailes id

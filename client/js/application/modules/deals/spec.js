@@ -1,5 +1,19 @@
 define({
   $plugins: ['wire/debug', 'wire/aop', 'plugins/hbs'],
+  sandbox: {
+    createSandbox: {
+      api: [
+        {
+          "showList": {
+            $ref: 'dealsController.showList'
+          },
+          "showDetailes": {
+            $ref: 'dealsController.showDealDetailes'
+          }
+        }
+      ]
+    }
+  },
   dealsCollection: {
     create: 'application/modules/deals/collections/deals',
     ready: {
@@ -51,11 +65,5 @@ define({
         }
       }
     }
-  },
-  showList: function() {
-    return this.dealsController.showList();
-  },
-  showDetailes: function(id) {
-    return this.dealsController.showDealDetailes(id);
   }
 });

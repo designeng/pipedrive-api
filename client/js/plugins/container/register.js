@@ -15,14 +15,8 @@ define(["underscore", "backbone.radio", "when", "meld"], function(_, Radio, When
     Container.prototype.channels = {};
 
     Container.prototype.wrapModuleContextInSandbox = function(moduleContext) {
-      var prop, sandbox;
-      sandbox = {};
-      for (prop in moduleContext) {
-        if (_.isFunction(moduleContext[prop]) && moduleContext.hasOwnProperty(prop)) {
-          sandbox[prop] = moduleContext[prop].bind(moduleContext);
-        }
-      }
-      return sandbox;
+      console.debug("moduleContext.sandbox", moduleContext.sandbox);
+      return moduleContext.sandbox;
     };
 
     Container.prototype.provideModuleSandbox = function(joinpoint) {

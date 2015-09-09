@@ -15,11 +15,8 @@ define [
 
         # sandbox provides module functional api and hides other details of realization
         wrapModuleContextInSandbox: (moduleContext) =>
-            sandbox = {}
-            for prop of moduleContext
-                if _.isFunction(moduleContext[prop]) and moduleContext.hasOwnProperty(prop)
-                    sandbox[prop] = moduleContext[prop].bind moduleContext
-            return sandbox
+            console.debug "moduleContext.sandbox", moduleContext.sandbox
+            return moduleContext.sandbox
 
         # wired context is cached (we should not wire the module twice!)
         provideModuleSandbox: (joinpoint) =>

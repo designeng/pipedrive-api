@@ -3,7 +3,16 @@ define
         'wire/debug'
         'wire/aop'
         'plugins/hbs'
+        'plugins/sandbox'
     ]
+
+    sandbox:
+        createSandbox:
+            api: 
+                showList        : {$ref: 'profilesController.showList'}
+                showDetailes    : {$ref: 'profilesController.showProfileDetailes'}
+        properties:
+            list                : {$ref: 'profilesList'}
 
     profilesCollection:
         create: 'application/modules/profiles/collections/profiles'
@@ -39,8 +48,8 @@ define
         after:
             'showProfileDetailes': 'activateById'
 
-    showList: ->
-        @profilesController.showList()
+    # showList: ->
+    #     @profilesController.showList()
 
-    showDetailes: (id) ->
-        @profilesController.showProfileDetailes id
+    # showDetailes: (id) ->
+    #     @profilesController.showProfileDetailes id

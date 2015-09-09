@@ -32,7 +32,7 @@ define({
       }
     },
     registerInContainer: {
-      api: ['showEntityList', 'showEntityDetailes']
+      sandboxIntercessors: ['showEntityList', 'showEntityDetailes']
     },
     ready: {
       showPreloader: {}

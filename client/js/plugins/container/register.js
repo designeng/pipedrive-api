@@ -51,9 +51,9 @@ define(["underscore", "backbone.radio", "when", "meld"], function(_, Radio, When
     container = new Container();
     registerApiFacet = function(resolver, facet, wire) {
       return wire(facet.options).then(function(options) {
-        var api;
-        api = options.api;
-        _.each(options.api, function(method) {
+        var sandboxIntercessors;
+        sandboxIntercessors = options.sandboxIntercessors;
+        _.each(options.sandboxIntercessors, function(method) {
           return container.removers.push(meld.around(facet.target, method, container.registerModuleSandbox));
         });
         facet.target.container = container;

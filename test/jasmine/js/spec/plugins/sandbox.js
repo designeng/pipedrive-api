@@ -62,7 +62,7 @@ define(["wire", "when"], function(wire, When) {
         }
       },
       registerInContainer: {
-        api: ['activateModule']
+        sandboxIntercessors: ['activateModule']
       }
     },
     moduleOne: {

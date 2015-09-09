@@ -25,7 +25,7 @@ define
             preloader           : {$ref: 'preloader'}
             notFoundPageLayer   : {$ref: "element!.not-found"}
         registerInContainer: 
-            api: ['showEntityList', 'showEntityDetailes']
+            sandboxIntercessors: ['showEntityList', 'showEntityDetailes']
         ready:
             showPreloader: {}
 

@@ -42,8 +42,8 @@ define [
         # what views the layout should show in its own regions
         registerApiFacet = (resolver, facet, wire) ->
             wire(facet.options).then (options) ->
-                api = options.api
-                _.each options.api, (method) ->
+                sandboxIntercessors = options.sandboxIntercessors
+                _.each options.sandboxIntercessors, (method) ->
                     container.removers.push meld.around facet.target, method, container.registerModuleSandbox
                 facet.target.container = container
                 resolver.resolve facet.target

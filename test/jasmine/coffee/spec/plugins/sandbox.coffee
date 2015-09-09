@@ -52,7 +52,7 @@ define [
             properties:
                 moduleOne: {$ref: 'moduleOne'}
             registerInContainer:
-                api: ['activateModule']
+                sandboxIntercessors: ['activateModule']
 
         # options.defer is true, so this module will be wired only after invocation: moduleOne()
         # but it's wrapped into 'plugins/container/register' plugin.

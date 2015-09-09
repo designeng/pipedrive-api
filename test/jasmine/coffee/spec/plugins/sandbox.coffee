@@ -5,7 +5,7 @@ define [
 
     sandboxDeferred = When.defer()
 
-    activateModuleSpy = jasmine.createSpy("activateModuleSpy")
+    interactWithModuleSpy = jasmine.createSpy("interactWithModuleSpy")
     triggerOneRouteSpy = jasmine.createSpy("triggerOneRouteSpy")
     sendMessageSpy = jasmine.createSpy("triggerOneRouteSpy")
 
@@ -32,13 +32,13 @@ define [
     define 'sandbox/core/controller', ->
         class CoreController
 
-            activateModule: (sandbox, args) ->
-                activateModuleSpy()
+            interactWithModule: (sandbox, args) ->
+                interactWithModuleSpy()
                 sandbox.sendMessage(args[0])
 
             triggerOneRoute: (id) ->
                 triggerOneRouteSpy(id)
-                @activateModule "moduleOne", id
+                @interactWithModule "moduleOne", id
 
     # CORE SPEC
     sandboxCoreSpec = 
@@ -52,7 +52,7 @@ define [
             properties:
                 moduleOne: {$ref: 'moduleOne'}
             registerInContainer:
-                sandboxIntercessors: ['activateModule']
+                sandboxIntercessors: ['interactWithModule']
 
         # options.defer is true, so this module will be wired only after invocation: moduleOne()
         # but it's wrapped into 'plugins/container/register' plugin.
@@ -75,6 +75,6 @@ define [
             @ctx.appController.triggerOneRoute(123)
             When(sandboxDeferred.promise).then () =>
                 expect(triggerOneRouteSpy).toHaveBeenCalledWith(123)
-                expect(activateModuleSpy).toHaveBeenCalled()
+                expect(interactWithModuleSpy).toHaveBeenCalled()
                 expect(sendMessageSpy).toHaveBeenCalledWith(123)
                 done()

@@ -1,7 +1,7 @@
 define(["wire", "when"], function(wire, When) {
-  var activateModuleSpy, sandboxCoreSpec, sandboxDeferred, sendMessageSpy, triggerOneRouteSpy;
+  var interactWithModuleSpy, sandboxCoreSpec, sandboxDeferred, sendMessageSpy, triggerOneRouteSpy;
   sandboxDeferred = When.defer();
-  activateModuleSpy = jasmine.createSpy("activateModuleSpy");
+  interactWithModuleSpy = jasmine.createSpy("interactWithModuleSpy");
   triggerOneRouteSpy = jasmine.createSpy("triggerOneRouteSpy");
   sendMessageSpy = jasmine.createSpy("triggerOneRouteSpy");
   define('sandbox/modules/moduleOne/controller', function() {
@@ -38,14 +38,14 @@ define(["wire", "when"], function(wire, When) {
     return CoreController = (function() {
       function CoreController() {}
 
-      CoreController.prototype.activateModule = function(sandbox, args) {
-        activateModuleSpy();
+      CoreController.prototype.interactWithModule = function(sandbox, args) {
+        interactWithModuleSpy();
         return sandbox.sendMessage(args[0]);
       };
 
       CoreController.prototype.triggerOneRoute = function(id) {
         triggerOneRouteSpy(id);
-        return this.activateModule("moduleOne", id);
+        return this.interactWithModule("moduleOne", id);
       };
 
       return CoreController;
@@ -62,7 +62,7 @@ define(["wire", "when"], function(wire, When) {
         }
       },
       registerInContainer: {
-        sandboxIntercessors: ['activateModule']
+        sandboxIntercessors: ['interactWithModule']
       }
     },
     moduleOne: {
@@ -87,7 +87,7 @@ define(["wire", "when"], function(wire, When) {
       this.ctx.appController.triggerOneRoute(123);
       return When(sandboxDeferred.promise).then(function() {
         expect(triggerOneRouteSpy).toHaveBeenCalledWith(123);
-        expect(activateModuleSpy).toHaveBeenCalled();
+        expect(interactWithModuleSpy).toHaveBeenCalled();
         expect(sendMessageSpy).toHaveBeenCalledWith(123);
         return done();
       });

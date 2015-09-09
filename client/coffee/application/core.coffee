@@ -24,8 +24,7 @@ define
             deals               : {$ref: 'deals'}
             preloader           : {$ref: 'preloader'}
             notFoundPageLayer   : {$ref: "element!.not-found"}
-        registerInContainer: 
-            sandboxIntercessors: ['showEntityList', 'showEntityDetailes']
+        registerIntercessors: ['showEntityList', 'showEntityDetailes']
         ready:
             showPreloader: {}
 

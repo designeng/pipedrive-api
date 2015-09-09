@@ -51,8 +51,7 @@ define [
             create: "sandbox/core/controller"
             properties:
                 moduleOne: {$ref: 'moduleOne'}
-            registerInContainer:
-                sandboxIntercessors: ['interactWithModule']
+            registerIntercessors: ['interactWithModule']
 
         # options.defer is true, so this module will be wired only after invocation: moduleOne()
         # but it's wrapped into 'plugins/container/register' plugin.

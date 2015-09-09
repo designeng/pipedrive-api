@@ -61,9 +61,7 @@ define(["wire", "when"], function(wire, When) {
           $ref: 'moduleOne'
         }
       },
-      registerInContainer: {
-        sandboxIntercessors: ['interactWithModule']
-      }
+      registerIntercessors: ['interactWithModule']
     },
     moduleOne: {
       wire: {

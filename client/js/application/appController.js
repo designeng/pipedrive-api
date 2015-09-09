@@ -15,8 +15,8 @@ define(["marionette", "when"], function(Marionette, When) {
 
     AppController.prototype.currentRootFragment = null;
 
-    AppController.prototype.showPreloader = function() {
-      return this.regions.mainAreaRegion.show(this.preloader);
+    AppController.prototype.showPreloader = function(preloader) {
+      return this.regions.mainAreaRegion.show(preloader);
     };
 
     AppController.prototype.listenToDealsModule = function() {

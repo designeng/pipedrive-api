@@ -24,16 +24,15 @@ define({
       deals: {
         $ref: 'deals'
       },
-      preloader: {
-        $ref: 'preloader'
-      },
       notFoundPageLayer: {
         $ref: "element!.not-found"
       }
     },
     registerIntercessors: ['showEntityList', 'showEntityDetailes'],
     ready: {
-      showPreloader: {},
+      showPreloader: {
+        $ref: 'preloader'
+      },
       listenToDealsModule: {}
     }
   },

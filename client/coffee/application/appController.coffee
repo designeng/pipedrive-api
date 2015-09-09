@@ -7,8 +7,8 @@ define [
 
         currentRootFragment: null
 
-        showPreloader: ->
-            @regions.mainAreaRegion.show @preloader
+        showPreloader: (preloader) ->
+            @regions.mainAreaRegion.show preloader
 
         listenToDealsModule: ->
             @container.containerChannel.on "deals:id:activated", (id) ->

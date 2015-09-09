@@ -14,6 +14,8 @@ https://pipedrive-api.herokuapp.com/#/profiles/1
 
 + Do not forget uncomment index.html livereload script for connect livereload interaction (TODO: automate it on deploy/development).
 
++ `userId` and `apiToken` are hardcorded in `client/coffee/api.coffee`. Change them to work with your own pipedrive account.
+
 ###Deploy
 + Grunt task `grunt build` should be invoked before deploy to remote server. It will run all nessesary tasks `dataMainAttr:prod` (toggling `data-main` attribute in index.html), `requirejs:compile` (building all js-source into single `main` file).
 
@@ -32,6 +34,8 @@ https://pipedrive-api.herokuapp.com/#/profiles/1
 + Templates with `.html` extention loaded by [requirejs-hbs](https://github.com/designeng/requirejs-hbs) plugin. It depends on [require-text](https://github.com/requirejs/text) plugin, and just a slightly modified fork of original `https://github.com/epeli/requirejs-hbs`.
  
 + Application core is provided by 'client/coffee/application/core' wire.js specification file.
+
++ [Slides (in progress)](http://presentboldly.com/designeng/wirejs-marionettejs-2)
 
 ###Browsers compatibility
 Tested in Chrome (v42), Safari (v7.0), Firefox (v37).

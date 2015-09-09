@@ -42,7 +42,7 @@ define [
         notFoundHandler: ->
             @notFoundPageLayer.show()
 
-        # COMMON API METHODS:
+        # COMMON INTERCESSORS:
 
         showEntityList: (sandbox) ->
             sandbox.showList()

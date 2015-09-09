@@ -13,6 +13,8 @@ define(["underscore", "backbone.radio", "when", "meld"], function(_, Radio, When
 
     Container.prototype.modulesApi = {};
 
+    Container.prototype.containerChannel = Radio.channel("container");
+
     Container.prototype.registerModuleApi = function(moduleName, sandbox) {
       return this.modulesApi[moduleName] = sandbox;
     };
@@ -24,7 +26,13 @@ define(["underscore", "backbone.radio", "when", "meld"], function(_, Radio, When
       args = _.rest(joinpoint.args);
       context = this.contextHash[moduleName];
       if (context == null) {
-        return When(joinpoint.target[moduleName]()).then(function(moduleContext) {
+        return When(joinpoint.target[moduleName]({
+          _radio: {
+            literal: {
+              channel: this.containerChannel
+            }
+          }
+        })).then(function(moduleContext) {
           _this.contextHash[moduleName] = moduleContext;
           _this.registerModuleApi(moduleName, moduleContext.sandbox);
           return joinpoint.proceed(moduleContext.sandbox, args);

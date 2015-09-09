@@ -1,14 +1,75 @@
-define(['underscore', 'meld'], function(_, meld) {
+var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+
+define(["underscore", "backbone.radio", "when", "meld"], function(_, Radio, When, meld) {
+  var Container;
+  Container = (function() {
+    function Container() {
+      this.provideModuleSandbox = __bind(this.provideModuleSandbox, this);
+      this.wrapModuleContextInSandbox = __bind(this.wrapModuleContextInSandbox, this);
+    }
+
+    Container.prototype.removers = [];
+
+    Container.prototype.contextHash = {};
+
+    Container.prototype.mediators = {};
+
+    Container.prototype.wrapModuleContextInSandbox = function(moduleContext) {
+      var prop, sandbox;
+      sandbox = {};
+      for (prop in moduleContext) {
+        if (_.isFunction(moduleContext[prop]) && moduleContext.hasOwnProperty(prop)) {
+          sandbox[prop] = moduleContext[prop].bind(moduleContext);
+        }
+      }
+      return sandbox;
+    };
+
+    Container.prototype.provideModuleSandbox = function(joinpoint) {
+      var args, context, moduleName,
+        _this = this;
+      moduleName = joinpoint.args[0];
+      args = _.rest(joinpoint.args);
+      context = this.contextHash[moduleName];
+      if (context == null) {
+        return When(joinpoint.target[moduleName]({
+          _radio: {
+            literal: {
+              channel: Radio.channel(moduleName)
+            }
+          }
+        })).then(function(moduleContext) {
+          _this.contextHash[moduleName] = moduleContext;
+          _this.mediators[moduleName] = moduleContext._radio.channel;
+          return joinpoint.proceed(_this.wrapModuleContextInSandbox(moduleContext), args);
+        });
+      } else {
+        return joinpoint.proceed(this.wrapModuleContextInSandbox(context), args);
+      }
+    };
+
+    Container.prototype.destroyModule = function(name) {
+      var _ref, _ref1;
+      if ((_ref = this.contextHash[name]) != null) {
+        _ref.destroy();
+      }
+      delete this.contextHash[name];
+      if ((_ref1 = this.mediators[name]) != null) {
+        _ref1.reset();
+      }
+      return delete this.mediators[name];
+    };
+
+    return Container;
+
+  })();
   return function(options) {
-    var destroyFacet, pluginInstance, registerApiFacet;
+    var container, destroyFacet, pluginInstance, registerApiFacet;
+    container = new Container();
     registerApiFacet = function(resolver, facet, wire) {
       return wire(facet.options).then(function(options) {
-        var api, container;
-        container = options.container;
+        var api;
         api = options.api;
-        if (container.removers == null) {
-          container.removers = [];
-        }
         _.each(options.api, function(method) {
           return container.removers.push(meld.around(facet.target, method, container.provideModuleSandbox));
         });
@@ -17,14 +78,14 @@ define(['underscore', 'meld'], function(_, meld) {
       });
     };
     destroyFacet = function(resolver, facet, wire) {
-      _.each(facet.target.container.removers, function(remover) {
+      _.each(container.removers, function(remover) {
         return remover.remove();
       });
       return resolver.resolve();
     };
     pluginInstance = {
       facets: {
-        register: {
+        registerInContainer: {
           "ready": registerApiFacet,
           "destroy": destroyFacet
         }

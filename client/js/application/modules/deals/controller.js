@@ -24,6 +24,13 @@ define(["marionette"], function(Marionette) {
       return this.list.activateById(id);
     };
 
+    DealsController.prototype.onReady = function() {
+      var _this = this;
+      return setTimeout(function() {
+        return _this.radio.channel.trigger("deals:ready");
+      }, 1000);
+    };
+
     return DealsController;
 
   })(Marionette.Object);

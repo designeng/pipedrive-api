@@ -13,3 +13,8 @@ define [
 
         activateById: (id) ->
             @list.activateById id
+
+        onReady: ->
+            setTimeout () =>
+                @radio.channel.trigger "deals:ready" 
+            , 1000

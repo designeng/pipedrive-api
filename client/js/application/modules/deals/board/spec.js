@@ -31,7 +31,7 @@ define({
   boardGroups: {
     applyTo: {
       collection: {
-        $ref: 'collection'
+        $ref: 'dealsCollection'
       },
       methods: [
         {

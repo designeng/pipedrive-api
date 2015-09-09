@@ -3,7 +3,7 @@ define
         'wire/debug'
         'wire/aop'
         'plugins/hbs'
-        'plugins/sandbox'
+        'plugins/container/sandbox'
     ]
 
     sandbox:

@@ -19,7 +19,7 @@ define(["wire", "when"], function(wire, When) {
     })();
   });
   define('sandbox/modules/moduleOne', {
-    $plugins: ['wire/debug', 'plugins/sandbox'],
+    $plugins: ['wire/debug', 'plugins/container/sandbox'],
     sandbox: {
       createSandbox: {
         api: {

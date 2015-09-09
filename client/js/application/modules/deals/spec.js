@@ -1,5 +1,5 @@
 define({
-  $plugins: ['wire/debug', 'wire/aop', 'plugins/hbs', 'plugins/sandbox'],
+  $plugins: ['wire/debug', 'wire/aop', 'plugins/hbs', 'plugins/container/sandbox'],
   sandbox: {
     createSandbox: {
       api: {

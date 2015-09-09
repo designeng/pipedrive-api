@@ -18,7 +18,7 @@ define [
     define 'sandbox/modules/moduleOne',
         $plugins: [
             'wire/debug'
-            'plugins/sandbox'
+            'plugins/container/sandbox'
         ]
 
         sandbox:

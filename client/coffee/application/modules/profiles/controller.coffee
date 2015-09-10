@@ -5,7 +5,7 @@ define [
     class ProfilesController extends Marionette.Object
 
         showList: =>
-            @listRegion.show @list
+            @listRegion.show @list, {priventDestroy: true}
 
         activateById: (id) ->
             @list.activateById id

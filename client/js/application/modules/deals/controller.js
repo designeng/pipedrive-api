@@ -16,7 +16,9 @@ define(["marionette"], function(Marionette) {
     };
 
     DealsController.prototype.showList = function() {
-      return this.listRegion.show(this.list);
+      return this.listRegion.show(this.list, {
+        priventDestroy: true
+      });
     };
 
     DealsController.prototype.showDealDetailes = function(id) {

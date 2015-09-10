@@ -15,7 +15,9 @@ define(["marionette"], function(Marionette) {
     }
 
     ProfilesController.prototype.showList = function() {
-      return this.listRegion.show(this.list);
+      return this.listRegion.show(this.list, {
+        priventDestroy: true
+      });
     };
 
     ProfilesController.prototype.activateById = function(id) {

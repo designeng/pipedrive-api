@@ -17,13 +17,12 @@ define(['backbone', 'marionette', 'hbs!templates/boardBody'], function(Backbone,
 
     BoardBodyView.prototype.cells = [];
 
-    BoardBodyView.prototype.onRender = function() {
-      return this.cells = _.flatten(_.map(this.getChildren(), function(child) {
-        return _.values(child.getChildren());
-      }));
-    };
-
     BoardBodyView.prototype.activateById = function(id) {
+      if (!this.cells.length) {
+        this.cells = _.flatten(_.map(this.getChildren(), function(child) {
+          return _.values(child.getChildren());
+        }));
+      }
       return _.each(this.cells, function(cell) {
         return cell.toggleActive(id);
       });

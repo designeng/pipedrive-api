@@ -7,33 +7,37 @@ define [
 
     class Container
 
-        removers: []
-
-        modules: {}
-        channels: {}
+        removers    : []
+        modules     : {}
+        channels    : {}
 
         channel: Radio.channel("container")
 
         startModule: (module, moduleName) ->
-            moduleChannel = Radio.channel(moduleName)
-            moduleChannel.reply "default", (requestName, module, args) =>
-                @channel.trigger requestName, module, args
             return When.promise (resolve, reject) =>
                 module({
                     sandbox:
                         literal:
-                            channel: moduleChannel
+                            channel: @createChannel(moduleName)
                 }).then (context) ->
                     resolve context
 
         stopModule: (name) ->
             Radio.reset(name) if Radio._channels[name]
+            delete @channels[name]
             @modules[name]?.destroy()
             delete @modules[name]
 
         broadcastEvent: (eventName, args) ->
             _.each @channels, (channel) ->
                 channel.trigger eventName, args
+
+        createChannel: (name) ->
+            channel = Radio.channel(name)
+            @channels[name] = channel
+            channel.reply "default", (requestName, module, args) =>
+                @channel.trigger requestName, module, args
+            return channel
 
         # sandbox provides module functional api and hides other details of realization
         # wired context is cached (we should not wire the module twice!)

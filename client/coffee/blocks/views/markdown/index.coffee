@@ -24,7 +24,6 @@ define [
                 @render()
 
         onBeforeRender: ->
-            console.debug "@model:::::::", @model
             @html = @converter.makeHtml(@model.get "text")
 
         onRender: ->

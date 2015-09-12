@@ -34,7 +34,6 @@ define(['backbone', 'marionette', 'showdown', 'utils/request/index', 'hbs!templa
     };
 
     MarkdownView.prototype.onBeforeRender = function() {
-      console.debug("@model:::::::", this.model);
       return this.html = this.converter.makeHtml(this.model.get("text"));
     };
 

@@ -19,4 +19,5 @@ define [
             @list.activateById id
 
             # demonstration of module's communication with the core
+            # translate module request into core action
             @sandbox.channel.request "item:activated", "deals", id

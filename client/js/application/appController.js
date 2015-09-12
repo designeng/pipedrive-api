@@ -20,8 +20,10 @@ define(["marionette", "when"], function(Marionette, When) {
     };
 
     AppController.prototype.listenToDealsModule = function() {
+      var _this = this;
       return this.container.channel.on("deals:item:activated", function(id) {
-        return console.debug("DEALS MODULE LIST ACTIVATED ITEM: ", id);
+        console.debug("DEALS MODULE LIST ACTIVATED ITEM: ", id);
+        return _this.container.broadcastEvent("doSomething", id);
       });
     };
 

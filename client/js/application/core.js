@@ -18,6 +18,9 @@ define({
   appController: {
     create: "application/appController",
     properties: {
+      navigation: {
+        $ref: 'navigation'
+      },
       profiles: {
         $ref: 'profiles'
       },
@@ -33,6 +36,11 @@ define({
       showPreloader: {
         $ref: 'preloader'
       },
+      switchOn: [
+        {
+          "navigation": {}
+        }
+      ],
       listenToDealsModule: {}
     }
   },
@@ -56,7 +64,7 @@ define({
   navigation: {
     wire: {
       spec: "application/modules/navigation/spec",
-      waitParent: true,
+      defer: true,
       provide: {
         navigationRegion: {
           $ref: 'appInstance.regions.navigationRegion'

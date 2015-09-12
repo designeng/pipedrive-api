@@ -19,10 +19,17 @@ define(["marionette", "when"], function(Marionette, When) {
       return this.regions.mainAreaRegion.show(preloader);
     };
 
+    AppController.prototype.switchOn = function(modules) {
+      var _this = this;
+      return _.each(modules, function(options, module) {
+        return _this[module](options);
+      });
+    };
+
     AppController.prototype.listenToDealsModule = function() {
       var _this = this;
-      return this.container.channel.on("deals:item:activated", function(id) {
-        console.debug("DEALS MODULE LIST ACTIVATED ITEM: ", id);
+      return this.container.channel.on("item:activated", function(module, id) {
+        console.debug("'" + module + "' module says: activated item id: ", id);
         return _this.container.broadcastEvent("doSomething", id);
       });
     };

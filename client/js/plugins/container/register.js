@@ -19,8 +19,8 @@ define(["underscore", "backbone.radio", "when", "meld"], function(_, Radio, When
       var moduleChannel,
         _this = this;
       moduleChannel = Radio.channel(moduleName);
-      moduleChannel.reply("default", function(requestName, args) {
-        return _this.channel.trigger(requestName, args);
+      moduleChannel.reply("default", function(requestName, module, args) {
+        return _this.channel.trigger(requestName, module, args);
       });
       return When.promise(function(resolve, reject) {
         return module({

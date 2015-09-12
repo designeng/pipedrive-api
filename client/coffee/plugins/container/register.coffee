@@ -16,8 +16,8 @@ define [
 
         startModule: (module, moduleName) ->
             moduleChannel = Radio.channel(moduleName)
-            moduleChannel.reply "default", (requestName, args) =>
-                @channel.trigger requestName, args
+            moduleChannel.reply "default", (requestName, module, args) =>
+                @channel.trigger requestName, module, args
             return When.promise (resolve, reject) =>
                 module({
                     sandbox:

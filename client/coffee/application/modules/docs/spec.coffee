@@ -24,8 +24,13 @@ define
             childTemplate       : {$ref: 'hbs!templates/docsListItem' }
         renderIn: {$ref: 'listRegion'}
 
+    markdownLayout:
+        create: 'blocks/views/markdown/index'
+        renderIn: {$ref: 'markdownRegion'}
+
     controller:
         create: 'application/modules/docs/controller'
         properties:
             collection          : {$ref: 'docsCollection'}
             list                : {$ref: 'docsList'}
+            markdownLayout      : {$ref: 'markdownLayout'}

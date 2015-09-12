@@ -76,7 +76,7 @@ define
             defer: true
             provide:
                 listRegion          : {$ref: 'appInstance.regions.sidebarRegion'}
-                documentationRegion : {$ref: 'appInstance.regions.mainAreaRegion'}
+                markdownRegion      : {$ref: 'appInstance.regions.mainAreaRegion'}
     # /APPLICATION MODULES
 
     preloader:

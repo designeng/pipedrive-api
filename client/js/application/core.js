@@ -113,7 +113,7 @@ define({
         listRegion: {
           $ref: 'appInstance.regions.sidebarRegion'
         },
-        documentationRegion: {
+        markdownRegion: {
           $ref: 'appInstance.regions.mainAreaRegion'
         }
       }

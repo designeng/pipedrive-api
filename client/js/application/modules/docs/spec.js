@@ -31,6 +31,12 @@ define({
       $ref: 'listRegion'
     }
   },
+  markdownLayout: {
+    create: 'blocks/views/markdown/index',
+    renderIn: {
+      $ref: 'markdownRegion'
+    }
+  },
   controller: {
     create: 'application/modules/docs/controller',
     properties: {
@@ -39,6 +45,9 @@ define({
       },
       list: {
         $ref: 'docsList'
+      },
+      markdownLayout: {
+        $ref: 'markdownLayout'
       }
     }
   }

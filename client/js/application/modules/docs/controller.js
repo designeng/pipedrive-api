@@ -21,6 +21,12 @@ define(["marionette"], function(Marionette) {
 
     DocsController.prototype.showDetailes = function(id) {
       console.debug("showDetailes", id);
+      if (id) {
+        this.markdownLayout.model = new Backbone.Model({
+          text: '###hello, markdown!'
+        });
+        this.markdownLayout.render();
+      }
       return id;
     };
 

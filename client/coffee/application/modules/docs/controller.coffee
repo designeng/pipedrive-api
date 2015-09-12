@@ -12,6 +12,12 @@ define [
 
         showDetailes: (id) ->
             console.debug "showDetailes", id
+            # @markdownRegion.show @markdownLayout
+            if id
+                @markdownLayout.model = new Backbone.Model({
+                        text: '###hello, markdown!'
+                    })
+                @markdownLayout.render()
             return id
 
         activateById: (id) ->

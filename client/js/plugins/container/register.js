@@ -9,14 +9,39 @@ define(["underscore", "backbone.radio", "when", "meld"], function(_, Radio, When
 
     Container.prototype.removers = [];
 
-    Container.prototype.contextHash = {};
-
-    Container.prototype.modulesApi = {};
+    Container.prototype.modules = {};
 
     Container.prototype.containerChannel = Radio.channel("container");
 
-    Container.prototype.registerModuleApi = function(moduleName, sandbox) {
-      return this.modulesApi[moduleName] = sandbox;
+    Container.prototype.startModule = function(module, moduleName) {
+      var moduleChannel,
+        _this = this;
+      moduleChannel = Radio.channel(moduleName);
+      moduleChannel.reply("default", function(requestName, args) {
+        return _this.containerChannel.trigger(requestName, args);
+      });
+      return When.promise(function(resolve, reject) {
+        return module({
+          sandbox: {
+            literal: {
+              channel: moduleChannel
+            }
+          }
+        }).then(function(context) {
+          return resolve(context);
+        });
+      });
+    };
+
+    Container.prototype.stopModule = function(name) {
+      var _ref;
+      if (Radio._channels[name]) {
+        Radio.reset(name);
+      }
+      if ((_ref = this.modules[name]) != null) {
+        _ref.destroy();
+      }
+      return delete this.modules[name];
     };
 
     Container.prototype.registerModuleSandbox = function(joinpoint) {
@@ -24,31 +49,20 @@ define(["underscore", "backbone.radio", "when", "meld"], function(_, Radio, When
         _this = this;
       moduleName = joinpoint.args[0];
       args = _.rest(joinpoint.args);
-      context = this.contextHash[moduleName];
+      context = this.modules[moduleName];
       if (context == null) {
-        return When(joinpoint.target[moduleName]({
-          _radio: {
-            literal: {
-              channel: this.containerChannel
-            }
-          }
-        })).then(function(moduleContext) {
-          _this.contextHash[moduleName] = moduleContext;
-          _this.registerModuleApi(moduleName, moduleContext.sandbox);
-          return joinpoint.proceed(moduleContext.sandbox, args);
+        return this.startModule(joinpoint.target[moduleName], moduleName).then(function(moduleContext) {
+          _this.modules[moduleName] = moduleContext;
+          return moduleContext.wire(moduleContext.publicApi).then(function(api) {
+            _.each(api, function(method, methodName) {
+              return moduleContext.sandbox[methodName] = method;
+            });
+            return joinpoint.proceed(moduleContext.sandbox, args);
+          });
         });
       } else {
         return joinpoint.proceed(context.sandbox, args);
       }
-    };
-
-    Container.prototype.destroyModule = function(name) {
-      var _ref;
-      if ((_ref = this.contextHash[name]) != null) {
-        _ref.destroy();
-      }
-      delete this.contextHash[name];
-      return delete this.modulesApi[name];
     };
 
     return Container;
@@ -67,6 +81,7 @@ define(["underscore", "backbone.radio", "when", "meld"], function(_, Radio, When
       });
     };
     destroyFacet = function(resolver, facet, wire) {
+      Radio.reset();
       _.each(container.removers, function(remover) {
         return remover.remove();
       });

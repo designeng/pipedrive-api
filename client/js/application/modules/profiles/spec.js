@@ -1,14 +1,12 @@
 define({
-  $plugins: ['wire/debug', 'plugins/hbs', 'plugins/container/sandbox'],
-  sandbox: {
-    createSandbox: {
-      api: {
-        showList: {
-          $ref: 'profilesController.showList'
-        },
-        showDetailes: {
-          $ref: 'profilesController.showProfileDetailes'
-        }
+  $plugins: ['wire/debug', 'plugins/hbs'],
+  publicApi: {
+    literal: {
+      showList: {
+        $ref: 'profilesController.showList'
+      },
+      showDetailes: {
+        $ref: 'profilesController.showProfileDetailes'
       }
     }
   },

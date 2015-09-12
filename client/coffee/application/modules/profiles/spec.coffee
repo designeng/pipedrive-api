@@ -2,14 +2,12 @@ define
     $plugins: [
         'wire/debug'
         'plugins/hbs'
-        'plugins/container/sandbox'
     ]
 
-    sandbox:
-        createSandbox:
-            api: 
-                showList        : {$ref: 'profilesController.showList'}
-                showDetailes    : {$ref: 'profilesController.showProfileDetailes'}
+    publicApi:
+        literal:
+            showList        : {$ref: 'profilesController.showList'}
+            showDetailes    : {$ref: 'profilesController.showProfileDetailes'}
 
     profilesCollection:
         create: 'application/modules/profiles/collections/profiles'

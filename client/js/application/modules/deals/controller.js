@@ -16,7 +16,9 @@ define(["marionette"], function(Marionette) {
     };
 
     DealsController.prototype.showList = function() {
-      return this.listRegion.show(this.list);
+      return this.listRegion.show(this.list, {
+        priventDestroy: true
+      });
     };
 
     DealsController.prototype.showDealDetailes = function(id) {
@@ -27,7 +29,7 @@ define(["marionette"], function(Marionette) {
 
     DealsController.prototype.activateById = function(id) {
       this.list.activateById(id);
-      return this.channel.trigger("deals:item:activated", id);
+      return this.sandbox.channel.request("deals:item:activated", id);
     };
 
     return DealsController;

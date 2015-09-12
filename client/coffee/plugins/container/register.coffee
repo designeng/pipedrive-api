@@ -9,37 +9,42 @@ define [
 
         removers: []
 
-        contextHash: {}
-
-        modulesApi: {}
+        modules: {}
 
         containerChannel: Radio.channel("container")
 
-        registerModuleApi: (moduleName, sandbox) ->
-            @modulesApi[moduleName] = sandbox
+        startModule: (module, moduleName) ->
+            moduleChannel = Radio.channel(moduleName)
+            moduleChannel.reply "default", (requestName, args) =>
+                @containerChannel.trigger requestName, args
+            return When.promise (resolve, reject) =>
+                module({
+                    sandbox:
+                        literal:
+                            channel: moduleChannel
+                }).then (context) ->
+                    resolve context
+
+        stopModule: (name) ->
+            Radio.reset(name) if Radio._channels[name]
+            @modules[name]?.destroy()
+            delete @modules[name]
 
         # sandbox provides module functional api and hides other details of realization
         # wired context is cached (we should not wire the module twice!)
         registerModuleSandbox: (joinpoint) =>
             moduleName = joinpoint.args[0]
             args = _.rest joinpoint.args
-            context = @contextHash[moduleName]
+            context = @modules[moduleName]
             if !context?
-                When(joinpoint.target[moduleName]({
-                    _radio:
-                        literal:
-                            channel: @containerChannel
-                })).then (moduleContext) =>
-                    @contextHash[moduleName] = moduleContext
-                    @registerModuleApi(moduleName, moduleContext.sandbox)
-                    joinpoint.proceed(moduleContext.sandbox, args)
+                @startModule(joinpoint.target[moduleName], moduleName).then (moduleContext) =>
+                    @modules[moduleName] = moduleContext
+                    moduleContext.wire(moduleContext.publicApi).then (api) ->
+                        _.each api, (method, methodName) ->
+                            moduleContext.sandbox[methodName] = method
+                        joinpoint.proceed(moduleContext.sandbox, args)
             else
                 joinpoint.proceed(context.sandbox, args)
-
-        destroyModule: (name) ->
-            @contextHash[name]?.destroy()
-            delete @contextHash[name]
-            delete @modulesApi[name]
 
     return (options) ->
 
@@ -54,6 +59,8 @@ define [
                 resolver.resolve facet.target
 
         destroyFacet = (resolver, facet, wire) ->
+            # TODO: if several marionette.application instances? All registered events will be removed (find solution)
+            Radio.reset()
             _.each container.removers, (remover) ->
                 remover.remove()
             resolver.resolve()

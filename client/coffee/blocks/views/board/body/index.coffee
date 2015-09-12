@@ -11,10 +11,9 @@ define [
         # all nested child views (BodyColumnItemView)
         cells: []
 
-        onRender: ->
-            @cells = _.flatten _.map @getChildren(), (child) ->
-                return _.values child.getChildren()
-
         activateById: (id) ->
+            if !@cells.length
+                @cells = _.flatten _.map @getChildren(), (child) ->
+                    return _.values child.getChildren()
             _.each @cells, (cell) ->
                 cell.toggleActive(id)

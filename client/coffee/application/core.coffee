@@ -23,8 +23,9 @@ define
             navigation          : {$ref: 'navigation'}
             profiles            : {$ref: 'profiles'}
             deals               : {$ref: 'deals'}
+            docs                : {$ref: 'docs'}
             notFoundPageLayer   : {$ref: "element!.not-found"}
-        registerIntercessors: ['showEntityList', 'showEntityDetailes']
+        registerIntercessors: ['startModule', 'showEntityList', 'showEntityDetailes']
         ready:
             showPreloader: {$ref: 'preloader'}
             switchOn: [
@@ -40,6 +41,8 @@ define
                 'profiles/:id'  : 'profilesModuleHandler'
                 'deals'         : 'dealsModuleHandler'
                 'deals/:id'     : 'dealsModuleHandler'
+                'docs'          : 'docsModuleHandler'
+                'docs/:id'      : 'docsModuleHandler'
                 '*notFound'     : 'notFoundHandler'
         onRoute: {$ref: 'appController.onRoute'}
 
@@ -66,6 +69,14 @@ define
             provide:
                 listRegion          : {$ref: 'appInstance.regions.sidebarRegion'}
                 dealsBoardRegion    : {$ref: 'appInstance.regions.mainAreaRegion'}
+
+    docs:
+        wire:
+            spec: "application/modules/docs/spec"
+            defer: true
+            provide:
+                listRegion          : {$ref: 'appInstance.regions.sidebarRegion'}
+                documentationRegion : {$ref: 'appInstance.regions.mainAreaRegion'}
     # /APPLICATION MODULES
 
     preloader:

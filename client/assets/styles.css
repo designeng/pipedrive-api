@@ -200,7 +200,7 @@ ul.listView li:last-child {
     background-color: #FFCC00;
 }
 
-.profile-name, .deal-name{
+.profile-name, .deal-name, .doc-name{
     font-weight: bold;
 }
 
@@ -208,7 +208,7 @@ ul.listView li:last-child {
   font-size: 10px;
 }
 
-.profile-name, .deal-name, .profile-organization-name, .deal-organization-name{
+.profile-name, .deal-name, .doc-name, .profile-organization-name, .deal-organization-name{
     padding-left: 12px;
 }
 

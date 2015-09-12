@@ -48,13 +48,16 @@ require.config({
       name: "moment",
       main: "moment",
       location: "vendors/moment"
+    }, {
+      name: "showdown",
+      main: "showdown.min",
+      location: "vendors/showdown/dist"
     }
   ],
   shim: {},
   hbs: {
     templateExtension: ".html"
-  },
-  findNestedDependencies: true
+  }
 });
 
 requirejs.s.contexts._.config.baseUrl = "/client/js/";

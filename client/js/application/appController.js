@@ -62,8 +62,20 @@ define(["marionette", "when"], function(Marionette, When) {
       });
     };
 
+    AppController.prototype.docsModuleHandler = function(id) {
+      var _this = this;
+      return When(this.startModule("docs")).then(function() {
+        return _this.showEntityDetailes("docs", id);
+      });
+    };
+
     AppController.prototype.notFoundHandler = function() {
       return this.notFoundPageLayer.show();
+    };
+
+    AppController.prototype.startModule = function(sandbox) {
+      console.debug("sandbox", sandbox);
+      return sandbox;
     };
 
     AppController.prototype.showEntityList = function(sandbox) {

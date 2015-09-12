@@ -49,12 +49,23 @@ define [
             When(@showEntityList "deals").then () =>
                 @showEntityDetailes "deals", dealId
 
+        # DOCUMENTATION:
+
+        docsModuleHandler: (id) ->
+            When(@startModule "docs").then () =>
+                @showEntityDetailes "docs", id
+
         # 404 ERROR:
 
         notFoundHandler: ->
             @notFoundPageLayer.show()
 
         # COMMON INTERCESSORS:
+
+        startModule: (sandbox) ->
+            console.debug "sandbox", sandbox
+            # all is done in container/register plugin
+            return sandbox
 
         showEntityList: (sandbox) ->
             sandbox.showList()

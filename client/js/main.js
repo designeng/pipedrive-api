@@ -48,6 +48,10 @@ require.config({
       name: "moment",
       main: "moment",
       location: "vendors/moment"
+    }, {
+      name: "showdown",
+      main: "showdown.min",
+      location: "vendors/showdown/dist"
     }
   ],
   shim: {},

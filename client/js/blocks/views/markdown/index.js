@@ -1,7 +1,7 @@
 var __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-define(['backbone', 'marionette', 'showdown', 'hbs!templates/markdown'], function(Backbone, Marionette, showdown, markdownTemplate) {
+define(['backbone', 'marionette', 'showdown', 'utils/request/index', 'hbs!templates/markdown'], function(Backbone, Marionette, showdown, AjaxRequest, markdownTemplate) {
   var MarkdownView, _ref;
   return MarkdownView = (function(_super) {
     __extends(MarkdownView, _super);
@@ -22,13 +22,24 @@ define(['backbone', 'marionette', 'showdown', 'hbs!templates/markdown'], functio
       return this.converter = new showdown.Converter();
     };
 
+    MarkdownView.prototype.fetchMarkdownDocument = function(id) {
+      var url,
+        _this = this;
+      console.debug("fetchMarkdownDocument", id);
+      url = "../assets/docs/markdown/" + id + ".md";
+      return new AjaxRequest(url, {}, "GET").done(function(response) {
+        _this.model.set("text", response);
+        return _this.render();
+      });
+    };
+
     MarkdownView.prototype.onBeforeRender = function() {
+      console.debug("@model:::::::", this.model);
       return this.html = this.converter.makeHtml(this.model.get("text"));
     };
 
     MarkdownView.prototype.onRender = function() {
-      this.$el.html(this.html);
-      return console.debug("onRender html", this.html);
+      return this.$el.html(this.html);
     };
 
     return MarkdownView;

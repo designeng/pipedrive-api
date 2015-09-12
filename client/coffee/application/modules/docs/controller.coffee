@@ -1,6 +1,7 @@
 define [
     "marionette"
-], (Marionette) ->
+    "./models/markdownModel"
+], (Marionette, MarkdownModel) ->
 
     class DocsController extends Marionette.Object
 
@@ -11,13 +12,13 @@ define [
             @listRegion.show @list
 
         showDetailes: (id) ->
-            console.debug "showDetailes", id
-            # @markdownRegion.show @markdownLayout
             if id
-                @markdownLayout.model = new Backbone.Model({
-                        text: '###hello, markdown!'
-                    })
-                @markdownLayout.render()
+                # @markdownLayout.model = new MarkdownModel({
+                #         id: "introduction"
+                #         # text: '###hello, markdown!'
+                #     }).fetch()
+                # @markdownLayout.render()
+                @markdownLayout.fetchMarkdownDocument(id)
             return id
 
         activateById: (id) ->

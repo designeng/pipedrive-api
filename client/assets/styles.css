@@ -75,7 +75,7 @@ nav .logo_container h1.logo a {
   background-size: 100px 22px;
 }
 
-.navigation-deals, .navigation-profiles {
+.navigation-deals, .navigation-profiles, .navigation-docs {
   float: left;
   margin-top: 15px;
 }
@@ -88,7 +88,11 @@ nav .logo_container h1.logo a {
   margin-left: 50px;
 }
 
-.navigation-deals a, .navigation-profiles a{
+.navigation-docs {
+  margin-left: 50px;
+}
+
+.navigation-deals a, .navigation-profiles a, .navigation-docs a{
   color: #fff;
   font-size: 12px;
   font-weight: bold;
@@ -535,5 +539,14 @@ pre code {
     background-color: transparent;
     border: 0;
     padding: 0;
+}
+
+.markdown{
+  padding-left: 10px;
+  padding-top: 10px;
+}
+
+.markdown h1, .markdown h2, .markdown h3{
+  font-weight: bold;
 }
 /* /markdown */

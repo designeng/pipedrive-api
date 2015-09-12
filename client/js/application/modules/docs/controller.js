@@ -1,7 +1,7 @@
 var __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-define(["marionette"], function(Marionette) {
+define(["marionette", "./models/markdownModel"], function(Marionette, MarkdownModel) {
   var DocsController, _ref;
   return DocsController = (function(_super) {
     __extends(DocsController, _super);
@@ -20,12 +20,8 @@ define(["marionette"], function(Marionette) {
     };
 
     DocsController.prototype.showDetailes = function(id) {
-      console.debug("showDetailes", id);
       if (id) {
-        this.markdownLayout.model = new Backbone.Model({
-          text: '###hello, markdown!'
-        });
-        this.markdownLayout.render();
+        this.markdownLayout.fetchMarkdownDocument(id);
       }
       return id;
     };

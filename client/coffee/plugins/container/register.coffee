@@ -19,8 +19,9 @@ define [
             console.debug "sandbox...", moduleName, sandbox
             @sandboxes[moduleName] = sandbox
 
+        # TODO: should be public?
         startModule: (module) ->
-            return When.promise (resolve, reject) ->
+            return When.promise (resolve, reject) =>
                 module({
                     _radio:
                         literal:

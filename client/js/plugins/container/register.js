@@ -9,14 +9,15 @@ define(["underscore", "backbone.radio", "when", "meld"], function(_, Radio, When
 
     Container.prototype.removers = [];
 
-    Container.prototype.contextHash = {};
+    Container.prototype.modules = {};
 
-    Container.prototype.modulesApi = {};
+    Container.prototype.sandboxes = {};
 
     Container.prototype.containerChannel = Radio.channel("container");
 
-    Container.prototype.registerModuleApi = function(moduleName, sandbox) {
-      return this.modulesApi[moduleName] = sandbox;
+    Container.prototype.registerSandbox = function(moduleName, sandbox) {
+      console.debug("sandbox...", moduleName, sandbox);
+      return this.sandboxes[moduleName] = sandbox;
     };
 
     Container.prototype.registerModuleSandbox = function(joinpoint) {
@@ -24,7 +25,7 @@ define(["underscore", "backbone.radio", "when", "meld"], function(_, Radio, When
         _this = this;
       moduleName = joinpoint.args[0];
       args = _.rest(joinpoint.args);
-      context = this.contextHash[moduleName];
+      context = this.modules[moduleName];
       if (context == null) {
         return When(joinpoint.target[moduleName]({
           _radio: {
@@ -33,8 +34,8 @@ define(["underscore", "backbone.radio", "when", "meld"], function(_, Radio, When
             }
           }
         })).then(function(moduleContext) {
-          _this.contextHash[moduleName] = moduleContext;
-          _this.registerModuleApi(moduleName, moduleContext.sandbox);
+          _this.modules[moduleName] = moduleContext;
+          _this.registerSandbox(moduleName, moduleContext.sandbox);
           return joinpoint.proceed(moduleContext.sandbox, args);
         });
       } else {
@@ -44,11 +45,10 @@ define(["underscore", "backbone.radio", "when", "meld"], function(_, Radio, When
 
     Container.prototype.destroyModule = function(name) {
       var _ref;
-      if ((_ref = this.contextHash[name]) != null) {
+      if ((_ref = this.modules[name]) != null) {
         _ref.destroy();
       }
-      delete this.contextHash[name];
-      return delete this.modulesApi[name];
+      return delete this.modules[name];
     };
 
     return Container;

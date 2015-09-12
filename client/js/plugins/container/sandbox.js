@@ -1,6 +1,6 @@
 define(['underscore', 'backbone.radio'], function(_, Radio) {
   return function() {
-    var createSandboxFactory, eventsFlowFacet, pluginInstance;
+    var createSandboxFactory, pluginInstance;
     createSandboxFactory = function(resolver, compDef, wire) {
       return wire(compDef.options.api).then(function(api) {
         var sandbox;
@@ -11,19 +11,9 @@ define(['underscore', 'backbone.radio'], function(_, Radio) {
         return resolver.resolve(sandbox);
       });
     };
-    eventsFlowFacet = function(resolver, facet, wire) {
-      return wire(facet.options).then(function(options) {
-        return resolver.resolve(facet.target);
-      });
-    };
     pluginInstance = {
       factories: {
         createSandbox: createSandboxFactory
-      },
-      facets: {
-        eventsFlow: {
-          "configure": eventsFlowFacet
-        }
       }
     };
     return pluginInstance;

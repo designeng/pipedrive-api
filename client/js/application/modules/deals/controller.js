@@ -29,7 +29,7 @@ define(["marionette"], function(Marionette) {
 
     DealsController.prototype.activateById = function(id) {
       this.list.activateById(id);
-      return this.channel.trigger("deals:item:activated", id);
+      return this.sandbox.channel.request("deals:item:activated", id);
     };
 
     return DealsController;

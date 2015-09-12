@@ -11,28 +11,37 @@ define(["underscore", "backbone.radio", "when", "meld"], function(_, Radio, When
 
     Container.prototype.modules = {};
 
-    Container.prototype.sandboxes = {};
-
     Container.prototype.containerChannel = Radio.channel("container");
 
-    Container.prototype.registerSandbox = function(moduleName, sandbox) {
-      console.debug("sandbox...", moduleName, sandbox);
-      return this.sandboxes[moduleName] = sandbox;
-    };
-
-    Container.prototype.startModule = function(module) {
-      var _this = this;
+    Container.prototype.startModule = function(module, moduleName) {
+      var moduleChannel,
+        _this = this;
+      moduleChannel = Radio.channel(moduleName);
+      moduleChannel.reply("default", function(requestName, args) {
+        return _this.containerChannel.trigger(requestName, args);
+      });
       return When.promise(function(resolve, reject) {
         return module({
-          _radio: {
+          sandbox: {
             literal: {
-              channel: _this.containerChannel
+              channel: moduleChannel
             }
           }
         }).then(function(context) {
           return resolve(context);
         });
       });
+    };
+
+    Container.prototype.stopModule = function(name) {
+      var _ref;
+      if (Radio._channels[name]) {
+        Radio.reset(name);
+      }
+      if ((_ref = this.modules[name]) != null) {
+        _ref.destroy();
+      }
+      return delete this.modules[name];
     };
 
     Container.prototype.registerModuleSandbox = function(joinpoint) {
@@ -42,22 +51,18 @@ define(["underscore", "backbone.radio", "when", "meld"], function(_, Radio, When
       args = _.rest(joinpoint.args);
       context = this.modules[moduleName];
       if (context == null) {
-        return this.startModule(joinpoint.target[moduleName]).then(function(moduleContext) {
+        return this.startModule(joinpoint.target[moduleName], moduleName).then(function(moduleContext) {
           _this.modules[moduleName] = moduleContext;
-          _this.registerSandbox(moduleName, moduleContext.sandbox);
-          return joinpoint.proceed(moduleContext.sandbox, args);
+          return moduleContext.wire(moduleContext.publicApi).then(function(api) {
+            _.each(api, function(method, methodName) {
+              return moduleContext.sandbox[methodName] = method;
+            });
+            return joinpoint.proceed(moduleContext.sandbox, args);
+          });
         });
       } else {
         return joinpoint.proceed(context.sandbox, args);
       }
-    };
-
-    Container.prototype.stopModule = function(name) {
-      var _ref;
-      if ((_ref = this.modules[name]) != null) {
-        _ref.destroy();
-      }
-      return delete this.modules[name];
     };
 
     return Container;

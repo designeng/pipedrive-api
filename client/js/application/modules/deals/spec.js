@@ -1,14 +1,12 @@
 define({
-  $plugins: ['wire/debug', 'wire/aop', 'plugins/hbs', 'plugins/container/sandbox'],
-  sandbox: {
-    createSandbox: {
-      api: {
-        showList: {
-          $ref: 'dealsController.showList'
-        },
-        showDetailes: {
-          $ref: 'dealsController.showDealDetailes'
-        }
+  $plugins: ['wire/debug', 'wire/aop', 'plugins/hbs'],
+  publicApi: {
+    literal: {
+      showList: {
+        $ref: 'dealsController.showList'
+      },
+      showDetailes: {
+        $ref: 'dealsController.showDealDetailes'
       }
     }
   },
@@ -43,8 +41,8 @@ define({
       dealsBoard: {
         $ref: 'dealsBoard'
       },
-      channel: {
-        $ref: '_radio.channel'
+      sandbox: {
+        $ref: 'sandbox'
       }
     }
   },

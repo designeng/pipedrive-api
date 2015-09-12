@@ -11,23 +11,24 @@ define [
 
         modules: {}
 
-        sandboxes: {}
-
         containerChannel: Radio.channel("container")
 
-        registerSandbox: (moduleName, sandbox) ->
-            console.debug "sandbox...", moduleName, sandbox
-            @sandboxes[moduleName] = sandbox
-
-        # TODO: should be public?
-        startModule: (module) ->
+        startModule: (module, moduleName) ->
+            moduleChannel = Radio.channel(moduleName)
+            moduleChannel.reply "default", (requestName, args) =>
+                @containerChannel.trigger requestName, args
             return When.promise (resolve, reject) =>
                 module({
-                    _radio:
+                    sandbox:
                         literal:
-                            channel: @containerChannel
+                            channel: moduleChannel
                 }).then (context) ->
                     resolve context
+
+        stopModule: (name) ->
+            Radio.reset(name) if Radio._channels[name]
+            @modules[name]?.destroy()
+            delete @modules[name]
 
         # sandbox provides module functional api and hides other details of realization
         # wired context is cached (we should not wire the module twice!)
@@ -36,16 +37,14 @@ define [
             args = _.rest joinpoint.args
             context = @modules[moduleName]
             if !context?
-                @startModule(joinpoint.target[moduleName]).then (moduleContext) =>
+                @startModule(joinpoint.target[moduleName], moduleName).then (moduleContext) =>
                     @modules[moduleName] = moduleContext
-                    @registerSandbox(moduleName, moduleContext.sandbox)
-                    joinpoint.proceed(moduleContext.sandbox, args)
+                    moduleContext.wire(moduleContext.publicApi).then (api) ->
+                        _.each api, (method, methodName) ->
+                            moduleContext.sandbox[methodName] = method
+                        joinpoint.proceed(moduleContext.sandbox, args)
             else
                 joinpoint.proceed(context.sandbox, args)
-
-        stopModule: (name) ->
-            @modules[name]?.destroy()
-            delete @modules[name]
 
     return (options) ->
 

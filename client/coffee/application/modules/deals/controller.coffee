@@ -18,5 +18,5 @@ define [
         activateById: (id) ->
             @list.activateById id
 
-            # demonstration of module's feedback
-            @channel.trigger "deals:item:activated", id
+            # demonstration of module's communication with the core
+            @sandbox.channel.request "deals:item:activated", id

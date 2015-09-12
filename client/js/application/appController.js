@@ -34,7 +34,7 @@ define(["marionette", "when"], function(Marionette, When) {
 
     AppController.prototype.rootFragmentMutation = function(rootFragment) {
       if (this.currentRootFragment !== rootFragment) {
-        this.container.destroyModule(this.currentRootFragment);
+        this.container.stopModule(this.currentRootFragment);
         return this.currentRootFragment = rootFragment;
       }
     };

@@ -43,7 +43,7 @@ define [
             else
                 joinpoint.proceed(context.sandbox, args)
 
-        destroyModule: (name) ->
+        stopModule: (name) ->
             @modules[name]?.destroy()
             delete @modules[name]
 

@@ -52,7 +52,7 @@ define(["underscore", "backbone.radio", "when", "meld"], function(_, Radio, When
       }
     };
 
-    Container.prototype.destroyModule = function(name) {
+    Container.prototype.stopModule = function(name) {
       var _ref;
       if ((_ref = this.modules[name]) != null) {
         _ref.destroy();

@@ -22,7 +22,7 @@ define [
         # remove and destroy cached context if root fragment is changed
         rootFragmentMutation: (rootFragment) ->
             if @currentRootFragment != rootFragment
-                @container.destroyModule @currentRootFragment
+                @container.stopModule @currentRootFragment
                 @currentRootFragment = rootFragment
 
         # ROUTES HANDLERS:

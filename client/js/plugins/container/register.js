@@ -81,6 +81,7 @@ define(["underscore", "backbone.radio", "when", "meld"], function(_, Radio, When
       });
     };
     destroyFacet = function(resolver, facet, wire) {
+      Radio.reset();
       _.each(container.removers, function(remover) {
         return remover.remove();
       });

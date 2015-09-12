@@ -59,6 +59,8 @@ define [
                 resolver.resolve facet.target
 
         destroyFacet = (resolver, facet, wire) ->
+            # TODO: if several marionette.application instances? All registered events will be removed (find solution)
+            Radio.reset()
             _.each container.removers, (remover) ->
                 remover.remove()
             resolver.resolve()

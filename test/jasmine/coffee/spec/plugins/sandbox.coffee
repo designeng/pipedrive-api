@@ -7,33 +7,30 @@ define [
     sandboxDeferred = When.defer()
 
     interactWithModuleSpy = jasmine.createSpy("interactWithModuleSpy")
-    triggerOneRouteSpy = jasmine.createSpy("triggerOneRouteSpy")
-    sendMessageSpy = jasmine.createSpy("triggerOneRouteSpy")
-    radioChannelCommunicationSpy = jasmine.createSpy("radioChannelCommunicationSpy")
+    sendMessageSpy = jasmine.createSpy("sendMessageSpy")
+    fromModuleWithNameSpy = jasmine.createSpy("fromModuleWithNameSpy")
 
     define 'sandbox/modules/moduleOne/controller', ->
         class ModuleOneController
 
             sendMessage: (message) =>
-                @channel.trigger "to:container:from:one", "Hello from moduleOne"
+                @sandbox.channel.request "to:container:from:module", "moduleOne", "Hello from moduleOne"
                 sendMessageSpy(message)
                 sandboxDeferred.resolve()
 
     define 'sandbox/modules/moduleOne',
         $plugins: [
             'wire/debug'
-            'plugins/container/sandbox'
         ]
 
-        sandbox:
-            createSandbox:
-                api:
-                    sendMessage: {$ref: 'controller.sendMessage'}
+        publicApi:
+            literal:
+                sendMessage: {$ref: 'controller.sendMessage'}
 
         controller:
             create: 'sandbox/modules/moduleOne/controller'
             properties:
-                channel: {$ref: '_radio.channel'}
+                sandbox: {$ref: 'sandbox'}
 
     define 'sandbox/core/controller', ->
         class CoreController
@@ -43,12 +40,11 @@ define [
                 sandbox.sendMessage(args[0])
 
             triggerOneRoute: (id) ->
-                triggerOneRouteSpy(id)
                 @interactWithModule "moduleOne", id
 
             listenToModule: ->
-                @container.channel.on "to:container:from:one", (data) ->
-                    radioChannelCommunicationSpy(data)
+                @container.channel.on "to:container:from:module", (name, data) ->
+                    fromModuleWithNameSpy(name, data)
 
     # CORE SPEC
     sandboxCoreSpec = 
@@ -82,11 +78,16 @@ define [
             .otherwise (err) ->
                 console.log "ERROR", err
 
-        it "sendMessageSpy should be called with id 123", (done) ->
+        it "intercessor should interact directly with module sandbox", (done) ->
             @ctx.appController.triggerOneRoute(123)
             When(sandboxDeferred.promise).then () =>
-                expect(triggerOneRouteSpy).toHaveBeenCalledWith(123)
                 expect(interactWithModuleSpy).toHaveBeenCalled()
                 expect(sendMessageSpy).toHaveBeenCalledWith(123)
-                expect(radioChannelCommunicationSpy).toHaveBeenCalledWith("Hello from moduleOne")
+                done()
+
+
+        it "communication module - core", (done) ->
+            @ctx.appController.triggerOneRoute(123)
+            When(sandboxDeferred.promise).then () =>
+                expect(fromModuleWithNameSpy).toHaveBeenCalledWith("moduleOne", "Hello from moduleOne")
                 done()

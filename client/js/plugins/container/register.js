@@ -20,6 +20,20 @@ define(["underscore", "backbone.radio", "when", "meld"], function(_, Radio, When
       return this.sandboxes[moduleName] = sandbox;
     };
 
+    Container.prototype.startModule = function(module) {
+      return When.promise(function(resolve, reject) {
+        return module({
+          _radio: {
+            literal: {
+              channel: this.containerChannel
+            }
+          }
+        }).then(function(context) {
+          return resolve(context);
+        });
+      });
+    };
+
     Container.prototype.registerModuleSandbox = function(joinpoint) {
       var args, context, moduleName,
         _this = this;
@@ -27,13 +41,7 @@ define(["underscore", "backbone.radio", "when", "meld"], function(_, Radio, When
       args = _.rest(joinpoint.args);
       context = this.modules[moduleName];
       if (context == null) {
-        return When(joinpoint.target[moduleName]({
-          _radio: {
-            literal: {
-              channel: this.containerChannel
-            }
-          }
-        })).then(function(moduleContext) {
+        return this.startModule(joinpoint.target[moduleName]).then(function(moduleContext) {
           _this.modules[moduleName] = moduleContext;
           _this.registerSandbox(moduleName, moduleContext.sandbox);
           return joinpoint.proceed(moduleContext.sandbox, args);

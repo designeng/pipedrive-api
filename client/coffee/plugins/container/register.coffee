@@ -19,6 +19,15 @@ define [
             console.debug "sandbox...", moduleName, sandbox
             @sandboxes[moduleName] = sandbox
 
+        startModule: (module) ->
+            return When.promise (resolve, reject) ->
+                module({
+                    _radio:
+                        literal:
+                            channel: @containerChannel
+                }).then (context) ->
+                    resolve context
+
         # sandbox provides module functional api and hides other details of realization
         # wired context is cached (we should not wire the module twice!)
         registerModuleSandbox: (joinpoint) =>
@@ -26,11 +35,7 @@ define [
             args = _.rest joinpoint.args
             context = @modules[moduleName]
             if !context?
-                When(joinpoint.target[moduleName]({
-                    _radio:
-                        literal:
-                            channel: @containerChannel
-                })).then (moduleContext) =>
+                @startModule(joinpoint.target[moduleName]).then (moduleContext) =>
                     @modules[moduleName] = moduleContext
                     @registerSandbox(moduleName, moduleContext.sandbox)
                     joinpoint.proceed(moduleContext.sandbox, args)

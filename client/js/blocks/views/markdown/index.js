@@ -25,7 +25,6 @@ define(['backbone', 'marionette', 'showdown', 'utils/request/index', 'hbs!templa
     MarkdownView.prototype.fetchMarkdownDocument = function(id) {
       var url,
         _this = this;
-      console.debug("fetchMarkdownDocument", id);
       url = "../assets/docs/markdown/" + id + ".md";
       return new AjaxRequest(url, {}, "GET").done(function(response) {
         _this.model.set("text", response);

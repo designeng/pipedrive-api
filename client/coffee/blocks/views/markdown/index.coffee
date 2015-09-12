@@ -17,7 +17,6 @@ define [
             @converter = new showdown.Converter()
 
         fetchMarkdownDocument: (id) ->
-            console.debug "fetchMarkdownDocument", id
             url = "../assets/docs/markdown/" + id + ".md"
             new AjaxRequest(url, {}, "GET").done (response) =>
                 @model.set "text", response

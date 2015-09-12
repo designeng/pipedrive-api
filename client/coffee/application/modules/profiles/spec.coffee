@@ -2,7 +2,6 @@ define
     $plugins: [
         'wire/debug'
         'plugins/hbs'
-        'plugins/container/sandbox'
     ]
 
     publicApi:

@@ -1,7 +1,6 @@
 define
     $plugins: [
         'wire/debug'
-        'wire/aop'
         'plugins/hbs'
     ]
 

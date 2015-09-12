@@ -11,6 +11,8 @@ define(["underscore", "backbone.radio", "when", "meld"], function(_, Radio, When
 
     Container.prototype.modules = {};
 
+    Container.prototype.channels = {};
+
     Container.prototype.channel = Radio.channel("container");
 
     Container.prototype.startModule = function(module, moduleName) {
@@ -42,6 +44,12 @@ define(["underscore", "backbone.radio", "when", "meld"], function(_, Radio, When
         _ref.destroy();
       }
       return delete this.modules[name];
+    };
+
+    Container.prototype.broadcastEvent = function(eventName, args) {
+      return _.each(this.channels, function(channel) {
+        return channel.trigger(eventName, args);
+      });
     };
 
     Container.prototype.registerModuleSandbox = function(joinpoint) {

@@ -10,6 +10,7 @@ define [
         removers: []
 
         modules: {}
+        channels: {}
 
         channel: Radio.channel("container")
 
@@ -29,6 +30,10 @@ define [
             Radio.reset(name) if Radio._channels[name]
             @modules[name]?.destroy()
             delete @modules[name]
+
+        broadcastEvent: (eventName, args) ->
+            _.each @channels, (channel) ->
+                channel.trigger eventName, args
 
         # sandbox provides module functional api and hides other details of realization
         # wired context is cached (we should not wire the module twice!)

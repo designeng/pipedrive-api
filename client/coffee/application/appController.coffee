@@ -12,8 +12,10 @@ define [
 
         # demonstration of module - core interaction
         listenToDealsModule: ->
-            @container.channel.on "deals:item:activated", (id) ->
+            @container.channel.on "deals:item:activated", (id) =>
                 console.debug "DEALS MODULE LIST ACTIVATED ITEM: ", id
+                # send transformed event further to modules
+                @container.broadcastEvent "doSomething", id
 
         # DEFAULT ROUTE HANDLER:
         onRoute: (name, path, opts) =>

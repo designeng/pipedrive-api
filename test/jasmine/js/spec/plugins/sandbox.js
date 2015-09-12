@@ -1,12 +1,11 @@
 var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
 define(["wire", "when", "backbone.radio"], function(wire, When, Radio) {
-  var interactWithModuleSpy, radioChannelCommunicationSpy, sandboxCoreSpec, sandboxDeferred, sendMessageSpy, triggerOneRouteSpy;
+  var fromModuleWithNameSpy, interactWithModuleSpy, sandboxCoreSpec, sandboxDeferred, sendMessageSpy;
   sandboxDeferred = When.defer();
   interactWithModuleSpy = jasmine.createSpy("interactWithModuleSpy");
-  triggerOneRouteSpy = jasmine.createSpy("triggerOneRouteSpy");
-  sendMessageSpy = jasmine.createSpy("triggerOneRouteSpy");
-  radioChannelCommunicationSpy = jasmine.createSpy("radioChannelCommunicationSpy");
+  sendMessageSpy = jasmine.createSpy("sendMessageSpy");
+  fromModuleWithNameSpy = jasmine.createSpy("fromModuleWithNameSpy");
   define('sandbox/modules/moduleOne/controller', function() {
     var ModuleOneController;
     return ModuleOneController = (function() {
@@ -15,7 +14,7 @@ define(["wire", "when", "backbone.radio"], function(wire, When, Radio) {
       }
 
       ModuleOneController.prototype.sendMessage = function(message) {
-        this.channel.trigger("to:container:from:one", "Hello from moduleOne");
+        this.sandbox.channel.request("to:container:from:module", "moduleOne", "Hello from moduleOne");
         sendMessageSpy(message);
         return sandboxDeferred.resolve();
       };
@@ -25,21 +24,19 @@ define(["wire", "when", "backbone.radio"], function(wire, When, Radio) {
     })();
   });
   define('sandbox/modules/moduleOne', {
-    $plugins: ['wire/debug', 'plugins/container/sandbox'],
-    sandbox: {
-      createSandbox: {
-        api: {
-          sendMessage: {
-            $ref: 'controller.sendMessage'
-          }
+    $plugins: ['wire/debug'],
+    publicApi: {
+      literal: {
+        sendMessage: {
+          $ref: 'controller.sendMessage'
         }
       }
     },
     controller: {
       create: 'sandbox/modules/moduleOne/controller',
       properties: {
-        channel: {
-          $ref: '_radio.channel'
+        sandbox: {
+          $ref: 'sandbox'
         }
       }
     }
@@ -55,13 +52,12 @@ define(["wire", "when", "backbone.radio"], function(wire, When, Radio) {
       };
 
       CoreController.prototype.triggerOneRoute = function(id) {
-        triggerOneRouteSpy(id);
         return this.interactWithModule("moduleOne", id);
       };
 
       CoreController.prototype.listenToModule = function() {
-        return this.container.channel.on("to:container:from:one", function(data) {
-          return radioChannelCommunicationSpy(data);
+        return this.container.channel.on("to:container:from:module", function(name, data) {
+          return fromModuleWithNameSpy(name, data);
         });
       };
 
@@ -100,14 +96,20 @@ define(["wire", "when", "backbone.radio"], function(wire, When, Radio) {
         return console.log("ERROR", err);
       });
     });
-    return it("sendMessageSpy should be called with id 123", function(done) {
+    it("intercessor should interact directly with module sandbox", function(done) {
       var _this = this;
       this.ctx.appController.triggerOneRoute(123);
       return When(sandboxDeferred.promise).then(function() {
-        expect(triggerOneRouteSpy).toHaveBeenCalledWith(123);
         expect(interactWithModuleSpy).toHaveBeenCalled();
         expect(sendMessageSpy).toHaveBeenCalledWith(123);
-        expect(radioChannelCommunicationSpy).toHaveBeenCalledWith("Hello from moduleOne");
+        return done();
+      });
+    });
+    return it("communication module - core", function(done) {
+      var _this = this;
+      this.ctx.appController.triggerOneRoute(123);
+      return When(sandboxDeferred.promise).then(function() {
+        expect(fromModuleWithNameSpy).toHaveBeenCalledWith("moduleOne", "Hello from moduleOne");
         return done();
       });
     });

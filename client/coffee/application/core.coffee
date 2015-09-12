@@ -20,12 +20,16 @@ define
     appController:
         create: "application/appController"
         properties:
+            navigation          : {$ref: 'navigation'}
             profiles            : {$ref: 'profiles'}
             deals               : {$ref: 'deals'}
             notFoundPageLayer   : {$ref: "element!.not-found"}
         registerIntercessors: ['showEntityList', 'showEntityDetailes']
         ready:
             showPreloader: {$ref: 'preloader'}
+            switchOn: [
+                "navigation" : {}
+            ]
             listenToDealsModule: {}
 
     router:
@@ -40,17 +44,13 @@ define
         onRoute: {$ref: 'appController.onRoute'}
 
     # APPLICATION MODULES
-
-    # DIRECT WORKFLOW MODULES
     navigation:
         wire:
             spec: "application/modules/navigation/spec"
-            waitParent: true
+            defer: true
             provide:
                 navigationRegion    : {$ref: 'appInstance.regions.navigationRegion'}
-    # /DIRECT WORKFLOW MODULES
 
-    # SANDBOXED MODULES:
     profiles:
         wire:
             spec: "application/modules/profiles/spec"
@@ -66,8 +66,6 @@ define
             provide:
                 listRegion          : {$ref: 'appInstance.regions.sidebarRegion'}
                 dealsBoardRegion    : {$ref: 'appInstance.regions.mainAreaRegion'}
-
-    # /SANDBOXED MODULES
     # /APPLICATION MODULES
 
     preloader:

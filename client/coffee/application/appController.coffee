@@ -10,10 +10,15 @@ define [
         showPreloader: (preloader) ->
             @regions.mainAreaRegion.show preloader
 
+        # switch on all service modules
+        switchOn: (modules) ->
+            _.each modules, (options, module) =>
+                @[module](options)
+
         # demonstration of module - core interaction
         listenToDealsModule: ->
-            @container.channel.on "deals:item:activated", (id) =>
-                console.debug "DEALS MODULE LIST ACTIVATED ITEM: ", id
+            @container.channel.on "item:activated", (module, id) =>
+                console.debug "'#{module}' module says: activated item id: ", id
                 # send transformed event further to modules
                 @container.broadcastEvent "doSomething", id
 

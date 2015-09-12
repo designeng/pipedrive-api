@@ -8,7 +8,7 @@ define [
             _.bindAll @, 'showList', 'showDealDetailes'
 
         showList: ->
-            @listRegion.show @list, {priventDestroy: true}
+            @listRegion.show @list
 
         showDealDetailes: (id) ->
             @dealsBoard.activateById id

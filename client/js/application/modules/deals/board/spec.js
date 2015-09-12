@@ -1,5 +1,5 @@
 define({
-  $plugins: ['wire/debug', 'plugins/hbs', 'plugins/marionette/layout', 'plugins/backbone/collection/underscore/apply'],
+  $plugins: ['plugins/hbs', 'plugins/marionette/layout', 'plugins/backbone/collection/underscore/apply'],
   boardLayout: {
     createLayout: {
       fromTemplate: {

@@ -47,7 +47,7 @@ define [
                 @interactWithModule "moduleOne", id
 
             listenToModule: ->
-                @container.containerChannel.on "to:container:from:one", (data) ->
+                @container.channel.on "to:container:from:one", (data) ->
                     radioChannelCommunicationSpy(data)
 
     # CORE SPEC

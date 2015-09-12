@@ -11,12 +11,12 @@ define [
 
         modules: {}
 
-        containerChannel: Radio.channel("container")
+        channel: Radio.channel("container")
 
         startModule: (module, moduleName) ->
             moduleChannel = Radio.channel(moduleName)
             moduleChannel.reply "default", (requestName, args) =>
-                @containerChannel.trigger requestName, args
+                @channel.trigger requestName, args
             return When.promise (resolve, reject) =>
                 module({
                     sandbox:

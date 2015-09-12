@@ -60,7 +60,7 @@ define(["wire", "when", "backbone.radio"], function(wire, When, Radio) {
       };
 
       CoreController.prototype.listenToModule = function() {
-        return this.container.containerChannel.on("to:container:from:one", function(data) {
+        return this.container.channel.on("to:container:from:one", function(data) {
           return radioChannelCommunicationSpy(data);
         });
       };

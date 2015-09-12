@@ -11,14 +11,14 @@ define(["underscore", "backbone.radio", "when", "meld"], function(_, Radio, When
 
     Container.prototype.modules = {};
 
-    Container.prototype.containerChannel = Radio.channel("container");
+    Container.prototype.channel = Radio.channel("container");
 
     Container.prototype.startModule = function(module, moduleName) {
       var moduleChannel,
         _this = this;
       moduleChannel = Radio.channel(moduleName);
       moduleChannel.reply("default", function(requestName, args) {
-        return _this.containerChannel.trigger(requestName, args);
+        return _this.channel.trigger(requestName, args);
       });
       return When.promise(function(resolve, reject) {
         return module({

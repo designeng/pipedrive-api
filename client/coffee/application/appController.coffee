@@ -10,9 +10,10 @@ define [
         showPreloader: (preloader) ->
             @regions.mainAreaRegion.show preloader
 
+        # demonstration of module - core interaction
         listenToDealsModule: ->
-            @container.containerChannel.on "deals:item:activated", (id) ->
-                console.debug "ACTIVATED ITEM: ", id
+            @container.channel.on "deals:item:activated", (id) ->
+                console.debug "DEALS MODULE LIST ACTIVATED ITEM: ", id
 
         # DEFAULT ROUTE HANDLER:
         onRoute: (name, path, opts) =>

@@ -18,9 +18,17 @@ define(['underscore', 'marionette'], function(_, Marionette) {
       });
     };
     showInRegionsFacet = function(resolver, facet, wire) {
+      var noop;
+      noop = function() {};
       return wire(facet.options).then(function(options) {
         _.each(options, function(view, region) {
-          return facet.target.showChildView(region, view);
+          var err;
+          try {
+            return facet.target.showChildView(region, view);
+          } catch (_error) {
+            err = _error;
+            return noop();
+          }
         });
         return resolver.resolve(facet.target);
       });

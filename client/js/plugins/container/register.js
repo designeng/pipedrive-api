@@ -16,17 +16,12 @@ define(["underscore", "backbone.radio", "when", "meld"], function(_, Radio, When
     Container.prototype.channel = Radio.channel("container");
 
     Container.prototype.startModule = function(module, moduleName) {
-      var moduleChannel,
-        _this = this;
-      moduleChannel = Radio.channel(moduleName);
-      moduleChannel.reply("default", function(requestName, module, args) {
-        return _this.channel.trigger(requestName, module, args);
-      });
+      var _this = this;
       return When.promise(function(resolve, reject) {
         return module({
           sandbox: {
             literal: {
-              channel: moduleChannel
+              channel: _this.createChannel(moduleName)
             }
           }
         }).then(function(context) {
@@ -40,6 +35,7 @@ define(["underscore", "backbone.radio", "when", "meld"], function(_, Radio, When
       if (Radio._channels[name]) {
         Radio.reset(name);
       }
+      delete this.channels[name];
       if ((_ref = this.modules[name]) != null) {
         _ref.destroy();
       }
@@ -50,6 +46,17 @@ define(["underscore", "backbone.radio", "when", "meld"], function(_, Radio, When
       return _.each(this.channels, function(channel) {
         return channel.trigger(eventName, args);
       });
+    };
+
+    Container.prototype.createChannel = function(name) {
+      var channel,
+        _this = this;
+      channel = Radio.channel(name);
+      this.channels[name] = channel;
+      channel.reply("default", function(requestName, module, args) {
+        return _this.channel.trigger(requestName, module, args);
+      });
+      return channel;
     };
 
     Container.prototype.registerModuleSandbox = function(joinpoint) {

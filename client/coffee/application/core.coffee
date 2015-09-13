@@ -1,6 +1,6 @@
 define
     $plugins: [
-        # 'wire/debug'
+        'wire/debug'
         'plugins/marionette/router'
         'plugins/marionette/module'
         'plugins/container/register'
@@ -24,13 +24,17 @@ define
             profiles            : {$ref: 'profiles'}
             deals               : {$ref: 'deals'}
             notFoundPageLayer   : {$ref: "element!.not-found"}
-        registerIntercessors: ['showEntityList', 'showEntityDetailes']
+        registerIntercessors: [
+            'startModule'
+            'createEntityList'
+            'createEntityDetailes'
+        ]
         ready:
             showPreloader: {$ref: 'preloader'}
             switchOn: [
                 "navigation" : {}
             ]
-            listenToDealsModule: {}
+            listenToModules: {}
 
     router:
         createRouter:
@@ -51,13 +55,13 @@ define
             provide:
                 navigationRegion    : {$ref: 'appInstance.regions.navigationRegion'}
 
-    perspective:
-        wire:
-            spec: "application/modules/perspective/spec"
-            defer: true
-            provide:
-                sidebarRegion       : {$ref: 'appInstance.regions.sidebarRegion'}
-                mainAreaRegion      : {$ref: 'appInstance.regions.mainAreaRegion'}
+    # perspective:
+    #     wire:
+    #         spec: "application/modules/perspective/spec"
+    #         defer: true
+    #         provide:
+    #             sidebarRegion       : {$ref: 'appInstance.regions.sidebarRegion'}
+    #             mainAreaRegion      : {$ref: 'appInstance.regions.mainAreaRegion'}
 
     profiles:
         wire:

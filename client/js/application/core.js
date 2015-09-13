@@ -1,5 +1,5 @@
 define({
-  $plugins: ['plugins/marionette/router', 'plugins/marionette/module', 'plugins/container/register', 'plugins/element'],
+  $plugins: ['wire/debug', 'plugins/marionette/router', 'plugins/marionette/module', 'plugins/container/register', 'plugins/element'],
   appInstance: {
     createApplication: {
       withRegions: {
@@ -31,7 +31,7 @@ define({
         $ref: "element!.not-found"
       }
     },
-    registerIntercessors: ['showEntityList', 'showEntityDetailes'],
+    registerIntercessors: ['startModule', 'createEntityList', 'createEntityDetailes'],
     ready: {
       showPreloader: {
         $ref: 'preloader'
@@ -41,7 +41,7 @@ define({
           "navigation": {}
         }
       ],
-      listenToDealsModule: {}
+      listenToModules: {}
     }
   },
   router: {
@@ -68,20 +68,6 @@ define({
       provide: {
         navigationRegion: {
           $ref: 'appInstance.regions.navigationRegion'
-        }
-      }
-    }
-  },
-  perspective: {
-    wire: {
-      spec: "application/modules/perspective/spec",
-      defer: true,
-      provide: {
-        sidebarRegion: {
-          $ref: 'appInstance.regions.sidebarRegion'
-        },
-        mainAreaRegion: {
-          $ref: 'appInstance.regions.mainAreaRegion'
         }
       }
     }

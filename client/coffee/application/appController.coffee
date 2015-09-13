@@ -16,11 +16,16 @@ define [
                 @[module](options)
 
         # demonstration of module - core interaction
-        listenToDealsModule: ->
+        listenToModules: ->
             @container.channel.on "item:activated", (module, id) =>
                 console.debug "'#{module}' module says: activated item id: ", id
                 # send transformed event further to modules
                 @container.broadcastEvent "doSomething", id
+
+            @container.channel.on "list:ready", (module, list) =>
+                console.debug "'#{module}' module says: LIST READY: ", list
+                # send transformed event further to modules
+                @container.broadcastEvent "list:ready", list
 
         # DEFAULT ROUTE HANDLER:
         onRoute: (name, path, opts) =>
@@ -40,14 +45,19 @@ define [
         # PROFILES:
 
         profilesModuleHandler: (personId) ->
-            When(@showEntityList "profiles").then () =>
-                @showEntityDetailes "profiles", personId
+            console.debug "profilesModuleHandler"
+            @startModule "profiles", personId
+            console.debug "profilesModuleHandler_____"
+            
+            
+            # When(@createEntityList "profiles").then () =>
+            #     @createEntityDetailes "profiles", personId
 
         # DEALS:
 
         dealsModuleHandler: (dealId) ->
-            When(@showEntityList "deals").then () =>
-                @showEntityDetailes "deals", dealId
+            When(@createEntityList "deals").then () =>
+                @createEntityDetailes "deals", dealId
 
         # 404 ERROR:
 
@@ -56,8 +66,12 @@ define [
 
         # COMMON INTERCESSORS:
 
-        showEntityList: (sandbox) ->
-            sandbox.showList()
+        startModule: (sandbox) ->
+            console.debug "START MODULE>>>>>>>>", sandbox
 
-        showEntityDetailes: (sandbox, args) ->
+        createEntityList: (sandbox) ->
+            console.debug "sandbox", sandbox
+            sandbox.createList()
+
+        createEntityDetailes: (sandbox, args) ->
             sandbox.showDetailes args[0]

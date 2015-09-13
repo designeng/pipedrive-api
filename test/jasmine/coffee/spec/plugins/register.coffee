@@ -6,7 +6,8 @@ define [
 
     sandboxDeferred = When.defer()
 
-    interactWithModuleSpy = jasmine.createSpy("interactWithModuleSpy")
+    startModuleSpy = jasmine.createSpy("startModuleSpy")
+
     sendMessageSpy = jasmine.createSpy("sendMessageSpy")
     fromModuleWithNameSpy = jasmine.createSpy("fromModuleWithNameSpy")
 
@@ -14,9 +15,6 @@ define [
         class ModuleOneController
 
             sendMessage: (message) =>
-                @sandbox.channel.request "to:container:from:module", "moduleOne", "Hello from moduleOne"
-                sendMessageSpy(message)
-                sandboxDeferred.resolve()
 
     define 'sandbox/modules/moduleOne',
         $plugins: [
@@ -35,12 +33,9 @@ define [
     define 'sandbox/core/controller', ->
         class CoreController
 
-            interactWithModule: (sandbox, args) ->
-                interactWithModuleSpy()
-                sandbox.sendMessage(args[0])
-
-            triggerOneRoute: (id) ->
-                @interactWithModule "moduleOne", id
+            startModule: (sandbox, args) ->
+                startModuleSpy(args[0])
+                sandboxDeferred.resolve(sandbox)
 
             listenToModule: ->
                 @container.channel.on "to:container:from:module", (name, data) ->
@@ -57,7 +52,7 @@ define [
             create: "sandbox/core/controller"
             properties:
                 moduleOne: {$ref: 'moduleOne'}
-            registerIntercessors: ['interactWithModule']
+            registerIntercessors: ['startModule']
             ready:
                 listenToModule: {}
 
@@ -70,7 +65,7 @@ define [
 
     # /CORE SPEC
 
-    describe "register in container plugin", ->
+    describe "register plugin (test suite 2)", ->
 
         beforeEach (done) ->
             wire(sandboxCoreSpec).then (@ctx) =>
@@ -79,15 +74,14 @@ define [
                 console.log "ERROR", err
 
         it "intercessor should interact directly with module sandbox", (done) ->
-            @ctx.appController.triggerOneRoute(123)
+            @ctx.appController.startModule "moduleOne", "some_arg"
             When(sandboxDeferred.promise).then () =>
-                expect(interactWithModuleSpy).toHaveBeenCalled()
-                expect(sendMessageSpy).toHaveBeenCalledWith(123)
+                expect(startModuleSpy).toHaveBeenCalledWith "some_arg"
                 done()
 
-
-        it "communication module - core", (done) ->
-            @ctx.appController.triggerOneRoute(123)
-            When(sandboxDeferred.promise).then () =>
-                expect(fromModuleWithNameSpy).toHaveBeenCalledWith("moduleOne", "Hello from moduleOne")
+        it "sandbox should be an object with channel property", (done) ->
+            @ctx.appController.startModule "moduleOne"
+            When(sandboxDeferred.promise).then (sandbox) =>
+                expect(sandbox).toBeObject()
+                expect(sandbox.channel).toBeObject()
                 done()

@@ -1,5 +1,15 @@
 define({
   $plugins: ['wire/debug', 'plugins/hbs'],
+  publicApi: {
+    literal: {
+      createList: {
+        $ref: 'profilesController.createList'
+      },
+      createDetails: {
+        $ref: 'profilesController.createDetails'
+      }
+    }
+  },
   profilesCollection: {
     create: 'application/modules/profiles/collections/profiles',
     ready: {

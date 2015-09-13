@@ -68,12 +68,18 @@ define(["underscore", "backbone.radio", "when", "meld"], function(_, Radio, When
       if (context == null) {
         return this.startModule(joinpoint.target[moduleName], moduleName).then(function(moduleContext) {
           _this.modules[moduleName] = moduleContext;
-          return moduleContext.wire(moduleContext.publicApi).then(function(api) {
-            _.each(api, function(method, methodName) {
-              return moduleContext.sandbox[methodName] = method;
+          if (moduleContext.publicApi != null) {
+            return moduleContext.wire(moduleContext.publicApi).then(function(api) {
+              _.each(api, function(method, methodName) {
+                return moduleContext.sandbox[methodName] = method;
+              });
+              return joinpoint.proceed(moduleContext.sandbox, args);
+            }, function(rejectReason) {
+              throw new Error("Public api error: " + rejectReason);
             });
+          } else {
             return joinpoint.proceed(moduleContext.sandbox, args);
-          });
+          }
         });
       } else {
         return joinpoint.proceed(context.sandbox, args);

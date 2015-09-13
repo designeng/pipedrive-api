@@ -19,7 +19,6 @@ define(["marionette"], function(Marionette) {
     };
 
     DealsController.prototype.createDetails = function(id) {
-      console.debug("................createDetails", id, this.dealsBoard.boardLayout);
       this.sandbox.channel.request("details:ready", "deals", this.dealsBoard.boardLayout);
       this.dealsBoard.activateById(id);
       return this.activateById(id);

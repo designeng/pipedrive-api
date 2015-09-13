@@ -7,7 +7,8 @@ define [
         # activateById: (id) ->
         #     @list.activateById id
 
-        # showProfileDetailes: (personId) =>
+        createDetails: (personId) =>
+
         #     model = @collection.find (model) ->
         #         return model.get('id') == parseInt(personId)
         #     if model
@@ -24,8 +25,5 @@ define [
         #     @activateById(personId)
         #     return personId
 
-        createList: ->
-            console.debug "profile create list", @sandbox
-            # @sandbox.channel.request "list:ready", @list
-
-        createDetails: ->
+        createList: =>
+            @sandbox.channel.request "list:ready", "profiles", @list

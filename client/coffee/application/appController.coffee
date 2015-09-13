@@ -45,13 +45,8 @@ define [
         # PROFILES:
 
         profilesModuleHandler: (personId) ->
-            console.debug "profilesModuleHandler"
-            @startModule "profiles", personId
-            console.debug "profilesModuleHandler_____"
-            
-            
-            # When(@createEntityList "profiles").then () =>
-            #     @createEntityDetailes "profiles", personId
+            When(@createEntityList "profiles").then () =>
+                @createEntityDetailes "profiles", personId
 
         # DEALS:
 
@@ -67,11 +62,9 @@ define [
         # COMMON INTERCESSORS:
 
         startModule: (sandbox) ->
-            console.debug "START MODULE>>>>>>>>", sandbox
 
         createEntityList: (sandbox) ->
-            console.debug "sandbox", sandbox
             sandbox.createList()
 
         createEntityDetailes: (sandbox, args) ->
-            sandbox.showDetailes args[0]
+            sandbox.createDetails args[0]

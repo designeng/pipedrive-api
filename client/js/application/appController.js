@@ -53,9 +53,10 @@ define(["marionette", "when"], function(Marionette, When) {
     };
 
     AppController.prototype.profilesModuleHandler = function(personId) {
-      console.debug("profilesModuleHandler");
-      this.startModule("profiles", personId);
-      return console.debug("profilesModuleHandler_____");
+      var _this = this;
+      return When(this.createEntityList("profiles")).then(function() {
+        return _this.createEntityDetailes("profiles", personId);
+      });
     };
 
     AppController.prototype.dealsModuleHandler = function(dealId) {
@@ -69,17 +70,14 @@ define(["marionette", "when"], function(Marionette, When) {
       return this.notFoundPageLayer.show();
     };
 
-    AppController.prototype.startModule = function(sandbox) {
-      return console.debug("START MODULE>>>>>>>>", sandbox);
-    };
+    AppController.prototype.startModule = function(sandbox) {};
 
     AppController.prototype.createEntityList = function(sandbox) {
-      console.debug("sandbox", sandbox);
       return sandbox.createList();
     };
 
     AppController.prototype.createEntityDetailes = function(sandbox, args) {
-      return sandbox.showDetailes(args[0]);
+      return sandbox.createDetails(args[0]);
     };
 
     return AppController;

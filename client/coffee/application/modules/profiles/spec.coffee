@@ -33,6 +33,7 @@ define
     profilesController:
         create: 'application/modules/profiles/controller'
         properties:
+            sandbox             : {$ref: 'sandbox'}
             collection          : {$ref: 'profilesCollection'}
             list                : {$ref: 'profilesList'}
             PersonProfile       : {$ref: 'personProfile'}

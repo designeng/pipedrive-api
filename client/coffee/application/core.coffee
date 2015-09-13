@@ -21,6 +21,7 @@ define
         create: "application/appController"
         properties:
             navigation          : {$ref: 'navigation'}
+            perspective         : {$ref: 'perspective'}
             profiles            : {$ref: 'profiles'}
             deals               : {$ref: 'deals'}
             notFoundPageLayer   : {$ref: "element!.not-found"}
@@ -32,7 +33,8 @@ define
         ready:
             showPreloader: {$ref: 'preloader'}
             switchOn: [
-                "navigation" : {}
+                "navigation"    : {}
+                "perspective"   : {}
             ]
             listenToModules: {}
 
@@ -55,13 +57,13 @@ define
             provide:
                 navigationRegion    : {$ref: 'appInstance.regions.navigationRegion'}
 
-    # perspective:
-    #     wire:
-    #         spec: "application/modules/perspective/spec"
-    #         defer: true
-    #         provide:
-    #             sidebarRegion       : {$ref: 'appInstance.regions.sidebarRegion'}
-    #             mainAreaRegion      : {$ref: 'appInstance.regions.mainAreaRegion'}
+    perspective:
+        wire:
+            spec: "application/modules/perspective/spec"
+            defer: true
+            provide:
+                sidebarRegion       : {$ref: 'appInstance.regions.sidebarRegion'}
+                mainAreaRegion      : {$ref: 'appInstance.regions.mainAreaRegion'}
 
     profiles:
         wire:

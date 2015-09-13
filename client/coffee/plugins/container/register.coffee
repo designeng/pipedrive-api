@@ -30,6 +30,7 @@ define [
 
         broadcastEvent: (eventName, args) ->
             _.each @channels, (channel) ->
+                console.debug "CHANNEL::::", channel, eventName
                 channel.trigger eventName, args
 
         createChannel: (name) ->

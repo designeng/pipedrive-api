@@ -12,3 +12,5 @@ define
         properties:
             sidebarRegion       : {$ref: 'sidebarRegion'}
             mainAreaRegion      : {$ref: 'mainAreaRegion'}
+        ready:
+            onReady: {$ref: 'sandbox.channel'}

@@ -16,6 +16,11 @@ define({
       mainAreaRegion: {
         $ref: 'mainAreaRegion'
       }
+    },
+    ready: {
+      onReady: {
+        $ref: 'sandbox.channel'
+      }
     }
   }
 });

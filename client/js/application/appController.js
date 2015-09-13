@@ -22,7 +22,7 @@ define(["marionette", "when"], function(Marionette, When) {
     AppController.prototype.switchOn = function(modules) {
       var _this = this;
       return _.each(modules, function(options, module) {
-        return _this[module](options);
+        return _this.startModule(module);
       });
     };
 
@@ -32,9 +32,11 @@ define(["marionette", "when"], function(Marionette, When) {
         console.debug("'" + module + "' module says: activated item id: ", id);
         return _this.container.broadcastEvent("doSomething", id);
       });
-      return this.container.channel.on("list:ready", function(module, list) {
-        console.debug("'" + module + "' module says: LIST READY: ", list);
+      this.container.channel.on("list:ready", function(module, list) {
         return _this.container.broadcastEvent("list:ready", list);
+      });
+      return this.container.channel.on("details:ready", function(module, details) {
+        return _this.container.broadcastEvent("details:ready", details);
       });
     };
 

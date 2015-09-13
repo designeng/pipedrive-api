@@ -14,7 +14,28 @@ define(["marionette"], function(Marionette) {
       return _ref;
     }
 
-    ProfilesController.prototype.createDetails = function(personId) {};
+    ProfilesController.prototype.activateById = function(id) {
+      return this.list.activateById(id);
+    };
+
+    ProfilesController.prototype.createDetails = function(personId) {
+      var model, personProfile;
+      model = this.collection.find(function(model) {
+        return model.get('id') === parseInt(personId);
+      });
+      if (model) {
+        personProfile = new this.PersonProfile({
+          model: model,
+          PersonProfileDeals: this.PersonProfileDeals,
+          personId: personId
+        });
+        this.sandbox.channel.request("details:ready", "profiles", personProfile);
+      } else {
+        this.sandbox.channel.request("details:ready", "profiles", new this.BlankProfile);
+      }
+      this.activateById(personId);
+      return personId;
+    };
 
     ProfilesController.prototype.createList = function() {
       return this.sandbox.channel.request("list:ready", "profiles", this.list);

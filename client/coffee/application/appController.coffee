@@ -13,7 +13,8 @@ define [
         # switch on all service modules
         switchOn: (modules) ->
             _.each modules, (options, module) =>
-                @[module](options)
+                # @[module](options)
+                @startModule module
 
         # demonstration of module - core interaction
         listenToModules: ->
@@ -23,9 +24,10 @@ define [
                 @container.broadcastEvent "doSomething", id
 
             @container.channel.on "list:ready", (module, list) =>
-                console.debug "'#{module}' module says: LIST READY: ", list
-                # send transformed event further to modules
                 @container.broadcastEvent "list:ready", list
+
+            @container.channel.on "details:ready", (module, details) =>
+                @container.broadcastEvent "details:ready", details
 
         # DEFAULT ROUTE HANDLER:
         onRoute: (name, path, opts) =>

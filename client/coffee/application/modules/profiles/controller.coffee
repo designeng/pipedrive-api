@@ -4,13 +4,10 @@ define [
 
     class ProfilesController extends Marionette.Object
 
-        showList: =>
-            @listRegion.show @list
-
         activateById: (id) ->
             @list.activateById id
 
-        showProfileDetailes: (personId) =>
+        createDetails: (personId) =>
             model = @collection.find (model) ->
                 return model.get('id') == parseInt(personId)
             if model
@@ -20,9 +17,12 @@ define [
                     personId
                 })
 
-                @personProfileRegion.show personProfile
+                @sandbox.channel.request "details:ready", "profiles", personProfile
             else
-                @personProfileRegion.show new @BlankProfile
+                @sandbox.channel.request "details:ready", "profiles", new @BlankProfile
 
             @activateById(personId)
             return personId
+
+        createList: =>
+            @sandbox.channel.request "list:ready", "profiles", @list

@@ -1,5 +1,5 @@
 define({
-  $plugins: ['plugins/marionette/router', 'plugins/marionette/module', 'plugins/container/register', 'plugins/element'],
+  $plugins: ['wire/debug', 'plugins/marionette/router', 'plugins/marionette/module', 'plugins/container/register', 'plugins/element'],
   appInstance: {
     createApplication: {
       withRegions: {
@@ -21,6 +21,9 @@ define({
       navigation: {
         $ref: 'navigation'
       },
+      perspective: {
+        $ref: 'perspective'
+      },
       profiles: {
         $ref: 'profiles'
       },
@@ -31,17 +34,18 @@ define({
         $ref: "element!.not-found"
       }
     },
-    registerIntercessors: ['showEntityList', 'showEntityDetailes'],
+    registerIntercessors: ['startModule', 'createEntityList', 'createEntityDetails'],
     ready: {
       showPreloader: {
         $ref: 'preloader'
       },
       switchOn: [
         {
-          "navigation": {}
+          "navigation": {},
+          "perspective": {}
         }
       ],
-      listenToDealsModule: {}
+      listenToModules: {}
     }
   },
   router: {
@@ -72,32 +76,30 @@ define({
       }
     }
   },
-  profiles: {
+  perspective: {
     wire: {
-      spec: "application/modules/profiles/spec",
+      spec: "application/modules/perspective/spec",
       defer: true,
       provide: {
-        listRegion: {
+        sidebarRegion: {
           $ref: 'appInstance.regions.sidebarRegion'
         },
-        personProfileRegion: {
+        mainAreaRegion: {
           $ref: 'appInstance.regions.mainAreaRegion'
         }
       }
     }
   },
+  profiles: {
+    wire: {
+      spec: "application/modules/profiles/spec",
+      defer: true
+    }
+  },
   deals: {
     wire: {
       spec: "application/modules/deals/spec",
-      defer: true,
-      provide: {
-        listRegion: {
-          $ref: 'appInstance.regions.sidebarRegion'
-        },
-        dealsBoardRegion: {
-          $ref: 'appInstance.regions.mainAreaRegion'
-        }
-      }
+      defer: true
     }
   },
   preloader: {

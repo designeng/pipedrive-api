@@ -1,5 +1,5 @@
 define({
-  $plugins: ['plugins/hbs', 'plugins/marionette/layout', 'plugins/backbone/collection/underscore/apply'],
+  $plugins: ['wire/debug', 'plugins/hbs', 'plugins/marionette/layout', 'plugins/backbone/collection/underscore/apply'],
   boardLayout: {
     createLayout: {
       fromTemplate: {
@@ -9,9 +9,6 @@ define({
         'boardHeaderRegion': ".board-header",
         'boardBodyRegion': ".board-body"
       }
-    },
-    renderIn: {
-      $ref: 'dealsBoardRegion'
     },
     showInRegions: {
       'boardHeaderRegion': {

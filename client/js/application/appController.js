@@ -22,15 +22,17 @@ define(["marionette", "when"], function(Marionette, When) {
     AppController.prototype.switchOn = function(modules) {
       var _this = this;
       return _.each(modules, function(options, module) {
-        return _this[module](options);
+        return _this.startModule(module);
       });
     };
 
-    AppController.prototype.listenToDealsModule = function() {
+    AppController.prototype.listenToModules = function() {
       var _this = this;
-      return this.container.channel.on("item:activated", function(module, id) {
-        console.debug("'" + module + "' module says: activated item id: ", id);
-        return _this.container.broadcastEvent("doSomething", id);
+      this.container.channel.on("list:ready", function(module, list) {
+        return _this.container.broadcastEvent("list:ready", list);
+      });
+      return this.container.channel.on("details:ready", function(module, details) {
+        return _this.container.broadcastEvent("details:ready", details);
       });
     };
 
@@ -50,15 +52,15 @@ define(["marionette", "when"], function(Marionette, When) {
 
     AppController.prototype.profilesModuleHandler = function(personId) {
       var _this = this;
-      return When(this.showEntityList("profiles")).then(function() {
-        return _this.showEntityDetailes("profiles", personId);
+      return When(this.createEntityList("profiles")).then(function() {
+        return _this.createEntityDetails("profiles", personId);
       });
     };
 
     AppController.prototype.dealsModuleHandler = function(dealId) {
       var _this = this;
-      return When(this.showEntityList("deals")).then(function() {
-        return _this.showEntityDetailes("deals", dealId);
+      return When(this.createEntityList("deals")).then(function() {
+        return _this.createEntityDetails("deals", dealId);
       });
     };
 
@@ -66,12 +68,14 @@ define(["marionette", "when"], function(Marionette, When) {
       return this.notFoundPageLayer.show();
     };
 
-    AppController.prototype.showEntityList = function(sandbox) {
-      return sandbox.showList();
+    AppController.prototype.startModule = function(sandbox) {};
+
+    AppController.prototype.createEntityList = function(sandbox) {
+      return sandbox.createList();
     };
 
-    AppController.prototype.showEntityDetailes = function(sandbox, args) {
-      return sandbox.showDetailes(args[0]);
+    AppController.prototype.createEntityDetails = function(sandbox, args) {
+      return sandbox.createDetails(args[0]);
     };
 
     return AppController;

@@ -21,15 +21,11 @@ define(['underscore', 'marionette'], function(_, Marionette) {
       var noop;
       noop = function() {};
       return wire(facet.options).then(function(options) {
-        _.each(options, function(view, region) {
-          var err;
-          try {
+        facet.target.onRender = function() {
+          return _.each(options, function(view, region) {
             return facet.target.showChildView(region, view);
-          } catch (_error) {
-            err = _error;
-            return noop();
-          }
-        });
+          });
+        };
         return resolver.resolve(facet.target);
       });
     };

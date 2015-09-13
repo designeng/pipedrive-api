@@ -1,13 +1,13 @@
 define
     $plugins: [
-        # 'wire/debug'
+        'wire/debug'
         'plugins/hbs'
     ]
 
     publicApi:
         literal:
-            showList        : {$ref: 'dealsController.showList'}
-            showDetailes    : {$ref: 'dealsController.showDealDetailes'}
+            createList        : {$ref: 'dealsController.createList'}
+            createDetails     : {$ref: 'dealsController.createDetails'}
 
     dealsCollection:
         create: 'application/modules/deals/collections/deals'
@@ -26,7 +26,6 @@ define
         create: 'application/modules/deals/controller'
         properties:
             list                : {$ref: 'dealsList'}
-            listRegion          : {$ref: 'listRegion'}
             dealsBoard          : {$ref: 'dealsBoard'}
             sandbox             : {$ref: 'sandbox'}
 
@@ -35,4 +34,3 @@ define
             spec: 'application/modules/deals/board/spec'
             provide:
                 dealsCollection     : {$ref: 'dealsCollection'}
-                dealsBoardRegion    : {$ref: 'dealsBoardRegion'}

@@ -8,21 +8,17 @@ define(["marionette"], function(Marionette) {
     __extends(ProfilesController, _super);
 
     function ProfilesController() {
-      this.showProfileDetailes = __bind(this.showProfileDetailes, this);
-      this.showList = __bind(this.showList, this);
+      this.createList = __bind(this.createList, this);
+      this.createDetails = __bind(this.createDetails, this);
       _ref = ProfilesController.__super__.constructor.apply(this, arguments);
       return _ref;
     }
-
-    ProfilesController.prototype.showList = function() {
-      return this.listRegion.show(this.list);
-    };
 
     ProfilesController.prototype.activateById = function(id) {
       return this.list.activateById(id);
     };
 
-    ProfilesController.prototype.showProfileDetailes = function(personId) {
+    ProfilesController.prototype.createDetails = function(personId) {
       var model, personProfile;
       model = this.collection.find(function(model) {
         return model.get('id') === parseInt(personId);
@@ -33,12 +29,16 @@ define(["marionette"], function(Marionette) {
           PersonProfileDeals: this.PersonProfileDeals,
           personId: personId
         });
-        this.personProfileRegion.show(personProfile);
+        this.sandbox.channel.request("details:ready", "profiles", personProfile);
       } else {
-        this.personProfileRegion.show(new this.BlankProfile);
+        this.sandbox.channel.request("details:ready", "profiles", new this.BlankProfile);
       }
       this.activateById(personId);
       return personId;
+    };
+
+    ProfilesController.prototype.createList = function() {
+      return this.sandbox.channel.request("list:ready", "profiles", this.list);
     };
 
     return ProfilesController;

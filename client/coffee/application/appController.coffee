@@ -13,14 +13,15 @@ define [
         # switch on all service modules
         switchOn: (modules) ->
             _.each modules, (options, module) =>
-                @[module](options)
+                @startModule module
 
         # demonstration of module - core interaction
-        listenToDealsModule: ->
-            @container.channel.on "item:activated", (module, id) =>
-                console.debug "'#{module}' module says: activated item id: ", id
-                # send transformed event further to modules
-                @container.broadcastEvent "doSomething", id
+        listenToModules: ->
+            @container.channel.on "list:ready", (module, list) =>
+                @container.broadcastEvent "list:ready", list
+
+            @container.channel.on "details:ready", (module, details) =>
+                @container.broadcastEvent "details:ready", details
 
         # DEFAULT ROUTE HANDLER:
         onRoute: (name, path, opts) =>
@@ -40,14 +41,14 @@ define [
         # PROFILES:
 
         profilesModuleHandler: (personId) ->
-            When(@showEntityList "profiles").then () =>
-                @showEntityDetailes "profiles", personId
+            When(@createEntityList "profiles").then () =>
+                @createEntityDetails "profiles", personId
 
         # DEALS:
 
         dealsModuleHandler: (dealId) ->
-            When(@showEntityList "deals").then () =>
-                @showEntityDetailes "deals", dealId
+            When(@createEntityList "deals").then () =>
+                @createEntityDetails "deals", dealId
 
         # 404 ERROR:
 
@@ -56,8 +57,10 @@ define [
 
         # COMMON INTERCESSORS:
 
-        showEntityList: (sandbox) ->
-            sandbox.showList()
+        startModule: (sandbox) ->
 
-        showEntityDetailes: (sandbox, args) ->
-            sandbox.showDetailes args[0]
+        createEntityList: (sandbox) ->
+            sandbox.createList()
+
+        createEntityDetails: (sandbox, args) ->
+            sandbox.createDetails args[0]

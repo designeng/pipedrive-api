@@ -36,7 +36,7 @@ define [
 
         # ROUTES HANDLERS:
 
-        # note that the same handler is responsible for both 'profiles' and 'profiles/:id' (for 'deals' and 'deals/:id' as well) routes.
+        # TODO: optimize it
 
         # PROFILES:
 

@@ -1,12 +1,10 @@
 var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
 define(["wire", "when", "backbone.radio"], function(wire, When, Radio) {
-  var fromModuleWithNameSpy, sandboxCoreSpec, sandboxDeferred, sendMessageSpy, startModuleSpy;
+  var sandboxCoreSpec, sandboxDeferred, startModuleSpy;
   sandboxDeferred = When.defer();
   startModuleSpy = jasmine.createSpy("startModuleSpy");
-  sendMessageSpy = jasmine.createSpy("sendMessageSpy");
-  fromModuleWithNameSpy = jasmine.createSpy("fromModuleWithNameSpy");
-  define('sandbox/modules/moduleOne/controller', function() {
+  define('test/plugins/register/modules/moduleOne/controller', function() {
     var ModuleOneController;
     return ModuleOneController = (function() {
       function ModuleOneController() {
@@ -19,7 +17,7 @@ define(["wire", "when", "backbone.radio"], function(wire, When, Radio) {
 
     })();
   });
-  define('sandbox/modules/moduleOne', {
+  define('test/plugins/register/modules/moduleOne', {
     $plugins: ['wire/debug'],
     publicApi: {
       literal: {
@@ -29,7 +27,7 @@ define(["wire", "when", "backbone.radio"], function(wire, When, Radio) {
       }
     },
     controller: {
-      create: 'sandbox/modules/moduleOne/controller',
+      create: 'test/plugins/register/modules/moduleOne/controller',
       properties: {
         sandbox: {
           $ref: 'sandbox'
@@ -37,7 +35,7 @@ define(["wire", "when", "backbone.radio"], function(wire, When, Radio) {
       }
     }
   });
-  define('sandbox/core/controller', function() {
+  define('test/plugins/register/core/controller', function() {
     var CoreController;
     return CoreController = (function() {
       function CoreController() {}
@@ -47,12 +45,6 @@ define(["wire", "when", "backbone.radio"], function(wire, When, Radio) {
         return sandboxDeferred.resolve(sandbox);
       };
 
-      CoreController.prototype.listenToModule = function() {
-        return this.container.channel.on("to:container:from:module", function(name, data) {
-          return fromModuleWithNameSpy(name, data);
-        });
-      };
-
       return CoreController;
 
     })();
@@ -60,25 +52,22 @@ define(["wire", "when", "backbone.radio"], function(wire, When, Radio) {
   sandboxCoreSpec = {
     $plugins: ['wire/debug', 'plugins/container/register'],
     appController: {
-      create: "sandbox/core/controller",
+      create: "test/plugins/register/core/controller",
       properties: {
         moduleOne: {
           $ref: 'moduleOne'
         }
       },
-      registerIntercessors: ['startModule'],
-      ready: {
-        listenToModule: {}
-      }
+      registerIntercessors: ['startModule']
     },
     moduleOne: {
       wire: {
-        spec: 'sandbox/modules/moduleOne',
+        spec: 'test/plugins/register/modules/moduleOne',
         defer: true
       }
     }
   };
-  return describe("register plugin (test suite 2)", function() {
+  return describe("register plugin", function() {
     beforeEach(function(done) {
       var _this = this;
       return wire(sandboxCoreSpec).then(function(ctx) {

@@ -28,7 +28,7 @@ define
         registerIntercessors: [
             'startModule'
             'createEntityList'
-            'createEntityDetailes'
+            'createEntityDetails'
         ]
         ready:
             showPreloader: {$ref: 'preloader'}

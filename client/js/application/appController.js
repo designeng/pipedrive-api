@@ -28,10 +28,6 @@ define(["marionette", "when"], function(Marionette, When) {
 
     AppController.prototype.listenToModules = function() {
       var _this = this;
-      this.container.channel.on("item:activated", function(module, id) {
-        console.debug("'" + module + "' module says: activated item id: ", id);
-        return _this.container.broadcastEvent("doSomething", id);
-      });
       this.container.channel.on("list:ready", function(module, list) {
         return _this.container.broadcastEvent("list:ready", list);
       });
@@ -57,14 +53,14 @@ define(["marionette", "when"], function(Marionette, When) {
     AppController.prototype.profilesModuleHandler = function(personId) {
       var _this = this;
       return When(this.createEntityList("profiles")).then(function() {
-        return _this.createEntityDetailes("profiles", personId);
+        return _this.createEntityDetails("profiles", personId);
       });
     };
 
     AppController.prototype.dealsModuleHandler = function(dealId) {
       var _this = this;
       return When(this.createEntityList("deals")).then(function() {
-        return _this.createEntityDetailes("deals", dealId);
+        return _this.createEntityDetails("deals", dealId);
       });
     };
 
@@ -78,7 +74,7 @@ define(["marionette", "when"], function(Marionette, When) {
       return sandbox.createList();
     };
 
-    AppController.prototype.createEntityDetailes = function(sandbox, args) {
+    AppController.prototype.createEntityDetails = function(sandbox, args) {
       return sandbox.createDetails(args[0]);
     };
 

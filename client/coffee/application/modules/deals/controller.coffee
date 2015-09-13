@@ -4,20 +4,14 @@ define [
 
     class DealsController extends Marionette.Object
 
-        initialize: ->
-            _.bindAll @, 'showList', 'showDealDetailes'
+        createList: =>
+            @sandbox.channel.request "list:ready", "deals", @list
 
-        showList: ->
-            @listRegion.show @list
-
-        showDealDetailes: (id) ->
+        createDetails: (id) =>
+            console.debug "................createDetails", id, @dealsBoard.boardLayout
+            @sandbox.channel.request "details:ready", "deals", @dealsBoard.boardLayout
             @dealsBoard.activateById id
             @activateById(id)
-            return id
 
         activateById: (id) ->
             @list.activateById id
-
-            # demonstration of module's communication with the core
-            # translate module request into core action
-            @sandbox.channel.request "item:activated", "deals", id

@@ -2,11 +2,11 @@ define({
   $plugins: ['wire/debug', 'plugins/hbs'],
   publicApi: {
     literal: {
-      showList: {
-        $ref: 'dealsController.showList'
+      createList: {
+        $ref: 'dealsController.createList'
       },
-      showDetailes: {
-        $ref: 'dealsController.showDealDetailes'
+      createDetails: {
+        $ref: 'dealsController.createDetails'
       }
     }
   },
@@ -35,9 +35,6 @@ define({
       list: {
         $ref: 'dealsList'
       },
-      listRegion: {
-        $ref: 'listRegion'
-      },
       dealsBoard: {
         $ref: 'dealsBoard'
       },
@@ -52,9 +49,6 @@ define({
       provide: {
         dealsCollection: {
           $ref: 'dealsCollection'
-        },
-        dealsBoardRegion: {
-          $ref: 'dealsBoardRegion'
         }
       }
     }

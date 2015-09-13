@@ -18,11 +18,6 @@ define [
 
         # demonstration of module - core interaction
         listenToModules: ->
-            @container.channel.on "item:activated", (module, id) =>
-                console.debug "'#{module}' module says: activated item id: ", id
-                # send transformed event further to modules
-                @container.broadcastEvent "doSomething", id
-
             @container.channel.on "list:ready", (module, list) =>
                 @container.broadcastEvent "list:ready", list
 
@@ -48,13 +43,13 @@ define [
 
         profilesModuleHandler: (personId) ->
             When(@createEntityList "profiles").then () =>
-                @createEntityDetailes "profiles", personId
+                @createEntityDetails "profiles", personId
 
         # DEALS:
 
         dealsModuleHandler: (dealId) ->
             When(@createEntityList "deals").then () =>
-                @createEntityDetailes "deals", dealId
+                @createEntityDetails "deals", dealId
 
         # 404 ERROR:
 
@@ -68,5 +63,5 @@ define [
         createEntityList: (sandbox) ->
             sandbox.createList()
 
-        createEntityDetailes: (sandbox, args) ->
+        createEntityDetails: (sandbox, args) ->
             sandbox.createDetails args[0]

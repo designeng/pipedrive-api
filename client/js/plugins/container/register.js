@@ -44,7 +44,6 @@ define(["underscore", "backbone.radio", "when", "meld"], function(_, Radio, When
 
     Container.prototype.broadcastEvent = function(eventName, args) {
       return _.each(this.channels, function(channel) {
-        console.debug("CHANNEL::::", channel, eventName);
         return channel.trigger(eventName, args);
       });
     };

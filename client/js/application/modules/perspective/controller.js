@@ -13,6 +13,7 @@ define(function() {
         return _this.showInRegion("sidebarRegion", list);
       });
       return channel.on("details:ready", function(details) {
+        console.debug("details:READY:::::::", details);
         return _this.showInRegion("mainAreaRegion", details);
       });
     };

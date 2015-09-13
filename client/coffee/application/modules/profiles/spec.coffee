@@ -1,13 +1,8 @@
 define
     $plugins: [
-        # 'wire/debug'
+        'wire/debug'
         'plugins/hbs'
     ]
-
-    publicApi:
-        literal:
-            showList        : {$ref: 'profilesController.showList'}
-            showDetailes    : {$ref: 'profilesController.showProfileDetailes'}
 
     profilesCollection:
         create: 'application/modules/profiles/collections/profiles'
@@ -38,5 +33,3 @@ define
             PersonProfile       : {$ref: 'personProfile'}
             BlankProfile        : {$ref: 'blankProfile'}
             PersonProfileDeals  : {$ref: 'personProfileDeals'}
-            listRegion          : {$ref: 'listRegion'}
-            personProfileRegion : {$ref: 'personProfileRegion'}

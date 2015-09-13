@@ -1,15 +1,5 @@
 define({
-  $plugins: ['plugins/hbs'],
-  publicApi: {
-    literal: {
-      showList: {
-        $ref: 'profilesController.showList'
-      },
-      showDetailes: {
-        $ref: 'profilesController.showProfileDetailes'
-      }
-    }
-  },
+  $plugins: ['wire/debug', 'plugins/hbs'],
   profilesCollection: {
     create: 'application/modules/profiles/collections/profiles',
     ready: {
@@ -54,12 +44,6 @@ define({
       },
       PersonProfileDeals: {
         $ref: 'personProfileDeals'
-      },
-      listRegion: {
-        $ref: 'listRegion'
-      },
-      personProfileRegion: {
-        $ref: 'personProfileRegion'
       }
     }
   }

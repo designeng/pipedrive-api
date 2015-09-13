@@ -72,32 +72,30 @@ define({
       }
     }
   },
-  profiles: {
+  perspective: {
     wire: {
-      spec: "application/modules/profiles/spec",
+      spec: "application/modules/perspective/spec",
       defer: true,
       provide: {
-        listRegion: {
+        sidebarRegion: {
           $ref: 'appInstance.regions.sidebarRegion'
         },
-        personProfileRegion: {
+        mainAreaRegion: {
           $ref: 'appInstance.regions.mainAreaRegion'
         }
       }
     }
   },
+  profiles: {
+    wire: {
+      spec: "application/modules/profiles/spec",
+      defer: true
+    }
+  },
   deals: {
     wire: {
       spec: "application/modules/deals/spec",
-      defer: true,
-      provide: {
-        listRegion: {
-          $ref: 'appInstance.regions.sidebarRegion'
-        },
-        dealsBoardRegion: {
-          $ref: 'appInstance.regions.mainAreaRegion'
-        }
-      }
+      defer: true
     }
   },
   preloader: {

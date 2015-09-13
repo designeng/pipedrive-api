@@ -51,21 +51,23 @@ define
             provide:
                 navigationRegion    : {$ref: 'appInstance.regions.navigationRegion'}
 
+    perspective:
+        wire:
+            spec: "application/modules/perspective/spec"
+            defer: true
+            provide:
+                sidebarRegion       : {$ref: 'appInstance.regions.sidebarRegion'}
+                mainAreaRegion      : {$ref: 'appInstance.regions.mainAreaRegion'}
+
     profiles:
         wire:
             spec: "application/modules/profiles/spec"
             defer: true
-            provide:
-                listRegion          : {$ref: 'appInstance.regions.sidebarRegion'}
-                personProfileRegion : {$ref: 'appInstance.regions.mainAreaRegion'}
 
     deals:
         wire:
             spec: "application/modules/deals/spec"
             defer: true
-            provide:
-                listRegion          : {$ref: 'appInstance.regions.sidebarRegion'}
-                dealsBoardRegion    : {$ref: 'appInstance.regions.mainAreaRegion'}
     # /APPLICATION MODULES
 
     preloader:

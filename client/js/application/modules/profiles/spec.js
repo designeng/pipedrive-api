@@ -1,5 +1,10 @@
 define({
-  $plugins: ['plugins/hbs'],
+  $plugins: [
+    {
+      module: 'wire/debug',
+      verbose: true
+    }, 'plugins/hbs'
+  ],
   publicApi: {
     literal: {
       showList: {

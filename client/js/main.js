@@ -1,7 +1,8 @@
 require.config({
   baseUrl: "/js",
   paths: {
-    "text": "lib/text"
+    "text": "lib/text",
+    "highlight": "lib/highlight/highlight"
   },
   packages: [
     {
@@ -54,7 +55,11 @@ require.config({
       location: "vendors/showdown/dist"
     }
   ],
-  shim: {},
+  shim: {
+    "highlight": {
+      exports: "highlight"
+    }
+  },
   hbs: {
     templateExtension: ".html"
   }

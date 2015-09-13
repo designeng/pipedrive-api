@@ -1,6 +1,6 @@
 define
     $plugins: [
-        # 'wire/debug'
+        {module: 'wire/debug', verbose: true}
         'plugins/hbs'
     ]
 

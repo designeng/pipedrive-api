@@ -4,6 +4,8 @@ require.config
 
     paths:
         "text": "lib/text"
+        "highlight": "lib/highlight/highlight"
+        # "coffeescript": "lib/highlight/coffeescript"
 
     packages: [
         {
@@ -69,7 +71,11 @@ require.config
     ]
 
     shim: {
-
+        # "coffeescript":
+        #     deps: ['highlight']
+        #     exports: "coffeescript"
+        "highlight":
+            exports: "highlight"
     }
 
     hbs:

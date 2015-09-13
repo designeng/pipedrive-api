@@ -4,6 +4,8 @@ define [
     'showdown'
     'utils/request/index'
     'hbs!templates/markdown'
+    # 'highlight'
+    # 'coffeescript'
 ], (Backbone, Marionette, showdown, AjaxRequest, markdownTemplate) ->
 
     class MarkdownView extends Marionette.LayoutView

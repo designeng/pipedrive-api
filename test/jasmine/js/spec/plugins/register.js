@@ -67,7 +67,7 @@ define(["wire", "when", "backbone.radio"], function(wire, When, Radio) {
       }
     }
   };
-  return describe("register plugin (test suite 2)", function() {
+  return describe("register plugin", function() {
     beforeEach(function(done) {
       var _this = this;
       return wire(sandboxCoreSpec).then(function(ctx) {

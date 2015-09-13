@@ -56,7 +56,7 @@ define [
 
     # /CORE SPEC
 
-    describe "register plugin (test suite 2)", ->
+    describe "register plugin", ->
 
         beforeEach (done) ->
             wire(sandboxCoreSpec).then (@ctx) =>

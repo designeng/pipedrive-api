@@ -13,7 +13,6 @@ define [
         # switch on all service modules
         switchOn: (modules) ->
             _.each modules, (options, module) =>
-                # @[module](options)
                 @startModule module
 
         # demonstration of module - core interaction

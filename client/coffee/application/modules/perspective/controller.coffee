@@ -7,7 +7,6 @@ define ->
                 @showInRegion("sidebarRegion", list)
 
             channel.on "details:ready", (details) =>
-                console.debug "details:READY:::::::", details
                 @showInRegion("mainAreaRegion", details)
 
         showInRegion: (regionName, view) =>

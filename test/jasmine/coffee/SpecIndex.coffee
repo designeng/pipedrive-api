@@ -5,6 +5,5 @@ define [
     specs = [
         "modules/profiles"
         "plugins/apply"
-        "plugins/sandbox"
         "plugins/register"
     ]

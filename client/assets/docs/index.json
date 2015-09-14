@@ -9,6 +9,10 @@
             "title": "Pipeline-api SPA"
         },
         {   
+            "id": "application-create",
+            "title": "Marionette.Application"
+        },
+        {   
             "id": 2,
             "title": "Two doc"
         }

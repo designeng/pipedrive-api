@@ -457,6 +457,7 @@ table.dealsBoard td, table.dealsBoard th
 }
 
 table.dealsBoard thead th{
+  width: 20%;
   background: #efefef;
   font-weight: bold;
 }

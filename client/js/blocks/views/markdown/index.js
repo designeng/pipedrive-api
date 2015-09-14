@@ -1,7 +1,7 @@
 var __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-define(['backbone', 'marionette', 'showdown', 'utils/request/index', 'hbs!templates/markdown'], function(Backbone, Marionette, showdown, AjaxRequest, markdownTemplate) {
+define(['backbone', 'marionette', 'showdown', 'utils/request/index', 'hbs!templates/markdown', 'coffeescript', 'highlight'], function(Backbone, Marionette, showdown, AjaxRequest, markdownTemplate, coffeeScriptLang) {
   var MarkdownView, _ref;
   return MarkdownView = (function(_super) {
     __extends(MarkdownView, _super);
@@ -19,7 +19,11 @@ define(['backbone', 'marionette', 'showdown', 'utils/request/index', 'hbs!templa
 
     MarkdownView.prototype.initialize = function(options) {
       this.model = options.model || new Backbone.Model();
-      return this.converter = new showdown.Converter();
+      this.converter = new showdown.Converter();
+      hljs.configure({
+        tabReplace: '    '
+      });
+      return hljs.registerLanguage('coffeescript', coffeeScriptLang);
     };
 
     MarkdownView.prototype.fetchMarkdownDocument = function(id) {
@@ -37,7 +41,10 @@ define(['backbone', 'marionette', 'showdown', 'utils/request/index', 'hbs!templa
     };
 
     MarkdownView.prototype.onRender = function() {
-      return this.$el.html(this.html);
+      this.$el.html(this.html);
+      return this.$el.find('pre code').each(function(i, block) {
+        return hljs.highlightBlock(block);
+      });
     };
 
     return MarkdownView;

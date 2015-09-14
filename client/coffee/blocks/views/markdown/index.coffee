@@ -4,9 +4,9 @@ define [
     'showdown'
     'utils/request/index'
     'hbs!templates/markdown'
-    # 'highlight'
-    # 'coffeescript'
-], (Backbone, Marionette, showdown, AjaxRequest, markdownTemplate) ->
+    'coffeescript'
+    'highlight'
+], (Backbone, Marionette, showdown, AjaxRequest, markdownTemplate, coffeeScriptLang) ->
 
     class MarkdownView extends Marionette.LayoutView
         tagName: "div"
@@ -17,6 +17,9 @@ define [
         initialize: (options) ->
             @model = options.model || new Backbone.Model()
             @converter = new showdown.Converter()
+            hljs.configure
+                tabReplace: '    '
+            hljs.registerLanguage('coffeescript', coffeeScriptLang)
 
         fetchMarkdownDocument: (id) ->
             url = "../assets/docs/markdown/" + id + ".md"
@@ -29,3 +32,5 @@ define [
 
         onRender: ->
             @$el.html @html
+            @$el.find('pre code').each (i, block) ->
+                hljs.highlightBlock(block)

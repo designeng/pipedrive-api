@@ -5,7 +5,7 @@ require.config
     paths:
         "text": "lib/text"
         "highlight": "lib/highlight/highlight"
-        # "coffeescript": "lib/highlight/coffeescript"
+        "coffeescript": "lib/highlight/languages/coffeescript"
 
     packages: [
         {

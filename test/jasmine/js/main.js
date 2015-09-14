@@ -2,7 +2,8 @@ require.config({
   baseUrl: "/js",
   paths: {
     "text": "lib/text",
-    "highlight": "lib/highlight/highlight"
+    "highlight": "lib/highlight/highlight",
+    "coffeescript": "lib/highlight/languages/coffeescript"
   },
   packages: [
     {

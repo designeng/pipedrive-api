@@ -13,14 +13,15 @@ define [
         # switch on all service modules
         switchOn: (modules) ->
             _.each modules, (options, module) =>
-                @[module](options)
+                @startModule module
 
         # demonstration of module - core interaction
-        listenToDealsModule: ->
-            @container.channel.on "item:activated", (module, id) =>
-                console.debug "'#{module}' module says: activated item id: ", id
-                # send transformed event further to modules
-                @container.broadcastEvent "doSomething", id
+        listenToModules: ->
+            @container.channel.on "list:ready", (module, list) =>
+                @container.broadcastEvent "list:ready", list
+
+            @container.channel.on "details:ready", (module, details) =>
+                @container.broadcastEvent "details:ready", details
 
         # DEFAULT ROUTE HANDLER:
         onRoute: (name, path, opts) =>
@@ -35,25 +36,25 @@ define [
 
         # ROUTES HANDLERS:
 
-        # note that the same handler is responsible for both 'profiles' and 'profiles/:id' (for 'deals' and 'deals/:id' as well) routes.
+        # TODO: optimize it
 
         # PROFILES:
 
         profilesModuleHandler: (personId) ->
-            When(@showEntityList "profiles").then () =>
-                @showEntityDetailes "profiles", personId
+            When(@createEntityList "profiles").then () =>
+                @createEntityDetails "profiles", personId
 
         # DEALS:
 
         dealsModuleHandler: (dealId) ->
-            When(@showEntityList "deals").then () =>
-                @showEntityDetailes "deals", dealId
+            When(@createEntityList "deals").then () =>
+                @createEntityDetails "deals", dealId
 
         # DOCUMENTATION:
 
         docsModuleHandler: (id) ->
-            When(@startModule "docs").then () =>
-                @showEntityDetailes "docs", id
+            When(@createEntityList "docs").then () =>
+                @createEntityDetails "docs", id
 
         # 404 ERROR:
 
@@ -63,12 +64,10 @@ define [
         # COMMON INTERCESSORS:
 
         startModule: (sandbox) ->
-            console.debug "sandbox", sandbox
             # all is done in container/register plugin
-            return sandbox
 
-        showEntityList: (sandbox) ->
-            sandbox.showList()
+        createEntityList: (sandbox) ->
+            sandbox.createList()
 
-        showEntityDetailes: (sandbox, args) ->
-            sandbox.showDetailes args[0]
+        createEntityDetails: (sandbox, args) ->
+            sandbox.createDetails args[0]

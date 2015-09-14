@@ -48,9 +48,14 @@ define [
             if !context?
                 @startModule(joinpoint.target[moduleName], moduleName).then (moduleContext) =>
                     @modules[moduleName] = moduleContext
-                    moduleContext.wire(moduleContext.publicApi).then (api) ->
-                        _.each api, (method, methodName) ->
-                            moduleContext.sandbox[methodName] = method
+                    if moduleContext.publicApi?
+                        moduleContext.wire(moduleContext.publicApi).then (api) ->
+                            _.each api, (method, methodName) ->
+                                moduleContext.sandbox[methodName] = method
+                            joinpoint.proceed(moduleContext.sandbox, args)
+                        , (rejectReason) ->
+                            throw new Error("Public api error: " + rejectReason)
+                    else
                         joinpoint.proceed(moduleContext.sandbox, args)
             else
                 joinpoint.proceed(context.sandbox, args)

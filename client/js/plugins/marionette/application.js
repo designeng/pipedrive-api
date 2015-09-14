@@ -1,7 +1,7 @@
 define(['underscore', 'marionette'], function(_, Marionette) {
   return function(options) {
-    var addControllerFacet, createModuleFactory, pluginInstance, showInRegionsFacet;
-    createModuleFactory = function(resolver, compDef, wire) {
+    var addControllerFacet, createApplicationFactory, pluginInstance, showInRegionsFacet;
+    createApplicationFactory = function(resolver, compDef, wire) {
       var app;
       app = new Marionette.Application();
       return wire(compDef.options).then(function(options) {
@@ -29,8 +29,7 @@ define(['underscore', 'marionette'], function(_, Marionette) {
     };
     pluginInstance = {
       factories: {
-        createModule: createModuleFactory,
-        createApplication: createModuleFactory
+        createApplication: createApplicationFactory
       },
       facets: {
         showInRegions: {

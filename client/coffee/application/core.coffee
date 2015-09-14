@@ -1,8 +1,8 @@
 define
     $plugins: [
-        # 'wire/debug'
+        'wire/debug'
         'plugins/marionette/router'
-        'plugins/marionette/module'
+        'plugins/marionette/application'
         'plugins/container/register'
         'plugins/element'
     ]
@@ -21,17 +21,19 @@ define
         create: "application/appController"
         properties:
             navigation          : {$ref: 'navigation'}
+            perspective         : {$ref: 'perspective'}
             profiles            : {$ref: 'profiles'}
             deals               : {$ref: 'deals'}
             docs                : {$ref: 'docs'}
             notFoundPageLayer   : {$ref: "element!.not-found"}
-        registerIntercessors: ['startModule', 'showEntityList', 'showEntityDetailes']
+        registerIntercessors: ['startModule', 'createEntityList', 'createEntityDetails']
         ready:
             showPreloader: {$ref: 'preloader'}
             switchOn: [
-                "navigation" : {}
+                "navigation"    : {}
+                "perspective"   : {}
             ]
-            listenToDealsModule: {}
+            listenToModules: {}
 
     router:
         createRouter:
@@ -54,29 +56,28 @@ define
             provide:
                 navigationRegion    : {$ref: 'appInstance.regions.navigationRegion'}
 
+    perspective:
+        wire:
+            spec: "application/modules/perspective/spec"
+            defer: true
+            provide:
+                sidebarRegion       : {$ref: 'appInstance.regions.sidebarRegion'}
+                mainAreaRegion      : {$ref: 'appInstance.regions.mainAreaRegion'}
+
     profiles:
         wire:
             spec: "application/modules/profiles/spec"
             defer: true
-            provide:
-                listRegion          : {$ref: 'appInstance.regions.sidebarRegion'}
-                personProfileRegion : {$ref: 'appInstance.regions.mainAreaRegion'}
 
     deals:
         wire:
             spec: "application/modules/deals/spec"
             defer: true
-            provide:
-                listRegion          : {$ref: 'appInstance.regions.sidebarRegion'}
-                dealsBoardRegion    : {$ref: 'appInstance.regions.mainAreaRegion'}
 
     docs:
         wire:
             spec: "application/modules/docs/spec"
             defer: true
-            provide:
-                listRegion          : {$ref: 'appInstance.regions.sidebarRegion'}
-                markdownRegion      : {$ref: 'appInstance.regions.mainAreaRegion'}
     # /APPLICATION MODULES
 
     preloader:

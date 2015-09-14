@@ -8,7 +8,7 @@ define [
         # http://marionettejs.com/docs/v2.4.2/marionette.module.html
         # in Marionette we are not restricted with creating Marionette.Application instances,
         # so they can be treated as different modules.
-        createModuleFactory = (resolver, compDef, wire) ->
+        createApplicationFactory = (resolver, compDef, wire) ->
             app = new Marionette.Application()
 
             wire(compDef.options).then (options) ->
@@ -33,9 +33,7 @@ define [
 
         pluginInstance = 
             factories: 
-                createModule: createModuleFactory
-                # alias:
-                createApplication: createModuleFactory
+                createApplication: createApplicationFactory
             facets:
                 showInRegions:
                     "ready"     : showInRegionsFacet

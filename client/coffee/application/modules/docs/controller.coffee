@@ -5,20 +5,13 @@ define [
 
     class DocsController extends Marionette.Object
 
-        initialize: ->
-            _.bindAll @, 'showList', 'showDetailes'
+        createList: =>
+            @sandbox.channel.request "list:ready", "docs", @list
 
-        showList: ->
-            @listRegion.show @list
-
-        showDetailes: (id) ->
+        createDetails: (id) =>
             if id
-                # @markdownLayout.model = new MarkdownModel({
-                #         id: "introduction"
-                #         # text: '###hello, markdown!'
-                #     }).fetch()
-                # @markdownLayout.render()
                 @markdownLayout.fetchMarkdownDocument(id)
+                @sandbox.channel.request "details:ready", "docs", @markdownLayout
             return id
 
         activateById: (id) ->

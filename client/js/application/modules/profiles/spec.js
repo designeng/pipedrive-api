@@ -1,17 +1,12 @@
 define({
-  $plugins: [
-    {
-      module: 'wire/debug',
-      verbose: true
-    }, 'plugins/hbs'
-  ],
+  $plugins: ['wire/debug', 'plugins/hbs'],
   publicApi: {
     literal: {
-      showList: {
-        $ref: 'profilesController.showList'
+      createList: {
+        $ref: 'profilesController.createList'
       },
-      showDetailes: {
-        $ref: 'profilesController.showProfileDetailes'
+      createDetails: {
+        $ref: 'profilesController.createDetails'
       }
     }
   },
@@ -45,6 +40,9 @@ define({
   profilesController: {
     create: 'application/modules/profiles/controller',
     properties: {
+      sandbox: {
+        $ref: 'sandbox'
+      },
       collection: {
         $ref: 'profilesCollection'
       },
@@ -59,12 +57,6 @@ define({
       },
       PersonProfileDeals: {
         $ref: 'personProfileDeals'
-      },
-      listRegion: {
-        $ref: 'listRegion'
-      },
-      personProfileRegion: {
-        $ref: 'personProfileRegion'
       }
     }
   }

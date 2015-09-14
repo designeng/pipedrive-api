@@ -1,5 +1,5 @@
 define({
-  $plugins: ['plugins/hbs', 'plugins/marionette/layout'],
+  $plugins: ['wire/debug', 'plugins/hbs', 'plugins/marionette/layout'],
   layout: {
     createLayout: {
       fromTemplate: {

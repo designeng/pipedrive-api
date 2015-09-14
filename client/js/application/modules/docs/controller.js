@@ -1,4 +1,5 @@
-var __hasProp = {}.hasOwnProperty,
+var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
+  __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
 define(["marionette", "./models/markdownModel"], function(Marionette, MarkdownModel) {
@@ -7,21 +8,20 @@ define(["marionette", "./models/markdownModel"], function(Marionette, MarkdownMo
     __extends(DocsController, _super);
 
     function DocsController() {
+      this.createDetails = __bind(this.createDetails, this);
+      this.createList = __bind(this.createList, this);
       _ref = DocsController.__super__.constructor.apply(this, arguments);
       return _ref;
     }
 
-    DocsController.prototype.initialize = function() {
-      return _.bindAll(this, 'showList', 'showDetailes');
+    DocsController.prototype.createList = function() {
+      return this.sandbox.channel.request("list:ready", "docs", this.list);
     };
 
-    DocsController.prototype.showList = function() {
-      return this.listRegion.show(this.list);
-    };
-
-    DocsController.prototype.showDetailes = function(id) {
+    DocsController.prototype.createDetails = function(id) {
       if (id) {
         this.markdownLayout.fetchMarkdownDocument(id);
+        this.sandbox.channel.request("details:ready", "docs", this.markdownLayout);
       }
       return id;
     };

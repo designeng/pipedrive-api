@@ -2,11 +2,11 @@ define({
   $plugins: ['wire/debug', 'plugins/hbs', 'plugins/marionette/layout'],
   publicApi: {
     literal: {
-      showList: {
-        $ref: 'controller.showList'
+      createList: {
+        $ref: 'controller.createList'
       },
-      showDetailes: {
-        $ref: 'controller.showDetailes'
+      createDetails: {
+        $ref: 'controller.createDetails'
       }
     }
   },
@@ -26,20 +26,17 @@ define({
       childTemplate: {
         $ref: 'hbs!templates/docsListItem'
       }
-    },
-    renderIn: {
-      $ref: 'listRegion'
     }
   },
   markdownLayout: {
-    create: 'blocks/views/markdown/index',
-    renderIn: {
-      $ref: 'markdownRegion'
-    }
+    create: 'blocks/views/markdown/index'
   },
   controller: {
     create: 'application/modules/docs/controller',
     properties: {
+      sandbox: {
+        $ref: 'sandbox'
+      },
       collection: {
         $ref: 'docsCollection'
       },

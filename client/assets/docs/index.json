@@ -5,6 +5,10 @@
             "title": "One doc"
         },
         {   
+            "id": "pipeline-api-app",
+            "title": "Pipeline-api SPA"
+        },
+        {   
             "id": 2,
             "title": "Two doc"
         }

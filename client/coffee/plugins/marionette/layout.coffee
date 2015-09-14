@@ -19,14 +19,14 @@ define [
 
         # what views the layout should show in its own regions
         showInRegionsFacet = (resolver, facet, wire) ->
-            noop = ->
             wire(facet.options).then (options) ->
-                _.each options, (view, region) ->
-                    try
+                if facet.target.isRendered
+                    _.each options, (view, region) ->
                         facet.target.showChildView region, view
-                    catch err
-                        # TODO: find why: TypeError: Cannot read property 'show' of undefined at boardLayout.Marionette.LayoutView.Marionette.ItemView.extend.showChildView
-                        noop()
+                else
+                    facet.target.onRender = ->
+                        _.each options, (view, region) ->
+                            facet.target.showChildView region, view
                 resolver.resolve facet.target
 
         pluginInstance = 

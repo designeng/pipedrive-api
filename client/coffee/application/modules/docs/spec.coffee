@@ -7,8 +7,8 @@ define
 
     publicApi:
         literal:
-            showList        : {$ref: 'controller.showList'}
-            showDetailes    : {$ref: 'controller.showDetailes'}
+            createList       : {$ref: 'controller.createList'}
+            createDetails    : {$ref: 'controller.createDetails'}
 
     # collection documents titles
     docsCollection:
@@ -22,15 +22,14 @@ define
             collection          : {$ref: 'docsCollection'}
             entity              : "doc"
             childTemplate       : {$ref: 'hbs!templates/docsListItem' }
-        renderIn: {$ref: 'listRegion'}
 
     markdownLayout:
         create: 'blocks/views/markdown/index'
-        renderIn: {$ref: 'markdownRegion'}
 
     controller:
         create: 'application/modules/docs/controller'
         properties:
+            sandbox             : {$ref: 'sandbox'}
             collection          : {$ref: 'docsCollection'}
             list                : {$ref: 'docsList'}
             markdownLayout      : {$ref: 'markdownLayout'}

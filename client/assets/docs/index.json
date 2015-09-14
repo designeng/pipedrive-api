@@ -2,7 +2,7 @@
     "data":[
         {   
             "id": "introduction",
-            "title": "One doc"
+            "title": "Introduction"
         },
         {   
             "id": "pipeline-api-app",
@@ -13,8 +13,20 @@
             "title": "Marionette.Application"
         },
         {   
-            "id": 2,
-            "title": "Two doc"
+            "id": "router",
+            "title": "Marionette.Router"
+        },
+        {   
+            "id": "layout",
+            "title": "Marionette.LayoutView"
+        },
+        {   
+            "id": "resolver",
+            "title": "Resolvers"
+        },
+        {   
+            "id": "testing-strategy",
+            "title": "Testing Strategy"
         }
     ]
 }

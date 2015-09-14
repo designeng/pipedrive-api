@@ -541,6 +541,7 @@ pre {
     margin-top: 1.5em;
     margin-bottom: 1.5em;
     padding: 0.125rem 0.3125rem 0.0625rem;
+    width: 800px;
 }
 
 pre code {

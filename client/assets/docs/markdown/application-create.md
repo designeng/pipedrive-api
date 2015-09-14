@@ -1,6 +1,6 @@
 # Marionette Application
 
-Creating Marionette.Application instanse is very simple: plugin `plugins/marionette/application` provides the factory `createApplication`:
+Creating Marionette.Application instance is very simple: plugin `plugins/marionette/application` provides the factory `createApplication`:
 
 ```
 define
@@ -19,6 +19,6 @@ define
         addController: {$ref: 'appController'}
 ```
 
-`createApplication` factory has two options: in object `withRegions` listed available regions. `onStart` function will be ivoked immediately as `app.start()` will be called somewhere in the code.
+`createApplication` factory has two options: in object `withRegions` listed available regions. `onStart` callback will be ivoked immediately as `app.start()` will be called somewhere in the code.
 
-Note, that we pointed to object `{$ref: 'appController'}` - it will be extended with property `regions`, borrowed from Marionette.Application instanse.
+Note, that in facet `addController` we pointed to object `{$ref: 'appController'}`: it will be extended with property `regions`, borrowed from Marionette.Application instanse.

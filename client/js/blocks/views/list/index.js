@@ -28,8 +28,7 @@ define(['backbone', 'api', 'blocks/views/base/collectionView', './item'], functi
     };
 
     ListView.prototype.onBeforeRender = function() {
-      this.entities = this.entity + "s";
-      return this.collection.add(new Backbone.Model());
+      return this.entities = this.entity + "s";
     };
 
     ListView.prototype.activateCurrent = function(event) {

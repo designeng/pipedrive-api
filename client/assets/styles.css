@@ -159,21 +159,23 @@ img.user-pic{
 }
 
 .sidebar{
-    position: relative;
+    position: fixed;
+    z-index: 100;
     top: 47px;
     margin: 0px;
-    float: left;
     width: 281px;
     height: 100%;
-    border-right: 1px solid #ccc;
+    border-right: 2px solid #ccc;
     overflow-y: auto;
+    background-color: #fff;
 }
 
 .main-area{
     position: relative;
     top: 47px;
     margin:0px;
-    float: left;
+    padding-left: 282px;
+    overflow-y: auto;
 }
 
 ul.listView{
@@ -181,7 +183,6 @@ ul.listView{
     margin:0px;
     padding:0px;
     border-left: 1px solid #ccc;
-    border-right: 1px solid #ccc;
 }
 
 ul.listView li{
@@ -191,16 +192,15 @@ ul.listView li{
     cursor: pointer;
 }
 
-ul.listView li:last-child {
-    background-color: #ffffff;
-    height: 10000px;
+li.list-item {
+  background-color: #f3f5f6;
 }
 
-.active{
+li.active{
     background-color: #3381c5;
 }
 
-.active-deal{
+li.active-deal{
     background-color: #FFCC00;
 }
 

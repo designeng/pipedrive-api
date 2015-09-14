@@ -121,6 +121,10 @@ nav .logo_container h1.logo a {
   content: '\E663';
 }*/
 
+.user-corner{
+  color: #fff;
+}
+
 img.user-pic{
   width: 32px;
   height: 32px;

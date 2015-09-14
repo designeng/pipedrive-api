@@ -19,11 +19,14 @@ define [
 
         # what views the layout should show in its own regions
         showInRegionsFacet = (resolver, facet, wire) ->
-            noop = ->
             wire(facet.options).then (options) ->
-                facet.target.onRender = ->
+                if facet.target.isRendered
                     _.each options, (view, region) ->
                         facet.target.showChildView region, view
+                else
+                    facet.target.onRender = ->
+                        _.each options, (view, region) ->
+                            facet.target.showChildView region, view
                 resolver.resolve facet.target
 
         pluginInstance = 

@@ -18,14 +18,18 @@ define(['underscore', 'marionette'], function(_, Marionette) {
       });
     };
     showInRegionsFacet = function(resolver, facet, wire) {
-      var noop;
-      noop = function() {};
       return wire(facet.options).then(function(options) {
-        facet.target.onRender = function() {
-          return _.each(options, function(view, region) {
+        if (facet.target.isRendered) {
+          _.each(options, function(view, region) {
             return facet.target.showChildView(region, view);
           });
-        };
+        } else {
+          facet.target.onRender = function() {
+            return _.each(options, function(view, region) {
+              return facet.target.showChildView(region, view);
+            });
+          };
+        }
         return resolver.resolve(facet.target);
       });
     };

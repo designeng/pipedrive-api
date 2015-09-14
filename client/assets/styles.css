@@ -17,7 +17,7 @@ ol, ul {
 }
 
 html, body {
-  overflow: hidden;
+  /*overflow: hidden;*/
   position: absolute;
   left: 0;
   right: 0;
@@ -55,6 +55,7 @@ a {
 
 .navigation {
   position: fixed;
+  z-index: 100;
   width: 100%;
   height: 47px;
   background-color: #343434;
@@ -170,11 +171,11 @@ img.user-pic{
     width: 281px;
     height: 100%;
     border-right: 1px solid #ccc;
-    overflow-y: auto;
 }
 
 .main-area{
     position: relative;
+    overflow: auto;
     top: 47px;
     margin:0px;
     float: left;
@@ -197,7 +198,7 @@ ul.listView li{
 
 ul.listView li:last-child {
     background-color: #ffffff;
-    height: 10000px;
+    /*height: 10000px;*/
 }
 
 .active{
@@ -294,7 +295,7 @@ table.details-wrapper td.profile-item{
 }
 
 .clearfix {
-  overflow: auto;
+  /*overflow: auto;*/
   zoom: 1;
 }
 

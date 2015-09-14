@@ -50,6 +50,12 @@ define [
             When(@createEntityList "deals").then () =>
                 @createEntityDetails "deals", dealId
 
+        # DOCUMENTATION:
+
+        docsModuleHandler: (id) ->
+            When(@createEntityList "docs").then () =>
+                @createEntityDetails "docs", id
+
         # 404 ERROR:
 
         notFoundHandler: ->
@@ -58,6 +64,7 @@ define [
         # COMMON INTERCESSORS:
 
         startModule: (sandbox) ->
+            # all is done in container/register plugin
 
         createEntityList: (sandbox) ->
             sandbox.createList()

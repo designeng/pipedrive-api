@@ -1,6 +1,6 @@
 define
     $plugins: [
-        'wire/debug'
+        # 'wire/debug'
         'plugins/marionette/router'
         'plugins/marionette/application'
         'plugins/container/register'
@@ -24,12 +24,9 @@ define
             perspective         : {$ref: 'perspective'}
             profiles            : {$ref: 'profiles'}
             deals               : {$ref: 'deals'}
+            docs                : {$ref: 'docs'}
             notFoundPageLayer   : {$ref: "element!.not-found"}
-        registerIntercessors: [
-            'startModule'
-            'createEntityList'
-            'createEntityDetails'
-        ]
+        registerIntercessors: ['startModule', 'createEntityList', 'createEntityDetails']
         ready:
             showPreloader: {$ref: 'preloader'}
             switchOn: [
@@ -46,6 +43,8 @@ define
                 'profiles/:id'  : 'profilesModuleHandler'
                 'deals'         : 'dealsModuleHandler'
                 'deals/:id'     : 'dealsModuleHandler'
+                'docs'          : 'docsModuleHandler'
+                'docs/:id'      : 'docsModuleHandler'
                 '*notFound'     : 'notFoundHandler'
         onRoute: {$ref: 'appController.onRoute'}
 
@@ -73,6 +72,11 @@ define
     deals:
         wire:
             spec: "application/modules/deals/spec"
+            defer: true
+
+    docs:
+        wire:
+            spec: "application/modules/docs/spec"
             defer: true
     # /APPLICATION MODULES
 

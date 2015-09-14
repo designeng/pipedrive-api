@@ -4,6 +4,8 @@ require.config
 
     paths:
         "text": "lib/text"
+        "highlight": "lib/highlight/highlight"
+        "coffeescript": "lib/highlight/languages/coffeescript"
 
     packages: [
         {
@@ -61,10 +63,19 @@ require.config
             main: "moment"
             location: "vendors/moment"
         }
+        {
+            name: "showdown"
+            main: "showdown.min"
+            location: "vendors/showdown/dist"
+        }
     ]
 
     shim: {
-
+        # "coffeescript":
+        #     deps: ['highlight']
+        #     exports: "coffeescript"
+        "highlight":
+            exports: "highlight"
     }
 
     hbs:

@@ -1,5 +1,5 @@
 define({
-  $plugins: ['wire/debug', 'plugins/hbs'],
+  $plugins: ['plugins/hbs'],
   publicApi: {
     literal: {
       createList: {

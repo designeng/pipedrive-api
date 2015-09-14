@@ -1,5 +1,5 @@
 define({
-  $plugins: ['wire/debug', 'plugins/marionette/router', 'plugins/marionette/application', 'plugins/container/register', 'plugins/element'],
+  $plugins: ['plugins/marionette/router', 'plugins/marionette/application', 'plugins/container/register', 'plugins/element'],
   appInstance: {
     createApplication: {
       withRegions: {
@@ -30,6 +30,9 @@ define({
       deals: {
         $ref: 'deals'
       },
+      docs: {
+        $ref: 'docs'
+      },
       notFoundPageLayer: {
         $ref: "element!.not-found"
       }
@@ -58,6 +61,8 @@ define({
         'profiles/:id': 'profilesModuleHandler',
         'deals': 'dealsModuleHandler',
         'deals/:id': 'dealsModuleHandler',
+        'docs': 'docsModuleHandler',
+        'docs/:id': 'docsModuleHandler',
         '*notFound': 'notFoundHandler'
       }
     },
@@ -99,6 +104,12 @@ define({
   deals: {
     wire: {
       spec: "application/modules/deals/spec",
+      defer: true
+    }
+  },
+  docs: {
+    wire: {
+      spec: "application/modules/docs/spec",
       defer: true
     }
   },

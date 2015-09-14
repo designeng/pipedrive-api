@@ -1,7 +1,9 @@
 require.config({
   baseUrl: "/js",
   paths: {
-    "text": "lib/text"
+    "text": "lib/text",
+    "highlight": "lib/highlight/highlight",
+    "coffeescript": "lib/highlight/languages/coffeescript"
   },
   packages: [
     {
@@ -48,13 +50,20 @@ require.config({
       name: "moment",
       main: "moment",
       location: "vendors/moment"
+    }, {
+      name: "showdown",
+      main: "showdown.min",
+      location: "vendors/showdown/dist"
     }
   ],
-  shim: {},
+  shim: {
+    "highlight": {
+      exports: "highlight"
+    }
+  },
   hbs: {
     templateExtension: ".html"
-  },
-  findNestedDependencies: true
+  }
 });
 
 requirejs.s.contexts._.config.baseUrl = "/client/js/";

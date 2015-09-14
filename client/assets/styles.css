@@ -17,7 +17,7 @@ ol, ul {
 }
 
 html, body {
-  overflow: hidden;
+  /*overflow: hidden;*/
   position: absolute;
   left: 0;
   right: 0;
@@ -55,6 +55,7 @@ a {
 
 .navigation {
   position: fixed;
+  z-index: 100;
   width: 100%;
   height: 47px;
   background-color: #343434;
@@ -75,7 +76,7 @@ nav .logo_container h1.logo a {
   background-size: 100px 22px;
 }
 
-.navigation-deals, .navigation-profiles {
+.navigation-deals, .navigation-profiles, .navigation-docs {
   float: left;
   margin-top: 15px;
 }
@@ -88,7 +89,11 @@ nav .logo_container h1.logo a {
   margin-left: 50px;
 }
 
-.navigation-deals a, .navigation-profiles a{
+.navigation-docs {
+  margin-left: 50px;
+}
+
+.navigation-deals a, .navigation-profiles a, .navigation-docs a{
   color: #fff;
   font-size: 12px;
   font-weight: bold;
@@ -172,6 +177,7 @@ img.user-pic{
 
 .main-area{
     position: relative;
+    overflow: auto;
     top: 47px;
     margin:0px;
     padding-left: 282px;
@@ -192,6 +198,7 @@ ul.listView li{
     cursor: pointer;
 }
 
+
 li.list-item {
   background-color: #f3f5f6;
 }
@@ -204,7 +211,7 @@ li.active-deal{
     background-color: #FFCC00;
 }
 
-.profile-name, .deal-name{
+.profile-name, .deal-name, .doc-name{
     font-weight: bold;
 }
 
@@ -212,7 +219,7 @@ li.active-deal{
   font-size: 10px;
 }
 
-.profile-name, .deal-name, .profile-organization-name, .deal-organization-name{
+.profile-name, .deal-name, .doc-name, .profile-organization-name, .deal-organization-name{
     padding-left: 12px;
 }
 
@@ -245,7 +252,7 @@ li.active-deal{
   display: block;
   /*width: 100%;*/
   width: 822px;
-  height: 100%;
+  height: 200px;
   margin-bottom: 14px;
   background-color: #ffffff;
   padding: 16px;
@@ -290,7 +297,7 @@ table.details-wrapper td.profile-item{
 }
 
 .clearfix {
-  overflow: auto;
+  /*overflow: auto;*/
   zoom: 1;
 }
 
@@ -521,3 +528,62 @@ th.header-list-item{
 .board-body-cell-additional-info{
   padding-left: 22px;
 }
+
+/* markdown */
+pre {
+    white-space: pre-wrap;       /* css-3 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word;        Internet Explorer 5.5+ 
+    background-color: #f8f8f8;
+    /*border: 1px solid #dfdfdf;*/
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+    padding: 0.125rem 0.3125rem 0.0625rem;
+    width: 800px;
+}
+
+pre code {
+    background-color: red;
+    border: 0;
+    padding: 0;
+    font-size: 12px;
+    /*font-weight: bold;  */
+}
+
+code{
+  /*background-color: #FFCC66;*/
+    padding: 0;
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+    margin: 0;
+    background-color: rgba(0,0,0,0.08);
+    border-radius: 3px;
+}
+
+.markdown{
+  padding-left: 10px;
+  padding-top: 10px;
+}
+
+.markdown h1, .markdown h2, .markdown h3{
+  font-weight: bold;
+}
+
+.markdown strong{
+  font-weight: bold;
+}
+
+.markdown em{
+  font-style: italic;
+}
+
+.markdown p{
+  padding-top: 10px;
+}
+
+.scheme{
+  padding-top: 10px;
+}
+/* /markdown */

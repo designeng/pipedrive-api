@@ -1,6 +1,10 @@
+# Marionette.LayoutView
+
+Also, it's very simple to create instance of Marionette.LayoutView with factory `createLayout` directly in specification:
+
+```
 define
     $plugins: [
-        # 'wire/debug'
         'plugins/hbs'
         'plugins/marionette/layout'
     ]
@@ -13,6 +17,10 @@ define
         renderIn: {$ref: 'navigationRegion'}
         showInRegions:
             'userCornerRegion': {$ref: 'userCorner'}
+```
 
-    userCorner:
-        create: 'blocks/views/user/corner/index'
+The template for layout was taken by `hbs!` [resolver](#/docs/resolvers).
+
+To render layout instance immediately use `renderIn` facet.
+
+All nested views can be rendered with `showInRegions` facet.

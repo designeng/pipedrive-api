@@ -64,6 +64,13 @@ define(["marionette", "when"], function(Marionette, When) {
       });
     };
 
+    AppController.prototype.docsModuleHandler = function(id) {
+      var _this = this;
+      return When(this.createEntityList("docs")).then(function() {
+        return _this.createEntityDetails("docs", id);
+      });
+    };
+
     AppController.prototype.notFoundHandler = function() {
       return this.notFoundPageLayer.show();
     };

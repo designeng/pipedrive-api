@@ -51,7 +51,7 @@ define(['backbone', 'api', 'blocks/views/base/collectionView', './item'], functi
         var $item;
         $item = $(item);
         $item.removeClass(_this.activeCellClass);
-        if (parseInt($item.find("." + _this.entity + "-name").attr("data-id")) === parseInt(id)) {
+        if ($item.find("." + _this.entity + "-name").attr("data-id") === id) {
           return $item.addClass(_this.activeCellClass);
         }
       });

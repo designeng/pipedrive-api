@@ -1,0 +1,32 @@
+{
+    "data":[
+        {   
+            "id": "introduction",
+            "title": "Introduction"
+        },
+        {   
+            "id": "pipeline-api-app",
+            "title": "Pipeline-api SPA"
+        },
+        {   
+            "id": "application-create",
+            "title": "Marionette.Application"
+        },
+        {   
+            "id": "router",
+            "title": "Marionette.Router"
+        },
+        {   
+            "id": "layout",
+            "title": "Marionette.LayoutView"
+        },
+        {   
+            "id": "resolver",
+            "title": "Resolvers"
+        },
+        {   
+            "id": "testing-strategy",
+            "title": "Testing Strategy"
+        }
+    ]
+}

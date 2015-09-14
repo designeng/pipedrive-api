@@ -1,5 +1,5 @@
 define({
-  $plugins: ['wire/debug'],
+  $plugins: [],
   publicApi: {
     literal: {
       showInRegion: {

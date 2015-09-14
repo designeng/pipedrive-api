@@ -20,6 +20,7 @@ define(["marionette", "./models/markdownModel"], function(Marionette, MarkdownMo
 
     DocsController.prototype.createDetails = function(id) {
       if (id) {
+        this.activateById(id);
         this.markdownLayout.fetchMarkdownDocument(id);
         this.sandbox.channel.request("details:ready", "docs", this.markdownLayout);
       }

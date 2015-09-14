@@ -42,5 +42,5 @@ define [
             _.each @items, (item) =>
                 $item = $(item)
                 $item.removeClass @activeCellClass
-                if parseInt($item.find(".#{@entity}-name").attr("data-id")) == parseInt(id)
+                if $item.find(".#{@entity}-name").attr("data-id") == id
                     $item.addClass @activeCellClass

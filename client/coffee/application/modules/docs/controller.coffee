@@ -10,7 +10,7 @@ define [
 
         createDetails: (id) =>
             if id
-                # @activateById(id)
+                @activateById(id)
                 @markdownLayout.fetchMarkdownDocument(id)
                 @sandbox.channel.request "details:ready", "docs", @markdownLayout
             return id

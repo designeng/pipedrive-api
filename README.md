@@ -19,7 +19,7 @@ https://pipedrive-api.herokuapp.com/#/profiles/1
 + `userId` and `apiToken` are hardcorded in `client/coffee/api.coffee`. Change them to work with your own pipedrive account.
 
 ###Deploy
-+ Grunt task `grunt build` should be invoked before deploy to remote server. It will run all nessesary tasks `dataMainAttr:prod` (toggling `data-main` attribute in index.html), `requirejs:compile` (building all js-source into single `main` file).
++ Grunt task `grunt build` should be invoked before deploy to remote server. It will run all nessesary tasks `dataMainAttr:prod` (toggling `data-main` attribute in index.html), `requirejs:compile` (building all js-source into single `main` file). I use `grunt deploy` task, it includes all necessary actions.
 
 + Build process needs `buildAssets` with wire.js files to be required on the early stage. TODO: [wire-rjs-builder](github.com/pieterv/wire-rjs-builder) should be inspected for issue of detection required wire.js lib modules.
 

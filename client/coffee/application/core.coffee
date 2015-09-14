@@ -2,7 +2,7 @@ define
     $plugins: [
         'wire/debug'
         'plugins/marionette/router'
-        'plugins/marionette/module'
+        'plugins/marionette/application'
         'plugins/container/register'
         'plugins/element'
     ]

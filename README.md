@@ -10,6 +10,8 @@ https://pipedrive-api.herokuapp.com/#/profiles/1
 ###Development
 + Do not hesitate to do `git clone`, `npm install`, `bower install` and `grunt` commands to view the application in your favorite browser: `http://localhost:7788/#/profiles/1`
 
++ Jasmine tests here: `http://localhost:8888/test/jasmine`
+
 + Client built on the top of Marionette.js `2.4.2v`. Wire.js used for creating DSL application specifications: it plays as composition layer.
 
 + Do not forget uncomment index.html livereload script for connect livereload interaction (TODO: automate it on deploy/development).

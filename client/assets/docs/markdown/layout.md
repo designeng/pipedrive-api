@@ -19,7 +19,7 @@ define
             'userCornerRegion': {$ref: 'userCorner'}
 ```
 
-The template for layout was taken by `hbs!` [resolver](#/docs/resolvers).
+The template for layout was taken by `hbs!` [resolver](#/docs/resolver).
 
 To render layout instance immediately use `renderIn` facet.
 

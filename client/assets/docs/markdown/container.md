@@ -11,7 +11,7 @@ Intercessors are listed in `registerIntercessors` facet and used to interact wit
 
 Shortly, intercessors are registered in application container functions for starting module one way or another.
 
-`registerIntercessors` facet can be used with the key object where application logic is defined. In our case it's `appController`:
+`registerIntercessors` facet can be applied to the key object where application logic is defined. In our case it's `appController`:
 
 ```
 define

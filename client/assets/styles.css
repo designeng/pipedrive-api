@@ -204,6 +204,10 @@ li.list-item {
   background-color: #f3f5f6;
 }
 
+li.list-item:last-child {
+  padding-bottom: 10px;
+}
+
 li.active{
     background-color: #3381c5;
 }

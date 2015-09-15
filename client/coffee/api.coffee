@@ -3,8 +3,8 @@
 define ->
 
     #hardcoded:
-    apiToken    = "7dacd3f1efaed95b707174872d2b8497e576fd73"
-    userId      = 733958
+    apiToken    = "c0f46d64fde6ceaa8815d79b7106ac5191187953"
+    userId      = 798508
 
     # for local development on mocks without apiToken and internet connection
     localMocks = false

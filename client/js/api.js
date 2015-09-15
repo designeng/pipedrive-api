@@ -1,7 +1,7 @@
 define(function() {
   var api, apiToken, domain, localMocks, port, prefix, protocol, suffix, userId, version;
-  apiToken = "7dacd3f1efaed95b707174872d2b8497e576fd73";
-  userId = 733958;
+  apiToken = "c0f46d64fde6ceaa8815d79b7106ac5191187953";
+  userId = 798508;
   localMocks = false;
   if (!localMocks) {
     protocol = "https";

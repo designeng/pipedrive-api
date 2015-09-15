@@ -5,6 +5,10 @@
             "title": "Introduction"
         },
         {   
+            "id": "libraries",
+            "title": "Libraries"
+        },
+        {   
             "id": "pipeline-api-app",
             "title": "Pipeline-api SPA"
         },

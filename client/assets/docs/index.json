@@ -29,6 +29,10 @@
             "title": "Marionette.LayoutView"
         },
         {   
+            "id": "container",
+            "title": "Container"
+        },
+        {   
             "id": "resolver",
             "title": "Resolvers"
         },

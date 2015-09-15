@@ -565,6 +565,7 @@ code{
 .markdown{
   padding-left: 10px;
   padding-top: 10px;
+  padding-bottom: 20px;
 }
 
 .markdown h1, .markdown h2, .markdown h3{

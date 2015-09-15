@@ -9,6 +9,10 @@
             "title": "Libraries"
         },
         {   
+            "id": "contexts",
+            "title": "Wired contexts"
+        },
+        {   
             "id": "pipeline-api-app",
             "title": "Pipeline-api SPA"
         },

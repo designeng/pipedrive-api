@@ -1,3 +1,4 @@
+# A perspective is a visual container for a set of views.
 define
     $plugins: [
         # 'wire/debug'

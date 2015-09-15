@@ -6,7 +6,7 @@ Container is most important part of the application, because it provides mechani
 
 #Intercessors
 
-In order to have ability to interact with module API out of application controller, we should define `intercessors`.
+In order to have ability to interact with module API out of the application controller, we should define `intercessors`.
 Intercessors are listed in `registerIntercessors` facet and used to interact with module's sandbox in container's context.
 
 Shortly, intercessors are registered in application container functions for starting module one way or another.

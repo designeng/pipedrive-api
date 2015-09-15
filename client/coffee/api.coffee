@@ -33,7 +33,7 @@ define ->
             return "#{prefix}persons/#{personId}/deals#{suffix}"
 
         getUserCornerUrl: ->
-            return "#{prefix}users/733958#{suffix}"
+            return "#{prefix}users/#{userId}#{suffix}"
 
         getOrganizationsUrl: ->
             return "#{prefix}organizations#{suffix}"

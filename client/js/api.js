@@ -27,7 +27,7 @@ define(function() {
       return "" + prefix + "persons/" + personId + "/deals" + suffix;
     },
     getUserCornerUrl: function() {
-      return "" + prefix + "users/733958" + suffix;
+      return "" + prefix + "users/" + userId + suffix;
     },
     getOrganizationsUrl: function() {
       return "" + prefix + "organizations" + suffix;

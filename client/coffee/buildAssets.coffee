@@ -21,7 +21,6 @@ define [
     "wire/lib/invoker"
     "wire/lib/pipeline"
 ], ($) ->
-
     # livereload: only for development, no error on deploy
     noop = ->
     try

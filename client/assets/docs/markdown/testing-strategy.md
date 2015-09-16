@@ -80,3 +80,32 @@ define [
                 expect(sandbox.channel).toBeObject()
                 done()
 ```
+
+#Jasmine plugin?
+```
+define "jasmine/plugins/suite", [
+    'underscore'
+    'marionette'
+], (_, Marionette) ->
+
+    return (options) ->
+
+        suiteStarterResolver = (resolver, amdId, refObj, wire) ->
+            require [amdId], (starter) ->
+                resolver.resolve starter
+
+        testSuiteFacet = (resolver, facet, wire) ->
+            wire(facet.options).then (options) ->
+                options.starter(facet.target, options.type)
+                resolver.resolve facet.target
+
+        pluginInstance = 
+            resolvers:
+                starter: suiteStarterResolver
+
+            facets:
+                testSuite:
+                    "ready"     : testSuiteFacet
+
+        return pluginInstance
+```

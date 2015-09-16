@@ -3,3 +3,4 @@ require [
     "buildAssets"
 ], (applicationContext) ->
     applicationContext.start()
+    

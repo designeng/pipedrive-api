@@ -39,6 +39,10 @@
         {   
             "id": "testing-strategy",
             "title": "Testing Strategy"
+        },
+        {   
+            "id": "conclusion",
+            "title": "Conclusion"
         }
     ]
 }

@@ -5,6 +5,7 @@ require.config
     paths:
         "text": "lib/text"
         "highlight": "lib/highlight/highlight"
+        # just a coffeescript highlighter function for usage in documentation part
         "coffeescript": "lib/highlight/languages/coffeescript"
 
     packages: [
@@ -71,9 +72,6 @@ require.config
     ]
 
     shim: {
-        # "coffeescript":
-        #     deps: ['highlight']
-        #     exports: "coffeescript"
         "highlight":
             exports: "highlight"
     }

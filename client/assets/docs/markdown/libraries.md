@@ -1,19 +1,8 @@
 #Libraries
 
-<div class="scheme"><a href="https://www.lucidchart.com/publicSegments/view/12d51532-32c4-48a9-9034-99c7baf70afe/image.png" target="blank"><img src="https://www.lucidchart.com/publicSegments/view/12d51532-32c4-48a9-9034-99c7baf70afe/image.png" width="700" height="500"/><a>
+<div class="scheme"><a href="https://www.lucidchart.com/publicSegments/view/12d51532-32c4-48a9-9034-99c7baf70afe/image.png" target="blank"><img src="https://www.lucidchart.com/publicSegments/view/12d51532-32c4-48a9-9034-99c7baf70afe/image.png" width="700" height="500"/></a></div>
 
 #Base Library
-
-Provides:
-
-- Browser normalization
-    Abstract away differences in browsers with common interface
-- General-purpose utilities
-    Parsers/serialises for XML, JSON, etc.
-    Object manipulation
-    DOM manipulation
-    Ajax communication
-- Low-level extensibility
 
 We should accept that there is not only one `base library` for our structure.
 

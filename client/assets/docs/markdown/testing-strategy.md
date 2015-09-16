@@ -109,3 +109,66 @@ define "jasmine/plugins/suite", [
 
         return pluginInstance
 ```
+
+And then:
+```
+define [
+    "wire"
+    "when"
+], (wire, When) ->
+
+    define 'behaviorController', () ->
+        class behaviorController
+            constructor: ->
+
+
+    define 'tests/Marionette/CollectionView/starter', () ->
+        return  (target, type) ->
+            describe "list view test suite", ->
+                it "list view element exists", (done) ->
+                    expect(target).toBeDefined()
+                    done()
+
+        beforeEach (done) ->
+            wire(behaviorSpec).then (@ctx) =>
+                done()
+            .otherwise (err) ->
+                console.log "ERROR", err
+
+        it "profiles controller exists", (done) ->
+            expect(@ctx.controller).toBeDefined()
+            done()
+
+    # spec
+    behaviorSpec = 
+        $plugins:[
+            "wire/debug"
+            "wire/debug"
+            "jasmine/plugins/suite"
+        ]
+
+        controller:
+            create: "behaviorController"
+
+        list:
+            create: "blocks/views/list/index"
+            testSuite:
+                starter: {$ref: 'starter!tests/Marionette/CollectionView/starter'}
+                type: "Marionette.CollectionView"
+
+    describe "profiles module", ->
+
+        beforeEach (done) ->
+            wire(behaviorSpec).then (@ctx) =>
+                done()
+            .otherwise (err) ->
+                console.log "ERROR", err
+
+        it "profiles controller exists", (done) ->
+            expect(@ctx.controller).toBeDefined()
+            done()
+
+        it "profiles list exists", (done) ->
+            expect(@ctx.list).toBeDefined()
+            done()
+```

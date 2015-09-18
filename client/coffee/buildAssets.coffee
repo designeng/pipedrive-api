@@ -21,6 +21,7 @@ define [
     "wire/lib/invoker"
     "wire/lib/pipeline"
 ], ($) ->
+    # TODO: grunt concat task (not working now for deploy)
     # livereload: only for development, no error on deploy
     noop = ->
     try

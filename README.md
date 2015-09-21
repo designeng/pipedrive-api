@@ -37,7 +37,6 @@ https://pipedrive-api.herokuapp.com/#/profiles/1
  
 + Application core is provided by 'client/coffee/application/core' wire.js specification file.
 
-+ [Slides (in progress)](http://presentboldly.com/designeng/wirejs-marionettejs-2)
 
 ###Browsers compatibility
 Tested in Chrome (v42), Safari (v7.0), Firefox (v37).

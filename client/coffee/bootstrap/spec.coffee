@@ -4,4 +4,4 @@ define
     ]
 
     marionetteHooks:
-        create: "bootstrap/hooks"
+        module: "bootstrap/hooks"

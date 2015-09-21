@@ -20,9 +20,8 @@ define(["underscore", "backbone", "backbone.radio", "marionette", "handlebars", 
   Marionette.Behaviors.behaviorsLookup = function() {
     return Behaviors;
   };
-  Marionette.Application.prototype._initChannel = function() {
+  return Marionette.Application.prototype._initChannel = function() {
     this.channelName = _.result(this, 'channelName') || 'global';
     return this.channel = _.result(this, 'channel') || Radio.channel(this.channelName);
   };
-  return function() {};
 });

@@ -33,5 +33,3 @@ define [
     Marionette.Application::_initChannel = ->
         @channelName = _.result(@, 'channelName') || 'global'
         @channel = _.result(@, 'channel') || Radio.channel(@channelName)
-
-    return () ->
